@@ -6,7 +6,7 @@ public class CarteTaupesGeantes extends CarteAlliee {
 		super(nom);
 	}
 
-	public void utiliser(Joueur destinataire, Saison saisonActuelle) {
+	public int utiliser(Joueur destinataire, Saison saisonActuelle) {
 		int tempValeur = 0;
 		if (saisonActuelle == Saison.automne) {
 			tempValeur = 2;
@@ -18,14 +18,20 @@ public class CarteTaupesGeantes extends CarteAlliee {
 			tempValeur = 1;
 		}
 		
-		int nombreMaximalDeMenhirsAdultesDetruits;
+		int nombreMaximalDeMenhirsAdultesDetruits = this.getPuissanceActions()[tempValeur];
 		
 		PaquetDeRessourcesDeJoueur tempPaquet = destinataire.getPaquet();
-		Carte tempCarte = tempPaquet.getCarteComptageDePoint();
+		CarteChamp tempCarte = (CarteChamp) tempPaquet.getPaquetsDeCartes().get("Cartes Champs").get(0);
 		
+		int nombreDeMenhirsADetruire = 0;//tempCarte.getMenhirAdultes()
+		if(nombreMaximalDeMenhirsAdultesDetruits>tempCarte.getMenhirAdultes()) {
+			nombreDeMenhirsADetruire = tempCarte.getMenhirAdultes();
+		} else {
+			nombreDeMenhirsADetruire = nombreMaximalDeMenhirsAdultesDetruits;
+		}
 		
-		
-		
+		this.setEstUtilise(true);
+		return nombreDeMenhirsADetruire;
 	}
 
 

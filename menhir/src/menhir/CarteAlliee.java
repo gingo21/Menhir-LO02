@@ -23,7 +23,5 @@ public abstract class CarteAlliee extends Carte {
 	public void setPuissanceActions(int[] puissanceActions) {
 		this.puissanceActions = puissanceActions;
 	}
-	
-	public abstract void utiliser(Joueur destinataire, Saison saisonActuelle);
 
 }

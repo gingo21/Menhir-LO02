@@ -1,6 +1,5 @@
 package menhir;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -63,7 +62,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	public void donnerUneCarteAuJoueur(Joueur joueur, String cleDeTypeDeCarte) {
 		Carte tempCarte = this.paquetsDeCartes.get(cleDeTypeDeCarte).pop();
 		PaquetDeRessourcesDeJoueur tempPaquetJoueur = joueur.getPaquet();
-		tempCarte.setEstUtilise(true);
+		tempCarte.setEstUtilise(false);
 		tempPaquetJoueur.ajouterUneCarte(tempCarte);
 	}
 	

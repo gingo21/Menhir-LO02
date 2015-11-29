@@ -18,13 +18,13 @@ public class Joueur {
 		paquet = new PaquetDeRessourcesDeJoueur(this, referencePaquetPartie);
 	}
 	
-	public void utiliserActionIngredient (TypeAction typeAction, CarteIngredient carteIngredient, Joueur Destinataire){
-		//paquet.
+	/*public void utiliserActionIngredient (TypeAction typeAction, CarteIngredient carteIngredient, Joueur Destinataire){
+		carte
 	}
 	
 	public void utiliserActionAlliee(Joueur Destinataire){
 		
-	}
+	}*/
 	
 	public String getNom() {
 		return nom;

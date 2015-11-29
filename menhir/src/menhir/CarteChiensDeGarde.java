@@ -6,7 +6,7 @@ public class CarteChiensDeGarde extends CarteAlliee {
 		super(nom);
 	}
 
-	public int utiliser(Joueur destinataire, Saison saisonActuelle, int puissance) {
+	public int utiliser(Joueur destinataire, Saison saisonActuelle, int puissanceAttaqueFarfadet) {
 		int tempValeur = 0;
 		if (saisonActuelle == Saison.automne) {
 			tempValeur = 2;
@@ -19,16 +19,8 @@ public class CarteChiensDeGarde extends CarteAlliee {
 		}
 		int[] tempPuissance = this.getPuissanceActions();
 		this.setEstUtilise(true);
-		return puissance - tempPuissance[tempValeur];
+		return puissanceAttaqueFarfadet - tempPuissance[tempValeur];
 		
 	}
-
-	@Override
-	public void utiliser(Joueur destinataire, Saison saisonActuelle) {
-		// TODO Auto-generated method stub
-	
-	}
-
-	
 
 }

@@ -1,7 +1,5 @@
 package menhir;
 
-import java.util.*;
-
 public class CarteComptageDePoint extends Carte {
 	private int menhirAdultes;
 

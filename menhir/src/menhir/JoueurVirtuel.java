@@ -2,12 +2,12 @@ package menhir;
 
 public class JoueurVirtuel extends Joueur {
 
+	private Difficulte difficulte;
+
 	public JoueurVirtuel(String nom,
-			PaquetDeRessourcesDePartie referencePaquetPartie) {
+			PaquetDeRessourcesDePartie referencePaquetPartie,
+			Difficulte difficulte) {
 		super(nom, referencePaquetPartie);
-		// TODO Auto-generated constructor stub
+		this.difficulte = difficulte;
 	}
-
-
-
 }

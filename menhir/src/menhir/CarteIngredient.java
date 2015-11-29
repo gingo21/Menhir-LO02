@@ -1,10 +1,5 @@
 package menhir;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Stack;
-
 public class CarteIngredient extends Carte {
 	private int puissanceActions[][];
 
@@ -23,7 +18,7 @@ public class CarteIngredient extends Carte {
 		this.puissanceActions = new int[4][3];
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 3; j++) {
-				this.puissanceActions[i][j] = (int) (Math.random() * (4 - 1));
+				this.puissanceActions[i][j] = (int) (Math.random() * (5 - 1)+1);
 			}
 		}
 	}
@@ -54,28 +49,42 @@ public class CarteIngredient extends Carte {
 		if (typeaction == TypeAction.geantGardient){
 			tempPaquetPartie.donnerUneGraineDeMenhir(acteur, this.puissanceActions[tempValeur][0]);
 		}
+		boolean condition;
 		if (typeaction == TypeAction.farfadet){
 			int puissance = this.puissanceActions[tempValeur][2];
 			if (statutPartie == StatutPartie.avancee){
 				if(!(tempPaquetDest.getPaquetsDeCartes().get("Cartes Chiens De Garde").isEmpty()))
-					System.out.println("Possibilité de jouer carte chien de garde");
-				// possibiilité de jouer carte chien de garde -> différent si joueur virtuel ou joueur reel
+					System.out.println("Possibilite de jouer carte chien de garde");
+				// possibilitÃ© de jouer carte chien de garde -> diffÃ©rent si joueur virtuel ou joueur reel
 				// si joue chien de garde
 				CarteChiensDeGarde tempCarteChiensDeGarde = (CarteChiensDeGarde) tempPaquetDest.getPaquetsDeCartes()
 						.get("Cartes ChiensDeGarde").get(0);
 				puissance = tempCarteChiensDeGarde.utiliser(destinataire, saisonActuelle, puissance);
 				
 			}
-			while (destinataire.getPaquet().getGrainesDeMenhir() > 0 && puissance > 0){
-				for (int i=0; i< puissance;i++)
+			for (int i=0; i< puissance;i++){
+				boolean condition1;
+				while (condition1 =(destinataire.getPaquet().getGrainesDeMenhir() > 0 && puissance > 0)){
 				destinataire.getPaquet().donnerUneGraineDeMenhir(acteur);
-			}
+				}
+				if (!condition1)
+					break;
+		}
 		}
 		if (typeaction == TypeAction.engrais){
 			CarteChamp tempCarteChamp = (CarteChamp) tempPaquet.getPaquetsDeCartes().get("Cartes Champs")
 					.get(0);
-			tempCarteChamp.rajouterGraines(this.puissanceActions[tempValeur][1]);
-			tempPaquet.setGrainesDeMenhir(tempPaquet.getGrainesDeMenhir()-this.puissanceActions[tempValeur][1]);
+		 condition = false;
+			for (int i = 0; i< this.puissanceActions[tempValeur][1]; i++){
+				while (condition = (tempPaquet.getGrainesDeMenhir() > 0)){
+					tempCarteChamp.rajouterGraines(1);
+					tempPaquet.setGrainesDeMenhir(tempPaquet.getGrainesDeMenhir()-1);
+				}
+				if (!condition)
+					break;
+			}
+			
+			
 			//fin de la manche ? 
 			/*
 			if (statutPartie == StatutPartie.avancee){
@@ -89,6 +98,7 @@ public class CarteIngredient extends Carte {
 
 	public String toString() {
 		String result = "";
+		result += "Carte [nom=" + this.getNom() + ", id=" + this.getId() + ", estUtilise=" + this.isEstDetenuParUnJoueur() + "] \n";
 		for (int j = 0; j < 3; j++){
 			for (int i = 0; i < 4; i++){
 				result += + this.puissanceActions[i][j]+ " ";

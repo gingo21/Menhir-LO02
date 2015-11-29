@@ -8,7 +8,7 @@ import java.util.Set;
 public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 
 	private HashMap<String, ArrayList<Carte>> paquetsDeCartes;
-	private HashMap<String, ArrayList<Carte>> paquetsDeCartesUtilises; // TODO
+	//private HashMap<String, ArrayList<Carte>> paquetsDeCartesUtilises; // TODO (je pense l'enlevé AW)
 	private PaquetDeRessourcesDePartie referencePaquetPartie;
 	private Joueur joueur;
 
@@ -48,6 +48,12 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 	
 	public Carte getCarteComptageDePoint() {
 		return this.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0);
+	}
+	
+	public int getNombreMenhirsAdultes()
+	{
+		CarteChamp tempCarteChamp = (CarteChamp) this.paquetsDeCartes.get("Cartes Champs").get(0);
+		return tempCarteChamp.getMenhirAdultes();
 	}
 
 	public PaquetDeRessourcesDePartie getReferencePaquetPartie() {

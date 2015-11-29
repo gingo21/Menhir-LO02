@@ -55,7 +55,7 @@ public class CarteIngredient extends Carte {
 			if (statutPartie == StatutPartie.avancee){
 				if(!(tempPaquetDest.getPaquetsDeCartes().get("Cartes Chiens De Garde").isEmpty()))
 					System.out.println("Possibilite de jouer carte chien de garde");
-				// possibilité de jouer carte chien de garde -> différent si joueur virtuel ou joueur reel
+				// possibilite de jouer carte chien de garde -> different si joueur virtuel ou joueur reel
 				// si joue chien de garde
 				CarteChiensDeGarde tempCarteChiensDeGarde = (CarteChiensDeGarde) tempPaquetDest.getPaquetsDeCartes()
 						.get("Cartes ChiensDeGarde").get(0);
@@ -72,8 +72,7 @@ public class CarteIngredient extends Carte {
 		}
 		}
 		if (typeaction == TypeAction.engrais){
-			CarteChamp tempCarteChamp = (CarteChamp) tempPaquet.getPaquetsDeCartes().get("Cartes Champs")
-					.get(0);
+			CarteChamp tempCarteChamp = (CarteChamp) acteur.getPaquet().getCarteChamp();
 		 condition = false;
 			for (int i = 0; i< this.puissanceActions[tempValeur][1]; i++){
 				while (condition = (tempPaquet.getGrainesDeMenhir() > 0)){

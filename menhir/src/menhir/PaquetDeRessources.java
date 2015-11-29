@@ -15,9 +15,8 @@ public abstract class PaquetDeRessources {
 		return grainesDeMenhir;
 	}
 
-	@Override
 	public String toString() {
-		return "PaquetDeRessources [grainesDeMenhir=" + grainesDeMenhir + "]";
+		return " [grainesDeMenhir=" + grainesDeMenhir + "]";
 	}
 
 	public void setGrainesDeMenhir(int grainesDeMenhir) {

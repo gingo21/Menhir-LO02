@@ -25,49 +25,7 @@ public class Partie {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*
-		 * PaquetDeRessourcesDePartie TEst = new
-		 * PaquetDeRessourcesDePartie(men
-		 * hir.StatutPartie.avancee, 6);
-		 * //TEst.afficherCartes(); Joueur testJoueur = new Joueur("Carcarmel");
-		 * TEst.donnerUneCarteAuJoueur(testJoueur, "Cartes Ingredients");
-		 * testJoueur.getPaquet().afficherCartes();
-		 * 
-		 * 
-		 * // test PaquetDeRessourcesDePartie TEst = new
-		 * PaquetDeRessourcesDePartie(menhir.StatutPartie.rapide, 2);
-		 * //TEst.afficherCartes(); Joueur testJ1 = new Joueur("J1", TEst );
-		 * Joueur testJ2 = new Joueur("J2", TEst );
-		 * TEst.donnerUneCarteAuJoueur(testJ1, "Cartes Ingredients");
-		 * TEst.donnerUneCarteAuJoueur(testJ2, "Cartes Ingredients");
-		 * TEst.donnerUneCarteAuJoueur(testJ1, "Cartes Champs");
-		 * TEst.donnerUneGraineDeMenhir(testJ1, 4);
-		 * 
-		 * testJ1.getPaquet().afficherCartes(); //test geant CarteIngredient
-		 * CarteAJouer = (CarteIngredient)
-		 * testJ1.getPaquet().getPaquetsDeCartes(
-		 * ).get("Cartes Ingredients").get(0);
-		 * System.out.println(TEst.toString());
-		 * //CarteAJouer.utiliser(TypeAction.geantGardient, testJ2, testJ1,
-		 * Saison.hiver, StatutPartie.rapide);
-		 * System.out.println(testJ1.getPaquet().toString());
-		 * System.out.println(testJ2.getPaquet().toString()); //test farfadet
-		 * CarteIngredient CarteAJouer2 = (CarteIngredient)
-		 * testJ2.getPaquet().getPaquetsDeCartes
-		 * ().get("Cartes Ingredients").get(0);
-		 * //CarteAJouer2.utiliser(TypeAction.farfadet, testJ1, testJ2,
-		 * Saison.hiver, StatutPartie.rapide);
-		 * System.out.println(testJ1.getPaquet().toString());
-		 * System.out.println(testJ2.getPaquet().toString()); // test engrais
-		 * CarteAJouer.utiliser(TypeAction.engrais, testJ1, testJ1,
-		 * Saison.hiver, StatutPartie.rapide);
-		 * System.out.println(testJ1.getPaquet().toString());
-		 * testJ1.getPaquet().afficherCartes();
-		 * System.out.println(TEst.toString());
-		 */
-
-		// test 28 novembre
+	
 		// 1Ã¨re version
 		System.out
 				.println("Bienvenue dans la version Alpha du jeu du menhir d'apres Francois Reymond"
@@ -104,7 +62,8 @@ public class Partie {
 			int tempIdJoueurActuel = test.getOrdreDesJoueurs()[partie.numeroDeTourActuel];
 			int indexJoueurActuel = 0;
 
-			// On cherche le bon joueur
+			// On cherche le bon joueur //FR pas besoin? on commence à 0 on incrémente à chaque tour
+			//et remise à 0 à chaque chgt de saison?
 			for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it
 					.hasNext();) {
 				Joueur tempJoueur = it.next();
@@ -151,7 +110,7 @@ public class Partie {
 				}
 				
 				System.out.println("Quelle action (engrais ou geant ou farfadet) ?");
-				while(!reponse.contentEquals("engrais") && !reponse.contentEquals("geant") && !reponse.contentEquals("menhir"))
+				while(!reponse.contentEquals("engrais") && !reponse.contentEquals("geant") && !reponse.contentEquals("farfadet"))
 				{
 					reponse = sc.next();
 					if(reponse.contentEquals("engrais"))
@@ -159,21 +118,74 @@ public class Partie {
 						carteAJouer.utiliser(TypeAction.engrais, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); // marche mal on se retrouve avec trop de menhirs adultes
 						System.out.println("Vous avez maintenant " + joueurActuel.getPaquet().getNombreMenhirsAdultes() + " menhirs adultes.");
 					}
-					if(reponse.contentEquals("farfadet"))
+					if(reponse.contentEquals("farfadet")) //fonctionne mais revoir le parcourt de la collection joueur
 					{
 						System.out.println("A quel joueur voulez-vous voler des graines");
-						// afficher tous les joueurs et leurs ressources (graines + menhirs)
-						carteAJouer.utiliser(TypeAction.farfadet, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); 
+						// afficher tous les joueurs(IAS) et leurs ressources (graines + menhirs)
+						for (int  i=1; i< test.getNombreDeJoueurs(); i++){
+							Joueur tempIA = test.getListeJoueurs().get(i);
+							System.out.println(tempIA.toString()+" menhirs : "+ tempIA.getPaquet().getNombreMenhirsAdultes());
+						}
+							System.out.println("A quel joueur voulez-vous volez les graines? Entrer id");
+							trouvee = false;
+							Joueur destinataire = new Joueur(null, null);
+							while (!trouvee) {
+								reponse = sc.next();
+								for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it
+										.hasNext();){
+									Joueur tempJoueurVirtuel = it.next();
+									if (String.valueOf(tempJoueurVirtuel.getId()).equals(reponse)) {
+										destinataire =  tempJoueurVirtuel;
+										trouvee = true;
+										break;
+									}
+								}
+							}
+							
+						reponse = "farfadet";
+						carteAJouer.utiliser(TypeAction.farfadet, destinataire,joueurActuel , partie.saisonActuelle, StatutPartie.rapide); 
+						System.out.println("Vous avez maintenant " + joueurActuel.getPaquet().getGrainesDeMenhir() + " graines de menhirs.");
+
+					}
+					if(reponse.contentEquals("geant")){
+						carteAJouer.utiliser(TypeAction.geantGardient, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); 
 						System.out.println("Vous avez maintenant " + joueurActuel.getPaquet().getGrainesDeMenhir() + " graines de menhirs.");
 					}
 				}
 
 			} else {
-				//faire une sÃ©lÃ©ction alÃ©atoire de carte et d'action pour les IA
+				//faire une selection aleatoire de carte et d'action pour les IA
 			}
+			System.out.println(partie.saisonActuelle);
+			joueurActuel.Score(StatutPartie.rapide);
 			partie.numeroDeTourActuel++;
+			indexJoueurActuel++;
+			if ((partie.numeroDeTourActuel % test.getNombreDeJoueurs()) == 0){ //on change de saison tous les njoueurs tours
+				if(partie.saisonActuelle == Saison.hiver){						//condtion à coder plus proprement dans l'enum
+					partie.saisonActuelle = Saison.printemps;
+				}
+				else partie.saisonActuelle = partie.saisonActuelle.next();
+				indexJoueurActuel = 0; 
+				partie.numeroDeTourActuel=0;
+			}
+			System.out.println(partie.saisonActuelle);
 
-		} while (partie.saisonActuelle != Saison.printemps);
+		} while (partie.saisonActuelle != Saison.printemps || partie.numeroDeTourActuel ==1 );
+		// parcourir les joueurs 
+		int indexJoueurActuel = 0;
 
+		// On cherche le bon joueur //FR pas besoin? on commence à 0 on incrémente à chaque tour
+		//et remise à 0 à chaque chgt de saison?
+		Joueur JoueurGagnant = new Joueur(null,null);
+		int maxScore = 0;
+		for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it
+				.hasNext();) {
+			Joueur tempJoueur = it.next();
+			if (tempJoueur.getScore() > maxScore )
+				JoueurGagnant = tempJoueur;
+			}
+		System.out.println("Gagnant : " + JoueurGagnant.toString()); //+ rajouter un test sur joueur reel, avec message personnalisé
+		
+		
 	}
 }

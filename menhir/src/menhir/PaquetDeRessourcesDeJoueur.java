@@ -37,7 +37,7 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
-	
+	/*
 	public HashMap<String, ArrayList<Carte>> getPaquetsDeCartesUtilises() {
 		return paquetsDeCartesUtilises;
 	}
@@ -45,11 +45,14 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 	public void setPaquetsDeCartesUtilises(HashMap<String, ArrayList<Carte>> paquetsDeCartesUtilises) {
 		this.paquetsDeCartesUtilises = paquetsDeCartesUtilises;
 	}
-	
+	*/
 	public Carte getCarteComptageDePoint() {
 		return this.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0);
 	}
 	
+	public Carte getCarteChamp() {
+		return this.getPaquetsDeCartes().get("Cartes Champs").get(0);
+	}
 	public int getNombreMenhirsAdultes()
 	{
 		CarteChamp tempCarteChamp = (CarteChamp) this.paquetsDeCartes.get("Cartes Champs").get(0);
@@ -107,7 +110,5 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 		}
 
 	}
-	public String toString() {
-		return super.toString()+ " [joueur=" + joueur + "]";
-	}
+	
 }

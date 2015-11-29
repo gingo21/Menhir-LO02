@@ -72,6 +72,6 @@ public class Joueur {
 	}
 	public String toString() {
 		return "Joueur [nom=" + nom + ", id=" + id + ", score=" + score
-				 + "]";
+				 + paquet+ "]";
 	}
 }	

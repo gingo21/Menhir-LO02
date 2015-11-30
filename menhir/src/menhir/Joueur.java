@@ -1,5 +1,8 @@
 package menhir;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 
 public class Joueur {
 	private String nom;
@@ -49,7 +52,7 @@ public class Joueur {
 	public PaquetDeRessourcesDeJoueur getPaquet() {
 		return paquet;
 	}
-
+	
 	public void setPaquet(PaquetDeRessourcesDeJoueur paquet) {
 		this.paquet = paquet;
 	}

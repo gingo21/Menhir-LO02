@@ -105,10 +105,14 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 		for (Iterator<String> it = tempCles.iterator(); it.hasNext();) {
 			ArrayList<Carte> tempCartes = this.getPaquetsDeCartes().get(it.next());
 			for (Iterator<Carte> yt = tempCartes.iterator(); yt.hasNext();) {
-				System.out.println(yt.next().toString());
+				Carte tempCarte = yt.next();
+				if (tempCarte.isEstUtilise()==false)
+				System.out.println(tempCarte.toString());
+				
 			}
 		}
-
 	}
+	
+	
 	
 }

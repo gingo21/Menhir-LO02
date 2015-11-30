@@ -16,7 +16,7 @@ public class ParametreDePartie {
 	private ArrayList<Joueur> listeJoueurs;
 	private PaquetDeRessourcesDePartie paquetDePartie;
 	
-	public ParametreDePartie()  { // ce paramétrage se fera avec un fichier par la suite
+	public ParametreDePartie()  { // ce parametrage se fera avec un fichier par la suite
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Combien de joueurs? (entre 2 et 6)");
@@ -31,7 +31,7 @@ public class ParametreDePartie {
 		if (sc.nextInt()==2){
 			//this.typePartie = StatutPartie.avancee;
 			//this.nombreDeManches = this.nombreDeJoueurs;
-			System.out.println("Désolé partie avancee en cours de développement");
+			System.out.println("Desole partie avancee en cours de developpement");
 			this.typePartie = StatutPartie.rapide;
 			this.nombreDeManches = 1;
 		}

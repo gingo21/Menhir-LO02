@@ -64,7 +64,7 @@ public class CarteIngredient extends Carte {
 			}
 			for (int i=0; i< puissance;i++){
 				boolean condition1;
-				while (condition1 =(destinataire.getPaquet().getGrainesDeMenhir() > 0 && puissance > 0)){
+				if (condition1 =(destinataire.getPaquet().getGrainesDeMenhir() > 0 && puissance > 0)){
 				destinataire.getPaquet().donnerUneGraineDeMenhir(acteur);
 				}
 				if (!condition1)
@@ -73,14 +73,11 @@ public class CarteIngredient extends Carte {
 		}
 		if (typeaction == TypeAction.engrais){
 			CarteChamp tempCarteChamp = (CarteChamp) acteur.getPaquet().getCarteChamp();
-		 condition = false;
 			for (int i = 0; i< this.puissanceActions[tempValeur][1]; i++){
-				while (condition = (tempPaquet.getGrainesDeMenhir() > 0)){
+				if ((tempPaquet.getGrainesDeMenhir() > 0)){
 					tempCarteChamp.rajouterGraines(1);
 					tempPaquet.setGrainesDeMenhir(tempPaquet.getGrainesDeMenhir()-1);
 				}
-				if (!condition)
-					break;
 			}
 			
 			

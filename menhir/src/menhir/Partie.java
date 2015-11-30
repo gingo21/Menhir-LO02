@@ -87,7 +87,7 @@ public class Partie {
 						|| reponse.contentEquals("yes")
 						|| reponse.contentEquals("oui")) {
 					System.out
-							.println(joueurActuel.getNom() + ", voici vos cartes (col1->P col2->E col3->A col4->H lign1->Engrais lign2->Geant lign3->Farfadet");
+							.println(joueurActuel.getNom() + ", voici vos cartes (col1->P col2->E col3->A col4->H lign1->Geant lign2->Engrais lign3->Farfadet");
 					joueurActuel.getPaquet().afficherCartes();
 					System.out.println(joueurActuel.getPaquet().getGrainesDeMenhir());
 				}
@@ -117,6 +117,7 @@ public class Partie {
 					{
 						carteAJouer.utiliser(TypeAction.engrais, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); // marche mal on se retrouve avec trop de menhirs adultes
 						System.out.println("Vous avez maintenant " + joueurActuel.getPaquet().getNombreMenhirsAdultes() + " menhirs adultes.");
+						System.out.println(joueurActuel.toString());
 					}
 					if(reponse.contentEquals("farfadet")) //fonctionne mais revoir le parcourt de la collection joueur
 					{
@@ -145,18 +146,65 @@ public class Partie {
 						reponse = "farfadet";
 						carteAJouer.utiliser(TypeAction.farfadet, destinataire,joueurActuel , partie.saisonActuelle, StatutPartie.rapide); 
 						System.out.println("Vous avez maintenant " + joueurActuel.getPaquet().getGrainesDeMenhir() + " graines de menhirs.");
+						System.out.println(destinataire.toString());
+						System.out.println(joueurActuel.toString());
 
 					}
 					if(reponse.contentEquals("geant")){
 						carteAJouer.utiliser(TypeAction.geantGardient, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); 
 						System.out.println("Vous avez maintenant " + joueurActuel.getPaquet().getGrainesDeMenhir() + " graines de menhirs.");
+						
+						System.out.println(joueurActuel.toString());
 					}
 				}
 
 			} else {
 				//faire une selection aleatoire de carte et d'action pour les IA
+				CarteIngredient carteIA = new CarteIngredient(null);
+				ArrayList <Carte> paquetCartesNonUtilises = new ArrayList<Carte>();
+				//cartes ingredients
+				for (Iterator<Carte> it = joueurActuel.getPaquet().getPaquetsDeCartes().get("Cartes Ingredients")
+						.iterator(); it.hasNext();) {
+					Carte tempCarte = it.next();
+					if (!tempCarte.isEstUtilise())
+						paquetCartesNonUtilises.add(tempCarte);
+				}
+				
+				//selection aléatoire de carte
+				int indexCarte = (int) (Math.random() * paquetCartesNonUtilises.size());
+				System.out.println(indexCarte+"indexCarte(test)");
+				carteIA = (CarteIngredient) paquetCartesNonUtilises.get(indexCarte);
+				//sélection aléatoire action
+				int indexAction = (int) (Math.random() * 3);
+				System.out.println(indexAction+"indexaction(test)");
+				// 1=engrais 2=farfadet 3=geant
+				if(indexAction==0)
+				{
+					carteIA.utiliser(TypeAction.engrais, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); // marche mal on se retrouve avec trop de menhirs adultes
+					System.out.println(joueurActuel.toString());
+				}
+				if(indexAction==1) //fonctionne mais revoir le parcourt de la collection joueur
+				{
+						//génerer aléatoirement destinataire
+					Joueur destinataire = new Joueur(null, null);
+					ArrayList<Joueur> tempJoueurDest = new ArrayList<Joueur>();
+					for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it.hasNext();) {
+						Joueur tempJoueur = it.next();
+						if (tempJoueur!=joueurActuel)
+							tempJoueurDest.add(tempJoueur);
+					}
+					int indexJoueurDest = (int) (Math.random() * tempJoueurDest.size());
+					destinataire = tempJoueurDest.get(indexJoueurDest);
+					carteIA.utiliser(TypeAction.farfadet, destinataire,joueurActuel , partie.saisonActuelle, StatutPartie.rapide); 
+					System.out.println(destinataire.toString());
+					System.out.println(joueurActuel.toString());
+				}
+				if(indexAction==2){
+					carteIA.utiliser(TypeAction.geantGardient, joueurActuel, joueurActuel, partie.saisonActuelle, StatutPartie.rapide); 
+					System.out.println(joueurActuel.toString());
+
+				}
 			}
-			System.out.println(partie.saisonActuelle);
 			joueurActuel.Score(StatutPartie.rapide);
 			partie.numeroDeTourActuel++;
 			indexJoueurActuel++;
@@ -167,25 +215,29 @@ public class Partie {
 				else partie.saisonActuelle = partie.saisonActuelle.next();
 				indexJoueurActuel = 0; 
 				partie.numeroDeTourActuel=0;
+				System.out.println("Changement de saison :" +partie.saisonActuelle);
+				
 			}
-			System.out.println(partie.saisonActuelle);
 
-		} while (partie.saisonActuelle != Saison.printemps || partie.numeroDeTourActuel ==1 );
+		} while (partie.saisonActuelle != Saison.printemps || partie.numeroDeTourActuel !=0 );
 		// parcourir les joueurs 
-		int indexJoueurActuel = 0;
-
-		// On cherche le bon joueur //FR pas besoin? on commence à 0 on incrémente à chaque tour
-		//et remise à 0 à chaque chgt de saison?
 		Joueur JoueurGagnant = new Joueur(null,null);
 		int maxScore = 0;
 		for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it
 				.hasNext();) {
 			Joueur tempJoueur = it.next();
-			if (tempJoueur.getScore() > maxScore )
+			if (tempJoueur.getScore() > maxScore ){
 				JoueurGagnant = tempJoueur;
+				maxScore = tempJoueur.getScore();
 			}
-		System.out.println("Gagnant : " + JoueurGagnant.toString()); //+ rajouter un test sur joueur reel, avec message personnalisé
-		
+		}
+		if (JoueurGagnant instanceof JoueurReel)
+		System.out.println("Bravo, vous avez gagné, avec :" + JoueurGagnant.getPaquet().getNombreMenhirsAdultes()
+				+ "menhirs et "+ JoueurGagnant.getPaquet().getGrainesDeMenhir() + "graines");
+		else {
+			System.out.println("Vous avez perdu :(");
+			System.out.println("Gagnant : " + JoueurGagnant.toString()); //+ rajouter un test sur joueur reel, avec message personnalisé
+		}
 		
 	}
 }

@@ -1,5 +1,6 @@
 package menhir;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -27,8 +28,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		for (int i = 0; i < 4 * nombreDeJoueurs; i++) {
 			String tempNames[] = { "Trululu", "tarlatata", "trabidu" };
 			int selectName = (int) (Math.random() * (3 - 0));
-			Carte tempCarte = new CarteIngredient(
-					tempNames[selectName]);
+			Carte tempCarte = new CarteIngredient(tempNames[selectName]);
 			this.ajouterUneCarte(tempCarte);
 		}
 		for (int i = 0; i < nombreDeJoueurs; i++) {
@@ -45,15 +45,13 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			for (int i = 0; i < nombreDeJoueurs; i++) {
 				String tempNames[] = { "Taupinators", "Totors", "Taupastort" };
 				int selectName = (int) (Math.random() * (3 - 0));
-				Carte tempCarte = new CarteTaupesGeantes(
-						tempNames[selectName]);
+				Carte tempCarte = new CarteTaupesGeantes(tempNames[selectName]);
 				this.ajouterUneCarte(tempCarte);
 			}
 			for (int i = 0; i < nombreDeJoueurs; i++) {
 				String tempNames[] = { "ChiensChiens", "Chiouahahs", "BigBulls" };
 				int selectName = (int) (Math.random() * (3 - 0));
-				Carte tempCarte = new CarteChiensDeGarde(
-						tempNames[selectName]);
+				Carte tempCarte = new CarteChiensDeGarde(tempNames[selectName]);
 				this.ajouterUneCarte(tempCarte);
 			}
 		}
@@ -65,14 +63,6 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		tempCarte.setEstUtilise(false);
 		tempPaquetJoueur.ajouterUneCarte(tempCarte);
 	}
-	
-	/*public void reprendreToutesLesCartes() {
-
-	}*/
-
-	/*public void reprendreTousLesMenhirs() {
-
-	}*/
 
 	public void ajouterUneCarte(Carte carte) {
 		if (carte instanceof CarteIngredient) {
@@ -108,5 +98,48 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 				System.out.println(yt.next().toString());
 			}
 		}
+	}
+
+	public void distribuerRessourcesInitiales(ArrayList<Joueur> listeJoueurs,
+			StatutPartie statutPartie) {
+		for (Iterator<Joueur> it = listeJoueurs.iterator(); it.hasNext();) {
+			Joueur tempJoueur = it.next();
+			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
+			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
+			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
+			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
+			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Champs");
+			if (statutPartie == StatutPartie.avancee) {
+				this.donnerUneCarteAuJoueur(tempJoueur,
+						"Cartes Comptage De Points");
+				if (tempJoueur.isChoixCarteSpeciale()) {
+					int tempAlea = (int) (Math.random() * 2);
+					if (tempAlea == 1) {
+						this.donnerUneCarteAuJoueur(tempJoueur,
+								"Cartes Taupes Geantes");
+					} else {
+						this.donnerUneCarteAuJoueur(tempJoueur,
+								"Cartes Chiens De Garde");
+					}
+				}
+				else {
+					this.donnerUneGraineDeMenhir(tempJoueur);
+					this.donnerUneGraineDeMenhir(tempJoueur);
+				}
+			} else {
+				this.donnerUneGraineDeMenhir(tempJoueur);
+				this.donnerUneGraineDeMenhir(tempJoueur);
+			}
+
+			System.out.println("Le joueur " + tempJoueur
+					+ "a recu ses ressources");
+		}
+
+	}
+	public void reprendreToutesLesCartes(ParametreDePartie param){
+		//plus simple de créer un deuxième paquet de ressources?
+		param.setPaquetDePartie(new PaquetDeRessourcesDePartie(param.getTypePartie(), param.getNombreDeJoueurs()));
+		param.getPaquetDePartie().distribuerRessourcesInitiales(
+				param.getListeJoueurs(), param.getTypePartie());
 	}
 }

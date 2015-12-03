@@ -29,11 +29,9 @@ public class ParametreDePartie {
 		
 		System.out.println("Type de Partie ? rapide = 1 avancee = 2 ");
 		if (sc.nextInt()==2){
-			//this.typePartie = StatutPartie.avancee;
-			//this.nombreDeManches = this.nombreDeJoueurs;
-			System.out.println("Desole partie avancee en cours de developpement");
-			this.typePartie = StatutPartie.rapide;
-			this.nombreDeManches = 1;
+			this.nombreDeManches = this.nombreDeJoueurs;
+			this.typePartie = StatutPartie.avancee;
+			this.nombreDeManches = 3;
 		}
 		else{
 			this.typePartie = StatutPartie.rapide;
@@ -43,12 +41,11 @@ public class ParametreDePartie {
 		this.paquetDePartie = new PaquetDeRessourcesDePartie(this.typePartie, this.nombreDeJoueurs);
 		this.listeJoueurs = new ArrayList<Joueur>();
 		
-		
-		// cr�er direct joueurs ici? -- edit oui
+		// creer direct joueurs ici? -- edit oui
 		System.out.println("Votre nom ?");
 		JoueurReel tempJoueurReel = new JoueurReel(sc.next(), this.paquetDePartie);
 		ordreDesJoueurs = new int[this.nombreDeJoueurs];
-		this.ordreDesJoueurs[0]=tempJoueurReel.getId(); //si on définie joueur 1 comme joueur reel
+		this.ordreDesJoueurs[0]=tempJoueurReel.getId(); //si on definie joueur 1 comme joueur reel
 		this.listeJoueurs.add(tempJoueurReel);
 		for(int i=1; i<this.nombreDeJoueurs; i++)
 		{
@@ -56,9 +53,6 @@ public class ParametreDePartie {
 			this.ordreDesJoueurs[i]= tempJoueurVirtuel.getId();
 			this.listeJoueurs.add(tempJoueurVirtuel);
 		}
-		
-		/*System.out.println("Voulez-vous commencer la partie ?");
-			if(sc.next()== "y" || sc.next()=="o" || sc.next()=="oui" || sc.next()=="yes")*/ // NE MARCHE PAS
 	}
 
 	public int getNombreDeManches() {

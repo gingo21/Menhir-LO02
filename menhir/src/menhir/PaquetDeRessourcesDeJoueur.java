@@ -8,7 +8,6 @@ import java.util.Set;
 public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 
 	private HashMap<String, ArrayList<Carte>> paquetsDeCartes;
-	//private HashMap<String, ArrayList<Carte>> paquetsDeCartesUtilises; // TODO (je pense l'enlevé AW)
 	private PaquetDeRessourcesDePartie referencePaquetPartie;
 	private Joueur joueur;
 

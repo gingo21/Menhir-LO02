@@ -48,46 +48,41 @@ public class CarteIngredient extends Carte {
 
 		if (typeaction == TypeAction.geantGardient){
 			tempPaquetPartie.donnerUneGraineDeMenhir(acteur, this.puissanceActions[tempValeur][0]);
-		}
-		boolean condition;
-		if (typeaction == TypeAction.farfadet){
-			int puissance = this.puissanceActions[tempValeur][2];
-			if (statutPartie == StatutPartie.avancee){
-				if(!(tempPaquetDest.getPaquetsDeCartes().get("Cartes Chiens De Garde").isEmpty()))
-					System.out.println("Possibilite de jouer carte chien de garde");
-				// possibilite de jouer carte chien de garde -> different si joueur virtuel ou joueur reel
-				// si joue chien de garde
-				CarteChiensDeGarde tempCarteChiensDeGarde = (CarteChiensDeGarde) tempPaquetDest.getPaquetsDeCartes()
-						.get("Cartes ChiensDeGarde").get(0);
-				puissance = tempCarteChiensDeGarde.utiliser(destinataire, saisonActuelle, puissance);
-				
+			if (acteur instanceof JoueurVirtuel) {
+				System.out.println(acteur.getNom() + " reçoit  "+this.puissanceActions[tempValeur][0]  +" graines du geant gardien ");
 			}
-			for (int i=0; i< puissance;i++){
-				boolean condition1;
-				if (condition1 =(destinataire.getPaquet().getGrainesDeMenhir() > 0 && puissance > 0)){
-				destinataire.getPaquet().donnerUneGraineDeMenhir(acteur);
-				}
-				if (!condition1)
-					break;
+			else {
+				System.out.println("Vous recevez "+ this.puissanceActions[tempValeur][0] +" graines du geant gardien");
+			}
 		}
+		if (typeaction == TypeAction.farfadet){ 
+			int puissance = this.puissanceActions[tempValeur][2];
+			puissance = destinataire.seDefendre(statutPartie,destinataire,acteur,saisonActuelle,puissance);
+			int nombreDeGrainesAVoler = Math.min(puissance, destinataire.getPaquet().getGrainesDeMenhir());
+			destinataire.getPaquet().donnerUneGraineDeMenhir(acteur,nombreDeGrainesAVoler);
+		
+			if (destinataire instanceof JoueurReel)
+				System.out.println(acteur.getNom()+"a envoye ses farfadets vous voler "+ nombreDeGrainesAVoler+ " graines");
+			else if (acteur instanceof JoueurVirtuel)
+				System.out.println(acteur.getNom()+"a envoye ses farfadets voler "+ nombreDeGrainesAVoler+ " graines a "+
+							destinataire.getNom());
+			else System.out.println("Vous avez envoye vos farfadets voler "+ nombreDeGrainesAVoler+ " graines a "+
+					destinataire.getNom());
+			
 		}
 		if (typeaction == TypeAction.engrais){
 			CarteChamp tempCarteChamp = (CarteChamp) acteur.getPaquet().getCarteChamp();
-			for (int i = 0; i< this.puissanceActions[tempValeur][1]; i++){
-				if ((tempPaquet.getGrainesDeMenhir() > 0)){
-					tempCarteChamp.rajouterGraines(1);
-					tempPaquet.setGrainesDeMenhir(tempPaquet.getGrainesDeMenhir()-1);
-				}
+			int nombreDeGrainesPoussees = Math.min(this.puissanceActions[tempValeur][1], tempPaquet.getGrainesDeMenhir());
+			tempCarteChamp.rajouterGraines(nombreDeGrainesPoussees);
+			tempPaquet.setGrainesDeMenhir(tempPaquet.getGrainesDeMenhir()-nombreDeGrainesPoussees);
+			
+			if (acteur instanceof JoueurVirtuel) {
+				System.out.println(acteur.getNom() + " fait pousser "+ nombreDeGrainesPoussees +" menhirs ");
+			}
+			else {
+				System.out.println("Vous faites pousser "+ nombreDeGrainesPoussees +" menhirs ");
 			}
 			
-			
-			//fin de la manche ? 
-			/*
-			if (statutPartie == StatutPartie.avancee){
-				CarteComptageDePoint tempComptage = (CarteComptageDePoint)tempPaquet.getPaquetsDeCartes()
-						.get("Cartes Comptage De Points").get(0);
-				tempCarteChamp.rajouterGraines(this.puissanceActions[2][tempValeur]);
-			} */
 		}
 		this.setEstUtilise(true);
 	}

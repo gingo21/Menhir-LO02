@@ -1,23 +1,20 @@
 package menhir;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public abstract class Joueur {
 	private String nom;
 	private int id;
 	private int score;
 	private PaquetDeRessourcesDeJoueur paquet;
-	private boolean choixCarteSpeciale;
+	private Strategie strategie;
 
 	public static int numeroDuDernierID = 0;
 
-	public Joueur(String nom, PaquetDeRessourcesDePartie referencePaquetPartie) {
+	public Joueur(String nom, PaquetDeRessourcesDePartie referencePaquetPartie, Strategie strategie) {
 		this.nom = nom;
 		this.id = numeroDuDernierID;
 		numeroDuDernierID++;
 		this.score = 0;
-		choixCarteSpeciale = false;
+		this.strategie=strategie;
 
 		paquet = new PaquetDeRessourcesDeJoueur(this, referencePaquetPartie);
 	}
@@ -54,22 +51,22 @@ public abstract class Joueur {
 		this.id = id;
 	}
 
-	public boolean isChoixCarteSpeciale() {
-		return choixCarteSpeciale;
+	public Strategie getStrategie() {
+		return strategie;
 	}
 
-	public void setChoixCarteSpeciale(boolean choixCarteSpeciale) {
-		this.choixCarteSpeciale = choixCarteSpeciale;
+	public void setStrategie(Strategie strategie) {
+		this.strategie = strategie;
 	}
 
-	public void Score(StatutPartie statutPartie) {
+	public void score(StatutPartie statutPartie) {
 		CarteChamp tempCarteChmp = (CarteChamp) this.getPaquet()
 				.getPaquetsDeCartes().get("Cartes Champs").get(0);
 		if (statutPartie == StatutPartie.rapide) {
 			this.score = 100 * tempCarteChmp.getMenhirAdultes()
 					+ this.getPaquet().getGrainesDeMenhir();
 		} else {
-			CarteComptageDePoint tempComptage = (CarteComptageDePoint) this
+			CarteComptageDePoints tempComptage = (CarteComptageDePoints) this
 					.getPaquet().getPaquetsDeCartes()
 					.get("Cartes Comptage De Points").get(0);
 			this.score = 100 * tempComptage.getMenhirAdultes() + 100
@@ -83,8 +80,4 @@ public abstract class Joueur {
 		return "Joueur [nom=" + nom + ", id=" + id + ", score=" + score
 				+ paquet + "]";
 	}
-	
-	public abstract void jouerSonTour(Saison saisonActuelle, ParametreDePartie parametreDePartie);
-	public abstract int seDefendre(StatutPartie statutPartie, Joueur destinataire, Joueur acteur, Saison saisonActuelle, int puissance);
-	public abstract void attaquer();
 }

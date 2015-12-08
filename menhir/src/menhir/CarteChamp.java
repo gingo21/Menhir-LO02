@@ -1,6 +1,7 @@
 package menhir;
 
 public class CarteChamp extends Carte {
+
 	private int menhirAdultes;
 
 	public CarteChamp(String nom) {
@@ -12,10 +13,6 @@ public class CarteChamp extends Carte {
 		this.menhirAdultes += nombre;
 	}
 
-	public String toString() {
-		return "CarteChamp [menhirAdultes=" + menhirAdultes + "]";
-	}
-
 	public int getMenhirAdultes() {
 		return menhirAdultes;
 	}
@@ -23,5 +20,8 @@ public class CarteChamp extends Carte {
 	public void setMenhirAdultes(int menhirAdultes) {
 		this.menhirAdultes = menhirAdultes;
 	}
-	
+
+	public String toString() {
+		return "CarteChamp [menhirAdultes=" + menhirAdultes + "]";
+	}
 }

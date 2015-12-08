@@ -1,6 +1,5 @@
 package menhir;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -39,7 +38,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		if (statutPartie == StatutPartie.avancee) {
 			for (int i = 0; i < nombreDeJoueurs; i++) {
 				String tempName = "points" + i;
-				Carte tempCarte = new CarteComptageDePoint(tempName);
+				Carte tempCarte = new CarteComptageDePoints(tempName);
 				this.ajouterUneCarte(tempCarte);
 			}
 			for (int i = 0; i < nombreDeJoueurs; i++) {
@@ -73,7 +72,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			Stack<Carte> tempCarte = (Stack<Carte>) this.paquetsDeCartes
 					.get("Cartes Champs");
 			tempCarte.add(carte);
-		} else if (carte instanceof CarteComptageDePoint) {
+		} else if (carte instanceof CarteComptageDePoints) {
 			Stack<Carte> tempCarte = (Stack<Carte>) this.paquetsDeCartes
 					.get("Cartes Comptage De Points");
 			tempCarte.add(carte);
@@ -100,19 +99,44 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		}
 	}
 
-	public void distribuerRessourcesInitiales(ArrayList<Joueur> listeJoueurs,
-			StatutPartie statutPartie) {
-		for (Iterator<Joueur> it = listeJoueurs.iterator(); it.hasNext();) {
+	public void distribuerRessourcesInitiales(
+			ParametresDePartie parametresDePartie) {
+		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
+				.iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
+			// on supprime la carte alliÃ©e
+			tempJoueur.getPaquet().getPaquetsDeCartes()
+					.get("Cartes Chiens De Garde").clear();
+			tempJoueur.getPaquet().getPaquetsDeCartes()
+					.get("Cartes Taupes Geantes").clear();
+
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
-			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Champs");
-			if (statutPartie == StatutPartie.avancee) {
-				this.donnerUneCarteAuJoueur(tempJoueur,
-						"Cartes Comptage De Points");
-				if (tempJoueur.isChoixCarteSpeciale()) {
+			if (tempJoueur.getPaquet().getPaquetsDeCartes()
+					.get("Cartes Champs").isEmpty()) {
+				this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Champs");
+			} else if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
+				CarteChamp tempCarteChamp = (CarteChamp) tempJoueur.getPaquet()
+						.getPaquetsDeCartes().get("Cartes Champs").get(0);
+				CarteComptageDePoints tempCarteComptage = (CarteComptageDePoints) tempJoueur
+						.getPaquet().getPaquetsDeCartes()
+						.get("Cartes Comptage De Points").get(0);
+
+				tempCarteComptage.rajouterGraines(tempCarteChamp
+						.getMenhirAdultes());
+				tempCarteChamp.setMenhirAdultes(0);
+			}
+
+			if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
+				if (tempJoueur.getPaquet().getPaquetsDeCartes()
+						.get("Cartes Comptage De Points").isEmpty()) {
+					this.donnerUneCarteAuJoueur(tempJoueur,
+							"Cartes Comptage De Points");
+				}
+				tempJoueur.getStrategie().choixDeManche(parametresDePartie);
+				if (tempJoueur.getStrategie().isChoixCarteAlliee()) {
 					int tempAlea = (int) (Math.random() * 2);
 					if (tempAlea == 1) {
 						this.donnerUneCarteAuJoueur(tempJoueur,
@@ -121,8 +145,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 						this.donnerUneCarteAuJoueur(tempJoueur,
 								"Cartes Chiens De Garde");
 					}
-				}
-				else {
+					tempJoueur.getStrategie().setChoixCarteAlliee(false);
+				} else {
 					this.donnerUneGraineDeMenhir(tempJoueur);
 					this.donnerUneGraineDeMenhir(tempJoueur);
 				}
@@ -136,10 +160,10 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		}
 
 	}
-	public void reprendreToutesLesCartes(ParametreDePartie param){
-		//plus simple de créer un deuxième paquet de ressources?
-		param.setPaquetDePartie(new PaquetDeRessourcesDePartie(param.getTypePartie(), param.getNombreDeJoueurs()));
-		param.getPaquetDePartie().distribuerRessourcesInitiales(
-				param.getListeJoueurs(), param.getTypePartie());
+
+	public void reprendreToutesLesCartes(ParametresDePartie param) {
+		param.setPaquetDePartie(new PaquetDeRessourcesDePartie(param
+				.getTypePartie(), param.getNombreDeJoueurs()));
+		param.getPaquetDePartie().distribuerRessourcesInitiales(param);
 	}
 }

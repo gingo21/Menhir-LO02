@@ -5,7 +5,7 @@ public abstract class Carte {
 	private int id;
 	private boolean estDetenuParUnJoueur;
 	private boolean estUtilise;
-	public static int numeroDuDernierID=0;
+	public static int numeroDuDernierID = 0;
 
 	public Carte(String nom) {
 		this.estUtilise = false;
@@ -14,7 +14,7 @@ public abstract class Carte {
 		numeroDuDernierID++;
 		this.nom = nom;
 	}
-	
+
 	public void retourAuPaquet() {
 		this.estDetenuParUnJoueur = false;
 		this.estUtilise = false;

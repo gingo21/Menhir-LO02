@@ -1,42 +1,23 @@
 package menhir;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Scanner;
 
 public class Partie {
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
 	private Saison saisonActuelle;
-	private int nombreDeTour;
 	private int numeroDeTourActuel;
 	private int numeroDeManche;
 
-	public Partie(int nombreDeTour) {
-		this.nombreDeTour = nombreDeTour;
+	public Partie() {
 		this.saisonActuelle = Saison.printemps;
 		this.numeroDeTourActuel = 0;
 		this.numeroDeManche = 0;
 	}
 
-	public void changerDeTour(ParametreDePartie parametreDePartie) {
+	public void changerDeTour(ParametresDePartie parametresDePartie) {
 		this.numeroDeTourActuel++;
-		if ((this.numeroDeTourActuel % parametreDePartie.getNombreDeJoueurs()) == 0) { // on
-																						// change
-																						// de
-																						// saison
-																						// tous
-																						// les
-																						// njoueurs
-																						// tours
-			if (this.saisonActuelle == Saison.hiver) { // condtion � coder plus
-														// proprement dans
-														// l'enum
+		if ((this.numeroDeTourActuel % parametresDePartie.getNombreDeJoueurs()) == 0) {
+			if (this.saisonActuelle == Saison.hiver) {
 				this.saisonActuelle = Saison.printemps;
 			} else {
 				this.saisonActuelle = this.saisonActuelle.next();
@@ -45,22 +26,22 @@ public class Partie {
 			System.out.println("Changement de saison : " + this.saisonActuelle);
 		}
 	}
-	public void changerDeManche(ParametreDePartie parametreDePartie){ //TODO cas ou le joueur a encore une carte alli�e => lui enlever
+
+	public void changerDeManche(ParametresDePartie parametresDePartie) {
+		this.numeroDeManche++;
 		System.out.println("Changement de manche : " + this.numeroDeManche);
-		//on recupere les cartes des joueurs => on cree un nouveau paquet de ressources (plus simple)
-		parametreDePartie.setPaquetDePartie(new PaquetDeRessourcesDePartie(parametreDePartie.getTypePartie(), parametreDePartie.getNombreDeJoueurs()));
-		
-		//on redistribue
-		parametreDePartie.getPaquetDePartie().distribuerRessourcesInitiales(
-				parametreDePartie.getListeJoueurs(), parametreDePartie.getTypePartie());
-		// comptage des points
-		
+		int resteManches = (parametresDePartie.getNombreDeManches() - this.numeroDeManche);
+		System.out.println("Il reste " + resteManches + " manche(s) à jouer");
+		if (resteManches > 0) {
+			parametresDePartie.getPaquetDePartie().reprendreToutesLesCartes(
+					parametresDePartie);
+		}
 	}
 
-	public void finDeJeu(ParametreDePartie parametreDePartie) {
+	public void finDeJeu(ParametresDePartie parametresDePartie) {
 		Joueur JoueurGagnant = null;
 		int maxScore = 0;
-		for (Iterator<Joueur> it = parametreDePartie.getListeJoueurs()
+		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
 				.iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
 			if (tempJoueur.getScore() > maxScore) {
@@ -69,81 +50,86 @@ public class Partie {
 			}
 		}
 		if (JoueurGagnant instanceof JoueurReel)
-			System.out.println("Bravo, vous avez gagn�, avec :"
+			System.out.println("Bravo, vous avez gagné, avec :"
 					+ JoueurGagnant.getPaquet().getNombreMenhirsAdultes()
 					+ "menhirs et "
 					+ JoueurGagnant.getPaquet().getGrainesDeMenhir()
 					+ "graines");
 		else {
 			System.out.println("Vous avez perdu :(");
-			System.out.println("Gagnant : " + JoueurGagnant.toString()); 
+			System.out.println("Gagnant : " + JoueurGagnant.toString());
 		}
 	}
 
-	/*
-	 * TODO GERER LE TEMPS TODO PARTIE AVANCEE TODO AMELIORER LAFFICHAGE
-	 */
+	public void wait(int millis) {
+		double tempTemp = System.currentTimeMillis() + millis;
+		while (tempTemp > System.currentTimeMillis()) {
+		}
+		System.out.println(" ");
+	}
 
 	public static void main(String[] args) {
 
 		// 1ere version
 		System.out
 				.println("Bienvenue dans la version Alpha du jeu du menhir d'apres Francois Reymond"
-						+ "et Adrien Wartelle (Partie avancee non disponible)");
+						+ " et Adrien Wartelle");
+		System.out
+				.println("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
 
-		ParametreDePartie test = new ParametreDePartie();
-		Partie partie = new Partie(test.getNombreDeJoueurs() * 4);
-		Scanner sc = new Scanner(System.in);
+		ParametresDePartie parametresDePartie = new ParametresDePartie();
+		Partie partie = new Partie();
 
-		// Distribution des cartes et presentations
-		test.getPaquetDePartie().distribuerRessourcesInitiales(
-				test.getListeJoueurs(), test.getTypePartie());
-
-		// NE MARCHE QU'EN PARTIE RAPIDE !!
+		// Distribution des cartes et présentations
+		parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(
+				parametresDePartie);
+		partie.wait(1);
 
 		do {
-			int tempIdJoueurActuel = test.getOrdreDesJoueurs()[partie.numeroDeTourActuel];
+			int tempIdJoueurActuel = parametresDePartie.getOrdreDesJoueurs()[partie.numeroDeTourActuel];
 			int indexJoueurActuel = 0;
-			for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it
-					.hasNext();) {
+			for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
+					.iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
 				if (tempJoueur.getId() == tempIdJoueurActuel) {
-					indexJoueurActuel = test.getListeJoueurs().indexOf(
-							tempJoueur);
+					indexJoueurActuel = parametresDePartie.getListeJoueurs()
+							.indexOf(tempJoueur);
 					break;
 				}
 			}
-			Joueur joueurActuel = test.getListeJoueurs().get(indexJoueurActuel);
+			Joueur joueurActuel = parametresDePartie.getListeJoueurs().get(
+					indexJoueurActuel);
 			System.out.println("C'est au tour de " + joueurActuel.getNom());
 
-			joueurActuel.jouerSonTour(partie.saisonActuelle, test);
-			joueurActuel.Score(StatutPartie.rapide);
-			
-			double tempTemp = System.currentTimeMillis() + 2000;
-			while (tempTemp > System.currentTimeMillis()) {
-				for (Iterator<Joueur> it = test.getListeJoueurs().iterator(); it
-						.hasNext();) {
-					Joueur tempJoueur = it.next();
-					if(!tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Taupes Geantes").isEmpty()) {
-						System.out.println("TODO");
-					}
+			joueurActuel.getStrategie().jouerSonTour(partie.saisonActuelle,
+					parametresDePartie);
+			partie.wait(10);
+
+			for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
+					.iterator(); it.hasNext();) {
+				Joueur tempJoueur = it.next();
+				tempJoueur.score(parametresDePartie.getTypePartie());
+				if (tempJoueur != joueurActuel) {
+					tempJoueur.getStrategie().attaquer(parametresDePartie,
+							joueurActuel, tempJoueur, partie.saisonActuelle);
 				}
 			}
 
-				partie.changerDeTour(test);
-				// test fin de manche
-				if (partie.saisonActuelle == Saison.printemps
-				&& partie.numeroDeTourActuel == 0){
+			partie.changerDeTour(parametresDePartie);
+			// test fin de manche
+			if (partie.saisonActuelle == Saison.printemps
+					&& partie.numeroDeTourActuel == 0) {
+				if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
+					partie.changerDeManche(parametresDePartie);
+				} else {
 					partie.numeroDeManche++;
-					if(test.getTypePartie()== StatutPartie.avancee){
-						partie.changerDeManche(test);
-					}
-					
 				}
 
-		} while (partie.numeroDeManche != test.getNombreDeManches());
-		// parcourir les joueurs
-		partie.finDeJeu(test);
+			}
+
+		} while (partie.numeroDeManche < parametresDePartie
+				.getNombreDeManches());
+		partie.finDeJeu(parametresDePartie);
 
 	}
 }

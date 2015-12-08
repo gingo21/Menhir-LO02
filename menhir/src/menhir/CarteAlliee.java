@@ -1,5 +1,7 @@
 package menhir;
 
+import java.util.Arrays;
+
 public abstract class CarteAlliee extends Carte {
 
 	private int puissanceActions[] = new int[4];
@@ -9,11 +11,11 @@ public abstract class CarteAlliee extends Carte {
 		for (int j = 0; j < 4; j++)
 			this.puissanceActions[j] = valeur[j];
 	}
-	
+
 	public CarteAlliee(String nom) {
 		super(nom);
 		for (int j = 0; j < 4; j++)
-			this.puissanceActions[j] = (int) (Math.random() * ( 4 - 1 ));
+			this.puissanceActions[j] = (int) (Math.random() * (5 - 0));
 	}
 
 	public int[] getPuissanceActions() {
@@ -24,4 +26,11 @@ public abstract class CarteAlliee extends Carte {
 		this.puissanceActions = puissanceActions;
 	}
 
+	public String toString() {
+		return "CarteAlliee [puissanceActions="
+				+ Arrays.toString(puissanceActions) + ", Nom=" + getNom()
+				+ ", Classe=" + getClass() + "]";
+	}
+	
+	
 }

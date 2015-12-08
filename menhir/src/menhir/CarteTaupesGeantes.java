@@ -17,22 +17,18 @@ public class CarteTaupesGeantes extends CarteAlliee {
 		} else if (saisonActuelle == Saison.ete) {
 			tempValeur = 1;
 		}
-		
+
 		int nombreMaximalDeMenhirsAdultesDetruits = this.getPuissanceActions()[tempValeur];
-		
+
 		PaquetDeRessourcesDeJoueur tempPaquet = destinataire.getPaquet();
-		CarteChamp tempCarte = (CarteChamp) tempPaquet.getPaquetsDeCartes().get("Cartes Champs").get(0);
-		
-		int nombreDeMenhirsADetruire = 0;//tempCarte.getMenhirAdultes()
-		if(nombreMaximalDeMenhirsAdultesDetruits>tempCarte.getMenhirAdultes()) {
-			nombreDeMenhirsADetruire = tempCarte.getMenhirAdultes();
-		} else {
-			nombreDeMenhirsADetruire = nombreMaximalDeMenhirsAdultesDetruits;
-		}
+		CarteChamp tempCarte = (CarteChamp) tempPaquet.getPaquetsDeCartes()
+				.get("Cartes Champs").get(0);
+
+		int nombreDeMenhirsADetruire = 0;
+		nombreDeMenhirsADetruire = Math.min(tempCarte.getMenhirAdultes(), nombreMaximalDeMenhirsAdultesDetruits);
 		
 		this.setEstUtilise(true);
 		return nombreDeMenhirsADetruire;
 	}
-
 
 }

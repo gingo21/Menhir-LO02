@@ -1,4 +1,4 @@
-package modèle;
+package modele;
 
 public class StrategieDifficile extends Strategie {
 	//TODO Prévu pour la version finale

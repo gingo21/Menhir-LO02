@@ -2,11 +2,11 @@ package launcher;
 
 import java.util.Iterator;
 
-import modèle.Joueur;
-import modèle.ParametresDePartie;
-import modèle.Partie;
-import modèle.Saison;
-import modèle.StatutPartie;
+import modele.Joueur;
+import modele.ParametresDePartie;
+import modele.Partie;
+import modele.Saison;
+import modele.StatutPartie;
 
 public class Console {
 

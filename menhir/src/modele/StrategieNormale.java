@@ -1,4 +1,4 @@
-package modèle;
+package modele;
 
 public class StrategieNormale extends Strategie {
 	//TODO en cours

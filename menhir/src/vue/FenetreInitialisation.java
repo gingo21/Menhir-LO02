@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import modèle.Joueur;
+import modele.Joueur;
 
 public class FenetreInitialisation extends JDialog {
 	

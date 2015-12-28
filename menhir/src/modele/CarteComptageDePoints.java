@@ -1,16 +1,15 @@
-package modèle;
+package modele;
 
-public class CarteChamp extends Carte {
-
+public class CarteComptageDePoints extends Carte {
 	private int menhirAdultes;
 
-	public CarteChamp(String nom) {
+	public CarteComptageDePoints(String nom) {
 		super(nom);
 		this.menhirAdultes = 0;
 	}
 
 	public void rajouterGraines(int nombre) {
-		this.menhirAdultes += nombre;
+		this.menhirAdultes +=nombre;
 	}
 
 	public int getMenhirAdultes() {
@@ -22,6 +21,6 @@ public class CarteChamp extends Carte {
 	}
 
 	public String toString() {
-		return "CarteChamp [menhirAdultes=" + menhirAdultes + "]";
+		return "CarteComptageDePoints [menhirAdultes=" + menhirAdultes + "] \n";
 	}
 }

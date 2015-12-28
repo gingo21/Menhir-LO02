@@ -1,4 +1,4 @@
-package modèle;
+package modele;
 
 public abstract class Strategie {
 	private boolean choixCarteAlliee;

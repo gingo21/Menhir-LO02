@@ -2,8 +2,8 @@ package launcher;
 
 import java.awt.Container;
 
-import modèle.Carte;
-import modèle.CarteIngredient;
+import modele.Carte;
+import modele.CarteIngredient;
 import vue.FenetreInitialisation;
 import vue.VueCarte;
 

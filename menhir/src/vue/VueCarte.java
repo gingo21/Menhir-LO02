@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 import javax.print.DocFlavor.URL;
 import javax.swing.JPanel;
 
-import modèle.Carte;
+import modele.Carte;
 
 public class VueCarte extends JPanel implements Observer{
 

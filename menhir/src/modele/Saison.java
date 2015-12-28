@@ -1,4 +1,4 @@
-package modèle;
+package modele;
 
 public enum Saison {
 	printemps,ete,automne,hiver;

@@ -1,4 +1,4 @@
-package modèle;
+package modele;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,7 +9,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
 	private HashMap<String, Stack<Carte>> paquetsDeCartes;
 
-	public PaquetDeRessourcesDePartie(modèle.StatutPartie statutPartie,
+	public PaquetDeRessourcesDePartie(modele.StatutPartie statutPartie,
 			int nombreDeJoueurs) {
 		super(30 * nombreDeJoueurs);
 		paquetsDeCartes = new HashMap<String, Stack<Carte>>();

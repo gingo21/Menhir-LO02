@@ -1,4 +1,4 @@
-package modèle;
+package modele;
 
 public class CarteTaupesGeantes extends CarteAlliee {
 

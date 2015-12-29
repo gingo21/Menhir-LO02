@@ -9,7 +9,7 @@ public class Panneaux extends JPanel{
 	
 	public Panneaux(){
 		super();
-		this.setLayout(null); //et on utilise setBounds ou GridBagLayout?
+		this.setLayout(null); 
 	}
 	
 	private static final long serialVersionUID = 1L;

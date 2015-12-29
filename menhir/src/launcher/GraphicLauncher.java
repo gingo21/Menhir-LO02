@@ -9,6 +9,7 @@ import modele.CarteIngredient;
 import modele.ParametresDePartie;
 import vue.FenetreInitialisation;
 import vue.VueCarte;
+import vue.VueParametres;
 
 public class GraphicLauncher implements Runnable {
 
@@ -20,7 +21,7 @@ public class GraphicLauncher implements Runnable {
 	}
 
 	public void run() {
-		FenetreInitialisation dialog = new FenetreInitialisation(null, "conf", true);
+		VueParametres dialog = new VueParametres(null, "conf", true, parametresDePartie);
 
 		Carte tempCarte = new CarteIngredient("didadidadou");
 		VueCarte maCarte = new VueCarte("/Ressources/bleu.jpg", tempCarte);

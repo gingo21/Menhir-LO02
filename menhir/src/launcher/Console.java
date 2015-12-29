@@ -122,7 +122,6 @@ public class Console implements Runnable {
 				parametresDePartie.getNombreDeJoueurs()));
 		parametresDePartie.setListeJoueurs(new ArrayList<Joueur>());
 
-		// creer direct joueurs ici? -- edit oui
 		System.out.println("Votre nom ?");
 		JoueurReel tempJoueurReel = new JoueurReel(sc.next(), parametresDePartie.getPaquetDePartie());
 		parametresDePartie.setOrdreDesJoueurs(new int[parametresDePartie.getNombreDeJoueurs()]);

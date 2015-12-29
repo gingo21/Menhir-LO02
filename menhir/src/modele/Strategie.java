@@ -1,6 +1,8 @@
 package modele;
 
-public abstract class Strategie {
+import java.io.Serializable;
+
+public abstract class Strategie implements Serializable {
 	private boolean choixCarteAlliee;
 	
 	

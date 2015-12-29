@@ -1,6 +1,8 @@
 package modele;
 
-public abstract class Carte {
+import java.io.Serializable;
+
+public abstract class Carte implements Serializable {
 	private String nom;
 	private int id;
 	private boolean estDetenuParUnJoueur;

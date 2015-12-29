@@ -1,17 +1,29 @@
 package launcher;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.util.Scanner;
+
+import modele.Difficulte;
 import modele.Joueur;
+import modele.JoueurReel;
+import modele.JoueurVirtuel;
+import modele.PaquetDeRessourcesDePartie;
 import modele.ParametresDePartie;
 import modele.Partie;
 import modele.Saison;
 import modele.StatutPartie;
 
-public class Console {
+public class Console implements Runnable {
 
-	public static void main(String[] args) {
-
+	public void run() {
+		
+		
 		// 1ere version
 		System.out
 				.println("Bienvenue dans la version Alpha du jeu du menhir d'apres Francois Reymond"
@@ -20,6 +32,12 @@ public class Console {
 				.println("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
 
 		ParametresDePartie parametresDePartie = new ParametresDePartie();
+		try {
+			this.askParametres(parametresDePartie);
+		} catch (IOException e) {
+			
+		}
+		parametresDePartie.saveParametres();
 		Partie partie = new Partie();
 
 		// Distribution des cartes et présentations
@@ -74,4 +92,41 @@ public class Console {
 		partie.finDeJeu(parametresDePartie);
 
 	}
+	
+	public void askParametres (ParametresDePartie parametresDePartie) throws IOException {
+		Scanner sc = new Scanner(System.in);
+	//rajouter le choix du mode console ou graphique
+	
+	
+	System.out.println("Combien de joueurs? (entre 2 et 6)");
+	parametresDePartie.setNombreDeJoueurs(sc.nextInt());
+	while (!(parametresDePartie.getNombreDeJoueurs() <= 6 && parametresDePartie.getNombreDeJoueurs() >= 2)) {
+		System.out.println("Combien de joueurs? (entre 2 et 6)");
+		parametresDePartie.setNombreDeJoueurs(sc.nextInt());
+	}
+
+	System.out.println("Type de Partie ? rapide = 1 avancee = 2 ");
+	if (sc.nextInt() == 2) {
+		parametresDePartie.setNombreDeManches(parametresDePartie.getNombreDeJoueurs());
+		parametresDePartie.setTypePartie(StatutPartie.avancee);
+	} else {
+		parametresDePartie.setTypePartie(StatutPartie.rapide);
+		parametresDePartie.setNombreDeManches(1);
+	}
+
+	parametresDePartie.setPaquetDePartie(new PaquetDeRessourcesDePartie(parametresDePartie.getTypePartie(), parametresDePartie.getNombreDeJoueurs()));
+	parametresDePartie.setListeJoueurs(new ArrayList<Joueur>());
+
+	// creer direct joueurs ici? -- edit oui
+	System.out.println("Votre nom ?");
+	JoueurReel tempJoueurReel = new JoueurReel(sc.nextLine(), parametresDePartie.getPaquetDePartie());
+	parametresDePartie.setOrdreDesJoueurs(new int[parametresDePartie.getNombreDeJoueurs()]);
+	parametresDePartie.getOrdreDesJoueurs()[0] = tempJoueurReel.getId();
+	parametresDePartie.getListeJoueurs().add(tempJoueurReel);
+	for (int i = 1; i < parametresDePartie.getNombreDeJoueurs(); i++) {
+		JoueurVirtuel tempJoueurVirtuel = new JoueurVirtuel("IA" + i, parametresDePartie.getPaquetDePartie(), Difficulte.facile);
+		parametresDePartie.getOrdreDesJoueurs()[i] = tempJoueurVirtuel.getId();
+		parametresDePartie.getListeJoueurs().add(tempJoueurVirtuel);
+	}
+}
 }

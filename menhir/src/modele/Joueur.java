@@ -1,6 +1,8 @@
 package modele;
 
-public abstract class Joueur {
+import java.io.Serializable;
+
+public abstract class Joueur implements Serializable {
 	private String nom;
 	private int id;
 	private int score;

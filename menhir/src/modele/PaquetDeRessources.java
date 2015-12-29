@@ -1,6 +1,8 @@
 package modele;
 
-public abstract class PaquetDeRessources {
+import java.io.Serializable;
+
+public abstract class PaquetDeRessources implements Serializable {
 
 	private int grainesDeMenhir;
 

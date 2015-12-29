@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -20,14 +21,11 @@ public class ParametresDePartie extends Observable implements Serializable {
 	private int[] ordreDesJoueurs;
 	private ArrayList<Joueur> listeJoueurs;
 	private PaquetDeRessourcesDePartie paquetDePartie;
-	private boolean saisieConsole;
 
 	public ParametresDePartie() { 
 		try {
 			readParametres();
 		} catch (ClassNotFoundException e){
-			this.parametresParDefaut();
-		} finally {
 			this.parametresParDefaut();
 		}
 	}
@@ -79,14 +77,6 @@ public class ParametresDePartie extends Observable implements Serializable {
 	public void setPaquetDePartie(PaquetDeRessourcesDePartie paquetDePartie) {
 		this.paquetDePartie = paquetDePartie;
 	}
-
-	public boolean isSaisieConsole() {
-		return saisieConsole;
-	}
-
-	public void setSaisieConsole(boolean saisieConsole) {
-		this.saisieConsole = saisieConsole;
-	}
 	
 	public void parametresParDefaut() {
 		this.nombreDeJoueurs = 2;
@@ -133,14 +123,22 @@ public void readParametres() throws ClassNotFoundException {
 			this.nombreDeManches=tempParametres.getNombreDeManches();
 			this.ordreDesJoueurs=tempParametres.getOrdreDesJoueurs();
 			this.paquetDePartie=tempParametres.getPaquetDePartie();
-			this.saisieConsole=tempParametres.isSaisieConsole();
 			
 		} catch (FileNotFoundException e) {
 			this.parametresParDefaut();
 		} catch (IOException e) {
 			this.parametresParDefaut();
-		} finally {
-			this.parametresParDefaut();
 		}
 	}
+
+@Override
+public String toString() {
+	return "ParametresDePartie [nombreDeManches=" + nombreDeManches + ", nombreDeJoueurs=" + nombreDeJoueurs
+			+ ", typePartie=" + typePartie + ", ordreDesJoueurs=" + Arrays.toString(ordreDesJoueurs) + ", listeJoueurs="
+			+ listeJoueurs + ", paquetDePartie=" + paquetDePartie + "]";
+}
+
+
+
+	
 }

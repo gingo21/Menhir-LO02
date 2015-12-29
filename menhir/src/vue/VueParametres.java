@@ -3,6 +3,7 @@ package vue;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,7 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import modele.Difficulte;
 import modele.Joueur;
+import modele.JoueurVirtuel;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
 
@@ -29,7 +32,7 @@ public class VueParametres extends JDialog implements Observer {
 	private JLabel labelNomDuJoueurReel = new JLabel("Votre Nom ?");
 	private JTextArea choixNomDuJoueurReel;
 	private ArrayList<JLabel> labelsDifficultesIAs;
-	private ArrayList<JTextArea> choixDifficultesIAs;
+	private ArrayList<JComboBox> choixDifficultesIAs;
 	private JButton boutonAppliquer = new JButton("Appliquer");
 	private JButton boutonAnnuler = new JButton("Annuler");
 	private JButton boutonQuitter = new JButton("Quitter");
@@ -73,8 +76,27 @@ public class VueParametres extends JDialog implements Observer {
 		this.choixNomDuJoueurReel.setPreferredSize(new Dimension(100, 20));
 		this.choixNomDuJoueurReel.setText(parametresDePartie.getListeJoueurs().get(0).getNom());
 		
-		//nombre de joueurs virtuels
-
+		//Joueurs virtuels
+		this.labelsDifficultesIAs = new ArrayList<JLabel>();
+		this.choixDifficultesIAs = new ArrayList<JComboBox>();
+		for(Iterator<Joueur> it =  parametresDePartie.getListeJoueurs().iterator(); it.hasNext(); ) {
+			Joueur tempJoueur = it.next();
+			if(tempJoueur instanceof JoueurVirtuel) {
+				JLabel tempLabel = new JLabel("Difficulté de " + tempJoueur.getNom());
+				this.labelsDifficultesIAs.add(tempLabel);
+				String[] difficulte = {"Facile", "Normale", "Difficile"};
+				JComboBox tempCombo = new JComboBox(difficulte);
+				if(((JoueurVirtuel) tempJoueur).getDifficulte() == Difficulte.facile) {
+					tempCombo.setSelectedIndex(0);
+				} else if (((JoueurVirtuel) tempJoueur).getDifficulte() == Difficulte.normale) {
+					tempCombo.setSelectedIndex(1);
+				} else {
+					tempCombo.setSelectedIndex(2);
+				}
+				tempCombo.setPreferredSize(new Dimension(100, 20));
+				this.choixDifficultesIAs.add(tempCombo);
+			}
+		}
 		
 		fenetre.add(this.labelNombreDeJoueur);
 		fenetre.add(this.choixNombreDeJoueur);
@@ -82,6 +104,10 @@ public class VueParametres extends JDialog implements Observer {
 		fenetre.add(this.typePartie);
 		fenetre.add(this.labelNomDuJoueurReel);
 		fenetre.add(this.choixNomDuJoueurReel);
+		for(int i=0; i<parametresDePartie.getNombreDeJoueurs()-1; i++) {
+			fenetre.add(this.labelsDifficultesIAs.get(i));
+			fenetre.add(this.choixDifficultesIAs.get(i));
+		}
 		fenetre.add(this.boutonAppliquer); //TODO centrer le ok
 		fenetre.add(this.boutonAnnuler);
 		fenetre.add(this.boutonQuitter);

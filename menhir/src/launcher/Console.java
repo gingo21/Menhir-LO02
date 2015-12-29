@@ -21,9 +21,14 @@ import modele.StatutPartie;
 
 public class Console implements Runnable {
 
+	private ParametresDePartie parametresDePartie;
+
+	public Console(ParametresDePartie parametresDePartie) {
+		super();
+		this.parametresDePartie = parametresDePartie;
+	}
+	
 	public void run() {
-		
-		
 		// 1ere version
 		System.out
 				.println("Bienvenue dans la version Alpha du jeu du menhir d'apres Francois Reymond"
@@ -31,68 +36,77 @@ public class Console implements Runnable {
 		System.out
 				.println("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
 
-		ParametresDePartie parametresDePartie = new ParametresDePartie();
 		try {
-			this.askParametres(parametresDePartie);
+			this.askParametres(this.parametresDePartie);
 		} catch (IOException e) {
 			
 		}
-		parametresDePartie.saveParametres();
+		this.parametresDePartie.saveParametres();
 		Partie partie = new Partie();
 
 		// Distribution des cartes et présentations
-		parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(
-				parametresDePartie);
+		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(
+				this.parametresDePartie);
 		partie.wait(1);
 
 		do {
-			int tempIdJoueurActuel = parametresDePartie.getOrdreDesJoueurs()[partie.getNumeroDeTourActuel()];
+			int tempIdJoueurActuel = this.parametresDePartie.getOrdreDesJoueurs()[partie.getNumeroDeTourActuel()];
 			int indexJoueurActuel = 0;
-			for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
+			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs()
 					.iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
 				if (tempJoueur.getId() == tempIdJoueurActuel) {
-					indexJoueurActuel = parametresDePartie.getListeJoueurs()
+					indexJoueurActuel = this.parametresDePartie.getListeJoueurs()
 							.indexOf(tempJoueur);
 					break;
 				}
 			}
-			Joueur joueurActuel = parametresDePartie.getListeJoueurs().get(
+			Joueur joueurActuel = this.parametresDePartie.getListeJoueurs().get(
 					indexJoueurActuel);
 			System.out.println("C'est au tour de " + joueurActuel.getNom());
 
 			joueurActuel.getStrategie().jouerSonTour(partie.getSaisonActuelle(),
-					parametresDePartie);
+					this.parametresDePartie);
 			partie.wait(10);
 
-			for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
+			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs()
 					.iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
-				tempJoueur.score(parametresDePartie.getTypePartie());
+				tempJoueur.score(this.parametresDePartie.getTypePartie());
 				if (tempJoueur != joueurActuel) {
-					tempJoueur.getStrategie().attaquer(parametresDePartie,
+					tempJoueur.getStrategie().attaquer(this.parametresDePartie,
 							joueurActuel, tempJoueur, partie.getSaisonActuelle());
 				}
 			}
 
-			partie.changerDeTour(parametresDePartie);
+			partie.changerDeTour(this.parametresDePartie);
 			// test fin de manche
 			if (partie.getSaisonActuelle() == Saison.printemps
 					&& partie.getNumeroDeTourActuel() == 0) {
-				if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
-					partie.changerDeManche(parametresDePartie);
+				if (this.parametresDePartie.getTypePartie() == StatutPartie.avancee) {
+					partie.changerDeManche(this.parametresDePartie);
 				} else {
 					partie.setNumeroDeManche(partie.getNumeroDeManche() + 1);
 				}
 
 			}
 
-		} while (partie.getNumeroDeManche() < parametresDePartie
+		} while (partie.getNumeroDeManche() < this.parametresDePartie
 				.getNombreDeManches());
-		partie.finDeJeu(parametresDePartie);
+		partie.finDeJeu(this.parametresDePartie);
 
 	}
 	
+	public ParametresDePartie getParametresDePartie() {
+		return this.parametresDePartie;
+	}
+
+
+	public void setParametresDePartie(ParametresDePartie parametresDePartie) {
+		this.parametresDePartie = parametresDePartie;
+	}
+
+
 	public void askParametres (ParametresDePartie parametresDePartie) throws IOException {
 		Scanner sc = new Scanner(System.in);
 	//rajouter le choix du mode console ou graphique
@@ -119,7 +133,7 @@ public class Console implements Runnable {
 
 	// creer direct joueurs ici? -- edit oui
 	System.out.println("Votre nom ?");
-	JoueurReel tempJoueurReel = new JoueurReel(sc.nextLine(), parametresDePartie.getPaquetDePartie());
+	JoueurReel tempJoueurReel = new JoueurReel(sc.next(), parametresDePartie.getPaquetDePartie());
 	parametresDePartie.setOrdreDesJoueurs(new int[parametresDePartie.getNombreDeJoueurs()]);
 	parametresDePartie.getOrdreDesJoueurs()[0] = tempJoueurReel.getId();
 	parametresDePartie.getListeJoueurs().add(tempJoueurReel);

@@ -31,15 +31,34 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 	private BufferedImage bf;
 	private boolean isAlliee;
 	private int[][] puissanceActions;
-	private ImageIcon image;
+	private Image image;
 	private int hauteurImage;
 	private int largImage;
+	private ImageIcon[] imagesIngredient = new ImageIcon[8];
+	int x = 0+1;
+	int[] tab = new int[5];
+	//atribut pour action 
+	
 	
 	public VueCarte(String path, Carte carte) {
 		this.carte = carte;
 		this.setPreferredSize(new Dimension(250, 250));
 		//this.setSize(new Dimension(250, 250));
-		image = new ImageIcon("src/Ressources/CarteIngredientFontaineDEauPure.png");
+		
+		//chargement toutes les images, à mettre autre part.
+		imagesIngredient[1] = new ImageIcon("src/Ressources/CarteIngredientFontaineDEauPure.png");
+		imagesIngredient[4] = new ImageIcon("src/Ressources/CarteIngredientChantDeSirene.png");
+		imagesIngredient[5] = new ImageIcon("src/Ressources/CarteIngredientEspritDeDolmen.png");
+		imagesIngredient[6] = new ImageIcon("src/Ressources/CarteIngredientLarmesDeDryade.png");
+		imagesIngredient[0] = new ImageIcon("src/Ressources/CarteIngredientPoudreDOr.png");
+		imagesIngredient[7] = new ImageIcon("src/Ressources/CarteIngredientRacinesDArcEnCiel.png");
+		imagesIngredient[3] = new ImageIcon("src/Ressources/CarteIngredientRayonDeLune.png");
+		imagesIngredient[2] = new ImageIcon("src/Ressources/CarteIngredientRiresDeFees.png");
+		
+		//sélection aléatoire de la carte
+		int v = (int) (Math.random() * (0 + 6));
+		image = imagesIngredient[v].getImage();
+
 		
 		/*  fonctionne pas (utilisation imageIcon pour le moment)
 		try {
@@ -81,12 +100,9 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(image.getImage(), 0, 0, this);
+		g.drawImage(image, 0, 0, this);
 		
 	}
-
-
-
 
 	public void mouseClicked(MouseEvent ev) {
 		// TODO Auto-generated method stub
@@ -94,9 +110,6 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 		System.out.println(ev.getY());
 
 	}
-
-
-
 
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub

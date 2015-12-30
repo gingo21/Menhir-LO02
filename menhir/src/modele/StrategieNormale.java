@@ -142,10 +142,14 @@ public class StrategieNormale extends Strategie {
 		}
 		
 		int farfadetCapacity = 0;
+		Joueur tempJoueurbis = null;
 		for(Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
-			int tempValue = it.next().getPaquet().getGrainesDeMenhir();
-			if(tempValue > farfadetCapacity) {
-				farfadetCapacity = tempValue;
+			tempJoueurbis = it.next();
+			if(tempJoueurbis != this.getReferenceJoueur()) {
+				int tempValue = tempJoueur.getPaquet().getGrainesDeMenhir();
+				if(tempValue > farfadetCapacity) {
+					farfadetCapacity = tempValue;
+				}
 			}
 		}
 		
@@ -161,7 +165,7 @@ public class StrategieNormale extends Strategie {
 		if(forceAleaGeant > forceAleaEngrais &&  forceAleaGeant > forceAleaFarfadet) {
 			tempTypeAction = TypeAction.geantGardient;
 		} else if (forceAleaEngrais > forceAleaGeant &&  forceAleaEngrais > forceAleaFarfadet) {
-			tempTypeAction = TypeAction.taupesGeantes;
+			tempTypeAction = TypeAction.engrais;
 		} else {
 			tempTypeAction = TypeAction.farfadet;
 		}
@@ -193,10 +197,12 @@ public class StrategieNormale extends Strategie {
 		Joueur joueurCible = null;
 		for(Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			tempJoueur = it.next();
-			int tempValue = tempJoueur.getPaquet().getGrainesDeMenhir();
-			if(tempValue > farfadetCapacity) {
-				farfadetCapacity = tempValue;
-				joueurCible = tempJoueur;
+			if(tempJoueur != this.getReferenceJoueur()) {
+				int tempValue = tempJoueur.getPaquet().getGrainesDeMenhir();
+				if(tempValue > farfadetCapacity) {
+					farfadetCapacity = tempValue;
+					joueurCible = tempJoueur;
+				}
 			}
 		}
 		return joueurCible;

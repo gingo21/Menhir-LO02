@@ -55,7 +55,7 @@ public class Partie extends Observable {
 		if (JoueurGagnant instanceof JoueurReel) {
 			this.hasChanged();
 			this.notifyObservers("Bravo, vous avez gagné, avec :"
-					+ JoueurGagnant.getPaquet().getNombreMenhirsAdultes()
+					+ JoueurGagnant.getPaquet().getCarteChamp().getMenhirAdultes()
 					+ "menhirs et "
 					+ JoueurGagnant.getPaquet().getGrainesDeMenhir()
 					+ "graines");

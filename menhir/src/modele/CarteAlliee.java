@@ -21,6 +21,21 @@ public abstract class CarteAlliee extends Carte {
 	public int[] getPuissanceActions() {
 		return puissanceActions;
 	}
+	
+	public int getPuissanceActions(Saison saisonActuelle) {
+		int tempValeur=2;
+		if (saisonActuelle == Saison.automne) {
+			tempValeur = 2;
+		} else if (saisonActuelle == Saison.hiver) {
+			tempValeur = 3;
+		} else if (saisonActuelle == Saison.printemps) {
+			tempValeur = 0;
+		} else if (saisonActuelle == Saison.ete) {
+			tempValeur = 1;
+		}
+
+		return puissanceActions[tempValeur];
+	}
 
 	public void setPuissanceActions(int[] puissanceActions) {
 		this.puissanceActions = puissanceActions;

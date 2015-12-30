@@ -41,13 +41,8 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 		return this.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0);
 	}
 	
-	public Carte getCarteChamp() {
-		return this.getPaquetsDeCartes().get("Cartes Champs").get(0);
-	}
-	public int getNombreMenhirsAdultes()
-	{
-		CarteChamp tempCarteChamp = (CarteChamp) this.paquetsDeCartes.get("Cartes Champs").get(0);
-		return tempCarteChamp.getMenhirAdultes();
+	public CarteChamp getCarteChamp() {
+		return (CarteChamp) this.getPaquetsDeCartes().get("Cartes Champs").get(0);
 	}
 
 	public PaquetDeRessourcesDePartie getReferencePaquetPartie() {

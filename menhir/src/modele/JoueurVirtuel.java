@@ -14,7 +14,20 @@ public class JoueurVirtuel extends Joueur {
 		}
 		this.difficulte = difficulte;
 	}
-
+	
+	public JoueurVirtuel(String nom,
+			PaquetDeRessourcesDePartie referencePaquetPartie) {
+		super(nom, referencePaquetPartie, null);
+		int tempAlea = (int) Math.random() * 2;
+		if(tempAlea==0) {
+			this.setStrategie(new StrategieFacile(this));
+			this.difficulte = Difficulte.facile;
+		} else {
+			this.setStrategie(new StrategieNormale(this));
+			this.difficulte = Difficulte.normale;
+		}
+	}
+	
 	public Difficulte getDifficulte() {
 		return difficulte;
 	}

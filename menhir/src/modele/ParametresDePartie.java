@@ -95,7 +95,6 @@ public class ParametresDePartie extends Observable implements Serializable {
 		for (int i = this.listeJoueurs.size()-1; i >=1; i--) {
 			this.listeJoueurs.remove(i);
 		}
-		System.out.println(this.listeJoueurs.size());
 		for (int i = this.ordreDesJoueurs.size()-1; i >=1; i--) {
 		this.ordreDesJoueurs.remove(i);
 		}
@@ -104,7 +103,6 @@ public class ParametresDePartie extends Observable implements Serializable {
 			this.ordreDesJoueurs.add(tempJoueurVirtuel.getId());
 			this.listeJoueurs.add(tempJoueurVirtuel);
 		}
-		System.out.println(this.listeJoueurs.size());
 	}
 	
 	public void parametresParDefaut() {

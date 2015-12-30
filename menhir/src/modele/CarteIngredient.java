@@ -26,6 +26,29 @@ public class CarteIngredient extends Carte {
 	public int[][] getPuissanceActions() {
 		return this.puissanceActions;
 	}
+	
+	public int getPuissanceActions(Saison saisonActuelle, TypeAction typeAction) {
+		int tempValeur1=2;
+		if (saisonActuelle == Saison.automne) {
+			tempValeur1 = 2;
+		} else if (saisonActuelle == Saison.hiver) {
+			tempValeur1 = 3;
+		} else if (saisonActuelle == Saison.printemps) {
+			tempValeur1 = 0;
+		} else if (saisonActuelle == Saison.ete) {
+			tempValeur1 = 1;
+		}
+		int tempValeur2=2;
+		if (typeAction == TypeAction.geantGardient) {
+			tempValeur2 = 0;
+		} else if (typeAction == TypeAction.engrais) {
+			tempValeur2 = 1;
+		} else if (typeAction == TypeAction.farfadet) {
+			tempValeur2 = 2;
+		}
+
+		return puissanceActions[tempValeur1][tempValeur2];
+	}
 
 	public void setPuissanceActions(int[][] puissanceActions) {
 		this.puissanceActions = puissanceActions;

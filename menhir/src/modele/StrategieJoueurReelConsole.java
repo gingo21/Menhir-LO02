@@ -55,7 +55,7 @@ public class StrategieJoueurReelConsole extends Strategie {
 						saisonActuelle, parametresDePartie);
 				this.setChanged();
 				this.notifyObservers(
-						"Vous avez maintenant " + this.getReferenceJoueur().getPaquet().getNombreMenhirsAdultes()
+						"Vous avez maintenant " + this.getReferenceJoueur().getPaquet().getCarteChamp().getMenhirAdultes()
 								+ " menhirs adultes sur votre carte champ.");
 
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
@@ -64,14 +64,14 @@ public class StrategieJoueurReelConsole extends Strategie {
 			}
 			if (reponse.contentEquals("farfadet")) {
 				this.setChanged();
-				this.notifyObservers("A quel joueur voulez-vous voler des graines");
+				this.notifyObservers("A quel joueur voulez-vous voler des graines ?");
 				// afficher tous les joueurs(IAS) et leurs ressources (graines +
 				// menhirs)
 				for (int i = 1; i < parametresDePartie.getNombreDeJoueurs(); i++) {
 					Joueur tempIA = parametresDePartie.getListeJoueurs().get(i);
 					this.setChanged();
 					this.notifyObservers(
-							tempIA.toString() + " menhirs : " + tempIA.getPaquet().getNombreMenhirsAdultes());
+							tempIA.toString() + " menhirs : " + tempIA.getPaquet().getCarteChamp().getMenhirAdultes());
 				}
 				this.setChanged();
 				this.notifyObservers("A quel joueur voulez-vous volez les graines? Entrer id");

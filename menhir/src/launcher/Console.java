@@ -139,7 +139,7 @@ public class Console implements Runnable, Observer {
 		parametresDePartie.getListeJoueurs().add(tempJoueurReel);
 		for (int i = 1; i < parametresDePartie.getNombreDeJoueurs(); i++) {
 			JoueurVirtuel tempJoueurVirtuel = new JoueurVirtuel("IA" + i, parametresDePartie.getPaquetDePartie(),
-					Difficulte.facile);
+					Difficulte.normale);
 			parametresDePartie.getOrdreDesJoueurs().add(tempJoueurVirtuel.getId());
 			parametresDePartie.getListeJoueurs().add(tempJoueurVirtuel);
 		}

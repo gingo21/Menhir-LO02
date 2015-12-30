@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 public class StrategieJoueurReelConsole extends Strategie {
 
-	private Joueur referenceJoueur;
-
 	public StrategieJoueurReelConsole(Joueur referenceJoueur) {
-		super();
-		this.referenceJoueur = referenceJoueur;
+		super(referenceJoueur);
+		// TODO Auto-generated constructor stub
 	}
 
 	public void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie) {
@@ -17,21 +15,27 @@ public class StrategieJoueurReelConsole extends Strategie {
 
 		String reponse = null;
 
-		System.out.println("Voici l'Ã©tat actuel des joueurs :");
-		System.out.println(parametresDePartie.getListeJoueurs().toString() + "\n");
+		this.hasChanged();
+		this.notifyObservers("Voici l'état actuel des joueurs :");
+		this.hasChanged();
+		this.notifyObservers(parametresDePartie.getListeJoueurs().toString() + "\n");
 
-		System.out.println(this.referenceJoueur.getNom()
+		this.hasChanged();
+		this.notifyObservers(this.getReferenceJoueur().getNom()
 				+ ", voici vos cartes (col1->P col2->E col3->A col4->H lign1->Geant lign2->Engrais lign3->Farfadet) : \n");
-		this.referenceJoueur.getPaquet().afficherCartes();
-		System.out.println("Graines de menhirs en stock : " + this.referenceJoueur.getPaquet().getGrainesDeMenhir());
+		this.getReferenceJoueur().getPaquet().afficherCartes();
+		this.hasChanged();
+		this.notifyObservers(
+				"Graines de menhirs en stock : " + this.getReferenceJoueur().getPaquet().getGrainesDeMenhir());
 
-		System.out.println("Quelle carte ingrÃ©dient jouez-vous ? (tapez son id) ");
+		this.hasChanged();
+		this.notifyObservers("Quelle carte ingrédient jouez-vous ? (tapez son id) ");
 		boolean trouvee = false;
 		CarteIngredient carteAJouer = new CarteIngredient(null);
 		while (!trouvee) {
 			reponse = sc.next();
-			for (Iterator<Carte> it = this.referenceJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Ingredients")
-					.iterator(); it.hasNext();) {
+			for (Iterator<Carte> it = this.getReferenceJoueur().getPaquet().getPaquetsDeCartes()
+					.get("Cartes Ingredients").iterator(); it.hasNext();) {
 				Carte tempCarte = it.next();
 				if (String.valueOf(tempCarte.getId()).equals(reponse) && !tempCarte.isEstUtilise()) {
 					carteAJouer = (CarteIngredient) tempCarte;
@@ -41,29 +45,36 @@ public class StrategieJoueurReelConsole extends Strategie {
 			}
 		}
 
-		System.out.println("Quelle action (engrais ou geant ou farfadet) ?");
+		this.hasChanged();
+		this.notifyObservers("Quelle action (engrais ou geant ou farfadet) ?");
 		while (!reponse.contentEquals("engrais") && !reponse.contentEquals("geant")
 				&& !reponse.contentEquals("farfadet")) {
 			reponse = sc.next();
 			if (reponse.contentEquals("engrais")) {
-				carteAJouer.utiliser(TypeAction.engrais, this.referenceJoueur, this.referenceJoueur, saisonActuelle,
-						parametresDePartie);
-				System.out.println("Vous avez maintenant " + this.referenceJoueur.getPaquet().getNombreMenhirsAdultes()
-						+ " menhirs adultes sur votre carte champ.");
+				carteAJouer.utiliser(TypeAction.engrais, this.getReferenceJoueur(), this.getReferenceJoueur(),
+						saisonActuelle, parametresDePartie);
+				this.hasChanged();
+				this.notifyObservers(
+						"Vous avez maintenant " + this.getReferenceJoueur().getPaquet().getNombreMenhirsAdultes()
+								+ " menhirs adultes sur votre carte champ.");
 
-				this.referenceJoueur.score(parametresDePartie.getTypePartie());
-				System.out.println(this.referenceJoueur.toString());
+				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
+				this.hasChanged();
+				this.notifyObservers(this.getReferenceJoueur().toString());
 			}
 			if (reponse.contentEquals("farfadet")) {
-				System.out.println("A quel joueur voulez-vous voler des graines");
+				this.hasChanged();
+				this.notifyObservers("A quel joueur voulez-vous voler des graines");
 				// afficher tous les joueurs(IAS) et leurs ressources (graines +
 				// menhirs)
 				for (int i = 1; i < parametresDePartie.getNombreDeJoueurs(); i++) {
 					Joueur tempIA = parametresDePartie.getListeJoueurs().get(i);
-					System.out
-							.println(tempIA.toString() + " menhirs : " + tempIA.getPaquet().getNombreMenhirsAdultes());
+					this.hasChanged();
+					this.notifyObservers(
+							tempIA.toString() + " menhirs : " + tempIA.getPaquet().getNombreMenhirsAdultes());
 				}
-				System.out.println("A quel joueur voulez-vous volez les graines? Entrer id");
+				this.hasChanged();
+				this.notifyObservers("A quel joueur voulez-vous volez les graines? Entrer id");
 				trouvee = false;
 				Joueur destinataire = null;
 				while (!trouvee) {
@@ -79,25 +90,30 @@ public class StrategieJoueurReelConsole extends Strategie {
 				}
 
 				reponse = "farfadet";
-				carteAJouer.utiliser(TypeAction.farfadet, destinataire, this.referenceJoueur, saisonActuelle,
+				carteAJouer.utiliser(TypeAction.farfadet, destinataire, this.getReferenceJoueur(), saisonActuelle,
 						parametresDePartie);
-				System.out.println("Vous avez maintenant " + this.referenceJoueur.getPaquet().getGrainesDeMenhir()
-						+ " graines de menhirs.");
+				this.hasChanged();
+				this.notifyObservers("Vous avez maintenant "
+						+ this.getReferenceJoueur().getPaquet().getGrainesDeMenhir() + " graines de menhirs.");
 
 				destinataire.score(parametresDePartie.getTypePartie());
-				this.referenceJoueur.score(parametresDePartie.getTypePartie());
-				System.out.println(destinataire.toString());
-				System.out.println(this.referenceJoueur.toString());
+				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
+				this.hasChanged();
+				this.notifyObservers(destinataire.toString());
+				this.hasChanged();
+				this.notifyObservers(this.getReferenceJoueur().toString());
 
 			}
 			if (reponse.contentEquals("geant")) {
-				carteAJouer.utiliser(TypeAction.geantGardient, this.referenceJoueur, this.referenceJoueur,
+				carteAJouer.utiliser(TypeAction.geantGardient, this.getReferenceJoueur(), this.getReferenceJoueur(),
 						saisonActuelle, parametresDePartie);
-				System.out.println("Vous avez maintenant " + this.referenceJoueur.getPaquet().getGrainesDeMenhir()
+				this.hasChanged();
+				this.notifyObservers("Vous avez maintenant " + this.getReferenceJoueur().getPaquet().getGrainesDeMenhir()
 						+ " graines de menhirs.");
 
-				this.referenceJoueur.score(parametresDePartie.getTypePartie());
-				System.out.println(this.referenceJoueur.toString());
+				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
+				this.hasChanged();
+				this.notifyObservers(this.getReferenceJoueur().toString());
 			}
 		}
 	}
@@ -111,12 +127,14 @@ public class StrategieJoueurReelConsole extends Strategie {
 			CarteChiensDeGarde tempCarte = (CarteChiensDeGarde) destinataire.getPaquet().getPaquetsDeCartes()
 					.get("Cartes Chiens De Garde").get(0);
 			if (!tempCarte.isEstUtilise()) {
-				System.out.println(acteur.getNom() + " vous lance une attaque de " + puissanceModifie + " "
-						+ "graines, Se dÃ©fendre avec votre carte chien de garde ?" + "\n( " + tempCarte.toString()
+				this.hasChanged();
+				this.notifyObservers(acteur.getNom() + " vous lance une attaque de " + puissanceModifie + " "
+						+ "graines, Se défendre avec votre carte chien de garde ?" + "\n( " + tempCarte.toString()
 						+ " )");
 				if (sc.next().contains("oui")) {
 					puissanceModifie = tempCarte.utiliser(destinataire, saisonActuelle, puissanceModifie);
-					System.out.println(this.referenceJoueur.getNom() + " se dÃ©fend de " + destinataire.getNom()
+					this.hasChanged();
+					this.notifyObservers(this.getReferenceJoueur().getNom() + " se défend de " + destinataire.getNom()
 							+ " avec ses chiens de garde et ne perd que " + puissanceModifie + " graines de menhir.");
 				}
 			}
@@ -132,11 +150,13 @@ public class StrategieJoueurReelConsole extends Strategie {
 			CarteTaupesGeantes tempCarte = (CarteTaupesGeantes) acteur.getPaquet().getPaquetsDeCartes()
 					.get("Cartes Taupes Geantes").get(0);
 			if (!tempCarte.isEstUtilise()) {
-				System.out.println("Voulez-vous attaquer " + destinataire.getNom()
-						+ " avec votre Carte Taupes GÃ©antes ? (oui ou non)" + "\n( " + tempCarte.toString() + " )");
+				this.hasChanged();
+				this.notifyObservers("Voulez-vous attaquer " + destinataire.getNom()
+						+ " avec votre Carte Taupes Géantes ? (oui ou non)" + "\n( " + tempCarte.toString() + " )");
 				if (sc.next().contains("oui")) {
-					System.out.println(this.referenceJoueur.getNom() + " attaque " + destinataire.getNom()
-							+ " avec ses taupes et lui dÃ©truit " + tempCarte.utiliser(destinataire, saisonActuelle)
+					this.hasChanged();
+					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
+							+ " avec ses taupes et lui détruit " + tempCarte.utiliser(destinataire, saisonActuelle)
 							+ " menhirs adultes sur sa carte champ.");
 				}
 			}
@@ -146,7 +166,10 @@ public class StrategieJoueurReelConsole extends Strategie {
 
 	public void choixDeManche(ParametresDePartie parametresDePartie) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Voulez-vous une carte Alliee Ã  la place de 2 graines de Menhir ? (oui ou non)");
+		System.out.println(this.countObservers());
+		this.hasChanged();
+		this.notifyObservers();
+		this.notifyObservers("Voulez-vous une carte Alliee à la place de 2 graines de Menhir ? (oui ou non)");
 		if (sc.next().contains("oui")) {
 			this.setChoixCarteAlliee(true);
 		}

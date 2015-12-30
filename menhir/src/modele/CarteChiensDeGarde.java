@@ -26,7 +26,10 @@ public class CarteChiensDeGarde extends CarteAlliee {
 		if (puissanceFinale < 0) {
 			puissanceFinale = 0;
 		}
-
+		
+		this.setChanged();
+		this.notifyObservers("utiliser");
+		
 		return puissanceFinale;
 	}
 

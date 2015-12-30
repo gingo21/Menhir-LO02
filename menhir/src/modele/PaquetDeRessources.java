@@ -1,8 +1,9 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.Observable;
 
-public abstract class PaquetDeRessources implements Serializable {
+public abstract class PaquetDeRessources extends Observable implements Serializable {
 
 	private int grainesDeMenhir;
 
@@ -31,6 +32,8 @@ public abstract class PaquetDeRessources implements Serializable {
 		PaquetDeRessourcesDeJoueur tempPaquetJoueur = joueur.getPaquet();
 		tempPaquetJoueur.setGrainesDeMenhir(tempPaquetJoueur
 				.getGrainesDeMenhir() + nombre);
+		this.setChanged();
+		this.notifyObservers("don " + nombre + " graine(s)");
 	}
 
 	public void donnerUneGraineDeMenhir(Joueur joueur) {
@@ -38,6 +41,8 @@ public abstract class PaquetDeRessources implements Serializable {
 		PaquetDeRessourcesDeJoueur tempPaquetJoueur = joueur.getPaquet();
 		tempPaquetJoueur.setGrainesDeMenhir(tempPaquetJoueur
 				.getGrainesDeMenhir() + 1);
+		this.setChanged();
+		this.notifyObservers("don 1 graine(s)");
 	}
 
 }

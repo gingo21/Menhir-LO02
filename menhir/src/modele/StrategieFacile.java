@@ -2,40 +2,38 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-// La stratÃ©gie est complÃ©tement alÃ©atoire 
+// La stratégie est complétement aléatoire 
 public class StrategieFacile extends Strategie {
-	
-	private Joueur referenceJoueur;
-	
+		
 	public StrategieFacile(Joueur referenceJoueur) {
-		super();
-		this.referenceJoueur = referenceJoueur;
+		super(referenceJoueur);
 	}
-	
+
 	public void jouerSonTour(Saison saisonActuelle,
 			ParametresDePartie parametresDePartie) {
 		// faire une selection aleatoire de carte et d'action pour les IA
 		CarteIngredient carteIA = new CarteIngredient(null);
 		ArrayList<Carte> paquetCartesNonUtilises = new ArrayList<Carte>();
 		// cartes ingredients
-		for (Iterator<Carte> it = this.referenceJoueur.getPaquet().getPaquetsDeCartes()
+		for (Iterator<Carte> it = this.getReferenceJoueur().getPaquet().getPaquetsDeCartes()
 				.get("Cartes Ingredients").iterator(); it.hasNext();) {
 			Carte tempCarte = it.next();
 			if (!tempCarte.isEstUtilise())
 				paquetCartesNonUtilises.add(tempCarte);
 		}
 
-		// selection alÃ©atoire de carte
+		// selection aléatoire de carte
 		int indexCarte = (int) (Math.random() * paquetCartesNonUtilises.size());
 		carteIA = (CarteIngredient) paquetCartesNonUtilises.get(indexCarte);
-		// sÃ©lection alÃ©atoire action
+		// sélection aléatoire action
 		int indexAction = (int) (Math.random() * 3);
 		// 0=engrais 1=farfadet 2=geant
 		if (indexAction == 0) {
-			carteIA.utiliser(TypeAction.engrais, this.referenceJoueur, this.referenceJoueur, saisonActuelle,
+			carteIA.utiliser(TypeAction.engrais, this.getReferenceJoueur(), this.getReferenceJoueur(), saisonActuelle,
 					parametresDePartie);
-			this.referenceJoueur.score(parametresDePartie.getTypePartie());
-			System.out.println(this.referenceJoueur.toString());
+			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
+			this.hasChanged();
+			this.notifyObservers(this.getReferenceJoueur().toString());
 		}
 		if (indexAction == 1)
 		{
@@ -45,26 +43,29 @@ public class StrategieFacile extends Strategie {
 			for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs()
 					.iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
-				if (tempJoueur != this.referenceJoueur)
+				if (tempJoueur != this.getReferenceJoueur())
 					tempJoueurDest.add(tempJoueur);
 			}
 			int indexJoueurDest = (int) (Math.random() * tempJoueurDest.size());
 			destinataire = tempJoueurDest.get(indexJoueurDest);
-			carteIA.utiliser(TypeAction.farfadet, destinataire, this.referenceJoueur,
+			carteIA.utiliser(TypeAction.farfadet, destinataire, this.getReferenceJoueur(),
 					saisonActuelle, parametresDePartie);
 			
 			destinataire.score(parametresDePartie.getTypePartie());
-			System.out.println(destinataire.toString());
+			this.hasChanged();
+			this.notifyObservers(destinataire.toString());
 			
-			this.referenceJoueur.score(parametresDePartie.getTypePartie());
-			System.out.println(this.referenceJoueur.toString());
+			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
+			this.hasChanged();
+			this.notifyObservers(this.getReferenceJoueur().toString());
 		}
 		if (indexAction == 2) {
-			carteIA.utiliser(TypeAction.geantGardient, this.referenceJoueur, this.referenceJoueur,
+			carteIA.utiliser(TypeAction.geantGardient, this.getReferenceJoueur(), this.getReferenceJoueur(),
 					saisonActuelle, parametresDePartie);
 			
-			this.referenceJoueur.score(parametresDePartie.getTypePartie());
-			System.out.println(this.referenceJoueur.toString());
+			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
+			this.hasChanged();
+			this.notifyObservers(this.getReferenceJoueur().toString());
 
 		}
 	}
@@ -84,8 +85,9 @@ public class StrategieFacile extends Strategie {
 				if (tempAlea == 0) {
 					puissanceModifie = tempCarte.utiliser(destinataire, saisonActuelle,
 							puissanceModifie);
-					System.out.println(this.referenceJoueur.getNom()
-							+ " se dÃ©fend de "
+					this.hasChanged();
+					this.notifyObservers(this.getReferenceJoueur().getNom()
+							+ " se défend de "
 							+ destinataire.getNom()
 							+ " avec ses chiens de garde et ne perd que "
 							+ puissanceModifie
@@ -108,9 +110,10 @@ public class StrategieFacile extends Strategie {
 				int tempAlea = (int) Math.random() * 4;
 				if (tempAlea == 0) {
 					tempCarte.utiliser(destinataire, saisonActuelle);
-					System.out.println(this.referenceJoueur.getNom() + " attaque "
+					this.hasChanged();
+					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque "
 							+ destinataire.getNom()
-							+ " avec ses taupes et lui dÃ©truit "
+							+ " avec ses taupes et lui détruit "
 							+ tempCarte.utiliser(destinataire, saisonActuelle)
 							+ " menhirs adultes sur sa carte champ.");
 				}

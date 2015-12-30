@@ -91,7 +91,7 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 
 	}
 
-	public void afficherCartes() {
+	public void afficherCartes() { //MODE CONSOLE
 		Set<String> tempCles = this.getPaquetsDeCartes().keySet();
 		for (Iterator<String> it = tempCles.iterator(); it.hasNext();) {
 			ArrayList<Carte> tempCartes = this.getPaquetsDeCartes().get(it.next());

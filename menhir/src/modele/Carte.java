@@ -1,8 +1,9 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.Observable;
 
-public abstract class Carte implements Serializable {
+public abstract class Carte extends Observable implements Serializable {
 	private String nom;
 	private int id;
 	private boolean estDetenuParUnJoueur;

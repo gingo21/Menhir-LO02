@@ -1,16 +1,26 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.Observable;
 
-public abstract class Strategie implements Serializable {
+public abstract class Strategie extends Observable implements Serializable {
 	private boolean choixCarteAlliee;
-	
-	
-	public Strategie() {
+	private Joueur referenceJoueur;
+
+	public Strategie(Joueur referenceJoueur) {
 		super();
-		choixCarteAlliee=false;
+		choixCarteAlliee = false;
+		this.referenceJoueur = referenceJoueur;
 	}
-	
+
+	public Joueur getReferenceJoueur() {
+		return referenceJoueur;
+	}
+
+	public void setReferenceJoueur(Joueur referenceJoueur) {
+		this.referenceJoueur = referenceJoueur;
+	}
+
 	public boolean isChoixCarteAlliee() {
 		return choixCarteAlliee;
 	}
@@ -20,11 +30,12 @@ public abstract class Strategie implements Serializable {
 	}
 
 	public abstract void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie);
-	
-	public abstract int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur, Saison saisonActuelle, int puissance);
-	
-	public abstract void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire,
-			Joueur acteur, Saison saisonActuelle);
-	
+
+	public abstract int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
+			Saison saisonActuelle, int puissance);
+
+	public abstract void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
+			Saison saisonActuelle);
+
 	public abstract void choixDeManche(ParametresDePartie parametresDePartie);
 }

@@ -1,8 +1,9 @@
 package modele;
 
 import java.util.Iterator;
+import java.util.Observable;
 
-public class Partie {
+public class Partie extends Observable {
 
 	private Saison saisonActuelle;
 	private int numeroDeTourActuel;
@@ -23,13 +24,15 @@ public class Partie {
 				this.setSaisonActuelle(this.getSaisonActuelle().next());
 			}
 			this.setNumeroDeTourActuel(0);
-			System.out.println("Changement de saison : " + this.getSaisonActuelle());
+			this.hasChanged();
+			this.notifyObservers("Changement de saison : " + this.getSaisonActuelle());
 		}
 	}
 
 	public void changerDeManche(ParametresDePartie parametresDePartie) {
 		this.numeroDeManche++;
-		System.out.println("Changement de manche : " + this.numeroDeManche);
+		this.hasChanged();
+		this.notifyObservers("Changement de manche : " + this.numeroDeManche);
 		int resteManches = (parametresDePartie.getNombreDeManches() - this.numeroDeManche);
 		System.out.println("Il reste " + resteManches + " manche(s) à jouer");
 		if (resteManches > 0) {
@@ -49,15 +52,18 @@ public class Partie {
 				maxScore = tempJoueur.getScore();
 			}
 		}
-		if (JoueurGagnant instanceof JoueurReel)
-			System.out.println("Bravo, vous avez gagné, avec :"
+		if (JoueurGagnant instanceof JoueurReel) {
+			this.hasChanged();
+			this.notifyObservers("Bravo, vous avez gagn�, avec :"
 					+ JoueurGagnant.getPaquet().getNombreMenhirsAdultes()
 					+ "menhirs et "
 					+ JoueurGagnant.getPaquet().getGrainesDeMenhir()
 					+ "graines");
-		else {
-			System.out.println("Vous avez perdu :(");
-			System.out.println("Gagnant : " + JoueurGagnant.toString());
+		} else {
+			this.hasChanged();
+			this.notifyObservers("Vous avez perdu :(");
+			this.hasChanged();
+			this.notifyObservers("Gagnant : " + JoueurGagnant.toString());
 		}
 	}
 

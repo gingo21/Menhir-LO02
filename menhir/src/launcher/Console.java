@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
 import modele.Difficulte;
@@ -18,8 +19,9 @@ import modele.ParametresDePartie;
 import modele.Partie;
 import modele.Saison;
 import modele.StatutPartie;
+import modele.Strategie;
 
-public class Console implements Runnable {
+public class Console implements Runnable, Observer {
 
 	private ParametresDePartie parametresDePartie;
 
@@ -32,22 +34,26 @@ public class Console implements Runnable {
 		// 1ere version
 		System.out.println(
 				"Bienvenue dans la version Alpha du jeu du menhir d'apres Francois Reymond" + " et Adrien Wartelle");
-		System.out.println("Ne rÃ©pondez que par un mot aux questions si vous voulez que cela se passe bien ...");
+		System.out.println("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
 
 		try {
 			System.out.println(this.parametresDePartie.toString());
 			this.askParametres(this.parametresDePartie);
+			this.parametresDePartie.getPaquetDePartie().addConsoleObserver(this);
+			for(Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
+				Joueur tempJoueur = it.next();
+				tempJoueur.getStrategie().addObserver(this);
+			}
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		this.parametresDePartie.saveParametres();
 		Partie partie = new Partie();
 
-		// Distribution des cartes et prÃ©sentations
-		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(this.parametresDePartie);
+		// Distribution des cartes et présentations
+		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(this.parametresDePartie);//TODO pb
 		partie.wait(1);
 
 		do {
@@ -123,7 +129,8 @@ public class Console implements Runnable {
 		parametresDePartie.setListeJoueurs(new ArrayList<Joueur>());
 
 		System.out.println("Votre nom ?");
-		JoueurReel tempJoueurReel = new JoueurReel(sc.next(), parametresDePartie.getPaquetDePartie());
+		String tempReponse = sc.next();
+		JoueurReel tempJoueurReel = new JoueurReel(tempReponse, parametresDePartie.getPaquetDePartie());
 		parametresDePartie.setOrdreDesJoueurs(new ArrayList<Integer>());
 		parametresDePartie.getOrdreDesJoueurs().add(tempJoueurReel.getId());
 		parametresDePartie.getListeJoueurs().add(tempJoueurReel);
@@ -132,6 +139,16 @@ public class Console implements Runnable {
 					Difficulte.facile);
 			parametresDePartie.getOrdreDesJoueurs().add(tempJoueurVirtuel.getId());
 			parametresDePartie.getListeJoueurs().add(tempJoueurVirtuel);
+		}
+	}
+
+	public void update(Observable arg0, Object arg1) {
+		if(!(arg1.toString().contains("utiliser") || arg1.toString().contains("don") || arg1.toString().contains("distribution")))
+			{
+				System.out.println(arg1.toString());
+			}
+		if(arg0 instanceof Strategie) {
+			System.out.println("test");
 		}
 	}
 }

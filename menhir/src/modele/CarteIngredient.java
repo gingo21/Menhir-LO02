@@ -51,14 +51,18 @@ public class CarteIngredient extends Carte {
 			tempPaquetPartie.donnerDesGrainesDeMenhir(acteur,
 					this.puissanceActions[tempValeur][0]);
 			if (acteur instanceof JoueurVirtuel) {
-				System.out.println(acteur.getNom() + " reÃ§oit  "
+				this.setChanged();
+				this.notifyObservers(acteur.getNom() + " reçoit  "
 						+ this.puissanceActions[tempValeur][0]
 						+ " graines du geant gardien ");
 			} else {
-				System.out.println("Vous recevez "
+				this.setChanged();
+				this.notifyObservers("Vous recevez "
 						+ this.puissanceActions[tempValeur][0]
 						+ " graines du geant gardien");
 			}
+			this.setChanged();
+			this.notifyObservers("utiliser geantGardient");
 		}
 		if (typeaction == TypeAction.farfadet) {
 			int puissance = this.puissanceActions[tempValeur][2];
@@ -73,19 +77,24 @@ public class CarteIngredient extends Carte {
 			destinataire.getPaquet().donnerDesGrainesDeMenhir(acteur,
 					nombreDeGrainesAVoler);
 			if (destinataire instanceof JoueurReel) {
-				System.out.println(acteur.getNom()
-						+ " a envoyÃ© ses farfadets vous voler "
+				this.setChanged();
+				this.notifyObservers(acteur.getNom()
+						+ " a envoyé ses farfadets vous voler "
 						+ nombreDeGrainesAVoler + " graines");
 			} else if (acteur instanceof JoueurVirtuel) {
-				System.out.println(acteur.getNom()
-						+ " a envoyÃ© ses farfadets voler "
+				this.setChanged();
+				this.notifyObservers(acteur.getNom()
+						+ " a envoyé ses farfadets voler "
 						+ nombreDeGrainesAVoler + " graines a "
 						+ destinataire.getNom());
 			} else {
-				System.out.println("Vous avez envoyÃ© vos farfadets voler "
+				this.setChanged();
+				this.notifyObservers("Vous avez envoyé vos farfadets voler "
 						+ nombreDeGrainesAVoler + " graines a "
 						+ destinataire.getNom());
 			}
+			this.setChanged();
+			this.notifyObservers("utiliser farfadets id" + destinataire.getId());
 
 		}
 		if (typeaction == TypeAction.engrais) {
@@ -99,20 +108,23 @@ public class CarteIngredient extends Carte {
 					- nombreDeGrainesPoussees);
 
 			if (acteur instanceof JoueurVirtuel) {
-				System.out.println(acteur.getNom() + " fait pousser "
+				this.setChanged();
+				this.notifyObservers(acteur.getNom() + " fait pousser "
 						+ nombreDeGrainesPoussees + " menhirs ");
 			} else {
-				System.out.println("Vous faites pousser "
+				this.setChanged();
+				this.notifyObservers("Vous faites pousser "
 						+ nombreDeGrainesPoussees + " menhirs ");
 			}
-
+			this.setChanged();
+			this.notifyObservers("utiliser engrais");
 		}
 		this.setEstUtilise(true);
 	}
 
 	public String toString() {
 		String result = "";
-		result += "Carte IngrÃ©dient [nom=" + this.getNom() + ", id=" + this.getId()
+		result += "Carte Ingrédient [nom=" + this.getNom() + ", id=" + this.getId()
 				+ ", estUtilise=" + this.isEstDetenuParUnJoueur() + "] \n";
 		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < 4; i++) {

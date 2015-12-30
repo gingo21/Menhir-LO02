@@ -28,7 +28,7 @@ public class StrategieNormale extends Strategie {
 			carteIA.utiliser(TypeAction.engrais, this.getReferenceJoueur(), this.getReferenceJoueur(), saisonActuelle,
 					parametresDePartie);
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers(this.getReferenceJoueur().toString());
 		}
 		if (typeAction == TypeAction.farfadet) {
@@ -37,11 +37,11 @@ public class StrategieNormale extends Strategie {
 					parametresDePartie);
 
 			destinataire.score(parametresDePartie.getTypePartie());
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers(destinataire.toString());
 
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers(this.getReferenceJoueur().toString());
 		}
 		if (typeAction == TypeAction.geantGardient) {
@@ -49,7 +49,7 @@ public class StrategieNormale extends Strategie {
 					saisonActuelle, parametresDePartie);
 
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers(this.getReferenceJoueur().toString());
 
 		}
@@ -71,7 +71,7 @@ public class StrategieNormale extends Strategie {
 				}
 				if (tempAlea == 0) {
 					puissanceModifie = tempCarte.utiliser(destinataire, saisonActuelle, puissanceModifie);
-					this.hasChanged();
+					this.setChanged();
 					this.notifyObservers(this.getReferenceJoueur().getNom() + " se défend de " + destinataire.getNom()
 							+ " avec ses chiens de garde et ne perd que " + puissanceModifie + " graines de menhir.");
 				}
@@ -100,7 +100,7 @@ public class StrategieNormale extends Strategie {
 				}
 				if (tempAlea == 0) {
 					tempCarte.utiliser(destinataire, saisonActuelle);
-					this.hasChanged();
+					this.setChanged();
 					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
 							+ " avec ses taupes et lui détruit " + tempCarte.utiliser(destinataire, saisonActuelle)
 							+ " menhirs adultes sur sa carte champ.");

@@ -25,8 +25,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		this.paquetsDeCartes.put("Cartes Chiens De Garde", tempCartes5);
 
 		for (int i = 0; i < 4 * nombreDeJoueurs; i++) {
-			String tempNames[] = { "Trululu", "tarlatata", "trabidu" };
-			int selectName = (int) (Math.random() * (3 - 0));
+			String tempNames[] = { "Chant de Sirène", "Esprit de Dolmen", "Fontaine Eau Pure", "Larmes De Dryade", "Poudre Or", "Racines Arc En Ciel", "Rayon De Lune", "Rires de Fees"};
+			int selectName = (int) (Math.random() * (8 - 0));
 			Carte tempCarte = new CarteIngredient(tempNames[selectName]);
 			this.ajouterUneCarte(tempCarte);
 		}

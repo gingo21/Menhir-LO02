@@ -9,10 +9,8 @@ public class JoueurVirtuel extends Joueur {
 		super(nom, referencePaquetPartie, null);
 		if(difficulte == Difficulte.facile) {
 			this.setStrategie(new StrategieFacile(this));
-		} else if(difficulte == Difficulte.normale) {
-			this.setStrategie(new StrategieNormale(this));
 		} else {
-			this.setStrategie(new StrategieDifficile(this));
+			this.setStrategie(new StrategieNormale(this));
 		}
 		this.difficulte = difficulte;
 	}

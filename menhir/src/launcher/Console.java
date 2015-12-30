@@ -51,7 +51,7 @@ public class Console implements Runnable {
 		partie.wait(1);
 
 		do {
-			int tempIdJoueurActuel = this.parametresDePartie.getOrdreDesJoueurs()[partie.getNumeroDeTourActuel()];
+			int tempIdJoueurActuel = this.parametresDePartie.getOrdreDesJoueurs().get(partie.getNumeroDeTourActuel());
 			int indexJoueurActuel = 0;
 			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
@@ -124,13 +124,13 @@ public class Console implements Runnable {
 
 		System.out.println("Votre nom ?");
 		JoueurReel tempJoueurReel = new JoueurReel(sc.next(), parametresDePartie.getPaquetDePartie());
-		parametresDePartie.setOrdreDesJoueurs(new int[parametresDePartie.getNombreDeJoueurs()]);
-		parametresDePartie.getOrdreDesJoueurs()[0] = tempJoueurReel.getId();
+		parametresDePartie.setOrdreDesJoueurs(new ArrayList<Integer>());
+		parametresDePartie.getOrdreDesJoueurs().add(tempJoueurReel.getId());
 		parametresDePartie.getListeJoueurs().add(tempJoueurReel);
 		for (int i = 1; i < parametresDePartie.getNombreDeJoueurs(); i++) {
 			JoueurVirtuel tempJoueurVirtuel = new JoueurVirtuel("IA" + i, parametresDePartie.getPaquetDePartie(),
 					Difficulte.facile);
-			parametresDePartie.getOrdreDesJoueurs()[i] = tempJoueurVirtuel.getId();
+			parametresDePartie.getOrdreDesJoueurs().add(tempJoueurVirtuel.getId());
 			parametresDePartie.getListeJoueurs().add(tempJoueurVirtuel);
 		}
 	}

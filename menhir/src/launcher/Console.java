@@ -20,6 +20,9 @@ import modele.Partie;
 import modele.Saison;
 import modele.StatutPartie;
 import modele.Strategie;
+import modele.StrategieJoueurReelConsole;
+import modele.StrategieFacile;
+import modele.StrategieNormale;
 
 public class Console implements Runnable, Observer {
 
@@ -42,7 +45,7 @@ public class Console implements Runnable, Observer {
 			this.parametresDePartie.getPaquetDePartie().addConsoleObserver(this);
 			for(Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
-				tempJoueur.getStrategie().addObserver(this);
+				tempJoueur.getStrategie().addConsoleObserver(this);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -147,8 +150,5 @@ public class Console implements Runnable, Observer {
 			{
 				System.out.println(arg1.toString());
 			}
-		if(arg0 instanceof Strategie) {
-			System.out.println("test");
-		}
 	}
 }

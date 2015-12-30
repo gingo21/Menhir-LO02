@@ -32,7 +32,8 @@ public class StrategieNormale extends Strategie {
 			carteIA.utiliser(TypeAction.engrais, this.getReferenceJoueur(), this.getReferenceJoueur(), saisonActuelle,
 					parametresDePartie);
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
-			System.out.println(this.getReferenceJoueur().toString());
+			this.hasChanged();
+			this.notifyObservers(this.getReferenceJoueur().toString());
 		}
 		if (indexAction == 1)
 		{
@@ -51,17 +52,20 @@ public class StrategieNormale extends Strategie {
 					saisonActuelle, parametresDePartie);
 			
 			destinataire.score(parametresDePartie.getTypePartie());
-			System.out.println(destinataire.toString());
+			this.hasChanged();
+			this.notifyObservers(destinataire.toString());
 			
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
-			System.out.println(this.getReferenceJoueur().toString());
+			this.hasChanged();
+			this.notifyObservers(this.getReferenceJoueur().toString());
 		}
 		if (indexAction == 2) {
 			carteIA.utiliser(TypeAction.geantGardient, this.getReferenceJoueur(), this.getReferenceJoueur(),
 					saisonActuelle, parametresDePartie);
 			
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
-			System.out.println(this.getReferenceJoueur().toString());
+			this.hasChanged();
+			this.notifyObservers(this.getReferenceJoueur().toString());
 
 		}
 	}
@@ -81,7 +85,8 @@ public class StrategieNormale extends Strategie {
 				if (tempAlea == 0) {
 					puissanceModifie = tempCarte.utiliser(destinataire, saisonActuelle,
 							puissanceModifie);
-					System.out.println(this.getReferenceJoueur().getNom()
+					this.hasChanged();
+					this.notifyObservers(this.getReferenceJoueur().getNom()
 							+ " se défend de "
 							+ destinataire.getNom()
 							+ " avec ses chiens de garde et ne perd que "
@@ -105,7 +110,8 @@ public class StrategieNormale extends Strategie {
 				int tempAlea = (int) Math.random() * 4;
 				if (tempAlea == 0) {
 					tempCarte.utiliser(destinataire, saisonActuelle);
-					System.out.println(this.getReferenceJoueur().getNom() + " attaque "
+					this.hasChanged();
+					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque "
 							+ destinataire.getNom()
 							+ " avec ses taupes et lui détruit "
 							+ tempCarte.utiliser(destinataire, saisonActuelle)

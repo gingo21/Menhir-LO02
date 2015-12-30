@@ -1,5 +1,6 @@
 package modele;
 
+import launcher.Console;
 import java.io.Serializable;
 import java.util.Observable;
 
@@ -38,4 +39,8 @@ public abstract class Strategie extends Observable implements Serializable {
 			Saison saisonActuelle);
 
 	public abstract void choixDeManche(ParametresDePartie parametresDePartie);
+	
+	public void addConsoleObserver(Console observer) {
+		this.addObserver(observer);
+	}
 }

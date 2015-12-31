@@ -40,7 +40,6 @@ public class VueParametres extends JDialog implements Observer {
 
 	private ParametresDePartie referenceParametresDePartie;
 
-	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 
@@ -72,7 +71,7 @@ public class VueParametres extends JDialog implements Observer {
 		this.choixNombreDeJoueurs.setPreferredSize(new Dimension(50, 20));
 
 		// partie rapide ou avancee
-		String[] type = { "Rapide", "Avancée" };
+		String[] type = { "Rapide", "Avancï¿½e" };
 		this.typePartie = new JComboBox(type);
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
 			this.typePartie.setSelectedIndex(1);
@@ -93,7 +92,7 @@ public class VueParametres extends JDialog implements Observer {
 		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
 			if (tempJoueur instanceof JoueurVirtuel) {
-				JLabel tempLabel = new JLabel("Difficulté de " + tempJoueur.getNom());
+				JLabel tempLabel = new JLabel("Difficultï¿½ de " + tempJoueur.getNom());
 				this.labelsDifficultesIAs.add(tempLabel);
 				String[] difficulte = { "Facile", "Normale" };
 				JComboBox tempCombo = new JComboBox(difficulte);
@@ -139,7 +138,7 @@ public class VueParametres extends JDialog implements Observer {
 				VueParametres.this.choixDifficultesIAs.clear();
 				VueParametres.this.labelsDifficultesIAs.clear();
 				for (int i=1; i<VueParametres.this.choixNombreDeJoueurs.getSelectedIndex() + 2; i++) {
-					JLabel tempLabel = new JLabel("Difficulté de IA" + i);
+					JLabel tempLabel = new JLabel("Difficultï¿½ de IA" + i);
 					VueParametres.this.labelsDifficultesIAs.add(tempLabel);
 					String[] difficulte = {"Facile", "Normale"};
 					JComboBox tempCombo = new JComboBox(difficulte);	

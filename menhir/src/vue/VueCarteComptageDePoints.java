@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,13 +13,8 @@ import modele.Carte;
 
 public class VueCarteComptageDePoints extends VueCarte{
 
-	public VueCarteComptageDePoints(Carte carte) {
-		super(carte);
-		try {
-			imageFaceCarte = ImageIO.read( new File("src/Ressources/CarteComptageDePoints.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public VueCarteComptageDePoints(Carte carte, Image dos, Image face, int h, int l ) {
+		super(carte, dos, face, h, l);
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

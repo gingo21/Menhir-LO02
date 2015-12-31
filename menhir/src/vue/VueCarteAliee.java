@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,8 +17,8 @@ import modele.CarteChiensDeGarde;
 
 public class VueCarteAliee extends VueCarte{
 	private int[] puissanceActionsAlliee;
-	public VueCarteAliee(Carte carte) {
-		super(carte);
+	public VueCarteAliee(Carte carte, Image dos, Image face, int h, int l ) {
+		super(carte, dos, face, h, l);
 		this.puissanceActionsAlliee = ((CarteAlliee) carte).getPuissanceActions();
 	}
 	public void paintComponent(Graphics g){

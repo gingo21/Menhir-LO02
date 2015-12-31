@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,13 +11,9 @@ import modele.Carte;
 
 public class VueCarteChamp extends VueCarte{
 
-	public VueCarteChamp(Carte carte) {
-		super(carte);
-		try {
-			imageFaceCarte = ImageIO.read( new File("src/Ressources/CarteChamp.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public VueCarteChamp(Carte carte, Image dos, Image face, int h, int l) {
+		super(carte, dos, face, h, l);
+		
 	}
 	
 	public void paintComponent(Graphics g){
@@ -25,7 +22,7 @@ public class VueCarteChamp extends VueCarte{
 			g.drawImage(imageFaceCarte, 0, 0, this);
 		}
 		else{
-			g.drawImage(imageDosGeant, 0, 0, this);
+			g.drawImage(imageDos, 0, 0, this);
 		}
 	}
 

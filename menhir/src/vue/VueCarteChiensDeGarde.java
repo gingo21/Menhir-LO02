@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,13 +11,8 @@ import modele.Carte;
 
 public class VueCarteChiensDeGarde extends VueCarteAliee{
 
-	public VueCarteChiensDeGarde(Carte carte) {
-		super(carte);
-		try {
-			imageFaceCarte = ImageIO.read( new File("src/Ressources/CarteChienDeGarde.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		imageFaceCarte = redimImage(imageFaceCarte, HAUTEUR, LARGEUR);
+	public VueCarteChiensDeGarde(Carte carte, Image dos, Image face, int h, int l ) {
+		super(carte, dos, face, h, l);
+		imageFaceCarte = redimImage(imageFaceCarte, h, l);
 	}
 }

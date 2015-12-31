@@ -1,10 +1,17 @@
 package vue;
 
-import javax.swing.ImageIcon;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 
-public class VueGraine {
-	private ImageIcon imgGraine; 
-	public  VueGraine(){
-		ImageIcon imgGraine = new ImageIcon("src/graine.png");
-		}
+public class VueGraine extends Panneaux{
+	private Image image; 
+	public  VueGraine(Image image, int h, int l){
+		image = image;
+		this.setPreferredSize(new Dimension(h,l));
+	}
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, this);
+	}
 }

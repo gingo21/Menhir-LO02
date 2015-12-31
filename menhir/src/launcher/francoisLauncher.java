@@ -2,36 +2,36 @@ package launcher;
 
 import java.awt.Container;
 
-import modele.Carte;
-import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
+import modele.ParametresDePartie;
+import modele.StatutPartie;
 import vue.FenetreInitialisation;
 import vue.FenetrePrincipal;
 import vue.Panneaux;
-import vue.VueCarte;
-import vue.VueCarteIngredient;
 import vue.VueCarteTaupesGeantes;
+import vue.VuePaquetDeRessourcesDeJoueur;
+import vue.VuePaquetDeRessourcesPartie;
 
 public class francoisLauncher {
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		//test
-		FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
+		//FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
 		
-		// tempCarte = new CarteIngredient("didadidadou");
-		//VueCarteIngredient maCarte = new VueCarteIngredient(tempCarte);
-		CarteTaupesGeantes tempCarte = new CarteTaupesGeantes("didadidadou");
-		VueCarteTaupesGeantes maCarte = new VueCarteTaupesGeantes(tempCarte);
-
+		ParametresDePartie params = new ParametresDePartie();
+//		params.getPaquetDePartie().distribuerRessourcesInitiales(params);
+		VuePaquetDeRessourcesDeJoueur vovo = new VuePaquetDeRessourcesDeJoueur(params.getJoueurReel().getPaquet());
+		VuePaquetDeRessourcesPartie vuvu = new VuePaquetDeRessourcesPartie(params.getPaquetDePartie()
+				,params.getNombreDeJoueurs(),params.getTypePartie()==StatutPartie.avancee);
+		
 		FenetrePrincipal fen = new FenetrePrincipal();
 		Container contentframe = fen.getContentPane();
 		
 		//panneaux
 		Panneaux conteneur = new Panneaux();
 		contentframe.add(conteneur);
-		conteneur.ajoutPanneau(maCarte,200,200);
+		conteneur.ajoutPanneau(vuvu,200,200);
 		contentframe.validate();
 		fen.setVisible(true);
 		
-		}*/
-
+		}
 }

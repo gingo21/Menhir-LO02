@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -30,79 +32,28 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 	private static final long serialVersionUID = 1L; 
 	
 	private Carte carte;
-	private BufferedImage bf;
-	private boolean isAlliee;
-	private int[][] puissanceActions;
-	private int[] puissanceActionsAlliee;
-	private Image image;
-	private int hauteurImage;
-	private int largImage;
-	private ImageIcon[] imagesIngredient = new ImageIcon[8];
-	private ImageIcon imageAlliee;
+	protected static int HAUTEUR = 150;
+	protected static int LARGEUR = 150;
+	protected ImageIcon faceCarte;
+	protected Image imageFaceCarte;
+	protected Image imageDosCarte;
+	protected boolean hidden;
 	 
 	
 	public VueCarte(Carte carte) {
 		this.carte = carte;
-		this.setPreferredSize(new Dimension(250, 250)); 
-		//this.setSize(new Dimension(250, 250));
-		
-		/*  fonctionne pas (utilisation imageIcon pour le moment)
-		try {
-			//Image image = ImageIO.read( new File("CarteIngredientFontaineDEauPure.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
-		
-		//allié ou ingredient
-		if (carte instanceof CarteIngredient){
-			
-			//chargement toutes les images ingredient, à mettre autre part.
-			imagesIngredient[1] = new ImageIcon("src/Ressources/CarteIngredientFontaineDEauPure.png");
-			imagesIngredient[4] = new ImageIcon("src/Ressources/CarteIngredientChantDeSirene.png");
-			imagesIngredient[5] = new ImageIcon("src/Ressources/CarteIngredientEspritDeDolmen.png");
-			imagesIngredient[6] = new ImageIcon("src/Ressources/CarteIngredientLarmesDeDryade.png");
-			imagesIngredient[0] = new ImageIcon("src/Ressources/CarteIngredientPoudreDOr.png");
-			imagesIngredient[7] = new ImageIcon("src/Ressources/CarteIngredientRacinesDArcEnCiel.png");
-			imagesIngredient[3] = new ImageIcon("src/Ressources/CarteIngredientRayonDeLune.png");
-			imagesIngredient[2] = new ImageIcon("src/Ressources/CarteIngredientRiresDeFees.png");
-			
-			this.puissanceActions = ((CarteIngredient) carte).getPuissanceActions();
-			 int debutX = 30;
-		     int pasX  = 15;
-		     int debutY = 38;
-		     int pasY  = 20;
-		     for (int i = 0; i < this.puissanceActions.length; i++) {
-		            for (int j = 0; j < this.puissanceActions[i].length; j++) {
-		                JLabel force = new JLabel(String.valueOf(this.puissanceActions[i][j]));
-		                force.setForeground(Color.white);
-		                this.ajoutPanneau(force,120 + i*29,154 + j*28); 
-		            }
-		     }
-		     
-		   //sélection aléatoire de la carte
-				int v = (int) (Math.random() * (0 + 6));
-				image = imagesIngredient[v].getImage();
+		this.setPreferredSize(new Dimension(150, 150)); 
+		//this.hidden = true;
+		if (!(carte instanceof CarteAlliee)){
+			try {
+				imageDosCarte = ImageIO.read( new File("src/Ressources/DosCarteNormale.png"));
+				imageDosCarte = redimImage(imageDosCarte, HAUTEUR, LARGEUR);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		if (carte instanceof CarteAlliee) {
-			this.puissanceActionsAlliee = ((CarteAlliee) carte).getPuissanceActions();
-			 int debutX = 30;
-		     int pasX  = 15;
-		     for (int i = 0; i < this.puissanceActionsAlliee.length; i++) {
-		                JLabel force = new JLabel(String.valueOf(this.puissanceActionsAlliee[i]));
-		                force.setForeground(Color.white);
-		                this.ajoutPanneau(force,120 + i*29,154); 
-		            }
-		     //sélection aléatoire de la carte
-				if (carte instanceof CarteChiensDeGarde){
-					imageAlliee =  new ImageIcon("src/Ressources/CarteChienDeGarde.png");
-				}
-				image = imageAlliee.getImage();
-		}
-		
-		//mouseListener
-	     addMouseListener(this);
+		addMouseListener(this);
 	    } 
 	
 		
@@ -111,12 +62,22 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 		
 	}
 	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		g.drawImage(image, 0, 0, this);
-		
+	
+	
+	//retourne image en 70*70
+	public static Image redimImage(Image image, int height, int width){
+		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = (Graphics2D) img.getGraphics();
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(image, 0, 0, width, height, null);
+		g.dispose();
+		return img;
 	}
 
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		
+	}
 	public void mouseClicked(MouseEvent ev) {
 		// TODO Auto-generated method stub
 		System.out.println(ev.getX());

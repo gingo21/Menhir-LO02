@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 
 import modele.Carte;
 
-public class VueCarteChienDeGardes extends VueCarteAliee{
+public class VueCarteChiensDeGarde extends VueCarteAliee{
 
-	public VueCarteChienDeGardes(Carte carte) {
+	public VueCarteChiensDeGarde(Carte carte) {
 		super(carte);
 		try {
 			imageFaceCarte = ImageIO.read( new File("src/Ressources/CarteChiensDeGarde.png"));

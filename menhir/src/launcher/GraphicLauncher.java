@@ -24,7 +24,7 @@ public class GraphicLauncher implements Runnable {
 		VueParametres dialog = new VueParametres(null, "conf", true, parametresDePartie);
 
 		Carte tempCarte = new CarteIngredient("didadidadou");
-		VueCarte maCarte = new VueCarte("/Ressources/bleu.jpg", tempCarte);
+		VueCarte maCarte = new VueCarte(tempCarte);
 		Container contentframe = dialog.getContentPane();
 		contentframe.add(maCarte);
 		contentframe.validate();

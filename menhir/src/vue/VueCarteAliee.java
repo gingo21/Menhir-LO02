@@ -19,15 +19,6 @@ public class VueCarteAliee extends VueCarte{
 	public VueCarteAliee(Carte carte) {
 		super(carte);
 		this.puissanceActionsAlliee = ((CarteAlliee) carte).getPuissanceActions();
-		//imageDosCarte
-		try {
-			imageDosCarte = ImageIO.read( new File("src/Ressources/DosCarteAvancee.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		imageDosCarte = redimImage(imageDosCarte, HAUTEUR, LARGEUR);
-
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -40,7 +31,7 @@ public class VueCarteAliee extends VueCarte{
 	         }
 		}
 		else{
-			g.drawImage(imageDosCarte, 0, 0, this);
+			g.drawImage(imageDosLutin, 0, 0, this);
 		}
 
 

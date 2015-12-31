@@ -13,7 +13,7 @@ import vue.VueCarteIngredient;
 import vue.VueCarteTaupesGeantes;
 
 public class francoisLauncher {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		//test
 		FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
 		
@@ -32,6 +32,6 @@ public class francoisLauncher {
 		contentframe.validate();
 		fen.setVisible(true);
 		
-		}
+		}*/
 
 }

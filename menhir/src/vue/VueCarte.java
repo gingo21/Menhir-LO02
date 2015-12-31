@@ -32,27 +32,33 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 	private static final long serialVersionUID = 1L; 
 	
 	private Carte carte;
-	protected static int HAUTEUR = 150;
-	protected static int LARGEUR = 150;
+	protected static int HAUTEUR = 80;
+	protected static int LARGEUR = 80;
 	protected ImageIcon faceCarte;
 	protected Image imageFaceCarte;
-	protected Image imageDosCarte;
+	protected Image imageDosGeant;
+	protected Image imageDosLutin;
 	protected boolean hidden;
 	 
 	
 	public VueCarte(Carte carte) {
 		this.carte = carte;
-		this.setPreferredSize(new Dimension(150, 150)); 
+		this.setPreferredSize(new Dimension(80, 80)); 
 		//this.hidden = true;
-		if (!(carte instanceof CarteAlliee)){
-			try {
-				imageDosCarte = ImageIO.read( new File("src/Ressources/DosCarteNormale.png"));
-				imageDosCarte = redimImage(imageDosCarte, HAUTEUR, LARGEUR);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			imageDosGeant = ImageIO.read( new File("src/Ressources/DosCarteNormale.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		try {
+			imageDosLutin = ImageIO.read( new File("src/Ressources/DosCarteAvancee.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		imageDosGeant = redimImage(imageDosGeant, HAUTEUR, LARGEUR);
+
 		addMouseListener(this);
 	    } 
 	

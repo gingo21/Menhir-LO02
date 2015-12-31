@@ -19,14 +19,14 @@ import modele.CarteComptageDePoints;
 import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
 
-public class VuePaquetDeRessourcesDeJoueur extends JPanel implements Observer {
+public class VuePaquetDeRessourcesDeJoueurReel extends JPanel implements Observer {
 
 	private JLabel nombreDeGraines;
 	private JLabel nomDuJoueur;
 	private VueCarte[] vuesCartes;
 	private PaquetDeRessourcesDeJoueur referencePaquetDeRessourcesDeJoueur;
 
-	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur) {
+	public VuePaquetDeRessourcesDeJoueurReel(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur) {
 		
 		paquetDeRessourcesDeJoueur.addObserver(this);
 		

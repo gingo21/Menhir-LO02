@@ -8,16 +8,16 @@ import vue.FenetreInitialisation;
 import vue.FenetrePrincipal;
 import vue.Panneaux;
 import vue.VueCarteTaupesGeantes;
-import vue.VuePaquetDeRessourcesDeJoueur;
+import vue.VuePaquetDeRessourcesDeJoueurReel;
 
 public class adrienLauncher {
-	public static void main(String[] args) {
-		//test
-		//FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
+	/*public static void main(String[] args) {
+		test
+		FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
 		
 		ParametresDePartie params = new ParametresDePartie();
 		params.getPaquetDePartie().distribuerRessourcesInitiales(params);
-		VuePaquetDeRessourcesDeJoueur vovo = new VuePaquetDeRessourcesDeJoueur(params.getJoueurReel().getPaquet());
+		VuePaquetDeRessourcesDeJoueurReel vovo = new VuePaquetDeRessourcesDeJoueurReel(params.getJoueurReel().getPaquet());
 		
 		FenetrePrincipal fen = new FenetrePrincipal();
 		Container contentframe = fen.getContentPane();
@@ -29,5 +29,5 @@ public class adrienLauncher {
 		contentframe.validate();
 		fen.setVisible(true);
 		
-		}
+		}*/
 }

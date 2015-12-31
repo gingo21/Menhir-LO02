@@ -34,13 +34,7 @@ public class Console implements Runnable, Observer {
 	}
 
 	public void run() {
-		// 1ere version
-		System.out.println(
-				"Bienvenue dans la version Alpha du jeu du menhir d'apres Francois Reymond" + " et Adrien Wartelle");
-		System.out.println("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
-
 		try {
-			System.out.println(this.parametresDePartie.toString());
 			this.askParametres(this.parametresDePartie);
 			this.parametresDePartie.getPaquetDePartie().addConsoleObserver(this);
 			for(Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
@@ -53,50 +47,9 @@ public class Console implements Runnable, Observer {
 			e.printStackTrace();
 		}
 		this.parametresDePartie.saveParametres();
-		Partie partie = new Partie();
-
-		// Distribution des cartes et présentations
-		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(this.parametresDePartie);//TODO pb
-		partie.wait(1);
-
-		do {
-			int tempIdJoueurActuel = this.parametresDePartie.getOrdreDesJoueurs().get(partie.getNumeroDeTourActuel());
-			int indexJoueurActuel = 0;
-			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
-				Joueur tempJoueur = it.next();
-				if (tempJoueur.getId() == tempIdJoueurActuel) {
-					indexJoueurActuel = this.parametresDePartie.getListeJoueurs().indexOf(tempJoueur);
-					break;
-				}
-			}
-			Joueur joueurActuel = this.parametresDePartie.getListeJoueurs().get(indexJoueurActuel);
-			System.out.println("C'est au tour de " + joueurActuel.getNom());
-
-			joueurActuel.getStrategie().jouerSonTour(partie.getSaisonActuelle(), this.parametresDePartie);
-			partie.wait(10);
-
-			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
-				Joueur tempJoueur = it.next();
-				tempJoueur.score(this.parametresDePartie.getTypePartie());
-				if (tempJoueur != joueurActuel) {
-					tempJoueur.getStrategie().attaquer(this.parametresDePartie, joueurActuel, tempJoueur,
-							partie.getSaisonActuelle());
-				}
-			}
-
-			partie.changerDeTour(this.parametresDePartie);
-			// test fin de manche
-			if (partie.getSaisonActuelle() == Saison.printemps && partie.getNumeroDeTourActuel() == 0) {
-				if (this.parametresDePartie.getTypePartie() == StatutPartie.avancee) {
-					partie.changerDeManche(this.parametresDePartie);
-				} else {
-					partie.setNumeroDeManche(partie.getNumeroDeManche() + 1);
-				}
-
-			}
-
-		} while (partie.getNumeroDeManche() < this.parametresDePartie.getNombreDeManches());
-		partie.finDeJeu(this.parametresDePartie);
+		Partie partie = new Partie(parametresDePartie, true);
+		partie.addObserver(this);
+		partie.run();
 
 	}
 

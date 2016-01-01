@@ -7,12 +7,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Ressources.Ressources;
 import modele.Carte;
 
 public class VueCarteChiensDeGarde extends VueCarteAliee{
 
-	public VueCarteChiensDeGarde(Carte carte, Image dos, Image face, int h, int l ) {
-		super(carte, dos, face, h, l);
-		imageFaceCarte = redimImage(imageFaceCarte, h, l);
+	public VueCarteChiensDeGarde(Carte carte,Ressources ressources, int h, int l ) {
+		super(carte, ressources, h, l);
+		imageFaceCarte = redimImage(ressources.getImageChienDeGarde(), h, l);
 	}
 }

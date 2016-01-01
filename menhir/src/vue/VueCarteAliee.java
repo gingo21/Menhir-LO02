@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteAlliee;
 import modele.CarteChiensDeGarde;
@@ -17,9 +18,10 @@ import modele.CarteChiensDeGarde;
 
 public class VueCarteAliee extends VueCarte{
 	private int[] puissanceActionsAlliee;
-	public VueCarteAliee(Carte carte, Image dos, Image face, int h, int l ) {
-		super(carte, dos, face, h, l);
+	public VueCarteAliee(Carte carte,Ressources ressources, int h, int l ) {
+		super(carte, ressources, h, l);
 		this.puissanceActionsAlliee = ((CarteAlliee) carte).getPuissanceActions();
+		this.imageDos = ressources.redimImage(ressources.getImageDosLutin(), h, l);
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -32,7 +34,7 @@ public class VueCarteAliee extends VueCarte{
 	         }
 		}
 		else{
-			g.drawImage(imageDosLutin, 0, 0, this);
+			g.drawImage(imageDos, 0, 0, this);
 		}
 
 

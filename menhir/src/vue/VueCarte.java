@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteAlliee;
 import modele.CarteChiensDeGarde;
@@ -38,15 +39,17 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 	protected Image imageDos;
 	protected Image imageDosLutin;
 	protected boolean hidden;
+	protected String nomCarte;
 
 
-	public VueCarte(Carte carte, Image dos, Image face, int h, int l) {
+	public VueCarte(Carte carte, Ressources r, int h, int l) {
 		this.carte = carte;
+		this.nomCarte = carte.getNom();
 		this.setPreferredSize(new Dimension(h, l)); 
 		addMouseListener(this);
 		this.hidden = true;
-		imageFaceCarte = redimImage(face, h, l);
-		imageDos = redimImage(dos, h, l);
+//		imageFaceCarte = redimImage(face, h, l);
+//		imageDos = redimImage(dos, h, l);
 	} 
 
 

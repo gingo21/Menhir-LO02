@@ -9,12 +9,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
+import Ressources.Ressources;
 import modele.Carte;
 
 public class VueCarteComptageDePoints extends VueCarte{
 
-	public VueCarteComptageDePoints(Carte carte, Image dos, Image face, int h, int l ) {
-		super(carte, dos, face, h, l);
+	public VueCarteComptageDePoints(Carte carte,Ressources ressources, int h, int l ) {
+		super(carte, ressources, h, l);
+		this.imageFaceCarte = ressources.redimImage(ressources.getImageComptageDePoints(), h, l);
+		this.imageDos = ressources.redimImage(ressources.getImageDosLutin(), h, l);
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

@@ -7,12 +7,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Ressources.Ressources;
 import modele.Carte;
 
 public class VueCarteChamp extends VueCarte{
 
-	public VueCarteChamp(Carte carte, Image dos, Image face, int h, int l) {
-		super(carte, dos, face, h, l);
+	public VueCarteChamp(Carte carte,Ressources ressources, int h, int l) {
+		super(carte, ressources, h, l);
+		this.imageFaceCarte = ressources.redimImage(ressources.getImageCarteChamp(), h, l);
+		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), h, l);
 		
 	}
 	

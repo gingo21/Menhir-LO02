@@ -28,7 +28,7 @@ public class CarteChiensDeGarde extends CarteAlliee {
 		}
 		
 		this.setChanged();
-		this.notifyObservers("utiliser");
+		this.notifyObservers(destinataire);
 		
 		return puissanceFinale;
 	}

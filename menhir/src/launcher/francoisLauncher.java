@@ -19,7 +19,7 @@ public class francoisLauncher {
 		
 		ParametresDePartie params = new ParametresDePartie();
 //		params.getPaquetDePartie().distribuerRessourcesInitiales(params);
-		VuePaquetDeRessourcesDeJoueur vovo = new VuePaquetDeRessourcesDeJoueur(params.getJoueurReel().getPaquet());
+		//VuePaquetDeRessourcesDeJoueur vovo = new VuePaquetDeRessourcesDeJoueur(params.getJoueurReel().getPaquet());
 		VuePaquetDeRessourcesPartie vuvu = new VuePaquetDeRessourcesPartie(params.getPaquetDePartie()
 				,params.getNombreDeJoueurs(),params.getTypePartie()==StatutPartie.avancee);
 		
@@ -29,7 +29,7 @@ public class francoisLauncher {
 		//panneaux
 		Panneaux conteneur = new Panneaux();
 		contentframe.add(conteneur);
-		conteneur.ajoutPanneau(vuvu,200,200);
+		conteneur.ajoutPanneau(vuvu,400,400);
 		contentframe.validate();
 		fen.setVisible(true);
 		

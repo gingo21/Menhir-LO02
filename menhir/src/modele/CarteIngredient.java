@@ -117,7 +117,7 @@ public class CarteIngredient extends Carte {
 						+ destinataire.getNom());
 			}
 			this.setChanged();
-			this.notifyObservers("utiliser farfadets id" + destinataire.getId());
+			this.notifyObservers(destinataire);
 
 		}
 		if (typeaction == TypeAction.engrais) {

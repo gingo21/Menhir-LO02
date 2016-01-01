@@ -170,6 +170,7 @@ public class VueParametres extends JDialog implements Observer {
 	class AppliquerBoutonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			VueParametres.this.enregistrerParametres();
+			VueParametres.this.setVisible(false);
 		}
 	}
 

@@ -24,9 +24,6 @@ import modele.Joueur;
 public class FenetreInitialisation extends JDialog implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
-	private Joueur joueur;
-	private JTextArea nom;
-	private JPanel fenetre; 
 	private JButton jouer;
 	private JButton parametrer;
 	private JButton quitter;

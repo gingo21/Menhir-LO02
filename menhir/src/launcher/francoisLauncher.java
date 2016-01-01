@@ -36,7 +36,5 @@ public class francoisLauncher {
 		
 		Thread.sleep(1000);
 		params.getPaquetDePartie().distribuerRessourcesInitiales(params);
-		fen.update(fen.getGraphics());
-		vuvu.update(vuvu.getGraphics());
 		}
 }

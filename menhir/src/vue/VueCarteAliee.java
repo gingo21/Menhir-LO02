@@ -18,8 +18,8 @@ import modele.CarteChiensDeGarde;
 
 public class VueCarteAliee extends VueCarte{
 	private int[] puissanceActionsAlliee;
-	public VueCarteAliee(Carte carte,Ressources ressources, int h, int l ) {
-		super(carte, ressources, h, l);
+	public VueCarteAliee(Carte carte,Ressources ressources, int h, int l, boolean IA) {
+		super(carte, ressources, h, l, IA);
 		this.puissanceActionsAlliee = ((CarteAlliee) carte).getPuissanceActions();
 		this.imageDos = ressources.redimImage(ressources.getImageDosLutin(), h, l);
 	}

@@ -12,11 +12,11 @@ import modele.Carte;
 
 public class VueCarteChamp extends VueCarte{
 
-	public VueCarteChamp(Carte carte,Ressources ressources, int h, int l) {
-		super(carte, ressources, h, l);
+	public VueCarteChamp(Carte carte,Ressources ressources, int h, int l,boolean IA) {
+		super(carte, ressources, h, l,IA);
 		this.imageFaceCarte = ressources.redimImage(ressources.getImageCarteChamp(), h, l);
 		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), h, l);
-		
+		this.hidden = false;
 	}
 	
 	public void paintComponent(Graphics g){

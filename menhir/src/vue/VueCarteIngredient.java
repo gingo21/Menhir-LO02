@@ -18,8 +18,9 @@ import modele.CarteIngredient;
 public class VueCarteIngredient extends VueCarte{
 	private Image[] imagesIngredient;
 	private int[][] puissanceActions;
-	public VueCarteIngredient(Carte carte,Ressources ressources, int h, int l ) {
-		super(carte, ressources,h,l);
+	public VueCarteIngredient(Carte carte,Ressources ressources, int h, int l,boolean IA ) {
+		super(carte, ressources,h,l,IA);
+		this.puissanceActions=((CarteIngredient) carte).getPuissanceActions();
 		if (this.nomCarte == "Chant de Sirène"){
 			this.imageFaceCarte = ressources.getChantDeSirene();
 		}
@@ -47,20 +48,22 @@ public class VueCarteIngredient extends VueCarte{
 
 		this.imageFaceCarte = ressources.redimImage(imageFaceCarte, h, l);
 		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), h, l);
+		if (!this.hidden){
+			for (int i = 0; i < this.puissanceActions.length; i++) {
+				for (int j = 0; j < this.puissanceActions[i].length; j++) {
+					JLabel force = new JLabel(String.valueOf(this.puissanceActions[i][j]));
+//					force.setPreferredSize(new Dimension(5,5));
+					force.setForeground(Color.white);
+					this.ajoutPanneau(force,70 + i*18,89 + j*17); 
+				}
+			}
+	}
 	}
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if (!this.hidden){
 			g.drawImage(imageFaceCarte, 0, 0, this);
-			for (int i = 0; i < this.puissanceActions.length; i++) {
-				for (int j = 0; j < this.puissanceActions[i].length; j++) {
-					JLabel force = new JLabel(String.valueOf(this.puissanceActions[i][j]));
-					//		                force.setPreferredSize(new Dimension(5,5));
-					force.setForeground(Color.white);
-					this.ajoutPanneau(force,70 + i*18,89 + j*17); 
-				}
-			}
 		}
 		else {
 			g.drawImage(imageDos, 0, 0, this);

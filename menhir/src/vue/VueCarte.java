@@ -42,12 +42,12 @@ public class VueCarte extends Panneaux implements Observer, MouseListener{
 	protected String nomCarte;
 
 
-	public VueCarte(Carte carte, Ressources r, int h, int l) {
+	public VueCarte(Carte carte, Ressources r, int h, int l,boolean IA) {
 		this.carte = carte;
 		this.nomCarte = carte.getNom();
 		this.setPreferredSize(new Dimension(h, l)); 
 		addMouseListener(this);
-		this.hidden = true;
+		this.hidden = IA;
 //		imageFaceCarte = redimImage(face, h, l);
 //		imageDos = redimImage(dos, h, l);
 	} 

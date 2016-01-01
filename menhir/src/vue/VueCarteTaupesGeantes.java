@@ -11,8 +11,8 @@ import modele.Carte;
 
 public class VueCarteTaupesGeantes extends VueCarteAliee{
 
-	public VueCarteTaupesGeantes(Carte carte,Ressources ressources, int h, int l ) {
-		super(carte, ressources, h, l);
+	public VueCarteTaupesGeantes(Carte carte,Ressources ressources, int h, int l,boolean IA ) {
+		super(carte, ressources, h, l,IA);
 		this.imageFaceCarte = ressources.redimImage(ressources.getImageTaupesGeantes(), h, l);
 	}
 

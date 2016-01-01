@@ -14,7 +14,7 @@ import vue.VuePaquetDeRessourcesDeJoueur;
 import vue.VuePaquetDeRessourcesDePartie;
 
 public class francoisLauncher {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		//test
 		//FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
 		
@@ -34,5 +34,9 @@ public class francoisLauncher {
 		contentframe.validate();
 		fen.setVisible(true);
 		
+		Thread.sleep(1000);
+		params.getPaquetDePartie().distribuerRessourcesInitiales(params);
+		fen.update(fen.getGraphics());
+		vuvu.update(vuvu.getGraphics());
 		}
 }

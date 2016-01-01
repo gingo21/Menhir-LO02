@@ -13,9 +13,11 @@ import javax.swing.JLabel;
 import Ressources.Ressources;
 import modele.PaquetDeRessourcesDeJoueur;
 import modele.PaquetDeRessourcesDePartie;
+import modele.ParametresDePartie;
+import modele.StatutPartie;
 	
 
-public class VuePaquetDeRessourcesPartie extends Panneaux {
+public class VuePaquetDeRessourcesDePartie extends Panneaux implements Observer {
 	
 	private JLabel nombreDeGraines;
 	private JLabel lblCartesAvancee;
@@ -30,15 +32,15 @@ public class VuePaquetDeRessourcesPartie extends Panneaux {
 	private VueImage vueDosNorm;
 	
 	
-	public VuePaquetDeRessourcesPartie(PaquetDeRessourcesDePartie paquetDeRessourcesDePartie, int nbreJoueurs, 
-			boolean partieAvancee, Ressources ressources){
+	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources){
 		this.setPreferredSize(new Dimension(480, 250));
+		parametresDePartie.getPaquetDePartie().addObserver(this);
 		
-		referencePaquetDeRessourcesDePartie = paquetDeRessourcesDePartie;
-		referenceImages = ressources;
+		this.referencePaquetDeRessourcesDePartie = parametresDePartie.getPaquetDePartie();
+		this.referenceImages = ressources;
 		this.nombreDeGraines = new JLabel();
 		String tempTexte1 = new String();
-		tempTexte1 +="Graines "+paquetDeRessourcesDePartie.getGrainesDeMenhir();
+		tempTexte1 +="Graines "+ this.referencePaquetDeRessourcesDePartie.getGrainesDeMenhir();
 		this.nombreDeGraines.setText(tempTexte1);
 		this.ajoutPanneau(nombreDeGraines, 63, 0);
 		vueGraines = new VueImage[this.referencePaquetDeRessourcesDePartie.getGrainesDeMenhir()];
@@ -49,16 +51,16 @@ public class VuePaquetDeRessourcesPartie extends Panneaux {
 		vueGeant = new VueImage(referenceImages.getImageGeant(),63,108);
 		this.ajoutPanneau(vueGeant, 0, 0);
 		this.lblCartesNormale = new JLabel();
-		this.nbreDeCartesNormale = 5*nbreJoueurs;
+		this.nbreDeCartesNormale = parametresDePartie.getPaquetDePartie().getNombreCartesNormales();
 		String tempTexte2 = new String();
 		tempTexte2 += "Cartes Normales : "+ this.nbreDeCartesNormale;
 		this.lblCartesNormale.setText(tempTexte2);
 		this.ajoutPanneau(lblCartesNormale, 200, 0);
 		vueDosNorm = new VueImage(referenceImages.getImageDosGeant(),80,80);
 		this.ajoutPanneau(vueDosNorm, 220, 80);
-			if (partieAvancee){
+			if (parametresDePartie.getTypePartie() == StatutPartie.avancee){
 				this.lblCartesAvancee = new JLabel();
-				this.nbreDeCartesAvancee = 2*nbreJoueurs;
+				this.nbreDeCartesAvancee = parametresDePartie.getPaquetDePartie().getNombreCartesAvancees();
 				String tempTexte3 = "";
 				tempTexte3 = "Cartes Avancée : "+ this.nbreDeCartesAvancee;
 				this.lblCartesAvancee.setText(tempTexte3);

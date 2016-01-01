@@ -57,6 +57,14 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			}
 		}
 	}
+	
+	public int getNombreCartesAvancees() {
+		return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
+	}
+	
+	public int getNombreCartesNormales() {
+		return (this.paquetsDeCartes.get("Cartes Ingredients").size()+this.paquetsDeCartes.get("Cartes Champs").size());
+	}
 
 	public void donnerUneCarteAuJoueur(Joueur joueur, String cleDeTypeDeCarte) {
 		Carte tempCarte = this.paquetsDeCartes.get(cleDeTypeDeCarte).pop();

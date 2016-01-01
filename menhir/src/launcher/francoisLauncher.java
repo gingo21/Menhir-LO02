@@ -2,6 +2,7 @@ package launcher;
 
 import java.awt.Container;
 
+import Ressources.Ressources;
 import modele.CarteTaupesGeantes;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
@@ -10,18 +11,18 @@ import vue.FenetrePrincipal;
 import vue.Panneaux;
 import vue.VueCarteTaupesGeantes;
 import vue.VuePaquetDeRessourcesDeJoueur;
-import vue.VuePaquetDeRessourcesPartie;
+import vue.VuePaquetDeRessourcesDePartie;
 
 public class francoisLauncher {
 	public static void main(String[] args) {
 		//test
 		//FenetreInitialisation dialog = new FenetreInitialisation(null,"conf",true);
 		
+		Ressources ress = new Ressources();
 		ParametresDePartie params = new ParametresDePartie();
 //		params.getPaquetDePartie().distribuerRessourcesInitiales(params);
 		//VuePaquetDeRessourcesDeJoueur vovo = new VuePaquetDeRessourcesDeJoueur(params.getJoueurReel().getPaquet());
-		VuePaquetDeRessourcesPartie vuvu = new VuePaquetDeRessourcesPartie(params.getPaquetDePartie()
-				,params.getNombreDeJoueurs(),params.getTypePartie()==StatutPartie.avancee);
+		VuePaquetDeRessourcesDePartie vuvu = new VuePaquetDeRessourcesDePartie(params, ress);
 		
 		FenetrePrincipal fen = new FenetrePrincipal();
 		Container contentframe = fen.getContentPane();

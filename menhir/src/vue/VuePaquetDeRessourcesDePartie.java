@@ -32,6 +32,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneaux implements Observer 
 
 	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources) {
 		this.setPreferredSize(new Dimension(480, 250));
+		this.setDoubleBuffered(true);
 		parametresDePartie.getPaquetDePartie().addObserver(this);
 
 		this.referenceParametres = parametresDePartie;
@@ -66,7 +67,6 @@ public class VuePaquetDeRessourcesDePartie extends Panneaux implements Observer 
 			this.vueDosAvancee = new VueImage(referenceImages.getImageDosLutin(), 80, 80);
 			this.ajoutPanneau(vueDosAvancee, 350, 80);
 		}
-		// pour tests
 
 	}
 
@@ -104,7 +104,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneaux implements Observer 
 			this.lblCartesAvancee.setText(tempTexte3);
 			this.ajoutPanneau(lblCartesAvancee, 375, 0);
 		}
-		this.update(this.getGraphics());
+		this.repaint();
 	}
 
 }

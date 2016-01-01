@@ -29,6 +29,7 @@ public class francoisLauncher {
 		
 		//panneaux
 		Panneaux conteneur = new Panneaux();
+		conteneur.setDoubleBuffered(true);
 		contentframe.add(conteneur);
 		conteneur.ajoutPanneau(vuvu,400,400);
 		contentframe.validate();

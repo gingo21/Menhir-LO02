@@ -65,6 +65,10 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 		
 //		Graines 
 		this.ajoutPanneau(nombreDeGraines, 355, 40);
+		for (int i = 0; i < this.referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir(); i++) {
+			vuesGraines.add(new VueImage(r.getImageGraine(), 24, 10));
+			this.ajoutPanneau(vuesGraines.get(i), 5 + (i % 3) * 26, 10 + (i / 3) * 11);
+		}
 //		cartes
 		if(vuesCartes[0] != null){
 			this.ajoutPanneau(vuesCartes[0], 0, 115);

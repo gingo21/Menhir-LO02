@@ -27,6 +27,7 @@ public class VuePaquetDeRessourcesDeJoueur extends Panneaux implements Observer 
 	protected JLabel nomDuJoueur;
 	protected VueCarte[] vuesCartes;
 	protected PaquetDeRessourcesDeJoueur referencePaquetDeRessourcesDeJoueur;
+	protected ArrayList <VueImage> vuesGraines;
 	
 	
 	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r, 
@@ -42,7 +43,7 @@ public class VuePaquetDeRessourcesDeJoueur extends Panneaux implements Observer 
 		this.nomDuJoueur.setText(paquetDeRessourcesDeJoueur.getJoueur().getNom());
 		System.out.println(paquetDeRessourcesDeJoueur.getJoueur().getNom());
 		vuesCartes = new VueCarte[7];
-		
+		vuesGraines=new ArrayList<VueImage>();
 
 	}
 

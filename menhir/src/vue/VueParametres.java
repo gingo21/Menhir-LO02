@@ -160,7 +160,8 @@ public class VueParametres extends JDialog implements Observer {
 		choixNombreDeJoueurs.addActionListener(changerNombreDeJoueurs);
 
 		panel.add(this.fenetre);
-
+		
+		this.setTitle("Paramètres");
 		this.getContentPane().add(panel);
 		this.pack();
 

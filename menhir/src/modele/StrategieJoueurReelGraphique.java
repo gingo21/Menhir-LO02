@@ -77,7 +77,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 			}
 			if (this.actionAJouer == TypeAction.farfadet) {
 				this.setChanged();
-				this.notifyObservers("A quel joueur voulez-vous voler des graines ?");
+				this.notifyObservers("A quel joueur voulez-vous voler des graines ? (Cliquez lui-dessus)");
 				this.wait();
 				// On recoit le destinataire
 

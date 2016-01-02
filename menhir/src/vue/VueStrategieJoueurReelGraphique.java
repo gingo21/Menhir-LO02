@@ -58,7 +58,6 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.ajoutPanneau(this.boutonFarfadet, 0, 0);
 		this.ajoutPanneau(this.afficheurTexte, 0, 0);
 		this.ajoutPanneau(this.labelCarteEnJeu, 0, 100);
-		// this.ajoutPanneau(this.carteEnJeu, 0, 0);
 		this.effacerBoutons();
 
 		ActionListener ouiAttaque = new ActionListener() {
@@ -184,6 +183,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient((Carte) arg0,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
 					}
+					VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.carteEnJeu, 0, 0);
 				} else {
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				}

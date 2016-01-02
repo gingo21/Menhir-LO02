@@ -28,7 +28,7 @@ import modele.CarteAlliee;
 import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
 
-public abstract class VueCarte extends Panneau implements Observer, MouseListener{
+public abstract class VueCarte extends Panneau implements Observer{
 
 	private static final long serialVersionUID = 1L; 
 
@@ -69,41 +69,6 @@ public abstract class VueCarte extends Panneau implements Observer, MouseListene
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-
-	}
-	public void mouseClicked(MouseEvent ev) {
-		//		// TODO Auto-generated method stub
-		//		System.out.println(ev.getX());
-		//		System.out.println(ev.getY());
-
-	}
-
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -92,7 +92,7 @@ public class VueParametres extends JDialog implements Observer {
 		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
 			if (tempJoueur instanceof JoueurVirtuel) {
-				JLabel tempLabel = new JLabel("DifficultÃ© de " + tempJoueur.getNom());
+				JLabel tempLabel = new JLabel("Difficulté de " + tempJoueur.getNom());
 				this.labelsDifficultesIAs.add(tempLabel);
 				String[] difficulte = { "Facile", "Normale" };
 				JComboBox tempCombo = new JComboBox(difficulte);

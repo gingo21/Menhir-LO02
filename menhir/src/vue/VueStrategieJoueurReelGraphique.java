@@ -17,6 +17,7 @@ import modele.Carte;
 import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
+import modele.Partie;
 import modele.StrategieJoueurReelGraphique;
 import modele.TypeAction;
 
@@ -31,9 +32,9 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JButton boutonEngrais = new JButton("engrais");
 	private JButton boutonGeant = new JButton("géant");
 	private JButton boutonFarfadet = new JButton("farfadet");
-	private VueAfficheurDeTexte afficheurTexte = new VueAfficheurDeTexte(0);
+	private VueAfficheurDeTexte afficheurTexte = new VueAfficheurDeTexte();
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
-	private VueAfficheurCarte carteEnJeu = new VueAfficheurCarte(0);
+	private VueAfficheurCarte carteEnJeu = new VueAfficheurCarte();
 	
 	private Ressources referenceRessources;
 	
@@ -54,8 +55,9 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.ajoutPanneau(this.boutonGeant, 0, 0);
 		this.ajoutPanneau(this.boutonFarfadet, 0, 0);
 		this.ajoutPanneau(this.afficheurTexte, 0, 0);
-		this.ajoutPanneau(this.labelCarteEnJeu, 0, 0);
-		
+		this.ajoutPanneau(this.labelCarteEnJeu, 0, 100);
+		this.ajoutPanneau(this.carteEnJeu, 0, 0);
+		this.effacerBoutons ();
 		
 		ActionListener ouiAttaque = new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -133,6 +135,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		};
 		this.boutonEngrais.addActionListener(actionEngrais);
 		
+		//this.afficheurTexte.setPreferredSize(new Dimension(400,50));
 		Thread affichageTexte = new Thread(this.afficheurTexte);
 		affichageTexte.start();
 		
@@ -155,7 +158,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.boutonFarfadet.setVisible(false);
 	}
 	
-	public void update(Observable arg0, Object arg1) {
+	public synchronized void update(Observable arg0, Object arg1) {
 		if(arg0 instanceof StrategieJoueurReelGraphique) {
 			if(arg0.toString().contains("Quelle action ?")) {
 				this.boutonGeant.setVisible(true);
@@ -176,10 +179,13 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 			Carte tempCarte = (Carte) arg0;
 			if(arg0 instanceof CarteIngredient) {
 				this.carteEnJeu.getListeAttenteAffichage().push(new VueCarteIngredient(tempCarte, this.referenceRessources, 200, 200, false));
+				this.carteEnJeu.notify();
 			} else if(arg0 instanceof CarteChiensDeGarde) {
 				this.carteEnJeu.getListeAttenteAffichage().push(new VueCarteChiensDeGarde((Carte) arg0, this.referenceRessources, 200, 200, false));
+				this.carteEnJeu.notify();
 			} else if(arg0 instanceof CarteTaupesGeantes) {
 				this.carteEnJeu.getListeAttenteAffichage().push(new VueCarteIngredient((Carte) arg0, this.referenceRessources, 200, 200, false));
+				this.carteEnJeu.notify();
 			}	
 		} else {
 			this.afficheurTexte.getListeAttenteAffichage().push(arg1.toString());

@@ -18,7 +18,7 @@ public class FenetrePrincipal extends JFrame {
 	    this.setVisible(true);
 	    this.setResizable(false);
 	    this.setFocusable(true);  
-	    this.setSize(new Dimension(1360,725));
+	    this.setSize(new Dimension(1200,725));
 	    this.setLocationRelativeTo(null);
 	    //this.setLayout(null);
 	

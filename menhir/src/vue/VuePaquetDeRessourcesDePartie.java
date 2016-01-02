@@ -16,7 +16,7 @@ import modele.PaquetDeRessourcesDePartie;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
 
-public class VuePaquetDeRessourcesDePartie extends Panneaux implements Observer {
+public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 
 	private JLabel nombreDeGraines;
 	private JLabel lblCartesAvancee;

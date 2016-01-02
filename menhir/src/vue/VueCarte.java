@@ -28,7 +28,7 @@ import modele.CarteAlliee;
 import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
 
-public class VueCarte extends Panneaux implements Observer, MouseListener{
+public abstract class VueCarte extends Panneau implements Observer, MouseListener{
 
 	private static final long serialVersionUID = 1L; 
 

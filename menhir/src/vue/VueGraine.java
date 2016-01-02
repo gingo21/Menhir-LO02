@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
-public class VueGraine extends Panneaux{
+public class VueGraine extends Panneau{
 	private Image image; 
 	public  VueGraine(Image image, int h, int l){
 		image = image;

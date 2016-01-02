@@ -7,7 +7,7 @@ import modele.CarteTaupesGeantes;
 import modele.ParametresDePartie;
 import vue.FenetreInitialisation;
 import vue.FenetrePrincipal;
-import vue.Panneaux;
+import vue.Panneau;
 import vue.VueCarteTaupesGeantes;
 import vue.VuePaquetDeRessourcesDeJoueurReel;
 import vue.VuePaquetDeRessourcesIA;
@@ -27,7 +27,7 @@ public class adrienLauncher {
 		Container contentframe = fen.getContentPane();
 		
 		//panneaux
-		Panneaux conteneur = new Panneaux();
+		Panneau conteneur = new Panneau();
 		contentframe.add(conteneur);
 		conteneur.ajoutPanneau(vivi,200,200);
 		contentframe.validate();

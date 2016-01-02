@@ -7,9 +7,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-public class Panneaux extends JPanel implements MouseListener{
+public class Panneau extends JPanel implements MouseListener{
 	
-	public Panneaux(){
+	public Panneau(){
 		super();
 		this.setLayout(null); 
 	}

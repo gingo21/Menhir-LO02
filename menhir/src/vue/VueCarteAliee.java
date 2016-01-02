@@ -16,7 +16,7 @@ import modele.CarteAlliee;
 import modele.CarteChiensDeGarde;
 
 
-public class VueCarteAliee extends VueCarte{
+public abstract class VueCarteAliee extends VueCarte{
 	private int[] puissanceActionsAlliee;
 	public VueCarteAliee(Carte carte,Ressources ressources, int h, int l, boolean IA) {
 		super(carte, ressources, h, l, IA);

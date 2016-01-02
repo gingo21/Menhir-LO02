@@ -21,7 +21,7 @@ import modele.CarteComptageDePoints;
 import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
 
-public class VuePaquetDeRessourcesDeJoueur extends Panneaux implements Observer {
+public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements Observer {
 
 	protected JLabel nombreDeGraines;
 	protected JLabel nomDuJoueur;

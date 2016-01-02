@@ -115,7 +115,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 
 	public void update(Observable arg0, Object arg1) {
 		
-
 	}
 
 }

@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-public class VueImage extends Panneaux{
+public class VueImage extends Panneau{
 	private Image image; 
 	public  VueImage(Image image, int l, int h){
 		this.image = image;

@@ -3,8 +3,9 @@ package vue;
 import java.awt.Dimension;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 
-public class FenetrePrincipal extends JDialog {
+public class FenetrePrincipal extends JFrame {
 	
 	/**
 	 * 

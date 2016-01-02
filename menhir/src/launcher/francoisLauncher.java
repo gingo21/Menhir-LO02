@@ -8,7 +8,7 @@ import modele.ParametresDePartie;
 import modele.StatutPartie;
 import vue.FenetreInitialisation;
 import vue.FenetrePrincipal;
-import vue.Panneaux;
+import vue.Panneau;
 import vue.VueCarteTaupesGeantes;
 import vue.VuePaquetDeRessourcesDeJoueur;
 import vue.VuePaquetDeRessourcesDePartie;
@@ -28,7 +28,7 @@ public class francoisLauncher {
 		Container contentframe = fen.getContentPane();
 		
 		//panneaux
-		Panneaux conteneur = new Panneaux();
+		Panneau conteneur = new Panneau();
 		conteneur.setDoubleBuffered(true);
 		contentframe.add(conteneur);
 		conteneur.ajoutPanneau(vuvu,400,400);

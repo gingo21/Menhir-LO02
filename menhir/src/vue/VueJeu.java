@@ -40,7 +40,7 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		this.vueStrategieJoueurReelGraphique = new VueStrategieJoueurReelGraphique((StrategieJoueurReelGraphique) parametres.getJoueurReel().getStrategie(), ressources) ;
 		
 		this.panneau.ajoutPanneau(vuePaquetDeRessourcesDePartie, 400, 0);
-		this.panneau.ajoutPanneau(vuePaquetDeRessourcesDeJoueurReel, 600, 500);
+		this.panneau.ajoutPanneau(vuePaquetDeRessourcesDeJoueurReel, 0, 0);
 		this.panneau.ajoutPanneau(vueStrategieJoueurReelGraphique, 400, 300);
 		this.add(this.panneau);
 		
@@ -56,13 +56,13 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		this.setVisible(true);
 		
 		this.addObserversDuJeu(parametres, partie);
+		parametres.getPaquetDePartie().addObserver(vuePaquetDeRessourcesDeJoueurReel);
 	}
 
 	public void addObserversDuJeu(ParametresDePartie parametres, Partie partie) {
 		partie.addObserver(this.vueStrategieJoueurReelGraphique);
 	}
 	
-	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 

@@ -33,7 +33,7 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	protected boolean referenceAvancee;
 	protected Ressources referenceRessources;
 	protected String tempTexte1;
-	
+	protected VueImage[] vueGraines;
 	
 	
 	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r, 
@@ -47,18 +47,11 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 		tempTexte1 = new String();
 		this.nomDuJoueur = new JLabel();
 		this.setBackground(new Color(70,200,70));
-		System.out.println(paquetDeRessourcesDeJoueur.getJoueur().getNom());
 		vuesCartes = new VueCarte[7];
 		this.vuesGraines = new VueImage(referenceRessources.getImageGraine(), 24, 10);
 		graines = new ArrayList<VueImage>();
 		
 		
-		
-
-	}
-
-
-	public void update(Observable arg0, Object arg1) {
 		
 
 	}

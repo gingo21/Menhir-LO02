@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Dimension;
+import java.util.Observable;
 
 import modele.PaquetDeRessourcesDeJoueur;
 import Ressources.Ressources;
@@ -73,6 +74,11 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 			this.ajoutPanneau(vuesCartes[6], 0, 170);
 		}
 
+	}
+
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

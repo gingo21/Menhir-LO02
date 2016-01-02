@@ -2,6 +2,8 @@ package launcher;
 
 import java.awt.Container;
 
+import javax.swing.SwingUtilities;
+
 import Ressources.Ressources;
 import modele.CarteTaupesGeantes;
 import modele.ParametresDePartie;
@@ -28,7 +30,6 @@ public class adrienLauncher {
 		
 		/*Thread thrPartie = new Thread(partie);
 		thrPartie.start();*/ //TODO Danger !!
-		partie.run();
-		
+		partie.run();//TODO Danger !!
 		}
 }

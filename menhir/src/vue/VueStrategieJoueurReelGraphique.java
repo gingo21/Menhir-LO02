@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import Ressources.Ressources;
 import modele.Carte;
@@ -36,7 +37,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JLabel afficheurTexte = new JLabel();
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
 	private VueCarte carteEnJeu;
-	
+
 	public static int TEMPS_DE_REFLEXION = 1000;
 	private Ressources referenceRessources;
 
@@ -57,7 +58,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.ajoutPanneau(this.boutonFarfadet, 0, 0);
 		this.ajoutPanneau(this.afficheurTexte, 0, 0);
 		this.ajoutPanneau(this.labelCarteEnJeu, 0, 100);
-		//this.ajoutPanneau(this.carteEnJeu, 0, 0);
+		// this.ajoutPanneau(this.carteEnJeu, 0, 0);
 		this.effacerBoutons();
 
 		ActionListener ouiAttaque = new ActionListener() {
@@ -135,10 +136,9 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 			}
 		};
 		this.boutonEngrais.addActionListener(actionEngrais);
-		
+
 		this.afficheurTexte.setSize(600, 25);
-		
-		
+
 		this.setVisible(true);
 	}
 
@@ -155,40 +155,49 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	}
 
 	public synchronized void update(Observable arg0, Object arg1) {
-		if (arg0 instanceof StrategieJoueurReelGraphique) {
-			if (arg0.toString().contains("Quelle action ?")) {
-				this.boutonGeant.setVisible(true);
-				this.boutonEngrais.setVisible(true);
-				this.boutonGeant.setVisible(true);
-			} else if (arg0.toString().contains("Se défendre avec votre carte chien de garde ?")) {
-				this.boutonDefenseOui.setVisible(true);
-				this.boutonDefenseNon.setVisible(true);
-			} else if (arg0.toString().contains("Voulez-vous attaquer")) {
-				this.boutonAttaqueOui.setVisible(true);
-				this.boutonAttaqueNon.setVisible(true);
-			} else if (arg0.toString().contains("Voulez-vous une carte Alliee")) {
-				this.boutonChoixMancheOui.setVisible(true);
-				this.boutonChoixMancheNon.setVisible(true);
+		Runnable myRunnable = new Runnable() {
+			public void run() {
+				if (arg0 instanceof StrategieJoueurReelGraphique) {
+					if (arg0.toString().contains("Quelle action ?")) {
+						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
+						VueStrategieJoueurReelGraphique.this.boutonEngrais.setVisible(true);
+						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
+					} else if (arg0.toString().contains("Se défendre avec votre carte chien de garde ?")) {
+						VueStrategieJoueurReelGraphique.this.boutonDefenseOui.setVisible(true);
+						VueStrategieJoueurReelGraphique.this.boutonDefenseNon.setVisible(true);
+					} else if (arg0.toString().contains("Voulez-vous attaquer")) {
+						VueStrategieJoueurReelGraphique.this.boutonAttaqueOui.setVisible(true);
+						VueStrategieJoueurReelGraphique.this.boutonAttaqueNon.setVisible(true);
+					} else if (arg0.toString().contains("Voulez-vous une carte Alliee")) {
+						VueStrategieJoueurReelGraphique.this.boutonChoixMancheOui.setVisible(true);
+						VueStrategieJoueurReelGraphique.this.boutonChoixMancheNon.setVisible(true);
+					}
+					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
+				} else if (arg0 instanceof Carte) {
+					if (arg0 instanceof CarteIngredient) {
+						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient((Carte) arg0,
+								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
+					} else if (arg0 instanceof CarteChiensDeGarde) {
+						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteChiensDeGarde((Carte) arg0,
+								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
+					} else if (arg0 instanceof CarteTaupesGeantes) {
+						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient((Carte) arg0,
+								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
+					}
+				} else {
+					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
+				}
+				VueStrategieJoueurReelGraphique.this.repaint();
+				VueStrategieJoueurReelGraphique.this.revalidate();
 			}
-			this.afficheurTexte.setText(arg1.toString());
-		} else if (arg0 instanceof Carte) {
-			if (arg0 instanceof CarteIngredient) {
-				this.carteEnJeu = new VueCarteIngredient((Carte) arg0, this.referenceRessources, 200, 200, false);
-			} else if (arg0 instanceof CarteChiensDeGarde) {
-				this.carteEnJeu =new VueCarteChiensDeGarde((Carte) arg0, this.referenceRessources, 200, 200, false);
-			} else if (arg0 instanceof CarteTaupesGeantes) {
-				this.carteEnJeu = new VueCarteIngredient((Carte) arg0, this.referenceRessources, 200, 200, false);
-			}
-		} else {
-			this.afficheurTexte.setText(arg1.toString());
-		}
+		};
+		SwingUtilities.invokeLater(myRunnable);
+
 		try {
 			this.wait(TEMPS_DE_REFLEXION);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.repaint();
-		this.revalidate();
 	}
 }

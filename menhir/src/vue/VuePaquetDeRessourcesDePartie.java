@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import Ressources.Ressources;
 import modele.PaquetDeRessourcesDeJoueur;
@@ -75,36 +76,42 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 	}
 
 	public void update(Observable o, Object arg) {
-		String tempTexte1 = new String();
-		tempTexte1 += "Graines " + this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir();
-		this.remove(this.nombreDeGraines);
-		this.nombreDeGraines.setText(tempTexte1);
-		this.ajoutPanneau(nombreDeGraines, 63, 0);
-		for (int i = 0; i < vueGraines.length; i++) {
-			this.remove(vueGraines[i]);
-		}
-		vueGraines = new VueImage[this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir()];
-		for (int i = 0; i < this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
-			vueGraines[i] = new VueImage(referenceImages.getImageGraine(), 24, 10);
-			this.ajoutPanneau(vueGraines[i], 75 + (i % 4) * 26, 18 + (i / 4) * 11);
-		}
-		this.remove(this.lblCartesNormale);
-		this.lblCartesNormale = new JLabel();
-		this.nbreDeCartesNormale = this.referenceParametres.getPaquetDePartie().getNombreCartesNormales();
-		String tempTexte2 = new String();
-		tempTexte2 += "Cartes Normales : " + this.nbreDeCartesNormale;
-		this.lblCartesNormale.setText(tempTexte2);
-		this.ajoutPanneau(lblCartesNormale, 200, 0);
-		if (this.referenceParametres.getTypePartie() == StatutPartie.avancee) {
-			this.remove(this.lblCartesAvancee);
-			this.lblCartesAvancee = new JLabel();
-			this.nbreDeCartesAvancee = this.referenceParametres.getPaquetDePartie().getNombreCartesAvancees();
-			String tempTexte3 = "";
-			tempTexte3 = "Cartes Avancée : " + this.nbreDeCartesAvancee;
-			this.lblCartesAvancee.setText(tempTexte3);
-			this.ajoutPanneau(lblCartesAvancee, 375, 0);
-		}
-		this.repaint();
+		Runnable myRunnable = new Runnable() {
+			public void run() {
+				String tempTexte1 = new String();
+				tempTexte1 += "Graines " + VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir();
+				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.nombreDeGraines);
+				VuePaquetDeRessourcesDePartie.this.nombreDeGraines.setText(tempTexte1);
+				VuePaquetDeRessourcesDePartie.this.ajoutPanneau(nombreDeGraines, 63, 0);
+				for (int i = 0; i < vueGraines.length; i++) {
+					VuePaquetDeRessourcesDePartie.this.remove(vueGraines[i]);
+				}
+				vueGraines = new VueImage[VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir()];
+				for (int i = 0; i < VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
+					vueGraines[i] = new VueImage(referenceImages.getImageGraine(), 24, 10);
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(vueGraines[i], 75 + (i % 4) * 26, 18 + (i / 4) * 11);
+				}
+				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.lblCartesNormale);
+				VuePaquetDeRessourcesDePartie.this.lblCartesNormale = new JLabel();
+				VuePaquetDeRessourcesDePartie.this.nbreDeCartesNormale = VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getNombreCartesNormales();
+				String tempTexte2 = new String();
+				tempTexte2 += "Cartes Normales : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesNormale;
+				VuePaquetDeRessourcesDePartie.this.lblCartesNormale.setText(tempTexte2);
+				VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesNormale, 200, 0);
+				if (VuePaquetDeRessourcesDePartie.this.referenceParametres.getTypePartie() == StatutPartie.avancee) {
+					VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.lblCartesAvancee);
+					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee = new JLabel();
+					VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee = VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getNombreCartesAvancees();
+					String tempTexte3 = "";
+					tempTexte3 = "Cartes Avancée : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
+					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee.setText(tempTexte3);
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesAvancee, 375, 0);
+				}
+				VuePaquetDeRessourcesDePartie.this.repaint();
+				VuePaquetDeRessourcesDePartie.this.revalidate();
+			}
+		};
+		SwingUtilities.invokeLater(myRunnable);
 	}
 
 }

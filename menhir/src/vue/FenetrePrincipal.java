@@ -14,7 +14,7 @@ public class FenetrePrincipal extends JFrame {
 
 	public FenetrePrincipal(){
 		 //super(null, "Menhir", Dialog.ModalityType.MODELESS);
-	    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    this.setVisible(true);
 	    this.setResizable(false);
 	    this.setFocusable(true);  

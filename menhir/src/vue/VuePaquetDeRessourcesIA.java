@@ -47,8 +47,8 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 		// Graines
 		this.ajoutPanneau(nombreDeGraines, 190, 40);
 		for (int i = 0; i < this.referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir(); i++) {
-			vuesGraines.add(new VueImage(r.getImageGraine(), 24, 10));
-			this.ajoutPanneau(vuesGraines.get(i), 175 + (i % 3) * 26, 5 + (i / 3) * 11);
+			graines.add(vuesGraines);
+			this.ajoutPanneau(graines.get(i), 175 + (i % 3) * 26, 5 + (i / 3) * 11);
 		}
 		// cartes
 		if (vuesCartes[0] != null) {

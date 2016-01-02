@@ -32,7 +32,6 @@ public class Partie extends Observable implements Runnable {
 			this.setChanged();
 			this.notifyObservers("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
 		}
-		
 		// Distribution des cartes et présentations
 		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(this.parametresDePartie);//TODO pb
 		this.wait(500);

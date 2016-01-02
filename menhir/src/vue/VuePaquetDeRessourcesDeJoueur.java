@@ -31,7 +31,7 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	
 	
 	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r, 
-			boolean partieAvancee, boolean speciale) {
+			boolean partieAvancee) {
 		
 		paquetDeRessourcesDeJoueur.addObserver(this);
 		this.referencePaquetDeRessourcesDeJoueur = paquetDeRessourcesDeJoueur;

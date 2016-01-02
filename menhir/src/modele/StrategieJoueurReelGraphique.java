@@ -55,7 +55,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 		this.attaquer = attaquer;
 	}
 
-	public void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie) {
+	public synchronized void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie) {
 		try {
 			this.setChanged();
 			this.notifyObservers("Quelle carte ingrédient jouez-vous ? (Cliquez dessus) ");

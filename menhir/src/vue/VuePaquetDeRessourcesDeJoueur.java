@@ -41,7 +41,6 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 		this.nombreDeGraines.setText(tempTexte1);
 		this.nomDuJoueur = new JLabel();
 		this.nomDuJoueur.setText(paquetDeRessourcesDeJoueur.getJoueur().getNom());
-		System.out.println(paquetDeRessourcesDeJoueur.getJoueur().getNom());
 		vuesCartes = new VueCarte[7];
 		vuesGraines=new ArrayList<VueImage>();
 

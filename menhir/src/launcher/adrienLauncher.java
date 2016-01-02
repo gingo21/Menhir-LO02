@@ -24,8 +24,11 @@ public class adrienLauncher {
 		Partie partie = new Partie(params, false);
 		VueJeu jeu = new VueJeu(params, partie, r);
 		
-		Thread thrPartie = new Thread(partie);
-		thrPartie.start();
+		
+		
+		/*Thread thrPartie = new Thread(partie);
+		thrPartie.start();*/ //TODO Danger !!
+		partie.run();
 		
 		}
 }

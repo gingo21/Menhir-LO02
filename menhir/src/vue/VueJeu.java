@@ -55,7 +55,6 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		contentframe.validate();
 		this.setVisible(true);
 		
-		
 		this.addObserversDuJeu(parametres, partie);
 	}
 

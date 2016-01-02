@@ -25,7 +25,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 
 	public ParametresDePartie() { 
 		try {
-			readParametres();
+			this.readParametres();
 		} catch (ClassNotFoundException e){
 			this.parametresParDefaut();
 		}

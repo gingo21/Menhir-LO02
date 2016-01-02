@@ -11,7 +11,7 @@ public class VueAfficheurDeTexte extends JLabel implements Runnable {
 
 	private double timeReader = System.currentTimeMillis();
 	private LinkedList<String> listeAttenteAffichage;
-	private boolean stop = false;
+	private boolean stop = false; 
 
 	public static final double TEMPS_ATTENTE = 1000;
 

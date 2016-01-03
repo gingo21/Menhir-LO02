@@ -152,8 +152,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
 			this.setChanged();
 			this.notifyObservers("Le joueur " + tempJoueur + " a recu ses ressources");
-			this.setChanged();
-			this.notifyObservers("distribution ressources id" + tempJoueur.getId());
+			/*this.setChanged();
+			this.notifyObservers("distribution ressources id" + tempJoueur.getId());*/
 		}
 
 	}

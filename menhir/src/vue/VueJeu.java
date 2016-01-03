@@ -4,53 +4,74 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
 import com.sun.prism.Graphics;
 
 import Ressources.Ressources;
+import modele.Joueur;
+import modele.JoueurVirtuel;
 import modele.ParametresDePartie;
 import modele.Partie;
+import modele.StatutPartie;
 import modele.StrategieJoueurReelGraphique;
 
 public class VueJeu extends FenetrePrincipal implements Observer {
 	
-	VuePaquetDeRessourcesDePartie vuePaquetDeRessourcesDePartie;
-	VuePaquetDeRessourcesDeJoueurReel vuePaquetDeRessourcesDeJoueurReel;
-	VueStrategieJoueurReelGraphique vueStrategieJoueurReelGraphique;
-	ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA;
-	Dimension[] positionsDesIA;
-	Panneau panneau;
+	private VuePaquetDeRessourcesDePartie vuePaquetDeRessourcesDePartie;
+	private VuePaquetDeRessourcesDeJoueurReel vuePaquetDeRessourcesDeJoueurReel;
+	private VueStrategieJoueurReelGraphique vueStrategieJoueurReelGraphique;
+	private ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA;
+	private Dimension[] positionsDesIA;
+	private Panneau panneau;
+	
+	public final static Color COULEUR_DE_FOND = new Color(70,200,70);
 	
 	public VueJeu(ParametresDePartie parametres, Partie partie, Ressources ressources) {
 		super();
 		
 		this.positionsDesIA = new Dimension[5];
-		this.positionsDesIA[0] = new Dimension(0,0);
-		this.positionsDesIA[1] = new Dimension(0,0);
-		this.positionsDesIA[2] = new Dimension(0,0);
-		this.positionsDesIA[3] = new Dimension(0,0);
-		this.positionsDesIA[4] = new Dimension(0,0);
+		this.positionsDesIA[0] = new Dimension(0,200);
+		this.positionsDesIA[1] = new Dimension(0,400);
+		this.positionsDesIA[2] = new Dimension(0,600);
+		this.positionsDesIA[3] = new Dimension(550,200);
+		this.positionsDesIA[4] = new Dimension(550,400);
 		
 		this.panneau = new Panneau();
+		boolean avancee=false;
+		if(parametres.getTypePartie() == StatutPartie.avancee) {
+			avancee = true;
+		}
 		
 		this.vuePaquetDeRessourcesDePartie = new VuePaquetDeRessourcesDePartie(parametres, ressources);
-		this.vuePaquetDeRessourcesDeJoueurReel = new VuePaquetDeRessourcesDeJoueurReel(parametres.getJoueurReel().getPaquet(), ressources, false);
+		this.vuePaquetDeRessourcesDePartie.setBackground(COULEUR_DE_FOND);
+		this.vuePaquetDeRessourcesDeJoueurReel = new VuePaquetDeRessourcesDeJoueurReel(parametres.getJoueurReel().getPaquet(), ressources, avancee);
+		this.vuePaquetDeRessourcesDeJoueurReel.setBackground(COULEUR_DE_FOND);
 		this.vueStrategieJoueurReelGraphique = new VueStrategieJoueurReelGraphique((StrategieJoueurReelGraphique) parametres.getJoueurReel().getStrategie(), ressources) ;
+		this.vueStrategieJoueurReelGraphique.setBackground(COULEUR_DE_FOND);
+		/*int i=0;
+		for(Iterator<Joueur> it = parametres.getListeJoueurs().iterator(); it.hasNext();) {
+			Joueur tempJoueur = it.next();
+			if(tempJoueur instanceof JoueurVirtuel) {
+				this.vuesPaquetDeRessourcesIA.add(new VuePaquetDeRessourcesIA(tempJoueur.getPaquet(), ressources ,avancee));
+				this.vuesPaquetDeRessourcesIA.get(i).setBackground(COULEUR_DE_FOND);
+				this.panneau.ajoutPanneau(this.vuesPaquetDeRessourcesIA.get(i), this.positionsDesIA[i].width, this.positionsDesIA[i].height);
+				i++;
+			}
+		}*/ //TODO PROBLEME vueIA
 		
-		this.panneau.ajoutPanneau(vuePaquetDeRessourcesDePartie, 400, 0);
-		this.panneau.ajoutPanneau(vuePaquetDeRessourcesDeJoueurReel, 0, 0);
-		this.panneau.ajoutPanneau(vueStrategieJoueurReelGraphique, 400, 300);
+		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDePartie, 400, 0);
+		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDeJoueurReel, this.DIMENSION_ECRAN.width - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().width, this.DIMENSION_ECRAN.height - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().height);
+		this.panneau.ajoutPanneau(this.vueStrategieJoueurReelGraphique, 400, this.vuePaquetDeRessourcesDePartie.getSize().height);
 		this.add(this.panneau);
 		
-		this.getContentPane().setBackground(new Color(0,255,0));
 		Container contentframe = this.getContentPane();
 		
 		//panneaux
 		this.panneau.setDoubleBuffered(true);
-		this.panneau.setBackground(new Color(70,200,70));
-		this.vuePaquetDeRessourcesDePartie.setBackground(new Color(70,200,70));
+		this.panneau.setBackground(COULEUR_DE_FOND);
 		contentframe.add(panneau);
 		contentframe.validate();
 		this.setVisible(true);

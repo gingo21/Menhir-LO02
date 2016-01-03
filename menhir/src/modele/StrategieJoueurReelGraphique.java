@@ -157,7 +157,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 		}
 	}
 
-	public void choixDeManche(ParametresDePartie parametresDePartie) {
+	public synchronized void choixDeManche(ParametresDePartie parametresDePartie) {
 		this.setChanged();
 		this.notifyObservers("Voulez-vous une carte Alliee à la place de 2 graines de Menhir ?");
 		try {

@@ -28,7 +28,7 @@ import modele.CarteAlliee;
 import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
 
-public abstract class VueCarte extends Panneau implements Observer{
+public abstract class VueCarte extends Panneau{
 
 	private static final long serialVersionUID = 1L; 
 
@@ -48,15 +48,7 @@ public abstract class VueCarte extends Panneau implements Observer{
 		this.setPreferredSize(new Dimension(h, l)); 
 		addMouseListener(this);
 		this.hidden = IA;
-//		imageFaceCarte = redimImage(face, h, l);
-//		imageDos = redimImage(dos, h, l);
 	} 
-
-
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public Image redimImage(Image image, int height, int width){
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

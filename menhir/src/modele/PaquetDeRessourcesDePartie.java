@@ -59,7 +59,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 	
 	public int getNombreCartesAvancees() {
-		return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
+		//return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
+		return 5;
 	}
 	
 	public int getNombreCartesNormales() {

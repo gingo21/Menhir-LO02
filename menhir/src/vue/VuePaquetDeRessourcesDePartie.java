@@ -32,7 +32,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 	private VueImage vueDosNorm;
 
 	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources) {
-		this.setPreferredSize(new Dimension(480, 250));
+		this.setPreferredSize(new Dimension(460, 200));
 		this.setDoubleBuffered(true);
 		parametresDePartie.getPaquetDePartie().addObserver(this);
 
@@ -46,7 +46,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		vueGraines = new VueImage[this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir()];
 		for (int i = 0; i < this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
 			vueGraines[i] = new VueImage(referenceImages.getImageGraine(), 24, 10);
-			this.ajoutPanneau(vueGraines[i], 75 + (i % 4) * 26, 18 + (i / 4) * 11);
+			this.ajoutPanneau(vueGraines[i], 75 + (i % 8) * 13, 18 + (i / 8) * 6);
 		}
 		vueGeant = new VueImage(referenceImages.getImageGeant(), 63, 108);
 		this.ajoutPanneau(vueGeant, 0, 0);
@@ -57,16 +57,16 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		this.lblCartesNormale.setText(tempTexte2);
 		this.ajoutPanneau(lblCartesNormale, 200, 0);
 		vueDosNorm = new VueImage(referenceImages.getImageDosGeant(), 80, 80);
-		this.ajoutPanneau(vueDosNorm, 220, 80);
+		this.ajoutPanneau(vueDosNorm, 220, 40);
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
 			this.lblCartesAvancee = new JLabel();
 			this.nbreDeCartesAvancee = parametresDePartie.getPaquetDePartie().getNombreCartesAvancees();
 			String tempTexte3 = "";
 			tempTexte3 = "Cartes Avancée : " + this.nbreDeCartesAvancee;
 			this.lblCartesAvancee.setText(tempTexte3);
-			this.ajoutPanneau(lblCartesAvancee, 375, 0);
+			this.ajoutPanneau(lblCartesAvancee, 355, 0);
 			this.vueDosAvancee = new VueImage(referenceImages.getImageDosLutin(), 80, 80);
-			this.ajoutPanneau(vueDosAvancee, 350, 80);
+			this.ajoutPanneau(vueDosAvancee, 370, 40);
 		}
 
 	}
@@ -89,7 +89,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 				vueGraines = new VueImage[VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir()];
 				for (int i = 0; i < VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
 					vueGraines[i] = new VueImage(referenceImages.getImageGraine(), 24, 10);
-					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(vueGraines[i], 75 + (i % 4) * 26, 18 + (i / 4) * 11);
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(vueGraines[i], 75 + (i % 8) * 13, 18 + (i / 8) * 6);
 				}
 				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.lblCartesNormale);
 				VuePaquetDeRessourcesDePartie.this.lblCartesNormale = new JLabel();
@@ -105,7 +105,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 					String tempTexte3 = "";
 					tempTexte3 = "Cartes Avancée : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee.setText(tempTexte3);
-					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesAvancee, 375, 0);
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesAvancee, 355, 0);
 				}
 				VuePaquetDeRessourcesDePartie.this.repaint();
 				VuePaquetDeRessourcesDePartie.this.revalidate();

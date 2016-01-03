@@ -35,6 +35,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JButton boutonGeant = new JButton("géant");
 	private JButton boutonFarfadet = new JButton("farfadet");
 	private JLabel afficheurTexte = new JLabel();
+	private JLabel afficheurSaison = new JLabel("Saison : Automne");
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
 	private VueCarte carteEnJeu;
 
@@ -45,7 +46,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		super();
 		strategie.addObserver(this);
 		this.referenceRessources = ressources;
-		this.setPreferredSize(new Dimension(600, 300));
+		this.setPreferredSize(new Dimension(500, 250));
 
 		this.ajoutPanneau(this.boutonAttaqueOui, 0, 0); // TODO position
 		this.ajoutPanneau(this.boutonAttaqueNon, 0, 0);
@@ -57,6 +58,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.ajoutPanneau(this.boutonGeant, 0, 0);
 		this.ajoutPanneau(this.boutonFarfadet, 0, 0);
 		this.ajoutPanneau(this.afficheurTexte, 0, 0);
+		this.ajoutPanneau(this.afficheurSaison, 0, 0);
 		this.ajoutPanneau(this.labelCarteEnJeu, 0, 100);
 		this.effacerBoutons();
 
@@ -136,7 +138,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		};
 		this.boutonEngrais.addActionListener(actionEngrais);
 
-		this.afficheurTexte.setSize(600, 25);
+		this.afficheurTexte.setSize(500, 25);
 
 		this.setVisible(true);
 	}
@@ -184,7 +186,9 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
 					}
 					VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.carteEnJeu, 0, 0);
-				} else {
+				} else if(arg1.toString().contains("Saison")) {
+					
+				}	else {
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				}
 				VueStrategieJoueurReelGraphique.this.repaint();

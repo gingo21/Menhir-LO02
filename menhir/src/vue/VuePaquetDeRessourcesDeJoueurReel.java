@@ -24,11 +24,13 @@ import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
 
 public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJoueur {
-
+	
+	public static int TAILLE_CARTE = 130;
+	
 	public VuePaquetDeRessourcesDeJoueurReel(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
-		this.setPreferredSize(new Dimension(450, 240));
+		this.setPreferredSize(new Dimension(600, 300));
 		vueGraines = new VueImage[this.referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir()];
 	}
 	public void update(Observable arg0, Object arg1) {
@@ -38,29 +40,29 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					for (int i = 0; i < referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").size(); i++) {
 						if (referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i) != null) {
 							vuesCartes[i] = new VueCarteIngredient(
-									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i), referenceRessources, 105,
-									105, false);
+									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i), referenceRessources, TAILLE_CARTE,
+									TAILLE_CARTE, false);
 						}
 					}
 				}
 				// carte champ
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty()) {
 					vuesCartes[4] = new VueCarteChamp(
-							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, 105, 105, false);
+							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false);
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesDeJoueurReel.this.referenceAvancee) {
 					vuesCartes[5] = new VueCarteChamp(
-							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0), referenceRessources, 105,
-							105, false);
+							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0), referenceRessources, TAILLE_CARTE,
+							TAILLE_CARTE, false);
 					if (referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").get(0) != null) {
 						vuesCartes[6] = new VueCarteChiensDeGarde(
-								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").get(0), referenceRessources, 105,
-								105, false);
+								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").get(0), referenceRessources, TAILLE_CARTE,
+								TAILLE_CARTE, false);
 					} else if (referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0) != null) {
 						vuesCartes[7] = new VueCarteChamp(
-								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0), referenceRessources, 105,
-								105, false);
+								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0), referenceRessources, TAILLE_CARTE,
+								TAILLE_CARTE, false);
 					}
 
 				}
@@ -72,13 +74,13 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[0], 0, 115);
 				}
 				if (vuesCartes[1] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[1], 110, 115);
+					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[1], TAILLE_CARTE, 115);
 				}
 				if (vuesCartes[2] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[2], 220, 115);
+					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[2], 2*TAILLE_CARTE, 115);
 				}
 				if (vuesCartes[3] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[3], 330, 115);
+					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[3], 3*TAILLE_CARTE, 115);
 				}
 				if (vuesCartes[4] != null) {
 //					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[4], 0, 5);

@@ -40,23 +40,8 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	protected ArrayList<VueCarte> tempVueCartes4 = new ArrayList<VueCarte>();
 	protected ArrayList<VueCarte> tempVueCartes5 = new ArrayList<VueCarte>();
 	
-	protected HashMap<String, ArrayList<VueCarte>> vuesCartes;
+//	protected HashMap<String, ArrayList<VueCarte>> vuesCartes;
 
-
-
-//		setPaquetsDeCartes(new HashMap<String, ArrayList<VueCarte>>());
-//		ArrayList<Carte> tempVueCartes1 = new ArrayList<VueCarte>();
-//		ArrayList<Carte> tempVueCartes2 = new ArrayList<VueCarte>();
-//		ArrayList<Carte> tempVueCartes3 = new ArrayList<VueCarte>();
-//		ArrayList<Carte> tempVueCartes4 = new ArrayList<VueCarte>();
-//		ArrayList<Carte> tempVueCartes5 = new ArrayList<VueCarte>();
-//		this.getPaquetsDeCartes().put("Cartes Ingredients", tempCartes1);
-//		this.getPaquetsDeCartes().put("Cartes Champs", tempCartes2);
-//		this.getPaquetsDeCartes().put("Cartes Comptage De Points", tempCartes3);
-//		this.getPaquetsDeCartes().put("Cartes Taupes Geantes", tempCartes4);
-//		this.getPaquetsDeCartes().put("Cartes Chiens De Garde", tempCartes5);
-	
-	
 	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r, 
 			boolean partieAvancee) {
 		
@@ -71,21 +56,13 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 		this.setBackground(new Color(70,200,70));
 		graines = new ArrayList<VueImage>();
 		
-		vuesCartes=new HashMap<String, ArrayList<VueCarte>>();
+//		vuesCartes=new HashMap<String, ArrayList<VueCarte>>();
 		tempVueCartes1 = new ArrayList<VueCarte>();
 		tempVueCartes2 = new ArrayList<VueCarte>();
 		tempVueCartes3 = new ArrayList<VueCarte>();
 		tempVueCartes4 = new ArrayList<VueCarte>();
 		tempVueCartes5 = new ArrayList<VueCarte>();
-//		this.getPaquetsDeCartes().put("Cartes Ingredients", tempCartes1);
-//		this.getPaquetsDeCartes().put("Cartes Champs", tempCartes2);
-//		this.getPaquetsDeCartes().put("Cartes Comptage De Points", tempCartes3);
-//		this.getPaquetsDeCartes().put("Cartes Taupes Geantes", tempCartes4);
-//		this.getPaquetsDeCartes().put("Cartes Chiens De Garde", tempCartes5);
-		
-		
-		
 
-	}
+}
 
 }

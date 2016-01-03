@@ -152,9 +152,10 @@ public class StrategieJoueurReelConsole extends Strategie {
 				this.notifyObservers("Voulez-vous attaquer " + destinataire.getNom()
 						+ " avec votre Carte Taupes Géantes ? (oui ou non)" + "\n( " + tempCarte.toString() + " )");
 				if (sc.next().contains("oui")) {
+					int puissance = tempCarte.utiliser(destinataire, saisonActuelle);
 					this.setChanged();
 					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
-							+ " avec ses taupes et lui détruit " + tempCarte.utiliser(destinataire, saisonActuelle)
+							+ " avec ses taupes et lui détruit " + puissance
 							+ " menhirs adultes sur sa carte champ.");
 				}
 			}

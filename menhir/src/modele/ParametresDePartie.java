@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Scanner;
 
+import launcher.Jeu;
+
 public class ParametresDePartie extends Observable implements Serializable {
 	private int nombreDeManches;
 	private int nombreDeJoueurs;
@@ -26,6 +28,12 @@ public class ParametresDePartie extends Observable implements Serializable {
 	public ParametresDePartie() { 
 		try {
 			this.readParametres();
+			if(Jeu.MODE_GRAPHIQUE) {
+				this.getJoueurReel().setStrategie(new StrategieJoueurReelGraphique(this.getJoueurReel()));
+			} else {
+				this.getJoueurReel().setStrategie(new StrategieJoueurReelConsole(this.getJoueurReel()));
+			}
+			this.saveParametres();
 		} catch (ClassNotFoundException e){
 			this.parametresParDefaut();
 		}

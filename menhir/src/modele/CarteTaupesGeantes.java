@@ -26,6 +26,7 @@ public class CarteTaupesGeantes extends CarteAlliee {
 
 		int nombreDeMenhirsADetruire = 0;
 		nombreDeMenhirsADetruire = Math.min(tempCarte.getMenhirAdultes(), nombreMaximalDeMenhirsAdultesDetruits);
+		tempCarte.setMenhirAdultes(tempCarte.getMenhirAdultes()-nombreDeMenhirsADetruire);
 		
 		
 		this.setChanged();

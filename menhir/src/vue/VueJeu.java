@@ -34,11 +34,11 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		super();
 
 		this.positionsDesIA = new Dimension[5];
-		this.positionsDesIA[0] = new Dimension(0, 00);
-		this.positionsDesIA[1] = new Dimension(0, 400);
-		this.positionsDesIA[2] = new Dimension(0, 600);
-		this.positionsDesIA[3] = new Dimension(550, 200);
-		this.positionsDesIA[4] = new Dimension(550, 400);
+		this.positionsDesIA[0] = new Dimension(0, 0);
+		this.positionsDesIA[1] = new Dimension(0, 280);
+		this.positionsDesIA[2] = new Dimension(250, 360);
+		this.positionsDesIA[3] = new Dimension(950, 0);
+		this.positionsDesIA[4] = new Dimension(950, 260);
 
 		this.panneau = new Panneau();
 		boolean avancee = false;

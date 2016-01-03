@@ -80,12 +80,13 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesIA.this.referenceAvancee) {
-					if(tempVueCartes3.isEmpty()){
+					if (tempVueCartes3.isEmpty() && !referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
+							.get("Cartes Comptage De Points").isEmpty()) {
 						tempVueCartes3.add(new VueCarteComptageDePoints(
-								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0), referenceRessources, TAILLE_CARTE,
-								TAILLE_CARTE, false));
-						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes3.get(0), 2*TAILLE_CARTE, 20+TAILLE_CARTE);
-
+								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
+								.get("Cartes Comptage De Points").get(0),
+								referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
+						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes3.get(0), TAILLE_CARTE*2, 20+TAILLE_CARTE);
 					}
 					tempVueCartes4.clear();
 					if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").isEmpty()) {

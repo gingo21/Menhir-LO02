@@ -26,7 +26,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		this.paquetsDeCartes.put("Cartes Chiens De Garde", tempCartes5);
 
 		for (int i = 0; i < 4 * nombreDeJoueurs; i++) {
-			String tempNames[] = { "Chant de SirÃ¨ne", "Esprit de Dolmen", "Fontaine Eau Pure", "Larmes De Dryade",
+			String tempNames[] = { "Chant de Sirène", "Esprit de Dolmen", "Fontaine Eau Pure", "Larmes De Dryade",
 					"Poudre Or", "Racines Arc En Ciel", "Rayon De Lune", "Rires de Fees" };
 			int selectName = (int) (Math.random() * (8 - 0));
 			Carte tempCarte = new CarteIngredient(tempNames[selectName]);
@@ -59,8 +59,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 	
 	public int getNombreCartesAvancees() {
-		//return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
-		return 5;
+		return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
 	}
 	
 	public int getNombreCartesNormales() {
@@ -72,6 +71,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		PaquetDeRessourcesDeJoueur tempPaquetJoueur = joueur.getPaquet();
 		tempCarte.setEstUtilise(false);
 		tempPaquetJoueur.ajouterUneCarte(tempCarte);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void ajouterUneCarte(Carte carte) {
@@ -108,7 +109,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	public void distribuerRessourcesInitiales(ParametresDePartie parametresDePartie) {
 		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
-			// on supprime la carte alliï¿½e
+			// on supprime la carte alliée
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Chiens De Garde").clear();
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Taupes Geantes").clear();
 

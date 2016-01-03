@@ -41,16 +41,21 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JLabel afficheurSaison = new JLabel("Saison : automne");
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
 	private VueCarte carteEnJeu;
-	
+
 	boolean attenteChoixCarte = false;
 	boolean attenteChoixDestinataire = false;
-	
+
 	public static int TEMPS_DE_REFLEXION = 1000;
 	private Ressources referenceRessources;
 	private StrategieJoueurReelGraphique referenceStrategie;
 	private VuePaquetDeRessourcesDeJoueur referenceVuePaquetDeRessourcesDeJoueur;
 
-	public VueStrategieJoueurReelGraphique(StrategieJoueurReelGraphique strategie, Ressources ressources, VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur/*, VueDePaquetDeRessourcesIA ... */) {
+	public VueStrategieJoueurReelGraphique(StrategieJoueurReelGraphique strategie, Ressources ressources,
+			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur/*
+																		 * ,
+																		 * VueDePaquetDeRessourcesIA
+																		 * ...
+																		 */) {
 		super();
 		strategie.addObserver(this);
 		this.referenceStrategie = strategie;
@@ -75,8 +80,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener ouiAttaque = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setAttaquer(true);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -85,8 +90,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener nonAttaque = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setAttaquer(false);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -96,8 +101,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener ouiDefense = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setSeDefendre(true);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -106,8 +111,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener nonDefense = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setSeDefendre(false);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -117,8 +122,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener ouiChoixManche = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setChoixCarteAlliee(true);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -127,8 +132,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener nonChoixManche = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setChoixCarteAlliee(false);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -138,8 +143,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener actionGeant = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setActionAJouer(TypeAction.geantGardient);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -148,8 +153,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener actionFarfadet = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setActionAJouer(TypeAction.farfadet);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -158,8 +163,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		ActionListener actionEngrais = new ActionListener() {
 			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setActionAJouer(TypeAction.engrais);
-				synchronized(strategie) {
-					strategie.notify();	
+				synchronized (strategie) {
+					strategie.notify();
 				}
 				effacerBoutons();
 			}
@@ -182,26 +187,32 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.boutonEngrais.setVisible(false);
 		this.boutonFarfadet.setVisible(false);
 	}
-	
+
 	public void ajouterMouseListeners() {
-		for(Iterator<VueCarte>  it= VueStrategieJoueurReelGraphique.this.referenceVuePaquetDeRessourcesDeJoueur.getTempVueCartes1().iterator(); it.hasNext();) {
+		for (Iterator<VueCarte> it = VueStrategieJoueurReelGraphique.this.referenceVuePaquetDeRessourcesDeJoueur
+				.getTempVueCartes1().iterator(); it.hasNext();) {
 			VueCarte tempVueCarte = it.next();
-			if(tempVueCarte.getMouseListeners().length == 0) {
-				tempVueCarte.addMouseListener( new MouseListener() {
+			if (tempVueCarte.getMouseListeners().length == 0) {
+				tempVueCarte.addMouseListener(new MouseListener() {
 					public void mouseClicked(MouseEvent arg0) {
-						if(VueStrategieJoueurReelGraphique.this.attenteChoixCarte) {
-							VueStrategieJoueurReelGraphique.this.referenceStrategie.setCarteAJouer(tempVueCarte.getCarte());
-							synchronized(VueStrategieJoueurReelGraphique.this.referenceStrategie) {
-								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();	
+						if (VueStrategieJoueurReelGraphique.this.attenteChoixCarte) {
+							VueStrategieJoueurReelGraphique.this.referenceStrategie
+									.setCarteAJouer(tempVueCarte.getCarte());
+							synchronized (VueStrategieJoueurReelGraphique.this.referenceStrategie) {
+								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();
 							}
 						}
 					}
+
 					public void mouseEntered(MouseEvent arg0) {
 					}
+
 					public void mouseExited(MouseEvent arg0) {
 					}
+
 					public void mousePressed(MouseEvent arg0) {
 					}
+
 					public void mouseReleased(MouseEvent arg0) {
 					}
 				});
@@ -216,7 +227,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					if (arg1.toString().contains("Quelle action ?")) {
 						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonEngrais.setVisible(true);
-						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
+						VueStrategieJoueurReelGraphique.this.boutonFarfadet.setVisible(true);
 					} else if (arg1.toString().contains("Se défendre avec votre carte chien de garde ?")) {
 						VueStrategieJoueurReelGraphique.this.boutonDefenseOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonDefenseNon.setVisible(true);
@@ -226,10 +237,10 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					} else if (arg1.toString().contains("Voulez-vous une carte Alliee")) {
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheNon.setVisible(true);
-					} else if(arg1.toString().contains("Quelle carte ingrédient jouez-vous ?")) {
+					} else if (arg1.toString().contains("Quelle carte ingrédient jouez-vous ?")) {
 						VueStrategieJoueurReelGraphique.this.attenteChoixCarte = true;
 						VueStrategieJoueurReelGraphique.this.ajouterMouseListeners();
-					} else if(arg1.toString().contains("A quel joueur voulez-vous voler des graines ?")) {
+					} else if (arg1.toString().contains("A quel joueur voulez-vous voler des graines ?")) {
 						VueStrategieJoueurReelGraphique.this.attenteChoixDestinataire = true;
 						VueStrategieJoueurReelGraphique.this.ajouterMouseListeners();
 					}
@@ -248,21 +259,21 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					}
 					VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.carteEnJeu,
 							0, 60);
-				} else if (arg1.toString().contains("saison")) {
-					if (arg1.toString().contains("omne")) {
-						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : automne");
-					} else if (arg1.toString().contains("rin")) {
-						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
-					} else if (arg1.toString().contains("ete")) {
-						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : été");
-					} else if (arg1.toString().contains("hiver")) {
-						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
+				} else if (arg1 != null) {
+					if (arg1.toString().contains("saison")) {
+						if (arg1.toString().contains("omne")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : automne");
+						} else if (arg1.toString().contains("rin")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
+						} else if (arg1.toString().contains("ete")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : été");
+						} else if (arg1.toString().contains("hiver")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
+						}
 					}
-					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
-				} else {
-					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
-					
+				VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				}
+
 				VueStrategieJoueurReelGraphique.this.repaint();
 				VueStrategieJoueurReelGraphique.this.revalidate();
 			}
@@ -270,7 +281,11 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		SwingUtilities.invokeLater(myRunnable);
 
 		try {
-			this.wait(TEMPS_DE_REFLEXION);
+			if (arg1 != null) {
+				if (!arg1.toString().contains("saison")) {
+					this.wait(TEMPS_DE_REFLEXION);
+				}
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

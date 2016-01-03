@@ -84,6 +84,9 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 
 	public void addObserversDuJeu(ParametresDePartie parametres, Partie partie) {
 		partie.addObserver(this.vueStrategieJoueurReelGraphique);
+		for(Iterator<Joueur> it = parametres.getListeJoueurs().iterator();it.hasNext();) {
+			it.next().getPaquet().addObserver(this.vueStrategieJoueurReelGraphique);
+		}
 	}
 	
 	public void update(Observable o, Object arg) {

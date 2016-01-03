@@ -31,6 +31,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i), referenceRessources, TAILLE_CARTE,
 							TAILLE_CARTE, false));
 					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes1.get(i), (i%2)*TAILLE_CARTE, (i/2)*TAILLE_CARTE);
+					System.out.println("trol");
 				}
 			}
 		}

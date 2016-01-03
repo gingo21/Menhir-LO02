@@ -145,10 +145,9 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					this.wait();
 					//On recoit la reponse
 					if (this.attaquer) {
-						int puissance = tempCarte.utiliser(destinataire, saisonActuelle);
 						this.setChanged();
 						this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
-								+ " avec ses taupes et lui détruit " + puissance
+								+ " avec ses taupes et lui détruit " + tempCarte.utiliser(destinataire, saisonActuelle)
 								+ " menhirs adultes sur sa carte champ.");
 					}
 				}

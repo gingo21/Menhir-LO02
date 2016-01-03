@@ -83,8 +83,7 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 					.get("Cartes Chiens De Garde");
 			tempCarte.add(carte);
 		}
-		this.setChanged();
-		this.notifyObservers("ajout carte");
+
 	}
 
 	public void afficherCartes() { //MODE CONSOLE

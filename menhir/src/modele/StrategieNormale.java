@@ -99,10 +99,10 @@ public class StrategieNormale extends Strategie {
 					tempAlea = (int) Math.random() * 4;
 				}
 				if (tempAlea == 0) {
-					int puissance = tempCarte.utiliser(destinataire, saisonActuelle);
+					tempCarte.utiliser(destinataire, saisonActuelle);
 					this.setChanged();
 					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
-							+ " avec ses taupes et lui détruit " + puissance
+							+ " avec ses taupes et lui détruit " + tempCarte.utiliser(destinataire, saisonActuelle)
 							+ " menhirs adultes sur sa carte champ.");
 				}
 			}

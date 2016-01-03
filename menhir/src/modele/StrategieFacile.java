@@ -109,12 +109,12 @@ public class StrategieFacile extends Strategie {
 			if (!tempCarte.isEstUtilise()) {
 				int tempAlea = (int) Math.random() * 4;
 				if (tempAlea == 0) {
-					int puissance = tempCarte.utiliser(destinataire, saisonActuelle);
+					tempCarte.utiliser(destinataire, saisonActuelle);
 					this.hasChanged();
 					this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque "
 							+ destinataire.getNom()
 							+ " avec ses taupes et lui détruit "
-							+ puissance
+							+ tempCarte.utiliser(destinataire, saisonActuelle)
 							+ " menhirs adultes sur sa carte champ.");
 				}
 			}

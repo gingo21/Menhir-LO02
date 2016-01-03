@@ -95,14 +95,14 @@ public class Partie extends Observable implements Runnable {
 				this.setSaisonActuelle(this.getSaisonActuelle().next());
 			}
 			this.setNumeroDeTourActuel(0);
-			this.setChanged();
+			this.hasChanged();
 			this.notifyObservers("Changement de saison : " + this.getSaisonActuelle());
 		}
 	}
 
 	public void changerDeManche(ParametresDePartie parametresDePartie) {
 		this.numeroDeManche++;
-		this.setChanged();
+		this.hasChanged();
 		this.notifyObservers("Changement de manche : " + this.numeroDeManche);
 		int resteManches = (parametresDePartie.getNombreDeManches() - this.numeroDeManche);
 		this.setChanged();
@@ -125,16 +125,16 @@ public class Partie extends Observable implements Runnable {
 			}
 		}
 		if (JoueurGagnant instanceof JoueurReel) {
-			this.setChanged();
+			this.hasChanged();
 			this.notifyObservers("Bravo, vous avez gagné, avec :"
 					+ JoueurGagnant.getPaquet().getCarteChamp().getMenhirAdultes()
 					+ "menhirs et "
 					+ JoueurGagnant.getPaquet().getGrainesDeMenhir()
 					+ "graines");
 		} else {
-			this.setChanged();
+			this.hasChanged();
 			this.notifyObservers("Vous avez perdu :(");
-			this.setChanged();
+			this.hasChanged();
 			this.notifyObservers("Gagnant : " + JoueurGagnant.toString());
 		}
 	}

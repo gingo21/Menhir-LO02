@@ -101,10 +101,10 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						tempVueCartes5.clear();
 					} else if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").isEmpty()) {
 						if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0).isEstUtilise()){
-							tempVueCartes5.add( new VueCarteChamp(
+							tempVueCartes5.add( new VueCarteTaupesGeantes(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0), referenceRessources, TAILLE_CARTE,
 									TAILLE_CARTE, true));
-							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes5.get(0), 0, 2*TAILLE_CARTE);
+							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes5.get(0), 0, 20+2*TAILLE_CARTE);
 
 						}
 					}

@@ -49,7 +49,7 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		this.vuePaquetDeRessourcesDePartie.setBackground(COULEUR_DE_FOND);
 		this.vuePaquetDeRessourcesDeJoueurReel = new VuePaquetDeRessourcesDeJoueurReel(parametres.getJoueurReel().getPaquet(), ressources, avancee);
 		this.vuePaquetDeRessourcesDeJoueurReel.setBackground(COULEUR_DE_FOND);
-		this.vueStrategieJoueurReelGraphique = new VueStrategieJoueurReelGraphique((StrategieJoueurReelGraphique) parametres.getJoueurReel().getStrategie(), ressources) ;
+		this.vueStrategieJoueurReelGraphique = new VueStrategieJoueurReelGraphique((StrategieJoueurReelGraphique) parametres.getJoueurReel().getStrategie(), ressources, vuePaquetDeRessourcesDeJoueurReel) ;
 		this.vueStrategieJoueurReelGraphique.setBackground(COULEUR_DE_FOND);
 		/*int i=0;
 		for(Iterator<Joueur> it = parametres.getListeJoueurs().iterator(); it.hasNext();) {

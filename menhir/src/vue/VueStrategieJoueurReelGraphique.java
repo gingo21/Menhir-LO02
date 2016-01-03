@@ -38,11 +38,14 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JLabel afficheurSaison = new JLabel("Saison : automne");
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
 	private VueCarte carteEnJeu;
-
+	
+	boolean attenteChoixCarte = false;
+	boolean attenteChoixDestinataire = false;
+	
 	public static int TEMPS_DE_REFLEXION = 1000;
 	private Ressources referenceRessources;
 
-	public VueStrategieJoueurReelGraphique(StrategieJoueurReelGraphique strategie, Ressources ressources) {
+	public VueStrategieJoueurReelGraphique(StrategieJoueurReelGraphique strategie, Ressources ressources, VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur/*, VueDePaquetDeRessourcesIA ... */) {
 		super();
 		strategie.addObserver(this);
 		this.referenceRessources = ressources;
@@ -159,6 +162,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.afficheurTexte.setSize(500, 25);
 
 		this.setVisible(true);
+		
+		//vuePaquetDeRessourcesDeJoueur
 	}
 
 	public void effacerBoutons() {
@@ -190,6 +195,10 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					} else if (arg1.toString().contains("Voulez-vous une carte Alliee")) {
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheNon.setVisible(true);
+					} else if(arg1.toString().contains("Quelle carte ingrédient jouez-vous ?")) {
+						VueStrategieJoueurReelGraphique.this.attenteChoixCarte = true;
+					} else if(arg1.toString().contains("A quel joueur voulez-vous voler des graines ?")) {
+						VueStrategieJoueurReelGraphique.this.attenteChoixDestinataire = true;
 					}
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {

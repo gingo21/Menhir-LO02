@@ -31,7 +31,13 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
 		this.setPreferredSize(new Dimension(600, 300));
+		tempTexte2+=referencePaquetDeRessourcesDeJoueur.getJoueur().getNom();
+		VuePaquetDeRessourcesDeJoueurReel.this.nombreDeGraines.setText(tempTexte2);
 		this.ajoutPanneau(nomDuJoueur, 355, 0);
+		tempTexte1="";
+		tempTexte1+=referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir();
+		VuePaquetDeRessourcesDeJoueurReel.this.nombreDeGraines.setText(tempTexte1);
+		VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(nombreDeGraines, 355, 40);
 	}
 	public void update(Observable arg0, Object arg1) {
 		Runnable myRunnable = new Runnable() {
@@ -58,6 +64,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					tempVueCartes2.add(new VueCarteChamp(
 							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
 							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 5);
+					
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesDeJoueurReel.this.referenceAvancee) {
@@ -98,14 +105,13 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 
 				}
 
-//			
-
-
-				// Graines
+//			// Graines
 				VuePaquetDeRessourcesDeJoueurReel.this.remove(nombreDeGraines);
 				tempTexte1="";
 				tempTexte1+=referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir();
 				VuePaquetDeRessourcesDeJoueurReel.this.nombreDeGraines.setText(tempTexte1);
+				VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(nombreDeGraines, 355, 40);
+
 				if(!graines.isEmpty()){
 					for (Iterator <VueImage> it=graines.iterator();it.hasNext();){
 						VuePaquetDeRessourcesDeJoueurReel.this.remove(it.next());

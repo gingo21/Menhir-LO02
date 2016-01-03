@@ -33,7 +33,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 		this.setPreferredSize(new Dimension(600, 300));
 		tempTexte2 += referencePaquetDeRessourcesDeJoueur.getJoueur().getNom();
 		VuePaquetDeRessourcesDeJoueurReel.this.nomDuJoueur.setText(tempTexte2);
-		this.ajoutPanneau(nomDuJoueur, 170, 0);
+		this.ajoutPanneau(nomDuJoueur, TAILLE_CARTE*13/10, 100);
 
 	}
 
@@ -45,6 +45,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					if (!tempVueCartes1.isEmpty()) {
 						for (Iterator<VueCarte> it = tempVueCartes1.iterator(); it.hasNext();) {
 							VuePaquetDeRessourcesDeJoueurReel.this.remove(it.next());
+							
 						}
 						tempVueCartes1.clear();
 					}
@@ -64,10 +65,32 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 						}
 					}
 				}
-				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty() && tempVueCartes2.isEmpty()) {
+				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty()) {
+					if( tempVueCartes2.isEmpty()){
 					tempVueCartes2.add(new VueCarteChamp(
 							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
 					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 0);
+				}
+					if(!grainesMenhir.isEmpty()){
+						for (Iterator<VueImage> it = grainesMenhir.iterator(); it.hasNext();) {
+							VuePaquetDeRessourcesDeJoueurReel.this.remove(it.next());
+						}
+						grainesMenhir.clear();
+						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes2.get(0));
+
+					}
+					//Affichage graines menhirs
+					if (((CarteChamp)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0)).getMenhirAdultes()!=0) {
+						
+						for (int i = 0; i < ((CarteChamp)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0)).getMenhirAdultes(); i++) {
+							VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
+							grainesMenhir.add(tempVueImage);
+							(tempVueCartes2.get(0)).ajoutPanneau(tempVueImage, 0+5 + (i % 3) * 26,
+									+10 + (i / 3) * 11);
+						}
+						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 0);
+
+					}
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesDeJoueurReel.this.referenceAvancee) {
@@ -77,8 +100,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 										.get("Cartes Comptage De Points").get(0),
 								referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), 110, 5);
-
+						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), TAILLE_CARTE*3, 0);
 					}
 					if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde")
 							.isEmpty()) {
@@ -92,7 +114,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 											.get("Cartes Chiens De Garde").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes4.get(0), 220, 5);
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes4.get(0), TAILLE_CARTE*4, 0);
 
 						}
 
@@ -108,7 +130,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 											.get("Cartes Taupes Geantes").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes5.get(0), 220, 5);
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes5.get(0), TAILLE_CARTE*4, 0);
 
 						}
 					}
@@ -120,7 +142,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 				tempTexte1 = "";
 				tempTexte1 += referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir();
 				VuePaquetDeRessourcesDeJoueurReel.this.nombreDeGraines.setText(tempTexte1);
-				VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(nombreDeGraines, 355, 40);
+				VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(nombreDeGraines, TAILLE_CARTE*19/10, 40);
 
 				if (!graines.isEmpty()) {
 					for (Iterator<VueImage> it = graines.iterator(); it.hasNext();) {

@@ -62,6 +62,14 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
 	}
 	
+	public HashMap<String, Stack<Carte>> getPaquetsDeCartes() {
+		return paquetsDeCartes;
+	}
+
+	public void setPaquetsDeCartes(HashMap<String, Stack<Carte>> paquetsDeCartes) {
+		this.paquetsDeCartes = paquetsDeCartes;
+	}
+
 	public int getNombreCartesNormales() {
 		return (this.paquetsDeCartes.get("Cartes Ingredients").size()+this.paquetsDeCartes.get("Cartes Champs").size());
 	}

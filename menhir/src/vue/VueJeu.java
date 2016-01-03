@@ -11,6 +11,7 @@ import java.util.Observer;
 import com.sun.prism.Graphics;
 
 import Ressources.Ressources;
+import modele.Carte;
 import modele.Joueur;
 import modele.JoueurVirtuel;
 import modele.ParametresDePartie;
@@ -85,7 +86,13 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 	public void addObserversDuJeu(ParametresDePartie parametres, Partie partie) {
 		partie.addObserver(this.vueStrategieJoueurReelGraphique);
 		for(Iterator<Joueur> it = parametres.getListeJoueurs().iterator();it.hasNext();) {
-			it.next().getPaquet().addObserver(this.vueStrategieJoueurReelGraphique);
+			Joueur tempJoueur = it.next();
+			if(tempJoueur instanceof JoueurVirtuel) {
+				tempJoueur.getStrategie().addObserver(this.vueStrategieJoueurReelGraphique);
+			}
+		}
+		for(Iterator<Carte> it = parametres.getPaquetDePartie().getPaquetsDeCartes().get("Cartes Ingredients").iterator();it.hasNext();) {
+			it.next().addObserver(this.vueStrategieJoueurReelGraphique);
 		}
 	}
 	

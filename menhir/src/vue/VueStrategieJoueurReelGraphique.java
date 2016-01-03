@@ -247,6 +247,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {
 					Carte tempCarte = (Carte) arg0;
+					System.out.println("Trol");
 					if (arg0 instanceof CarteIngredient) {
 						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient(tempCarte,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);

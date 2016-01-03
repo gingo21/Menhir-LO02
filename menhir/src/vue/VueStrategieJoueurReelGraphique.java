@@ -225,7 +225,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 			if (tempVue.getMouseListeners().length == 0) {
 				tempVue.addMouseListener(new MouseListener() {
 					public void mouseClicked(MouseEvent arg0) {
-						if (VueStrategieJoueurReelGraphique.this.attenteChoixCarte) {
+						if (VueStrategieJoueurReelGraphique.this.attenteChoixDestinataire) {
 							VueStrategieJoueurReelGraphique.this.referenceStrategie.setDestinataireAAttaquer(
 									tempVue.getReferencePaquetDeRessourcesDeJoueur().getJoueur());
 							;

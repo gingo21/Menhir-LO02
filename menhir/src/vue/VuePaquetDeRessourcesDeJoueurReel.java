@@ -38,58 +38,60 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").isEmpty()) {
 					for (int i = 0; i < referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").size(); i++) {
 						if (referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i) != null) {
-							vuesCartes[i] = new VueCarteIngredient(
+							tempVueCartes1.add(new VueCarteIngredient(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i), referenceRessources, TAILLE_CARTE,
-									TAILLE_CARTE, false);
+									TAILLE_CARTE, false));
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes1.get(i), i*TAILLE_CARTE, 115);
 						}
 					}
 				}
 				// carte champ
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty()) {
-					vuesCartes[4] = new VueCarteChamp(
-							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false);
+					tempVueCartes2.add(new VueCarteChamp(
+							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 5);
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesDeJoueurReel.this.referenceAvancee) {
-					vuesCartes[5] = new VueCarteChamp(
+					tempVueCartes3.add(new VueCarteComptageDePoints(
 							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0), referenceRessources, TAILLE_CARTE,
-							TAILLE_CARTE, false);
+							TAILLE_CARTE, false));
 					if (referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").get(0) != null) {
-						vuesCartes[6] = new VueCarteChiensDeGarde(
+					tempVueCartes4.add(new VueCarteChiensDeGarde(
 								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").get(0), referenceRessources, TAILLE_CARTE,
-								TAILLE_CARTE, false);
+								TAILLE_CARTE, false));
 					} else if (referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0) != null) {
-						vuesCartes[7] = new VueCarteChamp(
+					tempVueCartes5.add( new VueCarteChamp(
 								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0), referenceRessources, TAILLE_CARTE,
-								TAILLE_CARTE, false);
+								TAILLE_CARTE, false));
 					}
 
 				}
 
 				VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(nomDuJoueur, 355, 0);
 
-				// cartes
-				if (vuesCartes[0] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[0], 0, 115);
-				}
-				if (vuesCartes[1] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[1], TAILLE_CARTE, 115);
-				}
-				if (vuesCartes[2] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[2], 2*TAILLE_CARTE, 115);
-				}
-				if (vuesCartes[3] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[3], 3*TAILLE_CARTE, 115);
-				}
-				if (vuesCartes[4] != null) {
+//				// cartes
+//				if (tempVueCartes1. != null) {
+//					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[0], 0, 115);
+//				}
+//				if (vuesCartes[1] != null) {
+//					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[1], TAILLE_CARTE, 115);
+//				}
+//				if (vuesCartes[2] != null) {
+//					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[2], 2*TAILLE_CARTE, 115);
+//				}
+//				if (vuesCartes[3] != null) {
+//					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[3], 3*TAILLE_CARTE, 115);
+//				}
+//				if (!tempVueCartes2.isEmpty()) {
 //					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[4], 0, 5);
-				}
-				if (vuesCartes[5] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[5], 110, 5);
-				}
-				if (vuesCartes[6] != null) {
-					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(vuesCartes[6], 220, 5);
-				}
+//				}
+//				if (!tempVueCartes3.isEmpty()) {
+//					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), 110, 5);
+//				}
+//				if (!tempVueCartes4.isEmpty()) {
+//					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes4.get(0), 220, 5);
+//				}
 				// Graines
 				tempTexte1="";
 				tempTexte1+=referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir();

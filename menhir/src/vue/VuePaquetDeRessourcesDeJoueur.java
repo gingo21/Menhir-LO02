@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Ressources.Ressources;
+import modele.Joueur;
 import modele.PaquetDeRessourcesDeJoueur;
 import modele.Carte;
 import modele.CarteChamp;
@@ -21,17 +22,39 @@ import modele.CarteChiensDeGarde;
 import modele.CarteComptageDePoints;
 import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
+import modele.PaquetDeRessourcesDePartie;
 
 public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements Observer {
 
 	protected JLabel nombreDeGraines;
 	protected JLabel nomDuJoueur;
-	protected VueCarte[] vuesCartes;
+//	protected VueCarte[] vuesCartes;
 	protected PaquetDeRessourcesDeJoueur referencePaquetDeRessourcesDeJoueur;
 	protected ArrayList <VueImage> graines;
 	protected boolean referenceAvancee;
 	protected Ressources referenceRessources;
 	protected String tempTexte1;
+	protected ArrayList<VueCarte> tempVueCartes1;
+	protected ArrayList<VueCarte> tempVueCartes2 = new ArrayList<VueCarte>();
+	protected ArrayList<VueCarte> tempVueCartes3 = new ArrayList<VueCarte>();
+	protected ArrayList<VueCarte> tempVueCartes4 = new ArrayList<VueCarte>();
+	protected ArrayList<VueCarte> tempVueCartes5 = new ArrayList<VueCarte>();
+	
+	protected HashMap<String, ArrayList<VueCarte>> vuesCartes;
+
+
+
+//		setPaquetsDeCartes(new HashMap<String, ArrayList<VueCarte>>());
+//		ArrayList<Carte> tempVueCartes1 = new ArrayList<VueCarte>();
+//		ArrayList<Carte> tempVueCartes2 = new ArrayList<VueCarte>();
+//		ArrayList<Carte> tempVueCartes3 = new ArrayList<VueCarte>();
+//		ArrayList<Carte> tempVueCartes4 = new ArrayList<VueCarte>();
+//		ArrayList<Carte> tempVueCartes5 = new ArrayList<VueCarte>();
+//		this.getPaquetsDeCartes().put("Cartes Ingredients", tempCartes1);
+//		this.getPaquetsDeCartes().put("Cartes Champs", tempCartes2);
+//		this.getPaquetsDeCartes().put("Cartes Comptage De Points", tempCartes3);
+//		this.getPaquetsDeCartes().put("Cartes Taupes Geantes", tempCartes4);
+//		this.getPaquetsDeCartes().put("Cartes Chiens De Garde", tempCartes5);
 	
 	
 	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r, 
@@ -39,14 +62,26 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 		
 		paquetDeRessourcesDeJoueur.addObserver(this);
 		this.referencePaquetDeRessourcesDeJoueur = paquetDeRessourcesDeJoueur;
+//		this.referencePaquetsDeCartes = paquetDeRessourcesDeJoueur.getPaquetsDeCartes();
 		this.referenceAvancee = partieAvancee;
 		this.referenceRessources = r;
 		this.nombreDeGraines = new JLabel();
 		tempTexte1 = new String();
 		this.nomDuJoueur = new JLabel();
 		this.setBackground(new Color(70,200,70));
-		vuesCartes = new VueCarte[7];
 		graines = new ArrayList<VueImage>();
+		
+		vuesCartes=new HashMap<String, ArrayList<VueCarte>>();
+		tempVueCartes1 = new ArrayList<VueCarte>();
+		tempVueCartes2 = new ArrayList<VueCarte>();
+		tempVueCartes3 = new ArrayList<VueCarte>();
+		tempVueCartes4 = new ArrayList<VueCarte>();
+		tempVueCartes5 = new ArrayList<VueCarte>();
+//		this.getPaquetsDeCartes().put("Cartes Ingredients", tempCartes1);
+//		this.getPaquetsDeCartes().put("Cartes Champs", tempCartes2);
+//		this.getPaquetsDeCartes().put("Cartes Comptage De Points", tempCartes3);
+//		this.getPaquetsDeCartes().put("Cartes Taupes Geantes", tempCartes4);
+//		this.getPaquetsDeCartes().put("Cartes Chiens De Garde", tempCartes5);
 		
 		
 		

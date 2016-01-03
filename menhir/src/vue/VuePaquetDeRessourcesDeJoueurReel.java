@@ -30,7 +30,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 	public VuePaquetDeRessourcesDeJoueurReel(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
-		this.setPreferredSize(new Dimension(600, 300));
+		this.setPreferredSize(new Dimension(600, 320));
 		tempTexte2 += referencePaquetDeRessourcesDeJoueur.getJoueur().getNom();
 		VuePaquetDeRessourcesDeJoueurReel.this.nomDuJoueur.setText(tempTexte2);
 		this.ajoutPanneau(nomDuJoueur, TAILLE_CARTE*13/10, 100);
@@ -60,7 +60,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false);
 							tempVueCartes1.add(tempVue);
 							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVue, i * TAILLE_CARTE,
-									115);
+									TAILLE_CARTE);
 							// System.out.println(arg0.getClass().getName());
 						}
 					}

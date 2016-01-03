@@ -159,7 +159,11 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 
 	public void reprendreToutesLesCartes(ParametresDePartie param) {
-		param.setPaquetDePartie(new PaquetDeRessourcesDePartie(param.getTypePartie(), param.getNombreDeJoueurs()));
+		PaquetDeRessourcesDePartie tempNewPaquet = new PaquetDeRessourcesDePartie(param.getTypePartie(), param.getNombreDeJoueurs());
+		param.setPaquetDePartie(tempNewPaquet);
+		for(Iterator<Joueur> it = param.getListeJoueurs().iterator(); it.hasNext();) {
+			it.next().getPaquet().setReferencePaquetPartie(tempNewPaquet);
+		}
 		param.getPaquetDePartie().distribuerRessourcesInitiales(param);
 	}
 

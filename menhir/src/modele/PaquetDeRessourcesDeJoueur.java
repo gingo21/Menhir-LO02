@@ -86,11 +86,6 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 		this.setChanged();
 		this.notifyObservers();
 	}
-	
-	public void rafraichirLesObservers() {
-		this.setChanged();
-		this.notifyObservers();
-	}
 
 	public void afficherCartes() { //MODE CONSOLE
 		Set<String> tempCles = this.getPaquetsDeCartes().keySet();

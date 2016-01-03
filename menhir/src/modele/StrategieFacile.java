@@ -68,7 +68,7 @@ public class StrategieFacile extends Strategie {
 			this.notifyObservers(this.getReferenceJoueur().toString());
 
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 	}
 
 	public int seDefendre(ParametresDePartie parametresDePartie,
@@ -96,7 +96,7 @@ public class StrategieFacile extends Strategie {
 				}
 			}
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 		return puissanceModifie;
 	}
 
@@ -121,7 +121,7 @@ public class StrategieFacile extends Strategie {
 				}
 			}
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 	}
 	
 	public void choixDeManche(ParametresDePartie parametresDePartie) {

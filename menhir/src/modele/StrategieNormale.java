@@ -53,7 +53,7 @@ public class StrategieNormale extends Strategie {
 			this.notifyObservers(this.getReferenceJoueur().toString());
 
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 	}
 
 	public int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
@@ -78,7 +78,7 @@ public class StrategieNormale extends Strategie {
 				}
 			}
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 		return puissanceModifie;
 	}
 
@@ -109,7 +109,7 @@ public class StrategieNormale extends Strategie {
 				}
 			}
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 	}
 
 	public void choixDeManche(ParametresDePartie parametresDePartie) {
@@ -117,7 +117,7 @@ public class StrategieNormale extends Strategie {
 		if (tempAlea == 1) {
 			this.setChoixCarteAlliee(true);
 		}
-		this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+		
 	}
 	
 	public TypeAction choixActionIngredient(ParametresDePartie parametresDePartie) {

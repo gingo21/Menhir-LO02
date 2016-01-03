@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
@@ -49,17 +50,15 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private Ressources referenceRessources;
 	private StrategieJoueurReelGraphique referenceStrategie;
 	private VuePaquetDeRessourcesDeJoueur referenceVuePaquetDeRessourcesDeJoueur;
+	private ArrayList<VuePaquetDeRessourcesIA> referenceVuesPaquetDeRessourcesIA;
 
 	public VueStrategieJoueurReelGraphique(final StrategieJoueurReelGraphique strategie, Ressources ressources,
-			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur/*
-																		 * ,
-																		 * VueDePaquetDeRessourcesIA
-																		 * ...
-																		 */) {
+			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur, ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA) {
 		super();
 		strategie.addObserver(this);
 		this.referenceStrategie = strategie;
 		this.referenceRessources = ressources;
+		this.referenceVuePaquetDeRessourcesDeJoueur = vuePaquetDeRessourcesDeJoueur;
 		this.referenceVuePaquetDeRessourcesDeJoueur = vuePaquetDeRessourcesDeJoueur;
 		this.setPreferredSize(new Dimension(500, 250));
 
@@ -202,6 +201,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();
 							}
 						}
+						System.out.println("Trol");
 					}
 
 					public void mouseEntered(MouseEvent arg0) {
@@ -247,7 +247,6 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {
 					Carte tempCarte = (Carte) arg0;
-					System.out.println("Trol");
 					if (arg0 instanceof CarteIngredient) {
 						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient(tempCarte,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
@@ -283,7 +282,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 
 		try {
 			if (arg1 != null) {
-				if (!arg1.toString().contains("saison")) {
+				if (!arg1.toString().contains("saison") && !arg1.toString().contains("[")) {
 					this.wait(TEMPS_DE_REFLEXION);
 				}
 			}

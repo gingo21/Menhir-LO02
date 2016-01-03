@@ -44,7 +44,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						tempVueCartes1.add(new VueCarteIngredient(
 							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i), referenceRessources, TAILLE_CARTE,
 							TAILLE_CARTE, false));
-					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes1.get(i), (i%2)*TAILLE_CARTE, 20+(i/2)*TAILLE_CARTE);
+					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes1.get(i), (i%2)*TAILLE_CARTE, 20+(i/2)*TAILLE_CARTE); // TODO CRéer une tempVueCarte puis l'injecter dans les 2
 					System.out.println("trol");
 				}
 			}

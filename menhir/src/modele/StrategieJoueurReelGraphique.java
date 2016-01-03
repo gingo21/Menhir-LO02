@@ -97,7 +97,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 			}
-			this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -126,7 +126,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					}
 				}
 			}
-			this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -154,7 +154,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					}
 				}
 			}
-			this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

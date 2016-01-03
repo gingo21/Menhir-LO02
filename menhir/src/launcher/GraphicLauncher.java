@@ -1,15 +1,7 @@
 package launcher;
 
-import java.awt.Container;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import modele.Carte;
-import modele.CarteIngredient;
 import modele.ParametresDePartie;
 import vue.FenetreInitialisation;
-import vue.VueCarte;
-import vue.VueParametres;
 
 public class GraphicLauncher implements Runnable {
 
@@ -21,14 +13,9 @@ public class GraphicLauncher implements Runnable {
 	}
 
 	public void run() {
-		VueParametres dialog = new VueParametres(null, "conf", true, parametresDePartie);
-
-		Carte tempCarte = new CarteIngredient("didadidadou");
-		VueCarte maCarte = new VueCarte(tempCarte);
-		Container contentframe = dialog.getContentPane();
-		contentframe.add(maCarte);
-		contentframe.validate();
-		dialog.setVisible(true);
+		ParametresDePartie parametresDePartie = new ParametresDePartie();
+		FenetreInitialisation fenetreInitialisation = new FenetreInitialisation(null, "conf", true, parametresDePartie);
+		fenetreInitialisation.setVisible(true);
 	}
 	
 	public ParametresDePartie getParametresDePartie() {

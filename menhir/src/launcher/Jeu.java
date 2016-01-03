@@ -8,18 +8,17 @@ public class Jeu {
 	
 	public static final boolean MODE_GRAPHIQUE = true;
 	
-	/*public synchronized static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
+	public synchronized static void main(String[] args) throws InterruptedException {
 		ParametresDePartie parametresDePartie = new ParametresDePartie();
 		Console console = new Console(parametresDePartie);
 		GraphicLauncher graphicLauncher = new GraphicLauncher(parametresDePartie);
-		Thread tutu = new Thread(graphicLauncher);
-		Thread toto = new Thread(console);
+		Thread thrGaphicLauncher = new Thread(graphicLauncher);
+		Thread thrConsole = new Thread(console);
 		if (MODE_GRAPHIQUE) {
-			tutu.start();
+			thrGaphicLauncher.start();
 		} else {
-			toto.start();
+			thrConsole.start();
 		}
-	}*/
+	}
 
 }

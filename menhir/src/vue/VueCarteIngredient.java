@@ -21,28 +21,28 @@ public class VueCarteIngredient extends VueCarte{
 	public VueCarteIngredient(Carte carte,Ressources ressources, int h, int l, boolean IA ) {
 		super(carte, ressources,h,l,IA);
 		this.puissanceActions=((CarteIngredient) carte).getPuissanceActions();
-		if (this.nomCarte == "Chant de Sirène"){
+		if (this.nomCarte.equals("Chant de Sirène")){
 			this.imageFaceCarte = ressources.getChantDeSirene();
 		}
-		else if (this.nomCarte == "Esprit de Dolmen"){
+		else if (this.nomCarte.equals("Esprit de Dolmen")){
 			this.imageFaceCarte = ressources.getEspritDeDolmen();
 		}
-		else if (this.nomCarte == "Fontaine Eau Pure"){
+		else if (this.nomCarte.equals("Fontaine Eau Pure")){
 			this.imageFaceCarte = ressources.getFontaineDEauPure();
 		}
-		else if (this.nomCarte == "Larmes De Dryade"){
+		else if (this.nomCarte.equals("Larmes De Dryade")){
 			this.imageFaceCarte = ressources.getLarmesDeDryade();
 		}
-		else if (this.nomCarte == "Poudre Or"){
+		else if (this.nomCarte.equals("Poudre Or")){
 			this.imageFaceCarte = ressources.getPoudreDOr();
 		}
-		else if (this.nomCarte == "Racines Arc En Ciel"){
+		else if (this.nomCarte.equals("Racines Arc En Ciel")){
 			this.imageFaceCarte = ressources.getRacinesDArcEnCiel();
 		}
-		else if (this.nomCarte == "Rayon De Lune"){
+		else if (this.nomCarte.equals("Rayon De Lune")){
 			this.imageFaceCarte = ressources.getRayonDeLune();
 		}
-		else{
+		else {
 			this.imageFaceCarte = ressources.getRiresDeFees();
 		}
 

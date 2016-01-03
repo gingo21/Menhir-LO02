@@ -36,10 +36,10 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	protected String tempTexte1;
 	protected String tempTexte2;
 	protected ArrayList<VueCarte> tempVueCartes1;
-	protected ArrayList<VueCarte> tempVueCartes2 = new ArrayList<VueCarte>();
-	protected ArrayList<VueCarte> tempVueCartes3 = new ArrayList<VueCarte>();
-	protected ArrayList<VueCarte> tempVueCartes4 = new ArrayList<VueCarte>();
-	protected ArrayList<VueCarte> tempVueCartes5 = new ArrayList<VueCarte>();
+	protected ArrayList<VueCarte> tempVueCartes2;
+	protected ArrayList<VueCarte> tempVueCartes3;
+	protected ArrayList<VueCarte> tempVueCartes4;
+	protected ArrayList<VueCarte> tempVueCartes5;
 	
 //	protected HashMap<String, ArrayList<VueCarte>> vuesCartes;
 	

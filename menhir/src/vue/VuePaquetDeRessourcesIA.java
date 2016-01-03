@@ -41,10 +41,12 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 				System.out.println("update2");
 
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i).isEstUtilise()) {
-						tempVueCartes1.add(new VueCarteIngredient(
-							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i), referenceRessources, TAILLE_CARTE,
-							TAILLE_CARTE, false));
-					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes1.get(i), (i%2)*TAILLE_CARTE, 20+(i/2)*TAILLE_CARTE); // TODO CRéer une tempVueCarte puis l'injecter dans les 2
+					VueCarteIngredient tempVue = new VueCarteIngredient(
+							referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
+									.get("Cartes Ingredients").get(i),
+							referenceRessources, TAILLE_CARTE, TAILLE_CARTE, true);
+					tempVueCartes1.add(tempVue);
+					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes1.get(i), (i%2)*TAILLE_CARTE, 20+(i/2)*TAILLE_CARTE);
 					System.out.println("trol");
 				}
 			}
@@ -93,7 +95,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 		tempTexte1="";
 		tempTexte1+=referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir();
 		VuePaquetDeRessourcesIA.this.nombreDeGraines.setText(tempTexte1);
-		VuePaquetDeRessourcesIA.this.ajoutPanneau(nombreDeGraines, 0, 125);
+		VuePaquetDeRessourcesIA.this.ajoutPanneau(nombreDeGraines, 125, 0);
 		graines.clear();
 		for (int i = 0; i < VuePaquetDeRessourcesIA.this.referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir(); i++) {
 			graines.add(new VueImage(referenceRessources.getImageGraine(), 24, 10));

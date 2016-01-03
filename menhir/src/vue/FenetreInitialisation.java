@@ -22,7 +22,7 @@ public class FenetreInitialisation extends JDialog {
 	private JButton quitter;
 	private VueParametres vueParametres;
 	
-	public FenetreInitialisation(JFrame owner, String title, boolean modal, ParametresDePartie parametresDePartie) {  
+	public FenetreInitialisation(JFrame owner, String title, boolean modal, final ParametresDePartie parametresDePartie) {  
 		super(owner, title, modal);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	    this.setResizable(false);
@@ -33,7 +33,7 @@ public class FenetreInitialisation extends JDialog {
 		
 		jouer = new JButton("Jouer");
 		jouer.setSize(50, 10);
-		parametrer = new JButton("Paramètres");
+		parametrer = new JButton("Paramï¿½tres");
 		quitter = new JButton("Quitter");
 		this.vueParametres = new VueParametres(null, "conf", true, parametresDePartie);
 		this.vueParametres.setVisible(false);

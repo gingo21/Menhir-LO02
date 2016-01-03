@@ -35,7 +35,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JButton boutonChoixMancheOui = new JButton("oui");
 	private JButton boutonChoixMancheNon = new JButton("non");
 	private JButton boutonEngrais = new JButton("engrais");
-	private JButton boutonGeant = new JButton("géant");
+	private JButton boutonGeant = new JButton("gï¿½ant");
 	private JButton boutonFarfadet = new JButton("farfadet");
 	private JLabel afficheurTexte = new JLabel();
 	private JLabel afficheurSaison = new JLabel("Saison : automne");
@@ -50,7 +50,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private StrategieJoueurReelGraphique referenceStrategie;
 	private VuePaquetDeRessourcesDeJoueur referenceVuePaquetDeRessourcesDeJoueur;
 
-	public VueStrategieJoueurReelGraphique(StrategieJoueurReelGraphique strategie, Ressources ressources,
+	public VueStrategieJoueurReelGraphique(final StrategieJoueurReelGraphique strategie, Ressources ressources,
 			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur/*
 																		 * ,
 																		 * VueDePaquetDeRessourcesIA
@@ -191,7 +191,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	public void ajouterMouseListeners() {
 		for (Iterator<VueCarte> it = VueStrategieJoueurReelGraphique.this.referenceVuePaquetDeRessourcesDeJoueur
 				.getTempVueCartes1().iterator(); it.hasNext();) {
-			VueCarte tempVueCarte = it.next();
+			final VueCarte  tempVueCarte = it.next();
 			if (tempVueCarte.getMouseListeners().length == 0) {
 				tempVueCarte.addMouseListener(new MouseListener() {
 					public void mouseClicked(MouseEvent arg0) {
@@ -220,7 +220,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		}
 	}
 
-	public synchronized void update(Observable arg0, Object arg1) {
+	public synchronized void update(final Observable arg0, final Object arg1) {
 		Runnable myRunnable = new Runnable() {
 			public void run() {
 				if (arg0 instanceof StrategieJoueurReelGraphique) {
@@ -228,7 +228,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonEngrais.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonFarfadet.setVisible(true);
-					} else if (arg1.toString().contains("Se défendre avec votre carte chien de garde ?")) {
+					} else if (arg1.toString().contains("Se dï¿½fendre avec votre carte chien de garde ?")) {
 						VueStrategieJoueurReelGraphique.this.boutonDefenseOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonDefenseNon.setVisible(true);
 					} else if (arg1.toString().contains("Voulez-vous attaquer")) {
@@ -237,7 +237,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					} else if (arg1.toString().contains("Voulez-vous une carte Alliee")) {
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheNon.setVisible(true);
-					} else if (arg1.toString().contains("Quelle carte ingrédient jouez-vous ?")) {
+					} else if (arg1.toString().contains("Quelle carte ingrï¿½dient jouez-vous ?")) {
 						VueStrategieJoueurReelGraphique.this.attenteChoixCarte = true;
 						VueStrategieJoueurReelGraphique.this.ajouterMouseListeners();
 					} else if (arg1.toString().contains("A quel joueur voulez-vous voler des graines ?")) {
@@ -266,7 +266,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 						} else if (arg1.toString().contains("rin")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
 						} else if (arg1.toString().contains("ete")) {
-							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : été");
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : ï¿½tï¿½");
 						} else if (arg1.toString().contains("hiver")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
 						}

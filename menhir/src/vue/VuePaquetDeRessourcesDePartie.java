@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -85,6 +86,9 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.nombreDeGraines);
 				VuePaquetDeRessourcesDePartie.this.nombreDeGraines.setText(tempTexte1);
 				VuePaquetDeRessourcesDePartie.this.ajoutPanneau(nombreDeGraines, 63, 0);
+				for (Iterator <VueImage> it=graines.iterator();it.hasNext();){
+					VuePaquetDeRessourcesDePartie.this.remove(it.next());
+				}
 				graines.clear();
 				for (int i = 0; i < VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
 					graines.add(new VueImage(referenceImages.getImageGraine(), 24, 10)); 

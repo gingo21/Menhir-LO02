@@ -41,9 +41,10 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	protected ArrayList<VueCarte> tempVueCartes5 = new ArrayList<VueCarte>();
 	
 //	protected HashMap<String, ArrayList<VueCarte>> vuesCartes;
-
+	
 	public VuePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r, 
 			boolean partieAvancee) {
+		
 		
 		paquetDeRessourcesDeJoueur.addObserver(this);
 		this.referencePaquetDeRessourcesDeJoueur = paquetDeRessourcesDeJoueur;

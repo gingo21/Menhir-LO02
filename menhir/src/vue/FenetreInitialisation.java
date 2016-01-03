@@ -33,7 +33,7 @@ public class FenetreInitialisation extends JDialog {
 		
 		jouer = new JButton("Jouer");
 		jouer.setSize(50, 10);
-		parametrer = new JButton("Paramétrer");
+		parametrer = new JButton("Paramètres");
 		quitter = new JButton("Quitter");
 		this.vueParametres = new VueParametres(null, "conf", true, parametresDePartie);
 		this.vueParametres.setVisible(false);
@@ -57,6 +57,7 @@ public class FenetreInitialisation extends JDialog {
 					Partie partie = new Partie(parametresDePartie, false);
 					Ressources ressources = new Ressources();
 					VueJeu vueJeu = new VueJeu(parametresDePartie, partie, ressources);
+					vueJeu.setTitle("Menhir");
 					vueJeu.setVisible(true);
 					Thread thrPartie = new Thread(partie);
 					thrPartie.start();

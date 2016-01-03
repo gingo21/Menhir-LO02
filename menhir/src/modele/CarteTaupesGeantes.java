@@ -31,6 +31,9 @@ public class CarteTaupesGeantes extends CarteAlliee {
 		this.setChanged();
 		this.notifyObservers(destinataire);
 		
+		this.setChanged();
+		this.notifyObservers("utiliser");
+		
 		this.setEstUtilise(true);
 		return nombreDeMenhirsADetruire;
 	}

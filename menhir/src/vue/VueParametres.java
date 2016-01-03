@@ -24,7 +24,7 @@ import modele.PaquetDeRessourcesDePartie;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
 
-public class VueParametres extends JDialog implements Observer {
+public class VueParametres extends JDialog {
 
 	private JLabel labelNombreDeJoueur = new JLabel("Nombre de Joueurs");
 	private JComboBox choixNombreDeJoueurs;
@@ -40,20 +40,7 @@ public class VueParametres extends JDialog implements Observer {
 
 	private ParametresDePartie referenceParametresDePartie;
 
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	// TODO ajouter action listener pour combobox
-	public VueParametres(JFrame owner, String title, boolean modal, ParametresDePartie parametresDePartie) { // TODO
-																												// rajouter
-																												// texte
-																												// explicatif
-																												// au
-																												// début
-																												// avant
-																												// paramétrage
+	public VueParametres(JFrame owner, String title, boolean modal, ParametresDePartie parametresDePartie) { 
 		super(owner, title, modal);
 		this.setLocationRelativeTo(null); // null-> centre ecran
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -71,7 +58,7 @@ public class VueParametres extends JDialog implements Observer {
 		this.choixNombreDeJoueurs.setPreferredSize(new Dimension(50, 20));
 
 		// partie rapide ou avancee
-		String[] type = { "Rapide", "Avancée" };
+		String[] type = { "Rapide", "Avanc�e" };
 		this.typePartie = new JComboBox(type);
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
 			this.typePartie.setSelectedIndex(1);
@@ -138,7 +125,7 @@ public class VueParametres extends JDialog implements Observer {
 				VueParametres.this.choixDifficultesIAs.clear();
 				VueParametres.this.labelsDifficultesIAs.clear();
 				for (int i=1; i<VueParametres.this.choixNombreDeJoueurs.getSelectedIndex() + 2; i++) {
-					JLabel tempLabel = new JLabel("Difficulté de IA" + i);
+					JLabel tempLabel = new JLabel("Difficult� de IA" + i);
 					VueParametres.this.labelsDifficultesIAs.add(tempLabel);
 					String[] difficulte = {"Facile", "Normale"};
 					JComboBox tempCombo = new JComboBox(difficulte);	

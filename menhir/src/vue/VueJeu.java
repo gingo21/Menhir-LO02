@@ -62,9 +62,9 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 			}
 		}*/ //TODO PROBLEME vueIA
 		
-		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDePartie, 400, 0);
+		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDePartie, 350, 0);
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDeJoueurReel, this.DIMENSION_ECRAN.width - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().width, this.DIMENSION_ECRAN.height - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().height);
-		this.panneau.ajoutPanneau(this.vueStrategieJoueurReelGraphique, 400, this.vuePaquetDeRessourcesDePartie.getSize().height);
+		this.panneau.ajoutPanneau(this.vueStrategieJoueurReelGraphique, 350, this.vuePaquetDeRessourcesDePartie.getSize().height);
 		this.add(this.panneau);
 		
 		Container contentframe = this.getContentPane();

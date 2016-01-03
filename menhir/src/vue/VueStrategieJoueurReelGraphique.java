@@ -35,7 +35,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JButton boutonGeant = new JButton("géant");
 	private JButton boutonFarfadet = new JButton("farfadet");
 	private JLabel afficheurTexte = new JLabel();
-	private JLabel afficheurSaison = new JLabel("Saison : Automne");
+	private JLabel afficheurSaison = new JLabel("Saison : automne");
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
 	private VueCarte carteEnJeu;
 
@@ -48,91 +48,109 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.referenceRessources = ressources;
 		this.setPreferredSize(new Dimension(500, 250));
 
-		this.ajoutPanneau(this.boutonAttaqueOui, 0, 0); // TODO position
-		this.ajoutPanneau(this.boutonAttaqueNon, 0, 0);
-		this.ajoutPanneau(this.boutonDefenseOui, 0, 0);
-		this.ajoutPanneau(this.boutonDefenseNon, 0, 0);
-		this.ajoutPanneau(this.boutonChoixMancheOui, 0, 0);
-		this.ajoutPanneau(this.boutonChoixMancheNon, 0, 0);
-		this.ajoutPanneau(this.boutonEngrais, 0, 0);
-		this.ajoutPanneau(this.boutonGeant, 0, 0);
-		this.ajoutPanneau(this.boutonFarfadet, 0, 0);
+		this.ajoutPanneau(this.boutonAttaqueOui, 250, 125);
+		this.ajoutPanneau(this.boutonAttaqueNon, 325, 125);
+		this.ajoutPanneau(this.boutonDefenseOui, 250, 125);
+		this.ajoutPanneau(this.boutonDefenseNon, 325, 125);
+		this.ajoutPanneau(this.boutonChoixMancheOui, 250, 125);
+		this.ajoutPanneau(this.boutonChoixMancheNon, 325, 125);
+		this.ajoutPanneau(this.boutonEngrais, 250, 125);
+		this.ajoutPanneau(this.boutonGeant, 325, 125);
+		this.ajoutPanneau(this.boutonFarfadet, 400, 125);
 		this.ajoutPanneau(this.afficheurTexte, 0, 0);
-		this.ajoutPanneau(this.afficheurSaison, 0, 0);
-		this.ajoutPanneau(this.labelCarteEnJeu, 0, 100);
+		this.ajoutPanneau(this.afficheurSaison, 400, 225);
+		this.ajoutPanneau(this.labelCarteEnJeu, 0, 40);
 		this.effacerBoutons();
 
 		ActionListener ouiAttaque = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setAttaquer(true);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonAttaqueOui.addActionListener(ouiAttaque);
 		ActionListener nonAttaque = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setAttaquer(false);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonAttaqueNon.addActionListener(nonAttaque);
 
 		ActionListener ouiDefense = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setSeDefendre(true);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonDefenseOui.addActionListener(ouiDefense);
 		ActionListener nonDefense = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setSeDefendre(false);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonDefenseNon.addActionListener(nonDefense);
 
 		ActionListener ouiChoixManche = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setChoixCarteAlliee(true);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonChoixMancheOui.addActionListener(ouiChoixManche);
 		ActionListener nonChoixManche = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setChoixCarteAlliee(false);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonChoixMancheNon.addActionListener(nonChoixManche);
 
 		ActionListener actionGeant = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setActionAJouer(TypeAction.geantGardient);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonGeant.addActionListener(actionGeant);
 		ActionListener actionFarfadet = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setActionAJouer(TypeAction.farfadet);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
 		this.boutonFarfadet.addActionListener(actionFarfadet);
 		ActionListener actionEngrais = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
+			public synchronized void actionPerformed(ActionEvent event) {
 				strategie.setActionAJouer(TypeAction.engrais);
-				strategie.notify();
+				synchronized(strategie) {
+					strategie.notify();	
+				}
 				effacerBoutons();
 			}
 		};
@@ -159,36 +177,47 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		Runnable myRunnable = new Runnable() {
 			public void run() {
 				if (arg0 instanceof StrategieJoueurReelGraphique) {
-					if (arg0.toString().contains("Quelle action ?")) {
+					if (arg1.toString().contains("Quelle action ?")) {
 						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonEngrais.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonGeant.setVisible(true);
-					} else if (arg0.toString().contains("Se défendre avec votre carte chien de garde ?")) {
+					} else if (arg1.toString().contains("Se défendre avec votre carte chien de garde ?")) {
 						VueStrategieJoueurReelGraphique.this.boutonDefenseOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonDefenseNon.setVisible(true);
-					} else if (arg0.toString().contains("Voulez-vous attaquer")) {
+					} else if (arg1.toString().contains("Voulez-vous attaquer")) {
 						VueStrategieJoueurReelGraphique.this.boutonAttaqueOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonAttaqueNon.setVisible(true);
-					} else if (arg0.toString().contains("Voulez-vous une carte Alliee")) {
+					} else if (arg1.toString().contains("Voulez-vous une carte Alliee")) {
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheOui.setVisible(true);
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheNon.setVisible(true);
 					}
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
-				} else if (arg0 instanceof Carte) {
+				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {
+					Carte tempCarte = (Carte) arg0;
 					if (arg0 instanceof CarteIngredient) {
-						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient((Carte) arg0,
+						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient(tempCarte,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
 					} else if (arg0 instanceof CarteChiensDeGarde) {
-						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteChiensDeGarde((Carte) arg0,
+						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteChiensDeGarde(tempCarte,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
 					} else if (arg0 instanceof CarteTaupesGeantes) {
-						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient((Carte) arg0,
+						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient(tempCarte,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
 					}
-					VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.carteEnJeu, 0, 0);
-				} else if(arg1.toString().contains("Saison")) {
-					
-				}	else {
+					VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.carteEnJeu,
+							0, 60);
+				} else if (arg1.toString().contains("saison")) {
+					if (arg1.toString().contains("omne")) {
+						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : automne");
+					} else if (arg1.toString().contains("rin")) {
+						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
+					} else if (arg1.toString().contains("ete")) {
+						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : été");
+					} else if (arg1.toString().contains("hiver")) {
+						VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
+					}
+					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
+				} else {
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				}
 				VueStrategieJoueurReelGraphique.this.repaint();

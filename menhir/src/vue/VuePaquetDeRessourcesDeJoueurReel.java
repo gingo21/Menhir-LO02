@@ -25,7 +25,7 @@ import modele.CarteTaupesGeantes;
 
 public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJoueur {
 	
-	public static int TAILLE_CARTE = 130;
+	public static int TAILLE_CARTE = 140;
 	
 	public VuePaquetDeRessourcesDeJoueurReel(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {

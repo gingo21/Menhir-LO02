@@ -97,12 +97,13 @@ public class StrategieJoueurReelGraphique extends Strategie {
 
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 			}
+			this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
+	public synchronized int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle, int puissance) {
 		int puissanceModifie = puissance;
 		try {
@@ -125,13 +126,14 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					}
 				}
 			}
+			this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		return puissanceModifie;
 	}
 
-	public void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
+	public synchronized void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle) {
 		try {
 			if (parametresDePartie.getTypePartie() == StatutPartie.avancee
@@ -152,6 +154,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					}
 				}
 			}
+			this.getReferenceJoueur().getPaquet().rafraichirLesObservers();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

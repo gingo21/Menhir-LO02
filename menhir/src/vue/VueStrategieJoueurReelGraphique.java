@@ -3,6 +3,9 @@ package vue;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -44,11 +47,15 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	
 	public static int TEMPS_DE_REFLEXION = 1000;
 	private Ressources referenceRessources;
+	private StrategieJoueurReelGraphique referenceStrategie;
+	private VuePaquetDeRessourcesDeJoueur referenceVuePaquetDeRessourcesDeJoueur;
 
 	public VueStrategieJoueurReelGraphique(StrategieJoueurReelGraphique strategie, Ressources ressources, VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur/*, VueDePaquetDeRessourcesIA ... */) {
 		super();
 		strategie.addObserver(this);
+		this.referenceStrategie = strategie;
 		this.referenceRessources = ressources;
+		this.referenceVuePaquetDeRessourcesDeJoueur = vuePaquetDeRessourcesDeJoueur;
 		this.setPreferredSize(new Dimension(500, 250));
 
 		this.ajoutPanneau(this.boutonAttaqueOui, 250, 125);
@@ -162,8 +169,6 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.afficheurTexte.setSize(500, 25);
 
 		this.setVisible(true);
-		
-		//vuePaquetDeRessourcesDeJoueur
 	}
 
 	public void effacerBoutons() {
@@ -176,6 +181,32 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.boutonGeant.setVisible(false);
 		this.boutonEngrais.setVisible(false);
 		this.boutonFarfadet.setVisible(false);
+	}
+	
+	public void ajouterMouseListeners() {
+		for(Iterator<VueCarte>  it= VueStrategieJoueurReelGraphique.this.referenceVuePaquetDeRessourcesDeJoueur.getTempVueCartes1().iterator(); it.hasNext();) {
+			VueCarte tempVueCarte = it.next();
+			if(tempVueCarte.getMouseListeners().length == 0) {
+				tempVueCarte.addMouseListener( new MouseListener() {
+					public void mouseClicked(MouseEvent arg0) {
+						if(VueStrategieJoueurReelGraphique.this.attenteChoixCarte) {
+							VueStrategieJoueurReelGraphique.this.referenceStrategie.setCarteAJouer(tempVueCarte.getCarte());
+							synchronized(VueStrategieJoueurReelGraphique.this.referenceStrategie) {
+								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();	
+							}
+						}
+					}
+					public void mouseEntered(MouseEvent arg0) {
+					}
+					public void mouseExited(MouseEvent arg0) {
+					}
+					public void mousePressed(MouseEvent arg0) {
+					}
+					public void mouseReleased(MouseEvent arg0) {
+					}
+				});
+			}
+		}
 	}
 
 	public synchronized void update(Observable arg0, Object arg1) {
@@ -197,8 +228,10 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 						VueStrategieJoueurReelGraphique.this.boutonChoixMancheNon.setVisible(true);
 					} else if(arg1.toString().contains("Quelle carte ingrédient jouez-vous ?")) {
 						VueStrategieJoueurReelGraphique.this.attenteChoixCarte = true;
+						VueStrategieJoueurReelGraphique.this.ajouterMouseListeners();
 					} else if(arg1.toString().contains("A quel joueur voulez-vous voler des graines ?")) {
 						VueStrategieJoueurReelGraphique.this.attenteChoixDestinataire = true;
+						VueStrategieJoueurReelGraphique.this.ajouterMouseListeners();
 					}
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {
@@ -228,6 +261,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else {
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
+					
 				}
 				VueStrategieJoueurReelGraphique.this.repaint();
 				VueStrategieJoueurReelGraphique.this.revalidate();
@@ -241,5 +275,21 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public boolean isAttenteChoixCarte() {
+		return attenteChoixCarte;
+	}
+
+	public void setAttenteChoixCarte(boolean attenteChoixCarte) {
+		this.attenteChoixCarte = attenteChoixCarte;
+	}
+
+	public boolean isAttenteChoixDestinataire() {
+		return attenteChoixDestinataire;
+	}
+
+	public void setAttenteChoixDestinataire(boolean attenteChoixDestinataire) {
+		this.attenteChoixDestinataire = attenteChoixDestinataire;
 	}
 }

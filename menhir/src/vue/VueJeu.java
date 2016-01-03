@@ -51,16 +51,19 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		this.vuePaquetDeRessourcesDeJoueurReel.setBackground(COULEUR_DE_FOND);
 		this.vueStrategieJoueurReelGraphique = new VueStrategieJoueurReelGraphique((StrategieJoueurReelGraphique) parametres.getJoueurReel().getStrategie(), ressources, vuePaquetDeRessourcesDeJoueurReel) ;
 		this.vueStrategieJoueurReelGraphique.setBackground(COULEUR_DE_FOND);
-		/*int i=0;
+		int i=0;
 		for(Iterator<Joueur> it = parametres.getListeJoueurs().iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
 			if(tempJoueur instanceof JoueurVirtuel) {
-				this.vuesPaquetDeRessourcesIA.add(new VuePaquetDeRessourcesIA(tempJoueur.getPaquet(), ressources ,avancee));
+				VuePaquetDeRessourcesIA tempVuePaquet = new VuePaquetDeRessourcesIA(tempJoueur.getPaquet(), ressources ,avancee);
+				if(tempVuePaquet == null) {if(tempVuePaquet == null) {System.out.println("Problème");}}
+				else {System.out.println(tempVuePaquet.getClass().getName());}
+				this.vuesPaquetDeRessourcesIA.add(tempVuePaquet);
 				this.vuesPaquetDeRessourcesIA.get(i).setBackground(COULEUR_DE_FOND);
-				this.panneau.ajoutPanneau(this.vuesPaquetDeRessourcesIA.get(i), this.positionsDesIA[i].width, this.positionsDesIA[i].height);
+				this.panneau.ajoutPanneau(tempVuePaquet, this.positionsDesIA[i].width, this.positionsDesIA[i].height);
 				i++;
 			}
-		}*/ //TODO PROBLEME vueIA
+		}
 		
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDePartie, 350, 0);
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDeJoueurReel, this.DIMENSION_ECRAN.width - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().width, this.DIMENSION_ECRAN.height - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().height);

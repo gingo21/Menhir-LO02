@@ -35,7 +35,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 
 
 	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources) {
-		this.setPreferredSize(new Dimension(460, 200));
+		this.setPreferredSize(new Dimension(460, 130));
 		this.setDoubleBuffered(true);
 		parametresDePartie.getPaquetDePartie().addObserver(this);
 
@@ -65,7 +65,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 			this.lblCartesAvancee = new JLabel();
 			this.nbreDeCartesAvancee = parametresDePartie.getPaquetDePartie().getNombreCartesAvancees();
 			String tempTexte3 = "";
-			tempTexte3 = "Cartes Avancï¿½e : " + this.nbreDeCartesAvancee;
+			tempTexte3 = "Cartes Avancée : " + this.nbreDeCartesAvancee;
 			this.lblCartesAvancee.setText(tempTexte3);
 			this.ajoutPanneau(lblCartesAvancee, 355, 0);
 			this.vueDosAvancee = new VueImage(referenceImages.getImageDosLutin(), 80, 80);

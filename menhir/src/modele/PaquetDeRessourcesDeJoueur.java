@@ -30,50 +30,34 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 	}
 
 	public Joueur getJoueur() {
-		this.setChanged();
-		this.notifyObservers();
 		return joueur;
 	}
 
 	public void setJoueur(Joueur joueur) {
-		this.setChanged();
-		this.notifyObservers();
 		this.joueur = joueur;
 	}
 	
 	public Carte getCarteComptageDePoint() {
-		this.setChanged();
-		this.notifyObservers();
 		return this.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0);
 	}
 	
 	public CarteChamp getCarteChamp() {
-		this.setChanged();
-		this.notifyObservers();
 		return (CarteChamp) this.getPaquetsDeCartes().get("Cartes Champs").get(0);
 	}
 
 	public PaquetDeRessourcesDePartie getReferencePaquetPartie() {
-		this.setChanged();
-		this.notifyObservers();
 		return referencePaquetPartie;
 	}
 
 	public void setReferencePaquetPartie(PaquetDeRessourcesDePartie referencePaquetPartie) {
-		this.setChanged();
-		this.notifyObservers();
 		this.referencePaquetPartie = referencePaquetPartie;
 	}
 
 	public HashMap<String, ArrayList<Carte>> getPaquetsDeCartes() {
-		this.setChanged();
-		this.notifyObservers();
 		return paquetsDeCartes;
 	}
 
 	public void setPaquetsDeCartes(HashMap<String, ArrayList<Carte>> paquetsDeCartes) {
-		this.setChanged();
-		this.notifyObservers();
 		this.paquetsDeCartes = paquetsDeCartes;
 	}
 
@@ -100,7 +84,12 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 			tempCarte.add(carte);
 		}
 		this.setChanged();
-		this.notifyObservers("ajout carte");
+		this.notifyObservers();
+	}
+	
+	public void rafraichirLesObservers() {
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void afficherCartes() { //MODE CONSOLE

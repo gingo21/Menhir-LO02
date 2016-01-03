@@ -1,32 +1,14 @@
 package vue;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.imageio.ImageIO;
-import javax.print.DocFlavor.URL;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import Ressources.Ressources;
 import modele.Carte;
-import modele.CarteAlliee;
-import modele.CarteChiensDeGarde;
-import modele.CarteIngredient;
 
 public abstract class VueCarte extends Panneau{
 
@@ -46,7 +28,6 @@ public abstract class VueCarte extends Panneau{
 		this.carte = carte;
 		this.nomCarte = carte.getNom();
 		this.setPreferredSize(new Dimension(h, l)); 
-		addMouseListener(this);
 		this.hidden = IA;
 	} 
 
@@ -62,6 +43,14 @@ public abstract class VueCarte extends Panneau{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
+	}
+
+	public Carte getCarte() {
+		return carte;
+	}
+
+	public void setCarte(Carte carte) {
+		this.carte = carte;
 	}
 
 }

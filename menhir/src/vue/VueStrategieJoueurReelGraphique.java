@@ -53,13 +53,14 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private ArrayList<VuePaquetDeRessourcesIA> referenceVuesPaquetDeRessourcesIA;
 
 	public VueStrategieJoueurReelGraphique(final StrategieJoueurReelGraphique strategie, Ressources ressources,
-			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur, ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA) {
+			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur,
+			ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA) {
 		super();
 		strategie.addObserver(this);
 		this.referenceStrategie = strategie;
 		this.referenceRessources = ressources;
 		this.referenceVuePaquetDeRessourcesDeJoueur = vuePaquetDeRessourcesDeJoueur;
-		this.referenceVuePaquetDeRessourcesDeJoueur = vuePaquetDeRessourcesDeJoueur;
+		this.referenceVuesPaquetDeRessourcesIA = vuesPaquetDeRessourcesIA;
 		this.setPreferredSize(new Dimension(500, 250));
 
 		this.ajoutPanneau(this.boutonAttaqueOui, 250, 125);
@@ -190,7 +191,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	public void ajouterMouseListeners() {
 		for (Iterator<VueCarte> it = VueStrategieJoueurReelGraphique.this.referenceVuePaquetDeRessourcesDeJoueur
 				.getTempVueCartes1().iterator(); it.hasNext();) {
-			final VueCarte  tempVueCarte = it.next();
+			final VueCarte tempVueCarte = it.next();
 			if (tempVueCarte.getMouseListeners().length == 0) {
 				tempVueCarte.addMouseListener(new MouseListener() {
 					public void mouseClicked(MouseEvent arg0) {
@@ -200,8 +201,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 							synchronized (VueStrategieJoueurReelGraphique.this.referenceStrategie) {
 								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();
 							}
+							System.out.println("Trol");
 						}
-						System.out.println("Trol");
 					}
 
 					public void mouseEntered(MouseEvent arg0) {
@@ -217,6 +218,37 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					}
 				});
 			}
+		}
+		for (Iterator<VuePaquetDeRessourcesIA> it = VueStrategieJoueurReelGraphique.this.referenceVuesPaquetDeRessourcesIA
+				.iterator(); it.hasNext();) {
+			final VuePaquetDeRessourcesIA tempVue = it.next();
+			if (tempVue.getMouseListeners().length == 0) {
+				tempVue.addMouseListener(new MouseListener() {
+					public void mouseClicked(MouseEvent arg0) {
+						if (VueStrategieJoueurReelGraphique.this.attenteChoixCarte) {
+							VueStrategieJoueurReelGraphique.this.referenceStrategie.setDestinataireAAttaquer(
+									tempVue.getReferencePaquetDeRessourcesDeJoueur().getJoueur());
+							;
+							synchronized (VueStrategieJoueurReelGraphique.this.referenceStrategie) {
+								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();
+							}
+						}
+					}
+
+					public void mouseEntered(MouseEvent arg0) {
+					}
+
+					public void mouseExited(MouseEvent arg0) {
+					}
+
+					public void mousePressed(MouseEvent arg0) {
+					}
+
+					public void mouseReleased(MouseEvent arg0) {
+					}
+				});
+			}
+
 		}
 	}
 
@@ -271,7 +303,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
 						}
 					}
-				VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
+					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				}
 
 				VueStrategieJoueurReelGraphique.this.repaint();

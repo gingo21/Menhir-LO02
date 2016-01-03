@@ -75,5 +75,14 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	public void setTempVueCartes1(ArrayList<VueCarte> tempVueCartes1) {
 		this.tempVueCartes1 = tempVueCartes1;
 	}
+
+	public PaquetDeRessourcesDeJoueur getReferencePaquetDeRessourcesDeJoueur() {
+		return referencePaquetDeRessourcesDeJoueur;
+	}
+
+	public void setReferencePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur referencePaquetDeRessourcesDeJoueur) {
+		this.referencePaquetDeRessourcesDeJoueur = referencePaquetDeRessourcesDeJoueur;
+	}
+	
 	
 }

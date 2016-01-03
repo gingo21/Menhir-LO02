@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,10 +27,11 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 	private int nbreDeCartesAvancee;
 	private ParametresDePartie referenceParametres;
 	private Ressources referenceImages;
-	private VueImage[] vueGraines;
+	protected ArrayList <VueImage> graines;
 	private VueImage vueGeant;
 	private VueImage vueDosAvancee;
 	private VueImage vueDosNorm;
+
 
 	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources) {
 		this.setPreferredSize(new Dimension(460, 200));
@@ -43,10 +45,10 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		tempTexte1 += "Graines " + this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir();
 		this.nombreDeGraines.setText(tempTexte1);
 		this.ajoutPanneau(nombreDeGraines, 63, 0);
-		vueGraines = new VueImage[this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir()];
+		graines = new ArrayList<VueImage>();
 		for (int i = 0; i < this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
-			vueGraines[i] = new VueImage(referenceImages.getImageGraine(), 24, 10);
-			this.ajoutPanneau(vueGraines[i], 75 + (i % 8) * 13, 18 + (i / 8) * 6);
+			graines.add(new VueImage(referenceImages.getImageGraine(), 24, 10));
+			this.ajoutPanneau(graines.get(i), 75 + (i % 8) * 13, 18 + (i / 8) * 6);
 		}
 		vueGeant = new VueImage(referenceImages.getImageGeant(), 63, 108);
 		this.ajoutPanneau(vueGeant, 0, 0);
@@ -62,7 +64,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 			this.lblCartesAvancee = new JLabel();
 			this.nbreDeCartesAvancee = parametresDePartie.getPaquetDePartie().getNombreCartesAvancees();
 			String tempTexte3 = "";
-			tempTexte3 = "Cartes Avancée : " + this.nbreDeCartesAvancee;
+			tempTexte3 = "Cartes Avancï¿½e : " + this.nbreDeCartesAvancee;
 			this.lblCartesAvancee.setText(tempTexte3);
 			this.ajoutPanneau(lblCartesAvancee, 355, 0);
 			this.vueDosAvancee = new VueImage(referenceImages.getImageDosLutin(), 80, 80);
@@ -83,13 +85,10 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.nombreDeGraines);
 				VuePaquetDeRessourcesDePartie.this.nombreDeGraines.setText(tempTexte1);
 				VuePaquetDeRessourcesDePartie.this.ajoutPanneau(nombreDeGraines, 63, 0);
-				for (int i = 0; i < vueGraines.length; i++) {
-					VuePaquetDeRessourcesDePartie.this.remove(vueGraines[i]);
-				}
-				vueGraines = new VueImage[VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir()];
+				graines.clear();
 				for (int i = 0; i < VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
-					vueGraines[i] = new VueImage(referenceImages.getImageGraine(), 24, 10);
-					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(vueGraines[i], 75 + (i % 8) * 13, 18 + (i / 8) * 6);
+					graines.add(new VueImage(referenceImages.getImageGraine(), 24, 10)); 
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(graines.get(i), 75 + (i % 8) * 13, 18 + (i / 8) * 6);
 				}
 				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.lblCartesNormale);
 				VuePaquetDeRessourcesDePartie.this.lblCartesNormale = new JLabel();
@@ -103,7 +102,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee = new JLabel();
 					VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee = VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getNombreCartesAvancees();
 					String tempTexte3 = "";
-					tempTexte3 = "Cartes Avancée : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
+					tempTexte3 = "Cartes AvancÃ©e : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee.setText(tempTexte3);
 					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesAvancee, 355, 0);
 				}

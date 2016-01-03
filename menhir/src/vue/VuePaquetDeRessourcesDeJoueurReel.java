@@ -31,7 +31,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
 		this.setPreferredSize(new Dimension(600, 300));
-		vueGraines = new VueImage[this.referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir()];
 	}
 	public void update(Observable arg0, Object arg1) {
 		Runnable myRunnable = new Runnable() {
@@ -98,9 +97,8 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 				VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(nombreDeGraines, 355, 40);
 				graines.clear();
 				for (int i = 0; i < VuePaquetDeRessourcesDeJoueurReel.this.referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir(); i++) {
-					graines.add(vuesGraines);
+					graines.add(new VueImage(referenceRessources.getImageGraine(), 24, 10));
 					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(graines.get(i), 5 + (i % 3) * 26, 10 + (i / 3) * 11);
-					VuePaquetDeRessourcesDeJoueurReel.this.revalidate();
 				}
 				VuePaquetDeRessourcesDeJoueurReel.this.repaint();
 				VuePaquetDeRessourcesDeJoueurReel.this.revalidate();

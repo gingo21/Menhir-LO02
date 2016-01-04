@@ -201,7 +201,6 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 							synchronized (VueStrategieJoueurReelGraphique.this.referenceStrategie) {
 								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();
 							}
-							System.out.println("Trol");
 						}
 					}
 
@@ -279,6 +278,9 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {
 					Carte tempCarte = (Carte) arg0;
+					if(VueStrategieJoueurReelGraphique.this.carteEnJeu != null) {
+					VueStrategieJoueurReelGraphique.this.remove(VueStrategieJoueurReelGraphique.this.carteEnJeu);
+					}
 					if (arg0 instanceof CarteIngredient) {
 						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient(tempCarte,
 								VueStrategieJoueurReelGraphique.this.referenceRessources, 200, 200, false);
@@ -293,6 +295,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 							0, 60);
 				} else if (arg1 != null) {
 					if (arg1.toString().contains("saison")) {
+						VueStrategieJoueurReelGraphique.this.remove(VueStrategieJoueurReelGraphique.this.afficheurSaison);
 						if (arg1.toString().contains("omne")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : automne");
 						} else if (arg1.toString().contains("rin")) {

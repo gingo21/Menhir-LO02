@@ -16,6 +16,7 @@ public class GraphicLauncher implements Runnable {
 		ParametresDePartie parametresDePartie = new ParametresDePartie();
 		FenetreInitialisation fenetreInitialisation = new FenetreInitialisation(null, "Menhir", true, parametresDePartie);
 		fenetreInitialisation.setVisible(true);
+		//Trol
 	}
 	
 	public ParametresDePartie getParametresDePartie() {

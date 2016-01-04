@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
 import com.sun.prism.Graphics;
 
 import Ressources.Ressources;
@@ -68,6 +71,7 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 				(StrategieJoueurReelGraphique) parametres.getJoueurReel().getStrategie(), ressources,
 				this.vuePaquetDeRessourcesDeJoueurReel, this.vuesPaquetDeRessourcesIA);
 		this.vueStrategieJoueurReelGraphique.setBackground(COULEUR_DE_FOND);
+		this.vueStrategieJoueurReelGraphique.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDePartie, 350, 0);
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDeJoueurReel,

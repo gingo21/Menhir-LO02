@@ -51,8 +51,8 @@ public class Partie extends Observable implements Runnable {
 			this.setChanged();
 			this.notifyObservers("C'est au tour de " + joueurActuel.getNom());
 
-			joueurActuel.getPaquet().rafraichirLesObservers();
 			joueurActuel.getStrategie().jouerSonTour(this.getSaisonActuelle(), this.parametresDePartie);
+			joueurActuel.getPaquet().rafraichirLesObservers();
 			this.wait(2000);
 
 			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
@@ -61,7 +61,7 @@ public class Partie extends Observable implements Runnable {
 				if (tempJoueur != joueurActuel) {
 					tempJoueur.getStrategie().attaquer(this.parametresDePartie, joueurActuel, tempJoueur,
 							this.getSaisonActuelle());
-					tempJoueur.getPaquet().rafraichirLesObservers();
+					this.parametresDePartie.rafraichirObserversDePaquet();
 				}
 			}
 
@@ -98,14 +98,14 @@ public class Partie extends Observable implements Runnable {
 				this.setSaisonActuelle(this.getSaisonActuelle().next());
 			}
 			this.setNumeroDeTourActuel(0);
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers("Changement de saison : " + this.getSaisonActuelle());
 		}
 	}
 
 	public void changerDeManche(ParametresDePartie parametresDePartie) {
 		this.numeroDeManche++;
-		this.hasChanged();
+		this.setChanged();
 		this.notifyObservers("Changement de manche : " + this.numeroDeManche);
 		int resteManches = (parametresDePartie.getNombreDeManches() - this.numeroDeManche);
 		this.setChanged();
@@ -128,16 +128,16 @@ public class Partie extends Observable implements Runnable {
 			}
 		}
 		if (JoueurGagnant instanceof JoueurReel) {
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers("Bravo, vous avez gagné, avec :"
 					+ JoueurGagnant.getPaquet().getCarteChamp().getMenhirAdultes()
 					+ "menhirs et "
 					+ JoueurGagnant.getPaquet().getGrainesDeMenhir()
 					+ "graines");
 		} else {
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers("Vous avez perdu :(");
-			this.hasChanged();
+			this.setChanged();
 			this.notifyObservers("Gagnant : " + JoueurGagnant.toString());
 		}
 	}

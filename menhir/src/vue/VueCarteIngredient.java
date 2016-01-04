@@ -21,7 +21,7 @@ public class VueCarteIngredient extends VueCarte{
 	public VueCarteIngredient(Carte carte,Ressources ressources, int h, int l, boolean IA ) {
 		super(carte, ressources,h,l,IA);
 		this.puissanceActions=((CarteIngredient) carte).getPuissanceActions();
-		if (this.nomCarte.equals("Chant de SirÃ¨ne")){
+		if (this.nomCarte.equals("Chant de Sirène")){
 			this.imageFaceCarte = ressources.getChantDeSirene();
 		}
 		else if (this.nomCarte.equals("Esprit de Dolmen")){
@@ -54,7 +54,7 @@ public class VueCarteIngredient extends VueCarte{
 					JLabel force = new JLabel(String.valueOf(this.puissanceActions[i][j]));
 //					force.setPreferredSize(new Dimension(5,5));
 					force.setForeground(Color.PINK);
-					this.ajoutPanneau(force,(5*l/11) + i*(l/8),(4*h/7) + j*(h/8)); 
+					this.ajoutPanneau(force,(5*l*10/107) + i*(l*10/82),(4*h*10/67) + j*(h*100/860)); 
 				}
 			}
 	}

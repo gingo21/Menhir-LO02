@@ -73,7 +73,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 		this.ajoutPanneau(this.boutonGeant, 325, 125);
 		this.ajoutPanneau(this.boutonFarfadet, 400, 125);
 		this.ajoutPanneau(this.afficheurTexte, 0, 0);
-		this.ajoutPanneau(this.afficheurSaison, 400, 225);
+		this.ajoutPanneau(this.afficheurSaison, 375, 225);
 		this.ajoutPanneau(this.labelCarteEnJeu, 0, 40);
 		this.effacerBoutons();
 
@@ -305,7 +305,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 						} else if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("hiver")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
 						}
-						VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.afficheurSaison, 400, 225);
+						VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.afficheurSaison, 375, 225);
 						VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 					} else {
 						VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
@@ -320,7 +320,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 
 		try {
 			if (arg1 != null) {
-				if (!arg1.toString().contains("saison") && !arg1.toString().contains("[")) {
+				if (!arg1.toString().contains("[")) {
 					this.wait(TEMPS_DE_REFLEXION);
 				}
 			}

@@ -35,7 +35,8 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 
 	public VueJeu(ParametresDePartie parametres, Partie partie, Ressources ressources) {
 		super();
-
+		partie.addObserver(this);
+		
 		this.positionsDesIA = new Dimension[5];
 		this.positionsDesIA[0] = new Dimension(0, 0);
 		this.positionsDesIA[1] = new Dimension(0, 250);
@@ -61,8 +62,9 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 			if (tempJoueur instanceof JoueurVirtuel) {
 				VuePaquetDeRessourcesIA tempVuePaquet = new VuePaquetDeRessourcesIA(tempJoueur.getPaquet(), ressources,
 						avancee);
-				this.vuesPaquetDeRessourcesIA.add(tempVuePaquet);
 				tempVuePaquet.setBackground(COULEUR_DE_FOND);
+				tempVuePaquet.setBorder(BorderFactory.createLineBorder(Color.black));
+				this.vuesPaquetDeRessourcesIA.add(tempVuePaquet);
 				this.panneau.ajoutPanneau(tempVuePaquet, this.positionsDesIA[i].width, this.positionsDesIA[i].height);
 				i++;
 			}

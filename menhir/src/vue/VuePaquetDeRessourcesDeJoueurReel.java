@@ -68,14 +68,12 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 				}
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty()) {
 					if( tempVueCartes2.isEmpty()){
-						System.out.println("2");
 
 						tempVueCartes2.add(new VueCarteChamp(
 								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0), referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
 //						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 0);
 					}
 					if(!grainesMenhirChamp.isEmpty()){
-						System.out.println("3");
 
 						for (Iterator<VueImage> it = grainesMenhirChamp.iterator(); it.hasNext();) {
 							VueImage tempit = it.next();
@@ -88,7 +86,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					}
 					//Affichage graines menhirs
 					if (((CarteChamp)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0)).getMenhirAdultes()!=0) {
-						System.out.println("4");
 						for (int i = 0; i < ((CarteChamp)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0)).getMenhirAdultes(); i++) {
 							VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
 							grainesMenhirChamp.add(tempVueImage);

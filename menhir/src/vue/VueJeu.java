@@ -126,7 +126,6 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 				for (Iterator<Carte> it = this.referenceParametres.getPaquetDePartie().getPaquetsDeCartes().get("Cartes Ingredients")
 						.iterator(); it.hasNext();) {
 					it.next().addObserver(this.vueStrategieJoueurReelGraphique);
-					System.out.println("John");
 				}
 			}
 		}

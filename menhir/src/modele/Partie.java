@@ -114,6 +114,7 @@ public class Partie extends Observable implements Runnable {
 			this.notifyObservers("nouveau paquet");
 			this.parametresDePartie.getPaquetDePartie().reprendreToutesLesCartes(this.parametresDePartie,
 					tempNewPaquet);
+			this.parametresDePartie.rafraichirObserversDePaquet();
 		}
 	}
 

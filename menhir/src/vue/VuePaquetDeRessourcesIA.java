@@ -62,7 +62,9 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 					}
 					if (!grainesMenhir.isEmpty()) {
 						for (Iterator<VueImage> it = grainesMenhir.iterator(); it.hasNext();) {
-							VuePaquetDeRessourcesIA.this.remove(it.next());
+							VueImage tempit = it.next();
+							VuePaquetDeRessourcesIA.this.remove(tempit);		
+							tempVueCartes2.get(0).remove(tempit);
 						}
 						grainesMenhir.clear();
 						VuePaquetDeRessourcesIA.this.remove(tempVueCartes2.get(0));
@@ -79,15 +81,20 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							(tempVueCartes2.get(0)).ajoutPanneau(tempVueImage, 0 + 5 + (i % 3) * 26,
 									+10 + (i / 3) * 11);
 						}
-						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
-
+						
 					}
-					else{
-						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
-					}
+					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesIA.this.referenceAvancee) {
+					if (!tempVueCartes4.isEmpty()) {
+						VuePaquetDeRessourcesIA.this.remove(tempVueCartes4.get(0));
+						tempVueCartes4.clear();
+					}
+					if (!tempVueCartes5.isEmpty()) {
+						VuePaquetDeRessourcesIA.this.remove(tempVueCartes5.get(0));
+						tempVueCartes5.clear();
+					}
 					if (  !referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 							.get("Cartes Comptage De Points").isEmpty()) {
 						if(tempVueCartes3.isEmpty()){
@@ -112,9 +119,9 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						//Affichage graines menhirs
 						if (((CarteComptageDePoints)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0)).getMenhirAdultes()!=0) {
 							for (int i = 0; i < ((CarteComptageDePoints)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0)).getMenhirAdultes(); i++) {
-								VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
+								VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 12, 5);
 								grainesMenhir.add(tempVueImage);
-								(tempVueCartes3.get(0)).ajoutPanneau(tempVueImage, 3 + (i % 5) * TAILLE_CARTE/(55/10), 9+
+								(tempVueCartes3.get(0)).ajoutPanneau(tempVueImage, 2 + (i % 5) * TAILLE_CARTE/(55/10), 4+
 										(i / 5) * TAILLE_CARTE/5);
 							}
 						}

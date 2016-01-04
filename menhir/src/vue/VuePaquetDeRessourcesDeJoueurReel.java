@@ -102,6 +102,14 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesDeJoueurReel.this.referenceAvancee) {
+					if (!tempVueCartes4.isEmpty()) {
+						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes4.get(0));
+						tempVueCartes4.clear();
+					}
+					if (!tempVueCartes5.isEmpty()) {
+						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes5.get(0));
+						tempVueCartes5.clear();
+					}
 					if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 							.get("Cartes Comptage De Points").isEmpty()) {
 						if (tempVueCartes3.isEmpty()){
@@ -132,14 +140,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 						}
 						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), 0, TAILLE_CARTE);
 
-					}
-					if (!tempVueCartes4.isEmpty()) {
-						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes4.get(0));
-						tempVueCartes4.clear();
-					}
-					if (!tempVueCartes5.isEmpty()) {
-						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes5.get(0));
-						tempVueCartes5.clear();
 					}
 					if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde")
 							.isEmpty()) {

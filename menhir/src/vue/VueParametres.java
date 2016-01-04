@@ -179,8 +179,7 @@ public class VueParametres extends JDialog {
 			this.referenceParametresDePartie
 					.setPaquetDePartie(new PaquetDeRessourcesDePartie(this.referenceParametresDePartie.getTypePartie(),
 							this.referenceParametresDePartie.getNombreDeJoueurs()));
-			this.referenceParametresDePartie.miseAJourListeJoueurs();
-			this.referenceParametresDePartie.getJoueurReel().setNom(this.choixNomDuJoueurReel.getText());
+			this.referenceParametresDePartie.miseAJourListeJoueurs(this.choixNomDuJoueurReel.getText());
 			for (Iterator<Joueur> it = this.referenceParametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
 				if (tempJoueur instanceof JoueurVirtuel) {
@@ -210,12 +209,6 @@ public class VueParametres extends JDialog {
 						}
 					} else if (tempJoueur.getNom().contains("IA5")) {
 						if (this.choixDifficultesIAs.get(4).getSelectedItem().toString().contains("Facile")) {
-							((JoueurVirtuel) tempJoueur).setDifficulte(Difficulte.facile);
-						} else {
-							((JoueurVirtuel) tempJoueur).setDifficulte(Difficulte.normale);
-						}
-					} else if (tempJoueur.getNom().contains("IA6")) {
-						if (this.choixDifficultesIAs.get(5).getSelectedItem().toString().contains("Facile")) {
 							((JoueurVirtuel) tempJoueur).setDifficulte(Difficulte.facile);
 						} else {
 							((JoueurVirtuel) tempJoueur).setDifficulte(Difficulte.normale);

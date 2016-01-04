@@ -50,7 +50,7 @@ public class Partie extends Observable implements Runnable {
 			Joueur joueurActuel = this.parametresDePartie.getListeJoueurs().get(indexJoueurActuel);
 			this.setChanged();
 			this.notifyObservers("C'est au tour de " + joueurActuel.getNom());
-
+			System.out.println(this.parametresDePartie.getOrdreDesJoueurs().toString());
 			joueurActuel.getStrategie().jouerSonTour(this.getSaisonActuelle(), this.parametresDePartie);
 			joueurActuel.getPaquet().rafraichirLesObservers();
 			this.wait(2000);
@@ -131,9 +131,9 @@ public class Partie extends Observable implements Runnable {
 			this.setChanged();
 			this.notifyObservers("Bravo, vous avez gagné, avec :"
 					+ JoueurGagnant.getPaquet().getCarteChamp().getMenhirAdultes()
-					+ "menhirs et "
+					+ " menhirs et "
 					+ JoueurGagnant.getPaquet().getGrainesDeMenhir()
-					+ "graines");
+					+ " graines");
 		} else {
 			this.setChanged();
 			this.notifyObservers("Vous avez perdu :(");

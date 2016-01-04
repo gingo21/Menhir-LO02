@@ -91,13 +91,16 @@ public class ParametresDePartie extends Observable implements Serializable {
 		return tempJoueurReel;
 	}
 	
-	public void miseAJourListeJoueurs() {
-		for (int i = this.listeJoueurs.size()-1; i >=1; i--) {
+	public void miseAJourListeJoueurs(String nomDuJoueur) {
+		for (int i = this.listeJoueurs.size()-1; i >=0; i--) {
 			this.listeJoueurs.remove(i);
 		}
-		for (int i = this.ordreDesJoueurs.size()-1; i >=1; i--) {
+		for (int i = this.ordreDesJoueurs.size()-1; i >=0; i--) {
 		this.ordreDesJoueurs.remove(i);
 		}
+		JoueurReel tempJoueurReel = new JoueurReel(nomDuJoueur, this.paquetDePartie);
+		this.ordreDesJoueurs.add(tempJoueurReel.getId());
+		this.listeJoueurs.add(tempJoueurReel);
 		for (int i = 1; i < this.nombreDeJoueurs; i++) {
 			JoueurVirtuel tempJoueurVirtuel = new JoueurVirtuel("IA" + i, this.paquetDePartie, Difficulte.facile);
 			this.ordreDesJoueurs.add(tempJoueurVirtuel.getId());

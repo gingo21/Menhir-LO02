@@ -7,6 +7,7 @@ import java.util.Observable;
 import javax.swing.SwingUtilities;
 
 import modele.CarteChamp;
+import modele.CarteComptageDePoints;
 import modele.PaquetDeRessourcesDeJoueur;
 import Ressources.Ressources;
 
@@ -81,18 +82,46 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
 
 					}
+					else{
+						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
+					}
 				}
 				// Partie Avancee
 				if (VuePaquetDeRessourcesIA.this.referenceAvancee) {
-					if (tempVueCartes3.isEmpty() && !referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
+					if (  !referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 							.get("Cartes Comptage De Points").isEmpty()) {
-						tempVueCartes3.add(new VueCarteComptageDePoints(
-								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
-										.get("Cartes Comptage De Points").get(0),
-								referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes3.get(0), TAILLE_CARTE * 2,
-								20 + TAILLE_CARTE);
+						if(tempVueCartes3.isEmpty()){
+							tempVueCartes3.add(new VueCarteComptageDePoints(
+									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
+									.get("Cartes Comptage De Points").get(0),
+									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
+							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes3.get(0), TAILLE_CARTE * 2,
+									20 + TAILLE_CARTE);
+						}
+
+						if(!grainesMenhir.isEmpty()){
+							for (Iterator<VueImage> it = grainesMenhir.iterator(); it.hasNext();) {
+								VueImage tempit = it.next();
+								VuePaquetDeRessourcesIA.this.remove(tempit);		
+								tempVueCartes3.get(0).remove(tempit);
+							}
+							grainesMenhir.clear();
+							VuePaquetDeRessourcesIA.this.remove(tempVueCartes3.get(0));
+
+						}
+						//Affichage graines menhirs
+						if (((CarteComptageDePoints)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0)).getMenhirAdultes()!=0) {
+							for (int i = 0; i < ((CarteComptageDePoints)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0)).getMenhirAdultes(); i++) {
+								VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
+								grainesMenhir.add(tempVueImage);
+								(tempVueCartes3.get(0)).ajoutPanneau(tempVueImage, 3 + (i % 5) * TAILLE_CARTE/(55/10), 9+
+										(i / 5) * TAILLE_CARTE/5);
+							}
+						}
+						VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes3.get(0), TAILLE_CARTE * 2, 20+TAILLE_CARTE);
+
 					}
+
 					if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde")
 							.isEmpty()) {
 						if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde")
@@ -100,7 +129,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							tempVueCartes4.clear();
 							tempVueCartes4.add(new VueCarteChiensDeGarde(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
-											.get("Cartes Chiens De Garde").get(0),
+									.get("Cartes Chiens De Garde").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, true));
 							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes4.get(0), 3 * TAILLE_CARTE, 20);
 

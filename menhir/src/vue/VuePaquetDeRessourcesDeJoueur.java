@@ -32,6 +32,7 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 	protected PaquetDeRessourcesDeJoueur referencePaquetDeRessourcesDeJoueur;
 	protected ArrayList <VueImage> graines;
 	protected ArrayList <VueImage> grainesMenhir;
+	protected ArrayList <VueImage> grainesMenhirChamp;
 	protected boolean referenceAvancee;
 	protected Ressources referenceRessources;
 	protected String tempTexte1;
@@ -59,7 +60,8 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 		this.nomDuJoueur = new JLabel();
 		this.setBackground(new Color(70,200,70));
 		graines = new ArrayList<VueImage>();
-		grainesMenhir = new ArrayList<VueImage>();
+		grainesMenhirChamp = new ArrayList<VueImage>();
+		grainesMenhir =  new ArrayList<VueImage>();
 		
 //		vuesCartes=new HashMap<String, ArrayList<VueCarte>>();
 		tempVueCartes1 = new ArrayList<VueCarte>();

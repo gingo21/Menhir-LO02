@@ -33,7 +33,8 @@ public class Partie extends Observable implements Runnable {
 			this.notifyObservers("Ne répondez que par un mot aux questions si vous voulez que cela se passe bien ...");
 		}
 		// Distribution des cartes et présentations
-		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(this.parametresDePartie);//TODO pb
+		this.parametresDePartie.getPaquetDePartie().distribuerRessourcesInitiales(this.parametresDePartie);
+		this.parametresDePartie.rafraichirObserversDePaquet();
 		this.wait(500);
 
 		do {
@@ -50,6 +51,7 @@ public class Partie extends Observable implements Runnable {
 			this.setChanged();
 			this.notifyObservers("C'est au tour de " + joueurActuel.getNom());
 
+			joueurActuel.getPaquet().rafraichirLesObservers();
 			joueurActuel.getStrategie().jouerSonTour(this.getSaisonActuelle(), this.parametresDePartie);
 			this.wait(2000);
 
@@ -59,6 +61,7 @@ public class Partie extends Observable implements Runnable {
 				if (tempJoueur != joueurActuel) {
 					tempJoueur.getStrategie().attaquer(this.parametresDePartie, joueurActuel, tempJoueur,
 							this.getSaisonActuelle());
+					tempJoueur.getPaquet().rafraichirLesObservers();
 				}
 			}
 

@@ -160,15 +160,18 @@ public void readParametres() throws ClassNotFoundException {
 		}
 	}
 
-@Override
+public void rafraichirObserversDePaquet() {
+	for(Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
+		it.next().getPaquet().rafraichirLesObservers();
+	}
+}
+
+
 public String toString() {
 	return "ParametresDePartie [nombreDeManches=" + nombreDeManches + ", nombreDeJoueurs=" + nombreDeJoueurs
 			+ ", typePartie=" + typePartie + ", ordreDesJoueurs=" + ordreDesJoueurs + ", listeJoueurs=" + listeJoueurs
 			+ ", paquetDePartie=" + paquetDePartie + "]";
 }
-
-
-
 
 	
 }

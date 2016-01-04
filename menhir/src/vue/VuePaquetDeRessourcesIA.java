@@ -17,7 +17,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 	public VuePaquetDeRessourcesIA(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
-		this.setPreferredSize(new Dimension(250, 260));
+		this.setPreferredSize(new Dimension(330, 180));
 		tempTexte2 += referencePaquetDeRessourcesDeJoueur.getJoueur().getNom();
 		this.nomDuJoueur.setText(tempTexte2);
 		this.ajoutPanneau(nomDuJoueur, 50, 0);
@@ -94,7 +94,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							tempVueCartes4.add(new VueCarteChiensDeGarde(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde").get(0), referenceRessources, TAILLE_CARTE,
 									TAILLE_CARTE, true));
-							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes4.get(0), 0, 20+2*TAILLE_CARTE);
+							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes4.get(0), 3*TAILLE_CARTE, 20);
 
 						}
 
@@ -104,7 +104,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							tempVueCartes5.add( new VueCarteTaupesGeantes(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Taupes Geantes").get(0), referenceRessources, TAILLE_CARTE,
 									TAILLE_CARTE, true));
-							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes5.get(0), 0, 20+2*TAILLE_CARTE);
+							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes5.get(0), 3*TAILLE_CARTE, 20);
 
 						}
 					}

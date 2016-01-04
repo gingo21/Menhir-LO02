@@ -65,9 +65,9 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 			this.lblCartesAvancee = new JLabel();
 			this.nbreDeCartesAvancee = parametresDePartie.getPaquetDePartie().getNombreCartesAvancees();
 			String tempTexte3 = "";
-			tempTexte3 = "Cartes Avancée : " + this.nbreDeCartesAvancee;
+			tempTexte3 = "Cartes Avancées : " + this.nbreDeCartesAvancee;
 			this.lblCartesAvancee.setText(tempTexte3);
-			this.ajoutPanneau(lblCartesAvancee, 355, 0);
+			this.ajoutPanneau(lblCartesAvancee, 347, 0);
 			this.vueDosAvancee = new VueImage(referenceImages.getImageDosLutin(), 80, 80);
 			this.ajoutPanneau(vueDosAvancee, 370, 40);
 		}
@@ -106,9 +106,9 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee = new JLabel();
 					VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee = VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getNombreCartesAvancees();
 					String tempTexte3 = "";
-					tempTexte3 = "Cartes AvancÃ©e : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
+					tempTexte3 = "Cartes Avancées : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee.setText(tempTexte3);
-					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesAvancee, 355, 0);
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(lblCartesAvancee, 347, 0);
 				}
 				VuePaquetDeRessourcesDePartie.this.repaint();
 				VuePaquetDeRessourcesDePartie.this.revalidate();

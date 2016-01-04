@@ -25,15 +25,15 @@ import modele.CarteTaupesGeantes;
 
 public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJoueur {
 
-	public static int TAILLE_CARTE = 140;
+	public static int TAILLE_CARTE = 150;
 
 	public VuePaquetDeRessourcesDeJoueurReel(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
-		this.setPreferredSize(new Dimension(600, 320));
+		this.setPreferredSize(new Dimension(850, 340));
 		tempTexte2 += referencePaquetDeRessourcesDeJoueur.getJoueur().getNom();
 		VuePaquetDeRessourcesDeJoueurReel.this.nomDuJoueur.setText(tempTexte2);
-		this.ajoutPanneau(nomDuJoueur, TAILLE_CARTE*13/10, 100);
+		this.ajoutPanneau(nomDuJoueur, TAILLE_CARTE/3, 0);
 
 	}
 
@@ -59,7 +59,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									.get("Cartes Ingredients").get(i),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false);
 							tempVueCartes1.add(tempVue);
-							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVue, i * TAILLE_CARTE,
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVue, TAILLE_CARTE + i * TAILLE_CARTE,
 									TAILLE_CARTE);
 							// System.out.println(arg0.getClass().getName());
 						}
@@ -100,7 +100,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 								.get("Cartes Comptage De Points").get(0),
 								referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), TAILLE_CARTE*2, 0);
+						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), 0, TAILLE_CARTE);
 					}
 					if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Chiens De Garde")
 							.isEmpty()) {
@@ -114,7 +114,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 									.get("Cartes Chiens De Garde").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes4.get(0), TAILLE_CARTE*3, 0);
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes4.get(0), TAILLE_CARTE*2, 0);
 
 						}
 
@@ -130,7 +130,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 									.get("Cartes Taupes Geantes").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes5.get(0), TAILLE_CARTE*3, 0);
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes5.get(0), TAILLE_CARTE*2, 0);
 
 						}
 					}

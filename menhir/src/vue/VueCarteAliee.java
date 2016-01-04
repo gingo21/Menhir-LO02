@@ -29,7 +29,7 @@ public abstract class VueCarteAliee extends VueCarte{
 			g.drawImage(imageFaceCarte, 0, 0, this);
 	         for (int i = 0; i < this.puissanceActionsAlliee.length; i++) {
 	              JLabel force = new JLabel(String.valueOf(this.puissanceActionsAlliee[i]));
-	              force.setForeground(Color.white);
+	              force.setForeground(Color.pink);
 	              this.ajoutPanneau(force,44 + i*18,124); 
 	         }
 		}

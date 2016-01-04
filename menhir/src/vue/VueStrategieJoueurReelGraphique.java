@@ -23,6 +23,7 @@ import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
 import modele.ListeAttente;
+import modele.PaquetDeRessourcesDePartie;
 import modele.Partie;
 import modele.StrategieJoueurReelGraphique;
 import modele.TypeAction;
@@ -39,7 +40,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	private JButton boutonGeant = new JButton("géant");
 	private JButton boutonFarfadet = new JButton("farfadet");
 	private JLabel afficheurTexte = new JLabel();
-	private JLabel afficheurSaison = new JLabel("Saison : automne");
+	private JLabel afficheurSaison = new JLabel("Saison : printemps");
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
 	private VueCarte carteEnJeu;
 
@@ -329,7 +330,11 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void changementDePaquet(PaquetDeRessourcesDePartie paquet) {
+		paquet.addObserver(this);
+	}
+	
 	public boolean isAttenteChoixCarte() {
 		return attenteChoixCarte;
 	}

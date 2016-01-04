@@ -26,6 +26,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 	public ParametresDePartie() { 
 		try {
 			this.readParametres();
+			this.setPaquetDePartie(new PaquetDeRessourcesDePartie(typePartie, nombreDeJoueurs));
 		} catch (ClassNotFoundException e){
 			this.parametresParDefaut();
 		}

@@ -30,13 +30,15 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 	private ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA;
 	private Dimension[] positionsDesIA;
 	private Panneau panneau;
+	
+	private ParametresDePartie referenceParametres;
 
 	public final static Color COULEUR_DE_FOND = new Color(70, 200, 70);
 
 	public VueJeu(ParametresDePartie parametres, Partie partie, Ressources ressources) {
 		super();
 		partie.addObserver(this);
-		
+		referenceParametres = parametres;
 		this.positionsDesIA = new Dimension[5];
 		this.positionsDesIA[0] = new Dimension(0, 0);
 		this.positionsDesIA[1] = new Dimension(0, 250);
@@ -108,10 +110,16 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 				.iterator(); it.hasNext();) {
 			it.next().addObserver(this.vueStrategieJoueurReelGraphique);
 		}
+		parametres.getPaquetDePartie().addObserver(this.vueStrategieJoueurReelGraphique);
 	}
 
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		if(arg != null) {
+			if(arg.toString().contains("Changement de manche : ")) {
+				this.vuePaquetDeRessourcesDePartie.changementDePaquet();
+				this.vueStrategieJoueurReelGraphique.changementDePaquet(this.referenceParametres.getPaquetDePartie());
+			}
+		}
 
 	}
 

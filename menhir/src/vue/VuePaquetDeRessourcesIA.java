@@ -38,6 +38,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						}
 						tempVueCartes1.clear();
 					}
+					int j=0;
 					for (int i = 0; i < referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").size(); i++) {
 						if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i).isEstUtilise()) {
 							VueCarteIngredient tempVue = new VueCarteIngredient(
@@ -45,7 +46,8 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 									.get("Cartes Ingredients").get(i),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, true);
 							tempVueCartes1.add(tempVue);
-							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVue, (i%2)*TAILLE_CARTE, 20+(i/2)*TAILLE_CARTE);
+							VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVue, (j%2)*TAILLE_CARTE, 20+(j/2)*TAILLE_CARTE);
+							j++;
 						}
 					}
 				}

@@ -50,7 +50,6 @@ public class Partie extends Observable implements Runnable {
 			Joueur joueurActuel = this.parametresDePartie.getListeJoueurs().get(indexJoueurActuel);
 			this.setChanged();
 			this.notifyObservers("C'est au tour de " + joueurActuel.getNom());
-			System.out.println(this.parametresDePartie.getOrdreDesJoueurs().toString());
 			joueurActuel.getStrategie().jouerSonTour(this.getSaisonActuelle(), this.parametresDePartie);
 			joueurActuel.getPaquet().rafraichirLesObservers();
 			this.wait(2000);
@@ -110,7 +109,7 @@ public class Partie extends Observable implements Runnable {
 		int resteManches = (parametresDePartie.getNombreDeManches() - this.numeroDeManche);
 		this.setChanged();
 		this.notifyObservers("Il reste " + resteManches + " manche(s) ра jouer");
-		if (resteManches > 0) {
+		if (resteManches >= 0) {
 			parametresDePartie.getPaquetDePartie().reprendreToutesLesCartes(
 					parametresDePartie);
 		}

@@ -49,7 +49,8 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 						}
 						tempVueCartes1.clear();
 					}
-
+					
+					int j=0;
 					for (int i = 0; i < referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 							.get("Cartes Ingredients").size(); i++) {
 						if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").get(i)
@@ -59,9 +60,9 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 									.get("Cartes Ingredients").get(i),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false);
 							tempVueCartes1.add(tempVue);
-							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVue, TAILLE_CARTE + i * TAILLE_CARTE,
+							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVue, TAILLE_CARTE + j * TAILLE_CARTE,
 									TAILLE_CARTE);
-							// System.out.println(arg0.getClass().getName());
+							j++;
 						}
 					}
 				}

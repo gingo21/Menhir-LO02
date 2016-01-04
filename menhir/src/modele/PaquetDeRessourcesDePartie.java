@@ -59,8 +59,17 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 	
 	public int getNombreCartesAvancees() {
-		//return (this.paquetsDeCartes.get("Cartes Taupes Geantes").size()+this.paquetsDeCartes.get("Cartes Chiens De Garde").size()+this.paquetsDeCartes.get("Cartes Comptage de Points").size());
-		return 500000;
+		int tempValeur=0;
+		if(this.paquetsDeCartes.get("Cartes Taupes Geantes") != null) {
+			tempValeur+=this.paquetsDeCartes.get("Cartes Taupes Geantes").size();
+		}
+		if(this.paquetsDeCartes.get("Cartes Chiens De Garde") != null) {
+			tempValeur+=this.paquetsDeCartes.get("Cartes Chiens De Garde").size();
+		}
+		if(this.paquetsDeCartes.get("Cartes Comptage de Points") != null) {
+			tempValeur+=this.paquetsDeCartes.get("Cartes Comptage de Points").size();
+		}
+		return tempValeur;
 	}
 	
 	public HashMap<String, Stack<Carte>> getPaquetsDeCartes() {
@@ -121,6 +130,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			// on supprime la carte alliée
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Chiens De Garde").clear();
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Taupes Geantes").clear();
+			//et les cartes ingrédients, on ne sait jamais
+			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Ingredients").clear();
 
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
@@ -161,14 +172,13 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			}
 
 			this.setChanged();
-			this.notifyObservers("Le joueur " + tempJoueur + " a recu ses ressources");
-			/*this.setChanged();
-			this.notifyObservers("distribution ressources id" + tempJoueur.getId());*/
+			this.notifyObservers("Le joueur " + tempJoueur.getNom() + " a recu ses ressources");
 		}
 
 	}
 
 	public void reprendreToutesLesCartes(ParametresDePartie param) {
+		this.deleteObservers();
 		PaquetDeRessourcesDePartie tempNewPaquet = new PaquetDeRessourcesDePartie(param.getTypePartie(), param.getNombreDeJoueurs());
 		param.setPaquetDePartie(tempNewPaquet);
 		for(Iterator<Joueur> it = param.getListeJoueurs().iterator(); it.hasNext();) {

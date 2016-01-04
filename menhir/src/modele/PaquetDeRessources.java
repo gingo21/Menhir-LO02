@@ -35,7 +35,7 @@ public abstract class PaquetDeRessources extends Observable implements Serializa
 		tempPaquetJoueur.setGrainesDeMenhir(tempPaquetJoueur
 				.getGrainesDeMenhir() + nombre);
 		this.setChanged();
-		this.notifyObservers("don " + nombre + " graine(s)");
+		this.notifyObservers();
 	}
 
 	public void donnerUneGraineDeMenhir(Joueur joueur) {
@@ -44,7 +44,7 @@ public abstract class PaquetDeRessources extends Observable implements Serializa
 		tempPaquetJoueur.setGrainesDeMenhir(tempPaquetJoueur
 				.getGrainesDeMenhir() + 1);
 		this.setChanged();
-		this.notifyObservers("don 1 graine(s)");
+		this.notifyObservers();
 	}
 	
 	public void rafraichirLesObservers() {

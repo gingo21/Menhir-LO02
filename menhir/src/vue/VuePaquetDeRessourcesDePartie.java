@@ -116,5 +116,9 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		};
 		SwingUtilities.invokeLater(myRunnable);
 	}
+	
+	public void changementDePaquet() {
+		this.referenceParametres.getPaquetDePartie().addObserver(this);
+	}
 
 }

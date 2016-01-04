@@ -126,8 +126,8 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						.getGrainesDeMenhir(); i++) {
 					VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
 					graines.add(tempVueImage);
-					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueImage, 2*TAILLE_CARTE+5 + (i % 3) * 26,
-							TAILLE_CARTE+10 + (i / 3) * 11);
+					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueImage, 3*TAILLE_CARTE+5 + (i % 3) * 26,
+							TAILLE_CARTE+20 + (i / 3) * 11);
 				}
 
 

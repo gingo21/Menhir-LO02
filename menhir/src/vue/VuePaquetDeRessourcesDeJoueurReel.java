@@ -86,7 +86,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 							VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
 							grainesMenhir.add(tempVueImage);
 							(tempVueCartes2.get(0)).ajoutPanneau(tempVueImage, 0+5 + (i % 3) * 26,
-									+10 + (i / 3) * 11);
+									+20 + (i / 3) * 11);
 						}
 						VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 0);
 

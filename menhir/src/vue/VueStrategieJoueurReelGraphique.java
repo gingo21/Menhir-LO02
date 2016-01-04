@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -321,7 +322,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 
 		try {
 			if (arg1 != null) {
-				if (!arg1.toString().contains("[")) {
+				if (!arg1.toString().contains("[") && !arg1.toString().contains("nouveau paquet")) {
 					this.wait(TEMPS_DE_REFLEXION);
 				}
 			}

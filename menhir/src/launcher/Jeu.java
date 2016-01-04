@@ -6,7 +6,7 @@ import modele.ParametresDePartie;
 
 public class Jeu {
 	
-	public static final boolean MODE_GRAPHIQUE = true;
+	public static final boolean MODE_GRAPHIQUE = false;
 	
 	public synchronized static void main(String[] args) throws InterruptedException {
 		ParametresDePartie parametresDePartie = new ParametresDePartie();

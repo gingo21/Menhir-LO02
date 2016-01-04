@@ -132,7 +132,6 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Taupes Geantes").clear();
 			//et les cartes ingrédients, on ne sait jamais
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Ingredients").clear();
-
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
@@ -177,12 +176,10 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
 	}
 
-	public void reprendreToutesLesCartes(ParametresDePartie param) {
+	public void reprendreToutesLesCartes(ParametresDePartie param , PaquetDeRessourcesDePartie nouveauPaquet) {
 		this.deleteObservers();
-		PaquetDeRessourcesDePartie tempNewPaquet = new PaquetDeRessourcesDePartie(param.getTypePartie(), param.getNombreDeJoueurs());
-		param.setPaquetDePartie(tempNewPaquet);
 		for(Iterator<Joueur> it = param.getListeJoueurs().iterator(); it.hasNext();) {
-			it.next().getPaquet().setReferencePaquetPartie(tempNewPaquet);
+			it.next().getPaquet().setReferencePaquetPartie(nouveauPaquet);
 		}
 		param.getPaquetDePartie().distribuerRessourcesInitiales(param);
 	}

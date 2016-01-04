@@ -99,9 +99,10 @@ public class Console implements Runnable, Observer {
 	}
 
 	public void update(Observable arg0, Object arg1) {
-		if(!(arg1.toString().contains("utiliser") || arg1.toString().contains("don") || arg1.toString().contains("distribution")))
-			{
+		if(arg1 != null) {
+			if(!(arg1.toString().contains("utiliser") || arg1.toString().contains("don") || arg1.toString().contains("distribution") || arg1.toString().contains("nouveau paquet"))) {
 				System.out.println(arg1.toString());
 			}
+		}
 	}
 }

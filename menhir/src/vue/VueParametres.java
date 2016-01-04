@@ -173,8 +173,10 @@ public class VueParametres extends JDialog {
 			this.referenceParametresDePartie.setNombreDeJoueurs(this.choixNombreDeJoueurs.getSelectedIndex() + 2);
 			if (this.typePartie.getSelectedIndex() == 0) {
 				this.referenceParametresDePartie.setTypePartie(StatutPartie.rapide);
+				this.referenceParametresDePartie.setNombreDeManches(1);
 			} else {
 				this.referenceParametresDePartie.setTypePartie(StatutPartie.avancee);
+				this.referenceParametresDePartie.setNombreDeManches(this.referenceParametresDePartie.getNombreDeJoueurs());
 			}
 			this.referenceParametresDePartie
 					.setPaquetDePartie(new PaquetDeRessourcesDePartie(this.referenceParametresDePartie.getTypePartie(),

@@ -33,7 +33,7 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 	
 	private ParametresDePartie referenceParametres;
 
-	public final static Color COULEUR_DE_FOND = new Color(70, 200, 70);
+	public final static Color COULEUR_DE_FOND = new Color(80, 190, 80);
 
 	public VueJeu(ParametresDePartie parametres, Partie partie, Ressources ressources) {
 		super();
@@ -116,8 +116,18 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 	public void update(Observable o, Object arg) {
 		if(arg != null) {
 			if(arg.toString().contains("Changement de manche : ")) {
+				for (Iterator<Carte> it = this.referenceParametres.getPaquetDePartie().getPaquetsDeCartes().get("Cartes Ingredients")
+						.iterator(); it.hasNext();) {
+					it.next().deleteObservers();
+				}
+			} else if (arg.toString().contains("nouveau paquet")) {
 				this.vuePaquetDeRessourcesDePartie.changementDePaquet();
 				this.vueStrategieJoueurReelGraphique.changementDePaquet(this.referenceParametres.getPaquetDePartie());
+				for (Iterator<Carte> it = this.referenceParametres.getPaquetDePartie().getPaquetsDeCartes().get("Cartes Ingredients")
+						.iterator(); it.hasNext();) {
+					it.next().addObserver(this.vueStrategieJoueurReelGraphique);
+					System.out.println("John");
+				}
 			}
 		}
 

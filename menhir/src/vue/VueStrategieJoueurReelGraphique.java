@@ -296,17 +296,20 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 				} else if (arg1 != null) {
 					if (arg1.toString().contains("saison")) {
 						VueStrategieJoueurReelGraphique.this.remove(VueStrategieJoueurReelGraphique.this.afficheurSaison);
-						if (arg1.toString().contains("omne")) {
-							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : automne");
-						} else if (arg1.toString().contains("rin")) {
-							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
-						} else if (arg1.toString().contains("ete")) {
-							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : été");
-						} else if (arg1.toString().contains("hiver")) {
+						if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("omne")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
+						} else if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("rin")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : été");
+						} else if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("été")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : automne");
+						} else if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("hiver")) {
+							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
 						}
+						VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.afficheurSaison, 400, 225);
+						VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
+					} else {
+						VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 					}
-					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				}
 
 				VueStrategieJoueurReelGraphique.this.repaint();

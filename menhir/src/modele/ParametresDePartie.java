@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 
+import launcher.Jeu;
+
 public class ParametresDePartie extends Observable implements Serializable {
 
 	private static final long serialVersionUID = -3939993060888077130L;
@@ -26,7 +28,11 @@ public class ParametresDePartie extends Observable implements Serializable {
 		try {
 			this.readParametres();
 			this.setPaquetDePartie(new PaquetDeRessourcesDePartie(typePartie, nombreDeJoueurs));
-			this.getJoueurReel().setStrategie(new StrategieJoueurReelGraphique(this.getJoueurReel()));
+			if(Jeu.MODE_GRAPHIQUE) {
+				this.getJoueurReel().setStrategie(new StrategieJoueurReelGraphique(this.getJoueurReel()));
+			} else {
+				this.getJoueurReel().setStrategie(new StrategieJoueurReelConsole(this.getJoueurReel()));
+			}
 		} catch (ClassNotFoundException e) {
 			this.parametresParDefaut();
 		}

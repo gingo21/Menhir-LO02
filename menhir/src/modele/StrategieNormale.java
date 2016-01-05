@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 public class StrategieNormale extends Strategie {
 
+	private static final long serialVersionUID = -8260427463664015887L;
+
 	public StrategieNormale(Joueur referenceJoueur) {
 		super(referenceJoueur);
 	}
@@ -53,7 +55,7 @@ public class StrategieNormale extends Strategie {
 			this.notifyObservers(this.getReferenceJoueur().toString());
 
 		}
-		
+
 	}
 
 	public int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
@@ -65,10 +67,10 @@ public class StrategieNormale extends Strategie {
 					.get("Cartes Chiens De Garde").get(0);
 			if (!tempCarte.isEstUtilise()) {
 				int tempAlea = 1;
-				if(puissance == 0 || tempCarte.getPuissanceActions(saisonActuelle)==0) {
-					tempAlea=1;
+				if (puissance == 0 || tempCarte.getPuissanceActions(saisonActuelle) == 0) {
+					tempAlea = 1;
 				} else {
-					tempAlea = (int) ((Math.random() * 4.0)/3.0);
+					tempAlea = (int) ((Math.random() * 4.0) / 3.0);
 				}
 				if (tempAlea == 0) {
 					puissanceModifie = tempCarte.utiliser(destinataire, saisonActuelle, puissanceModifie);
@@ -78,7 +80,7 @@ public class StrategieNormale extends Strategie {
 				}
 			}
 		}
-		
+
 		return puissanceModifie;
 	}
 
@@ -109,7 +111,7 @@ public class StrategieNormale extends Strategie {
 				}
 			}
 		}
-		
+
 	}
 
 	public void choixDeManche(ParametresDePartie parametresDePartie) {
@@ -117,93 +119,94 @@ public class StrategieNormale extends Strategie {
 		if (tempAlea == 1) {
 			this.setChoixCarteAlliee(true);
 		}
-		
+
 	}
-	
+
 	public TypeAction choixActionIngredient(ParametresDePartie parametresDePartie) {
-		double forceAleaEngrais =0;
-		double forceAleaGeant =0;
-		double forceAleaFarfadet =0;
+		double forceAleaEngrais = 0;
+		double forceAleaGeant = 0;
+		double forceAleaFarfadet = 0;
 		JoueurVirtuel tempJoueur = (JoueurVirtuel) this.getReferenceJoueur();
-		
-		if(tempJoueur.getPaquet().getGrainesDeMenhir()>2) {
-			forceAleaEngrais=(Math.random() * 2);
-			if(tempJoueur.getPaquet().getGrainesDeMenhir()>5) {
-				forceAleaGeant=0;
-				forceAleaFarfadet =0;
+
+		if (tempJoueur.getPaquet().getGrainesDeMenhir() > 2) {
+			forceAleaEngrais = (Math.random() * 2);
+			if (tempJoueur.getPaquet().getGrainesDeMenhir() > 5) {
+				forceAleaGeant = 0;
+				forceAleaFarfadet = 0;
 			} else {
-				forceAleaGeant=(Math.random() * 1);
+				forceAleaGeant = (Math.random() * 1);
 				forceAleaFarfadet = (Math.random() * 0.75);
 			}
-		} else if(tempJoueur.getPaquet().getGrainesDeMenhir()!=0) {
-			forceAleaEngrais=(Math.random() * 1);
-			forceAleaGeant=(Math.random() * 1.5);
+		} else if (tempJoueur.getPaquet().getGrainesDeMenhir() != 0) {
+			forceAleaEngrais = (Math.random() * 1);
+			forceAleaGeant = (Math.random() * 1.5);
 			forceAleaFarfadet = (Math.random() * 1);
 		} else {
-			forceAleaEngrais=0;
-			forceAleaGeant=(Math.random() * 2);
+			forceAleaEngrais = 0;
+			forceAleaGeant = (Math.random() * 2);
 			forceAleaFarfadet = (Math.random() * 1.5);
 		}
-		
+
 		int farfadetCapacity = 0;
 		Joueur tempJoueurbis = null;
-		for(Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
+		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			tempJoueurbis = it.next();
-			if(tempJoueurbis != this.getReferenceJoueur()) {
+			if (tempJoueurbis != this.getReferenceJoueur()) {
 				int tempValue = tempJoueur.getPaquet().getGrainesDeMenhir();
-				if(tempValue > farfadetCapacity) {
+				if (tempValue > farfadetCapacity) {
 					farfadetCapacity = tempValue;
 				}
 			}
 		}
-		
-		if(farfadetCapacity ==0) {
+
+		if (farfadetCapacity == 0) {
 			forceAleaFarfadet = 0;
-		} else if(farfadetCapacity <=2) {
+		} else if (farfadetCapacity <= 2) {
 			forceAleaFarfadet = (Math.random() * 0.75);
-		} else if(farfadetCapacity >5){
+		} else if (farfadetCapacity > 5) {
 			forceAleaFarfadet = (Math.random() * 2);
 		}
-		
+
 		TypeAction tempTypeAction = TypeAction.geantGardient;
-		if(forceAleaGeant > forceAleaEngrais &&  forceAleaGeant > forceAleaFarfadet) {
+		if (forceAleaGeant > forceAleaEngrais && forceAleaGeant > forceAleaFarfadet) {
 			tempTypeAction = TypeAction.geantGardient;
-		} else if (forceAleaEngrais > forceAleaGeant &&  forceAleaEngrais > forceAleaFarfadet) {
+		} else if (forceAleaEngrais > forceAleaGeant && forceAleaEngrais > forceAleaFarfadet) {
 			tempTypeAction = TypeAction.engrais;
 		} else {
 			tempTypeAction = TypeAction.farfadet;
 		}
-		
+
 		return tempTypeAction;
 	}
-	
+
 	public CarteIngredient choixCarteIngredient(Saison saisonActuelle, TypeAction typeAction) {
-		
-		int tempValue=0;
-		int maxValue=0;
+
+		int tempValue = 0;
+		int maxValue = 0;
 		CarteIngredient tempCarte = null;
 		CarteIngredient carteMax = null;
-		for(Iterator<Carte> it = this.getReferenceJoueur().getPaquet().getPaquetsDeCartes().get("Cartes Ingredients").iterator(); it.hasNext();) {
+		for (Iterator<Carte> it = this.getReferenceJoueur().getPaquet().getPaquetsDeCartes().get("Cartes Ingredients")
+				.iterator(); it.hasNext();) {
 			tempCarte = (CarteIngredient) it.next();
 			tempValue = tempCarte.getPuissanceActions(saisonActuelle, typeAction);
-			if(tempValue > maxValue) {
+			if (tempValue > maxValue) {
 				carteMax = tempCarte;
 				maxValue = tempValue;
 			}
 		}
-		
+
 		return carteMax;
 	}
-	
+
 	public Joueur cibleFarfadet(ParametresDePartie parametresDePartie) {
 		int farfadetCapacity = 0;
 		Joueur tempJoueur = null;
 		Joueur joueurCible = null;
-		for(Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
+		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			tempJoueur = it.next();
-			if(tempJoueur != this.getReferenceJoueur()) {
+			if (tempJoueur != this.getReferenceJoueur()) {
 				int tempValue = tempJoueur.getPaquet().getGrainesDeMenhir();
-				if(tempValue > farfadetCapacity) {
+				if (tempValue > farfadetCapacity) {
 					farfadetCapacity = tempValue;
 					joueurCible = tempJoueur;
 				}

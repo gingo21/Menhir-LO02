@@ -3,15 +3,18 @@ package modele;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import launcher.Console;
+
 public class StrategieJoueurReelConsole extends Strategie {
+
+	private static final long serialVersionUID = 4427005288814710556L;
 
 	public StrategieJoueurReelConsole(Joueur referenceJoueur) {
 		super(referenceJoueur);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie) {
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = Console.SCANNER_PUBLIC;
 
 		String reponse = null;
 
@@ -54,9 +57,9 @@ public class StrategieJoueurReelConsole extends Strategie {
 				carteAJouer.utiliser(TypeAction.engrais, this.getReferenceJoueur(), this.getReferenceJoueur(),
 						saisonActuelle, parametresDePartie);
 				this.setChanged();
-				this.notifyObservers(
-						"Vous avez maintenant " + this.getReferenceJoueur().getPaquet().getCarteChamp().getMenhirAdultes()
-								+ " menhirs adultes sur votre carte champ.");
+				this.notifyObservers("Vous avez maintenant "
+						+ this.getReferenceJoueur().getPaquet().getCarteChamp().getMenhirAdultes()
+						+ " menhirs adultes sur votre carte champ.");
 
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 				this.setChanged();
@@ -106,8 +109,8 @@ public class StrategieJoueurReelConsole extends Strategie {
 				carteAJouer.utiliser(TypeAction.geantGardient, this.getReferenceJoueur(), this.getReferenceJoueur(),
 						saisonActuelle, parametresDePartie);
 				this.setChanged();
-				this.notifyObservers("Vous avez maintenant " + this.getReferenceJoueur().getPaquet().getGrainesDeMenhir()
-						+ " graines de menhirs.");
+				this.notifyObservers("Vous avez maintenant "
+						+ this.getReferenceJoueur().getPaquet().getGrainesDeMenhir() + " graines de menhirs.");
 
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 				this.setChanged();
@@ -118,7 +121,7 @@ public class StrategieJoueurReelConsole extends Strategie {
 
 	public int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle, int puissance) {
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = Console.SCANNER_PUBLIC;
 		int puissanceModifie = puissance;
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee
 				&& !(destinataire.getPaquet().getPaquetsDeCartes().get("Cartes Chiens De Garde").isEmpty())) {
@@ -142,7 +145,7 @@ public class StrategieJoueurReelConsole extends Strategie {
 
 	public void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle) {
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = Console.SCANNER_PUBLIC;
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee
 				&& !(acteur.getPaquet().getPaquetsDeCartes().get("Cartes Taupes Geantes").isEmpty())) {
 			CarteTaupesGeantes tempCarte = (CarteTaupesGeantes) acteur.getPaquet().getPaquetsDeCartes()
@@ -163,7 +166,7 @@ public class StrategieJoueurReelConsole extends Strategie {
 	}
 
 	public void choixDeManche(ParametresDePartie parametresDePartie) {
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = Console.SCANNER_PUBLIC;
 		this.setChanged();
 		this.notifyObservers("Voulez-vous une carte Alliee à la place de 2 graines de Menhir ? (oui ou non)");
 		if (sc.next().contains("oui")) {

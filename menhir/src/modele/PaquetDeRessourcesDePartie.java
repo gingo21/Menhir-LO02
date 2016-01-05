@@ -9,6 +9,8 @@ import launcher.Console;
 
 public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
+	private static final long serialVersionUID = 7435385869969841194L;
+
 	private HashMap<String, Stack<Carte>> paquetsDeCartes;
 
 	public PaquetDeRessourcesDePartie(modele.StatutPartie statutPartie, int nombreDeJoueurs) {
@@ -57,21 +59,21 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			}
 		}
 	}
-	
+
 	public int getNombreCartesAvancees() {
-		int tempValeur=0;
-		if(this.paquetsDeCartes.get("Cartes Taupes Geantes") != null) {
-			tempValeur+=this.paquetsDeCartes.get("Cartes Taupes Geantes").size();
+		int tempValeur = 0;
+		if (this.paquetsDeCartes.get("Cartes Taupes Geantes") != null) {
+			tempValeur += this.paquetsDeCartes.get("Cartes Taupes Geantes").size();
 		}
-		if(this.paquetsDeCartes.get("Cartes Chiens De Garde") != null) {
-			tempValeur+=this.paquetsDeCartes.get("Cartes Chiens De Garde").size();
+		if (this.paquetsDeCartes.get("Cartes Chiens De Garde") != null) {
+			tempValeur += this.paquetsDeCartes.get("Cartes Chiens De Garde").size();
 		}
-		if(this.paquetsDeCartes.get("Cartes Comptage de Points") != null) {
-			tempValeur+=this.paquetsDeCartes.get("Cartes Comptage de Points").size();
+		if (this.paquetsDeCartes.get("Cartes Comptage de Points") != null) {
+			tempValeur += this.paquetsDeCartes.get("Cartes Comptage de Points").size();
 		}
 		return tempValeur;
 	}
-	
+
 	public HashMap<String, Stack<Carte>> getPaquetsDeCartes() {
 		return paquetsDeCartes;
 	}
@@ -81,7 +83,8 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 
 	public int getNombreCartesNormales() {
-		return (this.paquetsDeCartes.get("Cartes Ingredients").size()+this.paquetsDeCartes.get("Cartes Champs").size());
+		return (this.paquetsDeCartes.get("Cartes Ingredients").size()
+				+ this.paquetsDeCartes.get("Cartes Champs").size());
 	}
 
 	public void donnerUneCarteAuJoueur(Joueur joueur, String cleDeTypeDeCarte) {
@@ -130,7 +133,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			// on supprime la carte alliée
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Chiens De Garde").clear();
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Taupes Geantes").clear();
-			//et les cartes ingrédients, on ne sait jamais
+			// et les cartes ingrédients, on ne sait jamais
 			tempJoueur.getPaquet().getPaquetsDeCartes().get("Cartes Ingredients").clear();
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
 			this.donnerUneCarteAuJoueur(tempJoueur, "Cartes Ingredients");
@@ -176,9 +179,9 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
 	}
 
-	public void reprendreToutesLesCartes(ParametresDePartie param , PaquetDeRessourcesDePartie nouveauPaquet) {
+	public void reprendreToutesLesCartes(ParametresDePartie param, PaquetDeRessourcesDePartie nouveauPaquet) {
 		this.deleteObservers();
-		for(Iterator<Joueur> it = param.getListeJoueurs().iterator(); it.hasNext();) {
+		for (Iterator<Joueur> it = param.getListeJoueurs().iterator(); it.hasNext();) {
 			it.next().getPaquet().setReferencePaquetPartie(nouveauPaquet);
 		}
 		param.getPaquetDePartie().distribuerRessourcesInitiales(param);

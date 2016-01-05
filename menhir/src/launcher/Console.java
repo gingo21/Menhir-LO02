@@ -1,9 +1,6 @@
 package launcher;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
@@ -17,16 +14,12 @@ import modele.JoueurVirtuel;
 import modele.PaquetDeRessourcesDePartie;
 import modele.ParametresDePartie;
 import modele.Partie;
-import modele.Saison;
 import modele.StatutPartie;
-import modele.Strategie;
-import modele.StrategieJoueurReelConsole;
-import modele.StrategieFacile;
-import modele.StrategieNormale;
 
 public class Console implements Runnable, Observer {
 
 	private ParametresDePartie parametresDePartie;
+	public final static Scanner SCANNER_PUBLIC = new Scanner(System.in);
 
 	public Console(ParametresDePartie parametresDePartie) {
 		super();
@@ -37,7 +30,7 @@ public class Console implements Runnable, Observer {
 		try {
 			this.askParametres(this.parametresDePartie);
 			this.parametresDePartie.getPaquetDePartie().addConsoleObserver(this);
-			for(Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
+			for (Iterator<Joueur> it = this.parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();
 				tempJoueur.getStrategie().addConsoleObserver(this);
 			}
@@ -61,8 +54,9 @@ public class Console implements Runnable, Observer {
 		this.parametresDePartie = parametresDePartie;
 	}
 
-	public synchronized void askParametres(ParametresDePartie parametresDePartie) throws IOException, InterruptedException {
-		Scanner sc = new Scanner(System.in);
+	public synchronized void askParametres(ParametresDePartie parametresDePartie)
+			throws IOException, InterruptedException {
+		Scanner sc = Console.SCANNER_PUBLIC;
 
 		System.out.println("Combien de joueurs? (entre 2 et 6)");
 		parametresDePartie.setNombreDeJoueurs(sc.nextInt());
@@ -99,8 +93,9 @@ public class Console implements Runnable, Observer {
 	}
 
 	public void update(Observable arg0, Object arg1) {
-		if(arg1 != null) {
-			if(!(arg1.toString().contains("utiliser") || arg1.toString().contains("don") || arg1.toString().contains("distribution") || arg1.toString().contains("nouveau paquet"))) {
+		if (arg1 != null) {
+			if (!(arg1.toString().contains("utiliser") || arg1.toString().contains("don")
+					|| arg1.toString().contains("distribution") || arg1.toString().contains("nouveau paquet"))) {
 				System.out.println(arg1.toString());
 			}
 		}

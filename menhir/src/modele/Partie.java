@@ -1,11 +1,7 @@
 package modele;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
-import java.util.Observer;
-import java.util.Scanner;
 
 public class Partie extends Observable implements Runnable {
 
@@ -25,7 +21,7 @@ public class Partie extends Observable implements Runnable {
 	}
 
 	public void run() {
-		// TODO ON A DEJA TOUT PARAMETRE
+		// On a déjà tout paramétré
 		this.setChanged();
 		this.notifyObservers("Bienvenue dans le jeu du menhir d'apres Francois Reymond" + " et Adrien Wartelle");
 		if (modeConsole) {
@@ -130,8 +126,8 @@ public class Partie extends Observable implements Runnable {
 		}
 		if (JoueurGagnant instanceof JoueurReel) {
 			this.setChanged();
-			this.notifyObservers("Bravo, vous avez gagné, avec :" + (int)(JoueurGagnant.getScore() / 100) + " menhirs et "
-					+ JoueurGagnant.getPaquet().getGrainesDeMenhir() + " graines");
+			this.notifyObservers("Bravo, vous avez gagné, avec :" + (int) (JoueurGagnant.getScore() / 100)
+					+ " menhirs et " + JoueurGagnant.getPaquet().getGrainesDeMenhir() + " graines");
 		} else {
 			this.setChanged();
 			this.notifyObservers("Vous avez perdu :(");

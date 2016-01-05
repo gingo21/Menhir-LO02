@@ -5,6 +5,8 @@ import java.util.Iterator;
 // La stratégie est complétement aléatoire 
 public class StrategieFacile extends Strategie {
 		
+	private static final long serialVersionUID = -4612520123904153963L;
+
 	public StrategieFacile(Joueur referenceJoueur) {
 		super(referenceJoueur);
 	}
@@ -66,7 +68,6 @@ public class StrategieFacile extends Strategie {
 			this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 			this.hasChanged();
 			this.notifyObservers(this.getReferenceJoueur().toString());
-
 		}
 		
 	}

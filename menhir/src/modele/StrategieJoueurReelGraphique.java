@@ -1,9 +1,8 @@
 package modele;
 
-import java.util.Iterator;
-import java.util.Scanner;
-
 public class StrategieJoueurReelGraphique extends Strategie {
+
+	private static final long serialVersionUID = -1604537757841635404L;
 
 	private Carte carteAJouer;
 	private TypeAction actionAJouer;
@@ -97,7 +96,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 			}
-			
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -126,7 +125,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					}
 				}
 			}
-			
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -145,7 +144,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					this.notifyObservers(
 							"Voulez-vous attaquer " + destinataire.getNom() + " avec votre Carte Taupes Géantes ?");
 					this.wait();
-					//On recoit la reponse
+					// On recoit la reponse
 					if (this.attaquer) {
 						this.setChanged();
 						this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
@@ -154,7 +153,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					}
 				}
 			}
-			
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -166,10 +165,9 @@ public class StrategieJoueurReelGraphique extends Strategie {
 		try {
 			this.wait();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//On recoit la reponse
+		// On recoit la reponse
 	}
 
 }

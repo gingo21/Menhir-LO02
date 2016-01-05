@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Observable;
 
 public abstract class Carte extends Observable implements Serializable {
+
+	private static final long serialVersionUID = 6116205689L;
 	private String nom;
 	private int id;
 	private boolean estDetenuParUnJoueur;

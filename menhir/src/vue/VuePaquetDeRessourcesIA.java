@@ -13,6 +13,7 @@ import Ressources.Ressources;
 
 public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 
+	private static final long serialVersionUID = -1925545505936736288L;
 	public static int TAILLE_CARTE = 80;
 
 	public VuePaquetDeRessourcesIA(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,

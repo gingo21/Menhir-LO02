@@ -3,19 +3,18 @@ package modele;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Observable;
-import java.util.Scanner;
 
 public class ParametresDePartie extends Observable implements Serializable {
+
+	private static final long serialVersionUID = -3939993060888077130L;
+
 	private int nombreDeManches;
 	private int nombreDeJoueurs;
 	private StatutPartie typePartie;
@@ -23,11 +22,12 @@ public class ParametresDePartie extends Observable implements Serializable {
 	private ArrayList<Joueur> listeJoueurs;
 	private PaquetDeRessourcesDePartie paquetDePartie;
 
-	public ParametresDePartie() { 
+	public ParametresDePartie() {
 		try {
 			this.readParametres();
 			this.setPaquetDePartie(new PaquetDeRessourcesDePartie(typePartie, nombreDeJoueurs));
-		} catch (ClassNotFoundException e){
+			this.getJoueurReel().setStrategie(new StrategieJoueurReelGraphique(this.getJoueurReel()));
+		} catch (ClassNotFoundException e) {
 			this.parametresParDefaut();
 		}
 	}
@@ -47,7 +47,6 @@ public class ParametresDePartie extends Observable implements Serializable {
 	public void setNombreDeJoueurs(int nombreDeJoueurs) {
 		this.nombreDeJoueurs = nombreDeJoueurs;
 	}
-
 
 	public ArrayList<Integer> getOrdreDesJoueurs() {
 		return ordreDesJoueurs;
@@ -80,24 +79,24 @@ public class ParametresDePartie extends Observable implements Serializable {
 	public void setPaquetDePartie(PaquetDeRessourcesDePartie paquetDePartie) {
 		this.paquetDePartie = paquetDePartie;
 	}
-	
+
 	public JoueurReel getJoueurReel() {
 		JoueurReel tempJoueurReel = null;
-		for(Iterator<Joueur> it=this.listeJoueurs.iterator(); it.hasNext();) {
+		for (Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
-			if(tempJoueur instanceof JoueurReel) {
+			if (tempJoueur instanceof JoueurReel) {
 				tempJoueurReel = (JoueurReel) tempJoueur;
 			}
 		}
 		return tempJoueurReel;
 	}
-	
+
 	public void miseAJourListeJoueurs(String nomDuJoueur) {
-		for (int i = this.listeJoueurs.size()-1; i >=0; i--) {
+		for (int i = this.listeJoueurs.size() - 1; i >= 0; i--) {
 			this.listeJoueurs.remove(i);
 		}
-		for (int i = this.ordreDesJoueurs.size()-1; i >=0; i--) {
-		this.ordreDesJoueurs.remove(i);
+		for (int i = this.ordreDesJoueurs.size() - 1; i >= 0; i--) {
+			this.ordreDesJoueurs.remove(i);
 		}
 		JoueurReel tempJoueurReel = new JoueurReel(nomDuJoueur, this.paquetDePartie);
 		this.ordreDesJoueurs.add(tempJoueurReel.getId());
@@ -108,7 +107,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 			this.listeJoueurs.add(tempJoueurVirtuel);
 		}
 	}
-	
+
 	public void parametresParDefaut() {
 		this.nombreDeJoueurs = 2;
 		this.typePartie = StatutPartie.rapide;
@@ -118,7 +117,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 		JoueurReel tempJoueurReel = new JoueurReel("Joueur", this.paquetDePartie);
 		ordreDesJoueurs = new ArrayList<Integer>();
 		this.ordreDesJoueurs.add(tempJoueurReel.getId());
-		
+
 		this.listeJoueurs.add(tempJoueurReel);
 		for (int i = 1; i < this.nombreDeJoueurs; i++) {
 			JoueurVirtuel tempJoueurVirtuel = new JoueurVirtuel("IA" + i, this.paquetDePartie, Difficulte.facile);
@@ -126,37 +125,37 @@ public class ParametresDePartie extends Observable implements Serializable {
 			this.listeJoueurs.add(tempJoueurVirtuel);
 		}
 	}
-	
-public void saveParametres() {
-		
+
+	public void saveParametres() {
+
 		try {
 			FileOutputStream fichier = new FileOutputStream("parametres.conf");
-			ObjectOutputStream temp = new ObjectOutputStream(fichier);
-			temp.writeObject(this);
-			
+			ObjectOutputStream tempFlux = new ObjectOutputStream(fichier);
+			tempFlux.writeObject(this);
+			tempFlux.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			
+
 		}
 	}
-	
-public void readParametres() throws ClassNotFoundException {
-		
+
+	public void readParametres() throws ClassNotFoundException {
+
 		try {
 			FileInputStream fichier = new FileInputStream("parametres.conf");
-			ObjectInputStream temp = new ObjectInputStream(fichier);
-			ParametresDePartie tempParametres = (ParametresDePartie) temp.readObject();
-			this.listeJoueurs=tempParametres.getListeJoueurs();
-			this.nombreDeJoueurs=tempParametres.getNombreDeJoueurs();
-			this.nombreDeManches=tempParametres.getNombreDeManches();
-			this.ordreDesJoueurs=tempParametres.getOrdreDesJoueurs();
-			this.paquetDePartie=tempParametres.getPaquetDePartie();
-			this.typePartie=tempParametres.getTypePartie();
-			this.ordreDesJoueurs=tempParametres.getOrdreDesJoueurs();
-			
+			ObjectInputStream tempFlux = new ObjectInputStream(fichier);
+			ParametresDePartie tempParametres = (ParametresDePartie) tempFlux.readObject();
+			this.listeJoueurs = tempParametres.getListeJoueurs();
+			this.nombreDeJoueurs = tempParametres.getNombreDeJoueurs();
+			this.nombreDeManches = tempParametres.getNombreDeManches();
+			this.ordreDesJoueurs = tempParametres.getOrdreDesJoueurs();
+			this.paquetDePartie = tempParametres.getPaquetDePartie();
+			this.typePartie = tempParametres.getTypePartie();
+			this.ordreDesJoueurs = tempParametres.getOrdreDesJoueurs();
+			tempFlux.close();
 		} catch (FileNotFoundException e) {
 			this.parametresParDefaut();
 		} catch (IOException e) {
@@ -164,18 +163,16 @@ public void readParametres() throws ClassNotFoundException {
 		}
 	}
 
-public void rafraichirObserversDePaquet() {
-	for(Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
-		it.next().getPaquet().rafraichirLesObservers();
+	public void rafraichirObserversDePaquet() {
+		for (Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
+			it.next().getPaquet().rafraichirLesObservers();
+		}
 	}
-}
 
+	public String toString() {
+		return "ParametresDePartie [nombreDeManches=" + nombreDeManches + ", nombreDeJoueurs=" + nombreDeJoueurs
+				+ ", typePartie=" + typePartie + ", ordreDesJoueurs=" + ordreDesJoueurs + ", listeJoueurs="
+				+ listeJoueurs + ", paquetDePartie=" + paquetDePartie + "]";
+	}
 
-public String toString() {
-	return "ParametresDePartie [nombreDeManches=" + nombreDeManches + ", nombreDeJoueurs=" + nombreDeJoueurs
-			+ ", typePartie=" + typePartie + ", ordreDesJoueurs=" + ordreDesJoueurs + ", listeJoueurs=" + listeJoueurs
-			+ ", paquetDePartie=" + paquetDePartie + "]";
-}
-
-	
 }

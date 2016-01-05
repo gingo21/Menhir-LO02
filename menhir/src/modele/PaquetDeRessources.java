@@ -5,6 +5,8 @@ import java.util.Observable;
 
 public abstract class PaquetDeRessources extends Observable implements Serializable {
 
+	private static final long serialVersionUID = -6811472892906361246L;
+	
 	private int grainesDeMenhir;
 
 	public PaquetDeRessources(int nombreDeGraines) {

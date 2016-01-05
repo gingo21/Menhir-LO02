@@ -1,10 +1,9 @@
 package modele;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.util.LinkedList;
 import java.util.Observable;
 
+//Classe inutile mais illustrant l'histoire du projet
 public class ListeAttente extends Observable implements Runnable {
 
 	private double timeReader = System.currentTimeMillis();
@@ -58,16 +57,16 @@ public class ListeAttente extends Observable implements Runnable {
 			if (this.timeReader <= System.currentTimeMillis() && !this.listeAttenteAffichage.isEmpty()) {
 				this.currentObject = this.listeAttenteAffichage.pop();
 				this.notifyObservers();
-				this.timeReader = System.currentTimeMillis()+TEMPS_ATTENTE;
-			}  else if(this.timeReader > System.currentTimeMillis()){
+				this.timeReader = System.currentTimeMillis() + TEMPS_ATTENTE;
+			} else if (this.timeReader > System.currentTimeMillis()) {
 				try {
-					this.wait((long) (TEMPS_ATTENTE/2));
+					this.wait((long) (TEMPS_ATTENTE / 2));
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			} else {
 				try {
-					this.wait((long) (TEMPS_ATTENTE/2));
+					this.wait((long) (TEMPS_ATTENTE / 2));
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

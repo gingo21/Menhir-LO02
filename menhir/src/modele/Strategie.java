@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.Observable;
 
 public abstract class Strategie extends Observable implements Serializable {
+ 
+	private static final long serialVersionUID = -871033957513334014L;
+
 	private boolean choixCarteAlliee;
 	private Joueur referenceJoueur;
 
@@ -39,7 +42,7 @@ public abstract class Strategie extends Observable implements Serializable {
 			Saison saisonActuelle);
 
 	public abstract void choixDeManche(ParametresDePartie parametresDePartie);
-	
+
 	public void addConsoleObserver(Console observer) {
 		this.addObserver(observer);
 	}

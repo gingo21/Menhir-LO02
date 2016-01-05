@@ -1,26 +1,21 @@
 package vue;
 
 import java.awt.Dimension;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import Ressources.Ressources;
-import modele.PaquetDeRessourcesDeJoueur;
-import modele.PaquetDeRessourcesDePartie;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
 
 public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 
+	private static final long serialVersionUID = 4458122718657188781L;
 	private JLabel nombreDeGraines;
 	private JLabel lblCartesAvancee;
 	private JLabel lblCartesNormale;
@@ -28,11 +23,10 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 	private int nbreDeCartesAvancee;
 	private ParametresDePartie referenceParametres;
 	private Ressources referenceImages;
-	protected ArrayList <VueImage> graines;
+	protected ArrayList<VueImage> graines;
 	private VueImage vueGeant;
 	private VueImage vueDosAvancee;
 	private VueImage vueDosNorm;
-
 
 	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources) {
 		this.setPreferredSize(new Dimension(460, 130));
@@ -82,21 +76,25 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		Runnable myRunnable = new Runnable() {
 			public void run() {
 				String tempTexte1 = new String();
-				tempTexte1 += "Graines " + VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir();
+				tempTexte1 += "Graines " + VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie()
+						.getGrainesDeMenhir();
 				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.nombreDeGraines);
 				VuePaquetDeRessourcesDePartie.this.nombreDeGraines.setText(tempTexte1);
 				VuePaquetDeRessourcesDePartie.this.ajoutPanneau(nombreDeGraines, 63, 0);
-				for (Iterator <VueImage> it=graines.iterator();it.hasNext();){
+				for (Iterator<VueImage> it = graines.iterator(); it.hasNext();) {
 					VuePaquetDeRessourcesDePartie.this.remove(it.next());
 				}
 				graines.clear();
-				for (int i = 0; i < VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getGrainesDeMenhir(); i++) {
-					graines.add(new VueImage(referenceImages.getImageGraine(), 24, 10)); 
-					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(graines.get(i), 75 + (i % 8) * 13, 18 + (i / 8) * 6);
+				for (int i = 0; i < VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie()
+						.getGrainesDeMenhir(); i++) {
+					graines.add(new VueImage(referenceImages.getImageGraine(), 24, 10));
+					VuePaquetDeRessourcesDePartie.this.ajoutPanneau(graines.get(i), 75 + (i % 8) * 13,
+							18 + (i / 8) * 6);
 				}
 				VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.lblCartesNormale);
 				VuePaquetDeRessourcesDePartie.this.lblCartesNormale = new JLabel();
-				VuePaquetDeRessourcesDePartie.this.nbreDeCartesNormale = VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getNombreCartesNormales();
+				VuePaquetDeRessourcesDePartie.this.nbreDeCartesNormale = VuePaquetDeRessourcesDePartie.this.referenceParametres
+						.getPaquetDePartie().getNombreCartesNormales();
 				String tempTexte2 = new String();
 				tempTexte2 += "Cartes Normales : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesNormale;
 				VuePaquetDeRessourcesDePartie.this.lblCartesNormale.setText(tempTexte2);
@@ -104,7 +102,8 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 				if (VuePaquetDeRessourcesDePartie.this.referenceParametres.getTypePartie() == StatutPartie.avancee) {
 					VuePaquetDeRessourcesDePartie.this.remove(VuePaquetDeRessourcesDePartie.this.lblCartesAvancee);
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee = new JLabel();
-					VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee = VuePaquetDeRessourcesDePartie.this.referenceParametres.getPaquetDePartie().getNombreCartesAvancees();
+					VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee = VuePaquetDeRessourcesDePartie.this.referenceParametres
+							.getPaquetDePartie().getNombreCartesAvancees();
 					String tempTexte3 = "";
 					tempTexte3 = "Cartes Avancées : " + VuePaquetDeRessourcesDePartie.this.nbreDeCartesAvancee;
 					VuePaquetDeRessourcesDePartie.this.lblCartesAvancee.setText(tempTexte3);
@@ -116,7 +115,7 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		};
 		SwingUtilities.invokeLater(myRunnable);
 	}
-	
+
 	public void changementDePaquet() {
 		this.referenceParametres.getPaquetDePartie().addObserver(this);
 	}

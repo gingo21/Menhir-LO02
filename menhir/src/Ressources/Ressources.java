@@ -1,6 +1,5 @@
 package Ressources;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -56,7 +55,6 @@ public class Ressources {
 			imageGeant = ImageIO.read( new File("src/Ressources/geant.png"));
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

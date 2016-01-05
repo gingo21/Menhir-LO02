@@ -9,9 +9,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-
-import com.sun.prism.Graphics;
 
 import Ressources.Ressources;
 import modele.Carte;
@@ -24,6 +21,8 @@ import modele.StrategieJoueurReelGraphique;
 
 public class VueJeu extends FenetrePrincipal implements Observer {
 
+	private static final long serialVersionUID = -4536081134157026230L;
+	
 	private VuePaquetDeRessourcesDePartie vuePaquetDeRessourcesDePartie;
 	private VuePaquetDeRessourcesDeJoueurReel vuePaquetDeRessourcesDeJoueurReel;
 	private VueStrategieJoueurReelGraphique vueStrategieJoueurReelGraphique;
@@ -79,8 +78,8 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDePartie, 350, 0);
 		this.panneau.ajoutPanneau(this.vuePaquetDeRessourcesDeJoueurReel,
-				this.DIMENSION_ECRAN.width - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().width,
-				this.DIMENSION_ECRAN.height - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().height);
+				FenetrePrincipal.DIMENSION_ECRAN.width - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().width,
+				FenetrePrincipal.DIMENSION_ECRAN.height - this.vuePaquetDeRessourcesDeJoueurReel.getPreferredSize().height);
 		this.panneau.ajoutPanneau(this.vueStrategieJoueurReelGraphique, 350,
 				this.vuePaquetDeRessourcesDePartie.getSize().height);
 		this.add(this.panneau);

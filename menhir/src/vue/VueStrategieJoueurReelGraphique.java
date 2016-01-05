@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -12,10 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import Ressources.Ressources;
@@ -23,14 +19,13 @@ import modele.Carte;
 import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
 import modele.CarteTaupesGeantes;
-import modele.ListeAttente;
 import modele.PaquetDeRessourcesDePartie;
-import modele.Partie;
 import modele.StrategieJoueurReelGraphique;
 import modele.TypeAction;
 
 public class VueStrategieJoueurReelGraphique extends Panneau implements Observer {
 
+	private static final long serialVersionUID = 7126927330980873763L;
 	private JButton boutonAttaqueOui = new JButton("oui");
 	private JButton boutonAttaqueNon = new JButton("non");
 	private JButton boutonDefenseOui = new JButton("oui");
@@ -280,8 +275,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 					VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 				} else if (arg0 instanceof Carte && arg1.toString().contains("utiliser")) {
 					Carte tempCarte = (Carte) arg0;
-					if(VueStrategieJoueurReelGraphique.this.carteEnJeu != null) {
-					VueStrategieJoueurReelGraphique.this.remove(VueStrategieJoueurReelGraphique.this.carteEnJeu);
+					if (VueStrategieJoueurReelGraphique.this.carteEnJeu != null) {
+						VueStrategieJoueurReelGraphique.this.remove(VueStrategieJoueurReelGraphique.this.carteEnJeu);
 					}
 					if (arg0 instanceof CarteIngredient) {
 						VueStrategieJoueurReelGraphique.this.carteEnJeu = new VueCarteIngredient(tempCarte,
@@ -297,7 +292,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 							0, 60);
 				} else if (arg1 != null) {
 					if (arg1.toString().contains("saison")) {
-						VueStrategieJoueurReelGraphique.this.remove(VueStrategieJoueurReelGraphique.this.afficheurSaison);
+						VueStrategieJoueurReelGraphique.this
+								.remove(VueStrategieJoueurReelGraphique.this.afficheurSaison);
 						if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("omne")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : hiver");
 						} else if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("rin")) {
@@ -307,7 +303,8 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 						} else if (VueStrategieJoueurReelGraphique.this.afficheurSaison.getText().contains("hiver")) {
 							VueStrategieJoueurReelGraphique.this.afficheurSaison = new JLabel("Saison : printemps");
 						}
-						VueStrategieJoueurReelGraphique.this.ajoutPanneau(VueStrategieJoueurReelGraphique.this.afficheurSaison, 375, 225);
+						VueStrategieJoueurReelGraphique.this
+								.ajoutPanneau(VueStrategieJoueurReelGraphique.this.afficheurSaison, 375, 225);
 						VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
 					} else {
 						VueStrategieJoueurReelGraphique.this.afficheurTexte.setText(arg1.toString());
@@ -327,15 +324,14 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 				}
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void changementDePaquet(PaquetDeRessourcesDePartie paquet) {
 		paquet.addObserver(this);
 	}
-	
+
 	public boolean isAttenteChoixCarte() {
 		return attenteChoixCarte;
 	}

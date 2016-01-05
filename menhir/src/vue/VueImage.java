@@ -7,19 +7,23 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-public class VueImage extends Panneau{
-	private Image image; 
-	public  VueImage(Image image, int l, int h){
+public class VueImage extends Panneau {
+
+	private static final long serialVersionUID = -6093237545149467189L;
+	private Image image;
+
+	public VueImage(Image image, int l, int h) {
 		this.image = image;
-		this.setPreferredSize(new Dimension(l,h));
-		this.image = redimImage(image, h,l);
+		this.setPreferredSize(new Dimension(l, h));
+		this.image = redimImage(image, h, l);
 	}
-	public void paintComponent(Graphics g){
+
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, this);
 	}
 
-	public Image redimImage(Image image, int height, int width){
+	public Image redimImage(Image image, int height, int width) {
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = (Graphics2D) img.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);

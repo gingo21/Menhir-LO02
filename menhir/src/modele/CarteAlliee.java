@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public abstract class CarteAlliee extends Carte {
 
+	private static final long serialVersionUID = 1693346063845949047L;
+	
 	private int puissanceActions[] = new int[4];
 
 	public CarteAlliee(String nom, int valeur[]) {
@@ -21,9 +23,9 @@ public abstract class CarteAlliee extends Carte {
 	public int[] getPuissanceActions() {
 		return puissanceActions;
 	}
-	
+
 	public int getPuissanceActions(Saison saisonActuelle) {
-		int tempValeur=2;
+		int tempValeur = 2;
 		if (saisonActuelle == Saison.automne) {
 			tempValeur = 2;
 		} else if (saisonActuelle == Saison.hiver) {
@@ -42,10 +44,8 @@ public abstract class CarteAlliee extends Carte {
 	}
 
 	public String toString() {
-		return "CarteAlliee [puissanceActions="
-				+ Arrays.toString(puissanceActions) + ", Nom=" + getNom()
-				+ ", Classe=" + getClass() + "]";
+		return "CarteAlliee [puissanceActions=" + Arrays.toString(puissanceActions) + ", Nom=" + getNom() + ", Classe="
+				+ getClass() + "]";
 	}
-	
-	
+
 }

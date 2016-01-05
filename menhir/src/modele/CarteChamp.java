@@ -2,6 +2,8 @@ package modele;
 
 public class CarteChamp extends Carte {
 
+	private static final long serialVersionUID = -3389589595911788625L;
+
 	private int menhirAdultes;
 
 	public CarteChamp(String nom) {

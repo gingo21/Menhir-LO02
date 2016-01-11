@@ -3,6 +3,7 @@ package vue;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -190,7 +191,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 				.getTempVueCartes1().iterator(); it.hasNext();) {
 			final VueCarte tempVueCarte = it.next();
 			if (tempVueCarte.getMouseListeners().length == 0) {
-				tempVueCarte.addMouseListener(new MouseListener() {
+				tempVueCarte.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent arg0) {
 						if (VueStrategieJoueurReelGraphique.this.attenteChoixCarte) {
 							VueStrategieJoueurReelGraphique.this.referenceStrategie
@@ -200,18 +201,6 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 							}
 						}
 					}
-
-					public void mouseEntered(MouseEvent arg0) {
-					}
-
-					public void mouseExited(MouseEvent arg0) {
-					}
-
-					public void mousePressed(MouseEvent arg0) {
-					}
-
-					public void mouseReleased(MouseEvent arg0) {
-					}
 				});
 			}
 		}
@@ -219,7 +208,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 				.iterator(); it.hasNext();) {
 			final VuePaquetDeRessourcesIA tempVue = it.next();
 			if (tempVue.getMouseListeners().length == 0) {
-				tempVue.addMouseListener(new MouseListener() {
+				tempVue.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent arg0) {
 						if (VueStrategieJoueurReelGraphique.this.attenteChoixDestinataire) {
 							VueStrategieJoueurReelGraphique.this.referenceStrategie.setDestinataireAAttaquer(
@@ -229,18 +218,6 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 								VueStrategieJoueurReelGraphique.this.referenceStrategie.notify();
 							}
 						}
-					}
-
-					public void mouseEntered(MouseEvent arg0) {
-					}
-
-					public void mouseExited(MouseEvent arg0) {
-					}
-
-					public void mousePressed(MouseEvent arg0) {
-					}
-
-					public void mouseReleased(MouseEvent arg0) {
 					}
 				});
 			}

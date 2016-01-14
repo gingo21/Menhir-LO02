@@ -20,6 +20,6 @@ public class VueCarteChiensDeGarde extends VueCarteAliee {
 	 */
 	public VueCarteChiensDeGarde(Carte carte, Ressources r, int h, int l, boolean IA) {
 		super(carte, r, h, l, IA);
-		imageFaceCarte = redimImage(r.getImageChienDeGarde(), h, l);
+		imageFaceCarte = r.redimImage(r.getImageChienDeGarde(), h, l);
 	}
 }

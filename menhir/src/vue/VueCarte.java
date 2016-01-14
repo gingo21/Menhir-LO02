@@ -1,3 +1,4 @@
+
 package vue;
 
 import java.awt.Dimension;
@@ -38,12 +39,21 @@ public abstract class VueCarte extends Panneau{
 	protected Image imageFaceCarte;
 	
 	/**
-	 * Image dos 
+	 * Image dos carte normale
 	 */
 	protected Image imageDos;
+	
+	/**
+	 * Image dos carte alliée
+	 */
 	protected Image imageDosLutin;
+	
+	/**
+	 * Carte cachée 
+	 */
 	protected boolean hidden;
-	protected String nomCarte;
+	
+
 
 	/**
 	 * Créer la vue graphique d'une carte
@@ -55,32 +65,10 @@ public abstract class VueCarte extends Panneau{
 	 */
 	public VueCarte(Carte carte, Ressources r, int h, int l,boolean IA) {
 		this.carte = carte;
-		this.nomCarte = carte.getNom();
 		this.setPreferredSize(new Dimension(h, l)); 
 		this.hidden = IA;
 	} 
-	
-	/**
-	 * Redimensionner une Image
-	 * @param image l'image de départ
-	 * @param h sa hauteur souhaité
-	 * @param w sa largeur souhaité
-	 * 
-	 * @return img l'image redimmensionné
-	 */
-	public Image redimImage(Image image, int h, int w){
-		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g = (Graphics2D) img.getGraphics();
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g.drawImage(image, 0, 0, w, h, null);
-		g.dispose();
-		return img;
-	}
 
-//	public void paintComponent(Graphics g){
-//		super.paintComponent(g);
-//
-//	}
 
 	public Carte getCarte() {
 		return carte;

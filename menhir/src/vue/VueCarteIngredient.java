@@ -20,6 +20,11 @@ public class VueCarteIngredient extends VueCarte {
 	 * actions (farfadet, engrais, géant) en fonction des saisons
 	 */
 	private int[][] puissanceActions;
+	
+	/**
+	 * Nom de la carte
+	 */
+	private String nomCarte;
 
 	/**
 	 * Créer la vue graphique d'une carte Ingredient
@@ -31,6 +36,7 @@ public class VueCarteIngredient extends VueCarte {
 	 */
 	public VueCarteIngredient(Carte carte, Ressources ressources, int h, int l, boolean IA) {
 		super(carte, ressources, h, l, IA);
+		this.nomCarte = carte.getNom();
 		this.puissanceActions = ((CarteIngredient) carte).getPuissanceActions();
 		if (this.nomCarte.equals("Chant de Sirène")) {
 			this.imageFaceCarte = ressources.getChantDeSirene();

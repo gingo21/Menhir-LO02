@@ -1,3 +1,4 @@
+
 package vue;
 
 import java.awt.Color;
@@ -36,7 +37,7 @@ public abstract class VueCarteAliee extends VueCarte {
 	}
 	
 	/**
-	 * Dessine la carte alliée de face ou de dos
+	 * Dessine la carte alliée cachée ou non
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

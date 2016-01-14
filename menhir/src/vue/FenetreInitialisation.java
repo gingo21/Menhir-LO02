@@ -1,6 +1,4 @@
-/**
- * Vue
- */
+
 package vue;
 
 import java.awt.Container;

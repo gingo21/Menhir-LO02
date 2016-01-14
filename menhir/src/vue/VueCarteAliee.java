@@ -24,7 +24,7 @@ public abstract class VueCarteAliee extends VueCarte {
 	/**
 	 * Crée Vue Graphique d'une carte Alliée
 	 * @param carte la carte associé
-	 * @param r l'ensemble des ressources images
+	 * @param ressources l'ensemble des ressources images
 	 * @param h hauteur de la carte
 	 * @param l largeur de la carte
 	 * @param IA carte appartenant ou non à IA  

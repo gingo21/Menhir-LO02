@@ -14,7 +14,7 @@ public class VueCarteTaupesGeantes extends VueCarteAliee {
 	/**
 	 * Créer la vue graphique d'une carte taupe géante
 	 * @param carte la carte associé
-	 * @param r l'ensemble des ressources images
+	 * @param ressources l'ensemble des ressources images
 	 * @param h hauteur de la carte
 	 * @param l largeur de la carte
 	 * @param IA carte appartenant ou non à IA  

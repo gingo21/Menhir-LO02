@@ -45,9 +45,10 @@ public class FenetreInitialisation extends JDialog {
 	
 	/**
 	 * Crée la fenêtre de démarrage du jeu
+	 * @param parametresDePartie Paramètres de la Partie
 	 */
-	public FenetreInitialisation(JFrame owner, String title, boolean modal, final ParametresDePartie parametresDePartie) {  
-		super(owner, title, modal);
+	public FenetreInitialisation(final ParametresDePartie parametresDePartie) {  
+		this.setTitle("Menhir");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	    this.setResizable(false);
 	    this.setFocusable(true);

@@ -18,8 +18,8 @@ public class VueCarteChiensDeGarde extends VueCarteAliee {
 	 * @param l largeur de la carte
 	 * @param IA carte appartenant ou non à IA  
 	 */
-	public VueCarteChiensDeGarde(Carte carte, Ressources ressources, int h, int l, boolean IA) {
-		super(carte, ressources, h, l, IA);
-		imageFaceCarte = redimImage(ressources.getImageChienDeGarde(), h, l);
+	public VueCarteChiensDeGarde(Carte carte, Ressources r, int h, int l, boolean IA) {
+		super(carte, r, h, l, IA);
+		imageFaceCarte = redimImage(r.getImageChienDeGarde(), h, l);
 	}
 }

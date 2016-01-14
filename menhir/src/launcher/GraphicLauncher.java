@@ -14,7 +14,7 @@ public class GraphicLauncher implements Runnable {
 
 	public void run() {
 		ParametresDePartie parametresDePartie = new ParametresDePartie();
-		FenetreInitialisation fenetreInitialisation = new FenetreInitialisation(null, "Menhir", true,
+		FenetreInitialisation fenetreInitialisation = new FenetreInitialisation(
 				parametresDePartie);
 		fenetreInitialisation.setVisible(true);
 	}

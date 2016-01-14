@@ -16,7 +16,7 @@ public class VueCarteComptageDePoints extends VueCarte {
 	/**
 	 * Créer la vue graphique d'une carte Comptage de Points
 	 * @param carte la carte associé
-	 * @param r l'ensemble des ressources images
+	 * @param ressources l'ensemble des ressources images
 	 * @param h hauteur de la carte
 	 * @param l largeur de la carte
 	 * @param IA carte appartenant ou non à IA  

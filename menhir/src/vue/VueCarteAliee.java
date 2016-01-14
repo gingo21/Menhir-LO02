@@ -9,17 +9,35 @@ import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteAlliee;
 
+/**
+ * Représentation graphique d'une carte alliée 
+ * Hérite de VueCarte
+ */
 public abstract class VueCarteAliee extends VueCarte {
 	private static final long serialVersionUID = -8372982092938359391L;
-
+	
+	/**
+	 * Tableau des puissances pour chaque saison 
+	 */
 	private int[] puissanceActionsAlliee;
 
+	/**
+	 * Crée Vue Graphique d'une carte Alliée
+	 * @param carte la carte associé
+	 * @param r l'ensemble des ressources images
+	 * @param h hauteur de la carte
+	 * @param l largeur de la carte
+	 * @param IA carte appartenant ou non à IA  
+	 */
 	public VueCarteAliee(Carte carte, Ressources ressources, int h, int l, boolean IA) {
 		super(carte, ressources, h, l, IA);
 		this.puissanceActionsAlliee = ((CarteAlliee) carte).getPuissanceActions();
 		this.imageDos = ressources.redimImage(ressources.getImageDosLutin(), h, l);
 	}
-
+	
+	/**
+	 * Dessine la carte alliée de face ou de dos
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (!this.hidden) {

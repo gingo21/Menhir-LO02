@@ -8,11 +8,27 @@ import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteIngredient;
 
+/**
+ * Représentation Graphique d'une Carte Ingrédient
+ */
 public class VueCarteIngredient extends VueCarte {
 
 	private static final long serialVersionUID = -8695119206359500444L;
+	
+	/**
+	 * Tableau de 2 dimensions qui contient les puissances des 3 
+	 * actions (farfadet, engrais, géant) en fonction des saisons
+	 */
 	private int[][] puissanceActions;
 
+	/**
+	 * Créer la vue graphique d'une carte Ingredient
+	 * @param carte la carte associé
+	 * @param r l'ensemble des ressources images
+	 * @param h hauteur de la carte
+	 * @param l largeur de la carte
+	 * @param IA carte appartenant ou non à IA  
+	 */
 	public VueCarteIngredient(Carte carte, Ressources ressources, int h, int l, boolean IA) {
 		super(carte, ressources, h, l, IA);
 		this.puissanceActions = ((CarteIngredient) carte).getPuissanceActions();
@@ -49,6 +65,10 @@ public class VueCarteIngredient extends VueCarte {
 		}
 	}
 
+	/**
+	 * Dessine la carte Ingredient(de face ou de dos)
+	 * à partir d'une image
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (!this.hidden) {

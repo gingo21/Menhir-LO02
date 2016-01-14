@@ -13,7 +13,6 @@ import Ressources.Ressources;
 
 public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 
-	private static final long serialVersionUID = -1925545505936736288L;
 	public static int TAILLE_CARTE = 80;
 
 	public VuePaquetDeRessourcesIA(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
@@ -82,7 +81,7 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							(tempVueCartes2.get(0)).ajoutPanneau(tempVueImage, 0 + 5 + (i % 3) * 26,
 									+10 + (i / 3) * 11);
 						}
-						
+
 					}
 					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
 				}

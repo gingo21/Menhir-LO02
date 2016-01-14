@@ -5,10 +5,22 @@ import java.awt.Graphics;
 import Ressources.Ressources;
 import modele.Carte;
 
+/**
+ * Représentation graphique d'une carte comptage de points
+ * Hérite de VueCarte
+ */
 public class VueCarteComptageDePoints extends VueCarte {
 
 	private static final long serialVersionUID = 6388366603442276545L;
-
+	
+	/**
+	 * Créer la vue graphique d'une carte Comptage de Points
+	 * @param carte la carte associé
+	 * @param r l'ensemble des ressources images
+	 * @param h hauteur de la carte
+	 * @param l largeur de la carte
+	 * @param IA carte appartenant ou non à IA  
+	 */
 	public VueCarteComptageDePoints(Carte carte, Ressources ressources, int h, int l, boolean IA) {
 		super(carte, ressources, h, l, IA);
 		this.imageFaceCarte = ressources.redimImage(ressources.getImageComptageDePoints(), h, l);

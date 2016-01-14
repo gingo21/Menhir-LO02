@@ -4,9 +4,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
- * Classe qui va permettre de créer la vueJeu
- * 
- *
+ * Fenetre principal de notre jeu
  */
 public class FenetrePrincipal extends JFrame {
 

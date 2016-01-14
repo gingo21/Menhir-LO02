@@ -1,3 +1,6 @@
+/**
+ * Vue
+ */
 package vue;
 
 import java.awt.Container;
@@ -14,21 +17,42 @@ import Ressources.Ressources;
 import modele.ParametresDePartie;
 import modele.Partie;
 
+/**
+ * Fenêtre de démarage du jeu
+ */
 public class FenetreInitialisation extends JDialog {
 	
 	private static final long serialVersionUID = 7574373434248L;
+	/**
+	 * Bouton jouer
+	 */
 	private JButton jouer;
+	
+	/**
+	 * Bouton paramétrer
+	 */
 	private JButton parametrer;
+	
+	/**
+	 * Bouton quitter
+	 */
 	private JButton quitter;
+	
+	/**
+	 * Panneau pour les paramètres
+	 */
 	private VueParametres vueParametres;
 	
+	/**
+	 * Crée la fenêtre de démarrage du jeu
+	 */
 	public FenetreInitialisation(JFrame owner, String title, boolean modal, final ParametresDePartie parametresDePartie) {  
 		super(owner, title, modal);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	    this.setResizable(false);
 	    this.setFocusable(true);
 		this.setSize(new Dimension(400,200));
-		this.setLocationRelativeTo(null); //null-> centre ecran
+		this.setLocationRelativeTo(null); 
 		this.setLayout(new GridLayout(3,1,0,40));
 		
 		jouer = new JButton("Jouer");

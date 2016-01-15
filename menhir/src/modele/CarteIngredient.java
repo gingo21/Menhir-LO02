@@ -59,54 +59,6 @@ public class CarteIngredient extends Carte {
 	}
 
 	/**
-	 * @return les valeurs de puissance.
-	 */
-	public int[][] getPuissanceActions() {
-		return this.puissanceActions;
-	}
-
-	/**
-	 * @param saisonActuelle
-	 *            récupère la saison actuelle de la partie en cours.
-	 * @param typeAction
-	 *            récupère le type d'action (géant, engrais, farfadet).
-	 * @return la puissance correspondant à la saison actuelle et à l'action
-	 *         demandée.
-	 */
-	public int getPuissanceActions(Saison saisonActuelle, TypeAction typeAction) {
-		int tempValeur1 = 2;
-		if (saisonActuelle == Saison.automne) {
-			tempValeur1 = 2;
-		} else if (saisonActuelle == Saison.hiver) {
-			tempValeur1 = 3;
-		} else if (saisonActuelle == Saison.printemps) {
-			tempValeur1 = 0;
-		} else if (saisonActuelle == Saison.ete) {
-			tempValeur1 = 1;
-		}
-		int tempValeur2 = 2;
-		if (typeAction == TypeAction.geantGardient) {
-			tempValeur2 = 0;
-		} else if (typeAction == TypeAction.engrais) {
-			tempValeur2 = 1;
-		} else if (typeAction == TypeAction.farfadet) {
-			tempValeur2 = 2;
-		}
-
-		return puissanceActions[tempValeur1][tempValeur2];
-	}
-
-	/**
-	 * Mise à jour des valeurs de puissance.
-	 * 
-	 * @param puissanceActions
-	 *            récupère les valeurs de puissance.
-	 */
-	public void setPuissanceActions(int[][] puissanceActions) {
-		this.puissanceActions = puissanceActions;
-	}
-
-	/**
 	 * La méthode utiliser va permettre d'ajouter la fonctionnalité
 	 * d'utilisation de type ingrédient à la carte. Elle permet d'utiliser trois
 	 * action : engrais pour faire pousser les graines du paquet de ressources
@@ -201,7 +153,55 @@ public class CarteIngredient extends Carte {
 		}
 		this.setEstUtilise(true);
 	}
+	
+	/**
+	 * @return les valeurs de puissance.
+	 */
+	public int[][] getPuissanceActions() {
+		return this.puissanceActions;
+	}
 
+	/**
+	 * @param saisonActuelle
+	 *            récupère la saison actuelle de la partie en cours.
+	 * @param typeAction
+	 *            récupère le type d'action (géant, engrais, farfadet).
+	 * @return la puissance correspondant à la saison actuelle et à l'action
+	 *         demandée.
+	 */
+	public int getPuissanceActions(Saison saisonActuelle, TypeAction typeAction) {
+		int tempValeur1 = 2;
+		if (saisonActuelle == Saison.automne) {
+			tempValeur1 = 2;
+		} else if (saisonActuelle == Saison.hiver) {
+			tempValeur1 = 3;
+		} else if (saisonActuelle == Saison.printemps) {
+			tempValeur1 = 0;
+		} else if (saisonActuelle == Saison.ete) {
+			tempValeur1 = 1;
+		}
+		int tempValeur2 = 2;
+		if (typeAction == TypeAction.geantGardient) {
+			tempValeur2 = 0;
+		} else if (typeAction == TypeAction.engrais) {
+			tempValeur2 = 1;
+		} else if (typeAction == TypeAction.farfadet) {
+			tempValeur2 = 2;
+		}
+
+		return puissanceActions[tempValeur1][tempValeur2];
+	}
+
+	/**
+	 * Mise à jour des valeurs de puissance.
+	 * 
+	 * @param puissanceActions
+	 *            récupère les valeurs de puissance.
+	 */
+	public void setPuissanceActions(int[][] puissanceActions) {
+		this.puissanceActions = puissanceActions;
+	}
+	
 	/**
 	 * Cette méthode permet d'afficher en chaine de caractères et de manière
 	 * simple une carte ingrédient. Elle redéfinit celle de la classe étendue.

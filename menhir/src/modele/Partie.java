@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Observable;
 
 /**
- * La classe Partie est la classe centrale du modèle. En effet, c'est elle qui va
- * réunir toutes les fonctionnalités des classes du modèle pour pouvoir effectuer 
- * une partie du jeu de Menhir
+ * La classe Partie est la classe centrale du modèle. En effet, c'est elle qui
+ * va réunir toutes les fonctionnalités des classes du modèle pour pouvoir
+ * effectuer une partie du jeu de Menhir
  */
 public class Partie extends Observable implements Runnable {
 
@@ -14,22 +14,22 @@ public class Partie extends Observable implements Runnable {
 	 * Saison actuelle de notre partie
 	 */
 	private Saison saisonActuelle;
-	
+
 	/**
 	 * Numéro de tour
 	 */
 	private int numeroDeTourActuel;
-	
+
 	/**
 	 * Numéro de manche
 	 */
 	private int numeroDeManche;
-	
+
 	/**
 	 * Paramètres de la partie
 	 */
 	private ParametresDePartie parametresDePartie;
-	
+
 	/**
 	 * Partie lancé en mode Console ou non
 	 */
@@ -37,6 +37,7 @@ public class Partie extends Observable implements Runnable {
 
 	/**
 	 * Constructeur de la classe
+	 * 
 	 * @param parametresDePartie
 	 * @param modeConsole
 	 */
@@ -50,7 +51,7 @@ public class Partie extends Observable implements Runnable {
 	}
 
 	/**
-	 *Lancement de la partie dans un thread
+	 * Lancement de la partie dans un thread
 	 */
 	public void run() {
 		this.setChanged();
@@ -101,25 +102,10 @@ public class Partie extends Observable implements Runnable {
 		} while (this.getNumeroDeManche() < this.parametresDePartie.getNombreDeManches());
 		this.finDeJeu(this.parametresDePartie);
 	}
-	
-	/**
-	 @return Paramètres de la partie
-	 */
-	public ParametresDePartie getParametresDePartie() {
-		return this.parametresDePartie;
-	}
-	
-	/**
-	 *Mise à jour des paramètres de la partie
-	 *@param parametresDePartie
-	 */
-	public void setParametresDePartie(ParametresDePartie parametresDePartie) {
-		this.parametresDePartie = parametresDePartie;
-	}
 
 	/**
-	 * Méthode de changement de tour
-	 *On incrémente le numéro de tour, et on vérifie s'il y a changement de saison
+	 * Méthode de changement de tour On incrémente le numéro de tour, et on
+	 * vérifie s'il y a changement de saison
 	 */
 	public void changerDeTour(ParametresDePartie parametresDePartie) {
 		this.numeroDeTourActuel++;
@@ -136,8 +122,8 @@ public class Partie extends Observable implements Runnable {
 	}
 
 	/**
-	 * Méthode de changement de manche
-	 * On incrémente le numéro de manche, et on rédémarre une manche si la partie n'est pas fini
+	 * Méthode de changement de manche On incrémente le numéro de manche, et on
+	 * rédémarre une manche si la partie n'est pas fini
 	 */
 	public void changerDeManche() {
 		this.numeroDeManche++;
@@ -159,8 +145,7 @@ public class Partie extends Observable implements Runnable {
 	}
 
 	/**
-	 * Méthode de fin du jeu
-	 * On regarde qui a gagné la partie
+	 * Méthode de fin du jeu On regarde qui a gagné la partie
 	 */
 	public void finDeJeu(ParametresDePartie parametresDePartie) {
 		Joueur JoueurGagnant = null;
@@ -186,6 +171,7 @@ public class Partie extends Observable implements Runnable {
 
 	/**
 	 * Méthode qui permet d'attendre le temps donné en paramètre
+	 * 
 	 * @param millis
 	 */
 	public void wait(int millis) {
@@ -203,6 +189,7 @@ public class Partie extends Observable implements Runnable {
 
 	/**
 	 * Mise à jour du numéro de manche
+	 * 
 	 * @param numeroDeManche
 	 */
 	public void setNumeroDeManche(int numeroDeManche) {
@@ -218,6 +205,7 @@ public class Partie extends Observable implements Runnable {
 
 	/**
 	 * Mise à jour du numéro de tour actuel
+	 * 
 	 * @param numeroDeTourActuel
 	 */
 	public void setNumeroDeTourActuel(int numeroDeTourActuel) {
@@ -233,10 +221,27 @@ public class Partie extends Observable implements Runnable {
 
 	/**
 	 * Mise à jour de la saison actuelle
+	 * 
 	 * @param saisonActuelle
 	 */
 	public void setSaisonActuelle(Saison saisonActuelle) {
 		this.saisonActuelle = saisonActuelle;
+	}
+
+	/**
+	 * @return Paramètres de la partie
+	 */
+	public ParametresDePartie getParametresDePartie() {
+		return this.parametresDePartie;
+	}
+
+	/**
+	 * Mise à jour des paramètres de la partie
+	 * 
+	 * @param parametresDePartie
+	 */
+	public void setParametresDePartie(ParametresDePartie parametresDePartie) {
+		this.parametresDePartie = parametresDePartie;
 	}
 
 }

@@ -52,93 +52,6 @@ public class StrategieJoueurReelGraphique extends Strategie {
 	}
 
 	/**
-	 * @return la carte que le joueur veut actuellement jouer.
-	 */
-	public Carte getCarteAJouer() {
-		return carteAJouer;
-	}
-
-	/**
-	 * Mise à jour de la carte à jouer
-	 * 
-	 * @param carteAJouer
-	 *            récupère la nouvelle carte à jouer.
-	 */
-	public void setCarteAJouer(Carte carteAJouer) {
-		this.carteAJouer = carteAJouer;
-	}
-
-	/**
-	 * @return l'action que le joueur veut actuellement faire.
-	 */
-	public TypeAction getActionAJouer() {
-		return actionAJouer;
-	}
-
-	/**
-	 * Mise à jour de l'action à faire
-	 * 
-	 * @param actionAJouer
-	 *            récupère la nouvelle action à faire
-	 */
-	public void setActionAJouer(TypeAction actionAJouer) {
-		this.actionAJouer = actionAJouer;
-	}
-
-	/**
-	 * @return le joueur ennemi que le joueur veut actuellement attaquer.
-	 */
-	public Joueur getDestinataireAAttaquer() {
-		return destinataireAAttaquer;
-	}
-
-	/**
-	 * Mise à jour du destinatire à attaquer
-	 * 
-	 * @param destinataireAAttaquer
-	 *            récupère le nouveau destinataire à attaquer.
-	 */
-	public void setDestinataireAAttaquer(Joueur destinataireAAttaquer) {
-		this.destinataireAAttaquer = destinataireAAttaquer;
-	}
-
-	/**
-	 * @return la volonté ou non du joueur de se défendre avec une carte chiens
-	 *         de garde
-	 */
-	public boolean isSeDefendre() {
-		return seDefendre;
-	}
-
-	/**
-	 * Mise à jour de la volonté de se défendre
-	 * 
-	 * @param seDefendre
-	 *            récupère la nouvelle volonté de se défendre.
-	 */
-	public void setSeDefendre(boolean seDefendre) {
-		this.seDefendre = seDefendre;
-	}
-
-	/**
-	 * @return la volonté ou non du joueur d'attaquer avec une carte taupes
-	 *         géantes
-	 */
-	public boolean isAttaquer() {
-		return attaquer;
-	}
-
-	/**
-	 * Mise à jour de la volonté d'attaquer
-	 * 
-	 * @param seDefendre
-	 *            récupère la nouvelle volonté d'attaquer.
-	 */
-	public void setAttaquer(boolean attaquer) {
-		this.attaquer = attaquer;
-	}
-
-	/**
 	 * Implémentation de la façon dont va jouer un tour un joueur réel pour le
 	 * choix d'une carte ingrédient et d'une action
 	 */
@@ -250,8 +163,8 @@ public class StrategieJoueurReelGraphique extends Strategie {
 	}
 
 	/**
-	 * Implémentation de la façon dont un joueur réel va choisir si
-	 * oui ou non il veut une carte alliée en partie avancée
+	 * Implémentation de la façon dont un joueur réel va choisir si oui ou non
+	 * il veut une carte alliée en partie avancée
 	 */
 	public synchronized void choixDeManche(ParametresDePartie parametresDePartie) {
 		this.setChanged();
@@ -261,6 +174,93 @@ public class StrategieJoueurReelGraphique extends Strategie {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return la carte que le joueur veut actuellement jouer.
+	 */
+	public Carte getCarteAJouer() {
+		return carteAJouer;
+	}
+
+	/**
+	 * Mise à jour de la carte à jouer
+	 * 
+	 * @param carteAJouer
+	 *            récupère la nouvelle carte à jouer.
+	 */
+	public void setCarteAJouer(Carte carteAJouer) {
+		this.carteAJouer = carteAJouer;
+	}
+
+	/**
+	 * @return l'action que le joueur veut actuellement faire.
+	 */
+	public TypeAction getActionAJouer() {
+		return actionAJouer;
+	}
+
+	/**
+	 * Mise à jour de l'action à faire
+	 * 
+	 * @param actionAJouer
+	 *            récupère la nouvelle action à faire
+	 */
+	public void setActionAJouer(TypeAction actionAJouer) {
+		this.actionAJouer = actionAJouer;
+	}
+
+	/**
+	 * @return le joueur ennemi que le joueur veut actuellement attaquer.
+	 */
+	public Joueur getDestinataireAAttaquer() {
+		return destinataireAAttaquer;
+	}
+
+	/**
+	 * Mise à jour du destinatire à attaquer
+	 * 
+	 * @param destinataireAAttaquer
+	 *            récupère le nouveau destinataire à attaquer.
+	 */
+	public void setDestinataireAAttaquer(Joueur destinataireAAttaquer) {
+		this.destinataireAAttaquer = destinataireAAttaquer;
+	}
+
+	/**
+	 * @return la volonté ou non du joueur de se défendre avec une carte chiens
+	 *         de garde
+	 */
+	public boolean isSeDefendre() {
+		return seDefendre;
+	}
+
+	/**
+	 * Mise à jour de la volonté de se défendre
+	 * 
+	 * @param seDefendre
+	 *            récupère la nouvelle volonté de se défendre.
+	 */
+	public void setSeDefendre(boolean seDefendre) {
+		this.seDefendre = seDefendre;
+	}
+
+	/**
+	 * @return la volonté ou non du joueur d'attaquer avec une carte taupes
+	 *         géantes
+	 */
+	public boolean isAttaquer() {
+		return attaquer;
+	}
+
+	/**
+	 * Mise à jour de la volonté d'attaquer
+	 * 
+	 * @param seDefendre
+	 *            récupère la nouvelle volonté d'attaquer.
+	 */
+	public void setAttaquer(boolean attaquer) {
+		this.attaquer = attaquer;
 	}
 
 }

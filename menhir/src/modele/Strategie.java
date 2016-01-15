@@ -44,42 +44,6 @@ public abstract class Strategie extends Observable implements Serializable {
 	}
 
 	/**
-	 * @return la référence sur le joueur utilisant cette stratégie.
-	 */
-	public Joueur getReferenceJoueur() {
-		return referenceJoueur;
-	}
-
-	/**
-	 * Mise à jour du joueur utilisant cette stratégie.
-	 * 
-	 * @param referenceJoueur
-	 *            récupère la référence du joueur.
-	 */
-	public void setReferenceJoueur(Joueur referenceJoueur) {
-		this.referenceJoueur = referenceJoueur;
-	}
-
-	/**
-	 * @return si oui ou non le joueur utilisant la stratégie veut une carte
-	 *         alliée.
-	 */
-	public boolean isChoixCarteAlliee() {
-		return choixCarteAlliee;
-	}
-
-	/**
-	 * Mise à jour de si oui ou non le joueur utilisant la stratégie veut une
-	 * carte alliée.
-	 * 
-	 * @param choixCarteAlliee
-	 *            récupère le choix.
-	 */
-	public void setChoixCarteAlliee(boolean choixCarteAlliee) {
-		this.choixCarteAlliee = choixCarteAlliee;
-	}
-
-	/**
 	 * Cette méthode abstraite impose aux stratégies instanciables de permettre
 	 * au joueur (de la stratégie) de savoir jouer son tour.
 	 * 
@@ -150,5 +114,41 @@ public abstract class Strategie extends Observable implements Serializable {
 	 */
 	public void addConsoleObserver(Console observer) {
 		this.addObserver(observer);
+	}
+
+	/**
+	 * @return la référence sur le joueur utilisant cette stratégie.
+	 */
+	public Joueur getReferenceJoueur() {
+		return referenceJoueur;
+	}
+
+	/**
+	 * Mise à jour du joueur utilisant cette stratégie.
+	 * 
+	 * @param referenceJoueur
+	 *            récupère la référence du joueur.
+	 */
+	public void setReferenceJoueur(Joueur referenceJoueur) {
+		this.referenceJoueur = referenceJoueur;
+	}
+
+	/**
+	 * @return si oui ou non le joueur utilisant la stratégie veut une carte
+	 *         alliée.
+	 */
+	public boolean isChoixCarteAlliee() {
+		return choixCarteAlliee;
+	}
+
+	/**
+	 * Mise à jour de si oui ou non le joueur utilisant la stratégie veut une
+	 * carte alliée.
+	 * 
+	 * @param choixCarteAlliee
+	 *            récupère le choix.
+	 */
+	public void setChoixCarteAlliee(boolean choixCarteAlliee) {
+		this.choixCarteAlliee = choixCarteAlliee;
 	}
 }

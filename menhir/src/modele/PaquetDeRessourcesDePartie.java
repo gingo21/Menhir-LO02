@@ -87,50 +87,6 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 
 	/**
-	 * @return le nombre de cartes utilisées en uniquement en partie avancée que
-	 *         détient le paquet.
-	 */
-	public int getNombreCartesAvancees() {
-		int tempValeur = 0;
-		if (this.paquetsDeCartes.get("Cartes Taupes Geantes") != null) {
-			tempValeur += this.paquetsDeCartes.get("Cartes Taupes Geantes").size();
-		}
-		if (this.paquetsDeCartes.get("Cartes Chiens De Garde") != null) {
-			tempValeur += this.paquetsDeCartes.get("Cartes Chiens De Garde").size();
-		}
-		if (this.paquetsDeCartes.get("Cartes Comptage de Points") != null) {
-			tempValeur += this.paquetsDeCartes.get("Cartes Comptage de Points").size();
-		}
-		return tempValeur;
-	}
-
-	/**
-	 * @return la map des paquets de cartes.
-	 */
-	public HashMap<String, Stack<Carte>> getPaquetsDeCartes() {
-		return paquetsDeCartes;
-	}
-
-	/**
-	 * Mise à jour de la map des paquets de cartes
-	 * 
-	 * @param paquetsDeCartes
-	 *            récupère la nouvelle ma pdes paquets de cartes.
-	 */
-	public void setPaquetsDeCartes(HashMap<String, Stack<Carte>> paquetsDeCartes) {
-		this.paquetsDeCartes = paquetsDeCartes;
-	}
-
-	/**
-	 * @return le nombre de cartes utilisées en partie normale que détient le
-	 *         paquet.
-	 */
-	public int getNombreCartesNormales() {
-		return (this.paquetsDeCartes.get("Cartes Ingredients").size()
-				+ this.paquetsDeCartes.get("Cartes Champs").size());
-	}
-
-	/**
 	 * Cette méthode permet de donner à un joueur (à son paquet) une carte de la
 	 * map des paquets de carets.
 	 * 
@@ -290,5 +246,48 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 			it.next().addObserver(observer);
 		}
 		this.addObserver(observer);
+	}
+	/**
+	 * @return le nombre de cartes utilisées en uniquement en partie avancée que
+	 *         détient le paquet.
+	 */
+	public int getNombreCartesAvancees() {
+		int tempValeur = 0;
+		if (this.paquetsDeCartes.get("Cartes Taupes Geantes") != null) {
+			tempValeur += this.paquetsDeCartes.get("Cartes Taupes Geantes").size();
+		}
+		if (this.paquetsDeCartes.get("Cartes Chiens De Garde") != null) {
+			tempValeur += this.paquetsDeCartes.get("Cartes Chiens De Garde").size();
+		}
+		if (this.paquetsDeCartes.get("Cartes Comptage de Points") != null) {
+			tempValeur += this.paquetsDeCartes.get("Cartes Comptage de Points").size();
+		}
+		return tempValeur;
+	}
+
+	/**
+	 * @return la map des paquets de cartes.
+	 */
+	public HashMap<String, Stack<Carte>> getPaquetsDeCartes() {
+		return paquetsDeCartes;
+	}
+
+	/**
+	 * Mise à jour de la map des paquets de cartes
+	 * 
+	 * @param paquetsDeCartes
+	 *            récupère la nouvelle ma pdes paquets de cartes.
+	 */
+	public void setPaquetsDeCartes(HashMap<String, Stack<Carte>> paquetsDeCartes) {
+		this.paquetsDeCartes = paquetsDeCartes;
+	}
+
+	/**
+	 * @return le nombre de cartes utilisées en partie normale que détient le
+	 *         paquet.
+	 */
+	public int getNombreCartesNormales() {
+		return (this.paquetsDeCartes.get("Cartes Ingredients").size()
+				+ this.paquetsDeCartes.get("Cartes Champs").size());
 	}
 }

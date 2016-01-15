@@ -42,23 +42,6 @@ public abstract class PaquetDeRessources extends Observable implements Serializa
 	}
 
 	/**
-	 * @return le nombre de graines de menhir dans le paquet.
-	 */
-	public int getGrainesDeMenhir() {
-		return grainesDeMenhir;
-	}
-
-	/**
-	 * Mise à jour du nombre de graines dans le paquet
-	 * 
-	 * @param grainesDeMenhir
-	 *            récupère le nombre de graines de menhir dans le paquet.
-	 */
-	public void setGrainesDeMenhir(int grainesDeMenhir) {
-		this.grainesDeMenhir = grainesDeMenhir;
-	}
-
-	/**
 	 * C'est une méthode abstraite qui impose aux classes non abstraites
 	 * héritant de celle-ci d'avoir un paquet de cartes où l'on peut y ajouter
 	 * une carte.
@@ -117,6 +100,23 @@ public abstract class PaquetDeRessources extends Observable implements Serializa
 	public void rafraichirLesObservers() {
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	/**
+	 * @return le nombre de graines de menhir dans le paquet.
+	 */
+	public int getGrainesDeMenhir() {
+		return grainesDeMenhir;
+	}
+
+	/**
+	 * Mise à jour du nombre de graines dans le paquet
+	 * 
+	 * @param grainesDeMenhir
+	 *            récupère le nombre de graines de menhir dans le paquet.
+	 */
+	public void setGrainesDeMenhir(int grainesDeMenhir) {
+		this.grainesDeMenhir = grainesDeMenhir;
 	}
 
 }

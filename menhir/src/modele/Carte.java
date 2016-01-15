@@ -9,7 +9,8 @@ import java.util.Observable;
  * utilisées dans les paquets de ressources de modèle. Cette classe est
  * sérialisable pour la sauvegarder dans un fichier pour les paramétres. Elle
  * hérite d'Observable car elle va notifier son utilisation à ses observateurs
- * (instances de Observer).
+ * (instances de Observer). Elle reste abstraite car elle est encore trop
+ * générale.
  * 
  * @see PaquetDeRessources
  * @see ParametresDePartie
@@ -42,7 +43,7 @@ public abstract class Carte extends Observable implements Serializable {
 	private boolean estUtilise;
 	/**
 	 * Indique le numéro d'identité de la dernière carte instanciée pour que la
-	 * prochaine carte ai un numéro différent
+	 * prochaine carte ait un numéro différent
 	 */
 	public static int numeroDuDernierID = 0;
 

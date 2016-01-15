@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 /**
  * La carte Alliée va étendre la classe carte pour représenter de manière
- * générale une carte Alliée de partie avancée.
+ * générale une carte Alliée de partie avancée. Elle reste abstraite car elle
+ * est encore trop générale.
  *
  * @see Carte
  */

@@ -7,16 +7,39 @@ import java.util.Stack;
 
 import launcher.Console;
 
+/**
+ * La classe PaquetDeRessourcesDePartie étend la classe PaquetDeRessources pour
+ * définir précisemment ce qu'un paquet de partie doit avoir avec notamment des
+ * paquets de cartes
+ * 
+ * @see PaquetDeRessources
+ */
 public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
-	
+
 	/**
-	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 * Il s'agit d'un attribut pour la gestion de version des classes
+	 * implémentant Serializable.
 	 */
 	private static final long serialVersionUID = 7435385869969841194L;
 
+	/**
+	 * Il s'agit des paquets de cartes qui sont rangés dans une Map avec des
+	 * noms qui sont associés à leur type. On utilise des paquets car on n'a
+	 * uniquement besoin de la dernière carte (à la fois) mis dans le paquet
+	 * pour la distribution de celles-ci.
+	 */
 	private HashMap<String, Stack<Carte>> paquetsDeCartes;
 
-	public PaquetDeRessourcesDePartie(modele.StatutPartie statutPartie, int nombreDeJoueurs) {
+	/**
+	 * Il s'agit du constructeur de la classe qui va principalement construire
+	 * les paquets de cartes du joueur en plus des autres attributs.
+	 * 
+	 * @param statutPartie
+	 *            récupère le type de partie en cours.
+	 * @param nombreDeJoueurs
+	 *            récupère le nombre de joueurs dans la partie en cours.
+	 */
+	public PaquetDeRessourcesDePartie(StatutPartie statutPartie, int nombreDeJoueurs) {
 		super(30 * nombreDeJoueurs);
 		paquetsDeCartes = new HashMap<String, Stack<Carte>>();
 		Stack<Carte> tempCartes1 = new Stack<Carte>();
@@ -63,6 +86,10 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		}
 	}
 
+	/**
+	 * @return le nombre de cartes utilisées en uniquement en partie avancée que
+	 *         détient le paquet.
+	 */
 	public int getNombreCartesAvancees() {
 		int tempValeur = 0;
 		if (this.paquetsDeCartes.get("Cartes Taupes Geantes") != null) {
@@ -77,19 +104,42 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		return tempValeur;
 	}
 
+	/**
+	 * @return la map des paquets de cartes.
+	 */
 	public HashMap<String, Stack<Carte>> getPaquetsDeCartes() {
 		return paquetsDeCartes;
 	}
 
+	/**
+	 * Mise à jour de la map des paquets de cartes
+	 * 
+	 * @param paquetsDeCartes
+	 *            récupère la nouvelle ma pdes paquets de cartes.
+	 */
 	public void setPaquetsDeCartes(HashMap<String, Stack<Carte>> paquetsDeCartes) {
 		this.paquetsDeCartes = paquetsDeCartes;
 	}
 
+	/**
+	 * @return le nombre de cartes utilisées en partie normale que détient le
+	 *         paquet.
+	 */
 	public int getNombreCartesNormales() {
 		return (this.paquetsDeCartes.get("Cartes Ingredients").size()
 				+ this.paquetsDeCartes.get("Cartes Champs").size());
 	}
 
+	/**
+	 * Cette méthode permet de donner à un joueur (à son paquet) une carte de la
+	 * map des paquets de carets.
+	 * 
+	 * @param joueur
+	 *            récupère le joueur destiné à recevoir la carte.
+	 * @param cleDeTypeDeCarte
+	 *            récupère la clé de carte qui permet d'identifier son type dans
+	 *            la map.
+	 */
 	public void donnerUneCarteAuJoueur(Joueur joueur, String cleDeTypeDeCarte) {
 		Carte tempCarte = this.paquetsDeCartes.get(cleDeTypeDeCarte).pop();
 		PaquetDeRessourcesDeJoueur tempPaquetJoueur = joueur.getPaquet();
@@ -99,6 +149,10 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		this.notifyObservers();
 	}
 
+	/**
+	 * Il s'agit de l'implémentation d'une méthode de PaquetDeRessources pour
+	 * ajouter une carte dans la map des paquets de cartes.
+	 */
 	public void ajouterUneCarte(Carte carte) {
 		if (carte instanceof CarteIngredient) {
 			Stack<Carte> tempCarte = (Stack<Carte>) this.paquetsDeCartes.get("Cartes Ingredients");
@@ -118,6 +172,10 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		}
 	}
 
+	/**
+	 * Cette méthode permet, uniquement en mode console, d'afficher les cartes
+	 * du paquet.
+	 */
 	public void afficherCartes() {
 		Set<String> tempCles = this.paquetsDeCartes.keySet();
 		for (Iterator<String> it = tempCles.iterator(); it.hasNext();) {
@@ -130,6 +188,13 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 		}
 	}
 
+	/**
+	 * Cette méthode est utilisée dans la classe Partie pour distribuer les
+	 * ressources aux joueurs à chaque début de manche.
+	 * 
+	 * @param parametresDePartie
+	 *            récupère les paramétres de partie.
+	 */
 	public void distribuerRessourcesInitiales(ParametresDePartie parametresDePartie) {
 		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 			Joueur tempJoueur = it.next();
@@ -182,14 +247,35 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
 	}
 
-	public void reprendreToutesLesCartes(ParametresDePartie param, PaquetDeRessourcesDePartie nouveauPaquet) {
+	/**
+	 * Cette méthode recréée un nouveau paquet de ressources de partie pour une
+	 * nouvelle manche car cette méthode est plus pratique étant donné que l'on
+	 * créé un paquet qui sera assurément mélangé dès sa création alors que la
+	 * récupération des cartes auprès des joueurs nécaissiterait une méthode de
+	 * mélange, ce qui n'est pas pratique.
+	 * 
+	 * @param parametres
+	 *            récupère les paramétres de la partie.
+	 * @param nouveauPaquet
+	 *            récupère le nouveau paquet.
+	 */
+	public void reprendreToutesLesCartes(ParametresDePartie parametres, PaquetDeRessourcesDePartie nouveauPaquet) {
 		this.deleteObservers();
-		for (Iterator<Joueur> it = param.getListeJoueurs().iterator(); it.hasNext();) {
+		for (Iterator<Joueur> it = parametres.getListeJoueurs().iterator(); it.hasNext();) {
 			it.next().getPaquet().setReferencePaquetPartie(nouveauPaquet);
 		}
-		param.getPaquetDePartie().distribuerRessourcesInitiales(param);
+		parametres.getPaquetDePartie().distribuerRessourcesInitiales(parametres);
 	}
 
+	/**
+	 * Cette méthode permet à la classe Console de devenir observateur de toutes
+	 * les cartes.
+	 * 
+	 * @param observer
+	 *            récupère l'instance de la Console.
+	 * 
+	 * @see Console
+	 */
 	public void addConsoleObserver(Console observer) {
 		for (Iterator<Carte> it = this.paquetsDeCartes.get("Cartes Ingredients").iterator(); it.hasNext();) {
 			it.next().addObserver(observer);

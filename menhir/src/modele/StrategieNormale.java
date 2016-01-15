@@ -3,17 +3,35 @@ package modele;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * La classe StratégueNormale étend la classe Strategie pour définir une
+ * stratégie normale pour les joueurs virtuels. Cette stratégie se traduit par
+ * un comportement intelligent au niveau des actions entreprises par les joueurs
+ * virtuels.
+ * 
+ * @see Strategie
+ */
 public class StrategieNormale extends Strategie {
-	
+
 	/**
-	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 * Il s'agit d'un attribut pour la gestion de version des classes
+	 * implémentant Serializable.
 	 */
 	private static final long serialVersionUID = -8260427463664015887L;
 
+	/**
+	 * Il s'agit du constructeur de la classe.
+	 * 
+	 * @param referenceJoueur
+	 */
 	public StrategieNormale(Joueur referenceJoueur) {
 		super(referenceJoueur);
 	}
 
+	/**
+	 * Implémentation de la façon dont va jouer un tour un joueur virtuel normal
+	 * pour le choix d'une carte ingrédient et d'une action
+	 */
 	public void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie) {
 		// faire une selection aleatoire de carte et d'action pour les IA
 		CarteIngredient carteIA = new CarteIngredient(null);
@@ -61,6 +79,10 @@ public class StrategieNormale extends Strategie {
 
 	}
 
+	/**
+	 * Implémentation de la façon dont va se défendre un joueur virtuel normal
+	 * s'il possède une carte de chiens de gardes
+	 */
 	public int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle, int puissance) {
 		int puissanceModifie = puissance;
@@ -87,6 +109,10 @@ public class StrategieNormale extends Strategie {
 		return puissanceModifie;
 	}
 
+	/**
+	 * Implémentation de la façon dont va attaquer un joueur virtuel normal s'il
+	 * possède une carte de taupes géantes
+	 */
 	public void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle) {
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee
@@ -117,6 +143,10 @@ public class StrategieNormale extends Strategie {
 
 	}
 
+	/**
+	 * Implémentation de la façon dont un joueur virtuel normal va choisir si
+	 * oui ou non il veut une carte alliée en partie avancée
+	 */
 	public void choixDeManche(ParametresDePartie parametresDePartie) {
 		int tempAlea = (int) (Math.random() * 2);
 		if (tempAlea == 1) {
@@ -125,6 +155,15 @@ public class StrategieNormale extends Strategie {
 
 	}
 
+	/**
+	 * Cette méthode permet au joueur virtuel de choisir intelligemment une
+	 * action ingrédient lors de son tour en foncion des statistiques des autres
+	 * joueurs.
+	 * 
+	 * @param parametresDePartie
+	 *            récupère les paramétres de la partie.
+	 * @return l'action finalement choisie.
+	 */
 	public TypeAction choixActionIngredient(ParametresDePartie parametresDePartie) {
 		double forceAleaEngrais = 0;
 		double forceAleaGeant = 0;
@@ -182,6 +221,16 @@ public class StrategieNormale extends Strategie {
 		return tempTypeAction;
 	}
 
+	/**
+	 * Cette méthode permet au joueur virtuel de choisir intelligemment une
+	 * carte ingrédient lors de son tour en fonction de l'action qu'il aura
+	 * choisie tout simplement en regardant quelle est la carte avec la
+	 * meilleure puissance.
+	 * 
+	 * @param saisonActuelle
+	 *            récupère la saison actuelle de la partie en cours.
+	 * @return la carte finalement choisie.
+	 */
 	public CarteIngredient choixCarteIngredient(Saison saisonActuelle, TypeAction typeAction) {
 
 		int tempValue = 0;
@@ -201,6 +250,15 @@ public class StrategieNormale extends Strategie {
 		return carteMax;
 	}
 
+	/**
+	 * Cette méthode permet au joueur virtuel de choisir intelligemment un
+	 * joueur à attaquer avec ses farfadets en foncion des statistiques des
+	 * autres joueurs.
+	 * 
+	 * @param parametresDePartie
+	 *            récupère les paramétres de la partie.
+	 * @return le joueur cible finalement choisi.
+	 */
 	public Joueur cibleFarfadet(ParametresDePartie parametresDePartie) {
 		int farfadetCapacity = 0;
 		Joueur tempJoueur = null;

@@ -17,24 +17,50 @@ import modele.Partie;
 import modele.StatutPartie;
 
 /**
- * La classe Console permet de lancer le jeu en mode textuel avec la console
- * native de Java
+ * La classe Console permet de lancer le jeu du menhir en mode textuel avec la
+ * console native de Java. Elle se lance d'un Thread et observe les classes du
+ * modèle pour afficher du texte de jeu dans la console
  * 
- * @see Jeu.java
+ * @see Jeu
  */
 public class Console implements Runnable, Observer {
-	
+
 	/**
+	 * Cet attribut récupère les parametres de la partie.
 	 * 
+	 * @see modele.ParametresDePartie
 	 */
 	private ParametresDePartie parametresDePartie;
+	/**
+	 * La classe scanner a été choisie pour gérer les entrées du jeu en mode
+	 * textuel, on veut qu'il n'y en ai qu'un d'où la spéciafication en
+	 * publique, constante et statique. Cet attribut sera ensuité récupéré
+	 * localement et par la classe StrategieJoueurReelConsole pour gérer les
+	 * entrées.
+	 * 
+	 * @see modele.StrategieJoueurReelConsole
+	 */
 	public final static Scanner SCANNER_PUBLIC = new Scanner(System.in);
 
+	/**
+	 * Il s'agit du onstructeur de la classe.
+	 * 
+	 * @param parametresDePartie
+	 *            récupère une référence sur les paramétres de partie.
+	 */
 	public Console(ParametresDePartie parametresDePartie) {
 		super();
 		this.parametresDePartie = parametresDePartie;
 	}
 
+	/**
+	 * Il s'agit de la méthode permettant de lancer le jeu du menhir en mode
+	 * textuel
+	 * 
+	 * Il peut y avoir des exceptions d'interruption lié au Thread. Il peut y
+	 * avoir des exceptions d'entrées/sorties lié au scanner.
+	 *
+	 */
 	public void run() {
 		try {
 			this.askParametres(this.parametresDePartie);
@@ -52,13 +78,19 @@ public class Console implements Runnable, Observer {
 		Partie partie = new Partie(parametresDePartie, true);
 		partie.addObserver(this);
 		partie.run();
-
 	}
 
+	/**
+	 * @return la référence aux paramétres de partie
+	 */
 	public ParametresDePartie getParametresDePartie() {
 		return this.parametresDePartie;
 	}
-
+	
+	/**
+	 * 
+	 * @param parametresDePartie
+	 */
 	public void setParametresDePartie(ParametresDePartie parametresDePartie) {
 		this.parametresDePartie = parametresDePartie;
 	}

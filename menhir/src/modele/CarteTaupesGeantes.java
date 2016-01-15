@@ -1,7 +1,10 @@
 package modele;
 
 public class CarteTaupesGeantes extends CarteAlliee {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -6868316408969678573L;
 
 	public CarteTaupesGeantes(String nom) {

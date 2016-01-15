@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Observable;
 
 public abstract class PaquetDeRessources extends Observable implements Serializable {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -6811472892906361246L;
 	
 	private int grainesDeMenhir;

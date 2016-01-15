@@ -10,7 +10,10 @@ import modele.PaquetDeRessourcesDeJoueur;
 import ressources.Ressources;
 
 public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements Observer {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -6113273243337912263L;
 	protected JLabel nombreDeGraines;
 	protected JLabel nomDuJoueur;

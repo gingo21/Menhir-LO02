@@ -8,7 +8,10 @@ import java.util.Stack;
 import launcher.Console;
 
 public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 7435385869969841194L;
 
 	private HashMap<String, Stack<Carte>> paquetsDeCartes;

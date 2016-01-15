@@ -1,7 +1,10 @@
 package modele;
 
 public class JoueurVirtuel extends Joueur {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -942542504972441132L;
 
 	private Difficulte difficulte;

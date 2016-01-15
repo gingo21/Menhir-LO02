@@ -7,7 +7,10 @@ import ressources.Ressources;
  * Représentation graphique d'une carte Chien de Garde
  */
 public class VueCarteChiensDeGarde extends VueCarteAliee {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -5310218114424495964L;
 	
 	/**

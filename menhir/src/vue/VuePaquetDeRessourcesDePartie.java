@@ -14,7 +14,10 @@ import modele.StatutPartie;
 import ressources.Ressources;
 
 public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 4458122718657188781L;
 	private JLabel nombreDeGraines;
 	private JLabel lblCartesAvancee;

@@ -20,6 +20,9 @@ import ressources.Ressources;
  */
 public class FenetreInitialisation extends JDialog {
 	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 7574373434248L;
 	/**
 	 * Bouton jouer

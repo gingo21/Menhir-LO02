@@ -12,7 +12,10 @@ import java.awt.image.BufferedImage;
  * dans la taille voulue
  */
 public class VueImage extends Panneau {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -6093237545149467189L;
 	private Image image;
 

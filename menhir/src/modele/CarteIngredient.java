@@ -1,7 +1,10 @@
 package modele;
 
 public class CarteIngredient extends Carte {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -7789616796913158493L;
 
 	private int puissanceActions[][];

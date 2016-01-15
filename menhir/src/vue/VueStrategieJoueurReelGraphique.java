@@ -24,7 +24,10 @@ import modele.TypeAction;
 import ressources.Ressources;
 
 public class VueStrategieJoueurReelGraphique extends Panneau implements Observer {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 7126927330980873763L;
 	private JButton boutonAttaqueOui = new JButton("oui");
 	private JButton boutonAttaqueNon = new JButton("non");

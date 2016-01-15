@@ -5,7 +5,10 @@ import java.io.Serializable;
 import java.util.Observable;
 
 public abstract class Strategie extends Observable implements Serializable {
- 
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -871033957513334014L;
 
 	private boolean choixCarteAlliee;

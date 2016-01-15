@@ -10,7 +10,10 @@ import ressources.Ressources;
  * Hérite de VueCarte
  */
 public class VueCarteComptageDePoints extends VueCarte {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 6388366603442276545L;
 	
 	/**

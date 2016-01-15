@@ -23,7 +23,10 @@ import modele.ParametresDePartie;
 import modele.StatutPartie;
 
 public class VueParametres extends JDialog {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -4191871631149820610L;
 	private JLabel labelNombreDeJoueur = new JLabel("Nombre de Joueurs");
 	private JComboBox<String> choixNombreDeJoueurs;

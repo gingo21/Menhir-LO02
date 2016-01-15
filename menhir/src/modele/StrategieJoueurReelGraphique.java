@@ -1,7 +1,10 @@
 package modele;
 
 public class StrategieJoueurReelGraphique extends Strategie {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -1604537757841635404L;
 
 	private Carte carteAJouer;

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class StrategieNormale extends Strategie {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -8260427463664015887L;
 
 	public StrategieNormale(Joueur referenceJoueur) {

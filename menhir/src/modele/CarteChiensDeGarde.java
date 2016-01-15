@@ -1,7 +1,10 @@
 package modele;
 
 public class CarteChiensDeGarde extends CarteAlliee {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 6228607201064829046L;
 
 	public CarteChiensDeGarde(String nom) {

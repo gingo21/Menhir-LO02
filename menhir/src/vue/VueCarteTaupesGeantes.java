@@ -8,7 +8,10 @@ import ressources.Ressources;
  * Hérite de VueCarteAlliee
  */
 public class VueCarteTaupesGeantes extends VueCarteAliee {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 2090021684921520793L;
 
 	/**

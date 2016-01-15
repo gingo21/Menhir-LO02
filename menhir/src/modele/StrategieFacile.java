@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 // La stratégie est complétement aléatoire 
 public class StrategieFacile extends Strategie {
-		
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -4612520123904153963L;
 
 	public StrategieFacile(Joueur referenceJoueur) {

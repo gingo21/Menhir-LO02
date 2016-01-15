@@ -6,7 +6,10 @@ import java.util.Scanner;
 import launcher.Console;
 
 public class StrategieJoueurReelConsole extends Strategie {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 4427005288814710556L;
 
 	public StrategieJoueurReelConsole(Joueur referenceJoueur) {

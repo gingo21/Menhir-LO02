@@ -20,7 +20,10 @@ import modele.StrategieJoueurReelGraphique;
 import ressources.Ressources;
 
 public class VueJeu extends FenetrePrincipal implements Observer {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -4536081134157026230L;
 	
 	private VuePaquetDeRessourcesDePartie vuePaquetDeRessourcesDePartie;

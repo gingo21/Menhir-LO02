@@ -12,7 +12,10 @@ import modele.PaquetDeRessourcesDeJoueur;
 import ressources.Ressources;
 
 public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJoueur {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -5883957509956446697L;
 
 	public static int TAILLE_CARTE = 150;

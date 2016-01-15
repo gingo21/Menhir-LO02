@@ -3,7 +3,10 @@ package modele;
 import java.io.Serializable;
 
 public abstract class Joueur implements Serializable {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -2743865683729876772L;
 
 	private String nom;

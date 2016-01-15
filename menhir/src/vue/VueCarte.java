@@ -15,7 +15,10 @@ import ressources.Ressources;
  * Représentation graphique d'une carte
  */
 public abstract class VueCarte extends Panneau{
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 1L; 
 
 	/**

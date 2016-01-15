@@ -3,7 +3,10 @@ package modele;
 import java.util.Arrays;
 
 public abstract class CarteAlliee extends Carte {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 1693346063845949047L;
 	
 	private int puissanceActions[] = new int[4];

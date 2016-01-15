@@ -12,7 +12,10 @@ import ressources.Ressources;
  * Représentation Graphique d'une Carte Ingrédient
  */
 public class VueCarteIngredient extends VueCarte {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -8695119206359500444L;
 	
 	/**

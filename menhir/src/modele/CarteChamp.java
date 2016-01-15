@@ -2,6 +2,9 @@ package modele;
 
 public class CarteChamp extends Carte {
 
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -3389589595911788625L;
 
 	private int menhirAdultes;

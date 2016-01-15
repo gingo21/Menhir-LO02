@@ -6,7 +6,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -4583727989191743754L;
 
 	private HashMap<String, ArrayList<Carte>> paquetsDeCartes;

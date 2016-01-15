@@ -16,7 +16,10 @@ public class Panneau extends JPanel {
 		super();
 		this.setLayout(null);
 	}
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = 4985613218494544L;
 	
 	/**

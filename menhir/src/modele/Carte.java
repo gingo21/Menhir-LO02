@@ -3,9 +3,21 @@ package modele;
 import java.io.Serializable;
 import java.util.Observable;
 
+/**
+ * La classe Carte va permettre de réprésenter de la manière la plus générale
+ * possible une carte du jeu menhir. Les instances de Carte seront ensuite
+ * utilisées dans les paquets de ressources de modèle. Cette classe est
+ * sérialisable pour la sauvegarder dans un fichier pour les paramétres.
+ * 
+ * @see PaquetDeRessources
+ * @see ParametresDePartie
+ */
 public abstract class Carte extends Observable implements Serializable {
 
-	private static final long serialVersionUID = 6116205689L;
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
+	private static final long serialVersionUID = 611620216515689L;
 	private String nom;
 	private int id;
 	private boolean estDetenuParUnJoueur;
@@ -54,7 +66,7 @@ public abstract class Carte extends Observable implements Serializable {
 	}
 
 	public String toString() {
-		return "Carte [nom=" + nom + ", id=" + id + ", estDetenuParUnJoueur="
-				+ estDetenuParUnJoueur + ", estUtilise=" + estUtilise + "]";
+		return "Carte [nom=" + nom + ", id=" + id + ", estDetenuParUnJoueur=" + estDetenuParUnJoueur + ", estUtilise="
+				+ estUtilise + "]";
 	}
 }

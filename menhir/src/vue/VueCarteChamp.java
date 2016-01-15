@@ -9,7 +9,10 @@ import ressources.Ressources;
  * Représentation graphique d'une carte champ 
  */
 public class VueCarteChamp extends VueCarte {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -5112939759184291736L;
 	
 	/**

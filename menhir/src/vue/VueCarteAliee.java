@@ -15,6 +15,10 @@ import ressources.Ressources;
  * Hérite de VueCarte
  */
 public abstract class VueCarteAliee extends VueCarte {
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -8372982092938359391L;
 	
 	/**

@@ -14,7 +14,10 @@ import java.util.Observable;
 import launcher.Jeu;
 
 public class ParametresDePartie extends Observable implements Serializable {
-
+	
+	/**
+	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 */
 	private static final long serialVersionUID = -3939993060888077130L;
 
 	private int nombreDeManches;

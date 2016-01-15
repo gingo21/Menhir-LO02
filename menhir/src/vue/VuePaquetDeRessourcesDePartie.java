@@ -13,24 +13,76 @@ import modele.ParametresDePartie;
 import modele.StatutPartie;
 import ressources.Ressources;
 
+/**
+ *Classe représentant les ressources graphiques d'une Partie
+ *C'est un panneau(Jlabel) qui va contenir cartes, graines, labels textes et le géant
+ *Cette classe observe le paquet de Ressource de cette partie
+ */
 public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 	
 	/**
 	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
 	 */
 	private static final long serialVersionUID = 4458122718657188781L;
+	
+	/**
+	 * Label texte du nombre de Graines
+	 */
 	private JLabel nombreDeGraines;
+	
+	/**
+	 * Label texte du nombre de cartes avancées
+	 */
 	private JLabel lblCartesAvancee;
+	
+	/**
+	 * Label texte du nombre de cartes normales
+	 */
 	private JLabel lblCartesNormale;
+	
+	/**
+	 *  Nombre de cartes normales
+	 */
 	private int nbreDeCartesNormale;
+	
+	/**
+	 *  Nombre de cartes avancées
+	 */
 	private int nbreDeCartesAvancee;
+	
+	/**
+	 *  Référence sur les paramètres de la partie
+	 */
 	private ParametresDePartie referenceParametres;
+	
+	/**
+	 *  Référence sur les images chargées dans la classe ressource
+	 */
 	private Ressources referenceImages;
+	
+	/**
+	 *  Liste de Graines(graphique)
+	 */
 	protected ArrayList<VueImage> graines;
+	
+	/**
+	 *  Vue du géant
+	 */
 	private VueImage vueGeant;
+	
+	/**
+	 *  Vue du dos d'une carte avancée
+	 */
 	private VueImage vueDosAvancee;
+	
+	/**
+	 *  Vue du dos d'une carte normale
+	 */
 	private VueImage vueDosNorm;
 
+	/**
+	 *  Constructeur de la vue des Ressources de la partie.
+	 */
 	public VuePaquetDeRessourcesDePartie(ParametresDePartie parametresDePartie, Ressources ressources) {
 		this.setPreferredSize(new Dimension(460, 130));
 		this.setDoubleBuffered(true);
@@ -118,7 +170,11 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		};
 		SwingUtilities.invokeLater(myRunnable);
 	}
-
+	
+	/**
+	 *  Méthode apellée quand il y a un changement de paquet, et donc
+	 *  notre vue graphique doit observer ce nouveau paquet
+	 */
 	public void changementDePaquet() {
 		this.referenceParametres.getPaquetDePartie().addObserver(this);
 	}

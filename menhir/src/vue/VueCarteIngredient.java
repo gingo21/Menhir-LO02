@@ -32,13 +32,13 @@ public class VueCarteIngredient extends VueCarte {
 	/**
 	 * Créer la vue graphique d'une carte Ingredient
 	 * @param carte la carte associé
-	 * @param ressources l'ensemble des ressources images
-	 * @param h hauteur de la carte
-	 * @param l largeur de la carte
+	 * @param ressources largeur'ensemble des ressources images
+	 * @param hauteur hauteur de la carte
+	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  
 	 */
-	public VueCarteIngredient(Carte carte, Ressources ressources, int h, int l, boolean IA) {
-		super(carte, ressources, h, l, IA);
+	public VueCarteIngredient(Carte carte, Ressources ressources, int hauteur, int largeur, boolean IA) {
+		super(carte, ressources, hauteur, largeur, IA);
 		this.nomCarte = carte.getNom();
 		this.puissanceActions = ((CarteIngredient) carte).getPuissanceActions();
 		if (this.nomCarte.equals("Chant de Sirène")) {
@@ -59,16 +59,16 @@ public class VueCarteIngredient extends VueCarte {
 			this.imageFaceCarte = ressources.getRiresDeFees();
 		}
 
-		this.imageFaceCarte = ressources.redimImage(imageFaceCarte, h, l);
-		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), h, l);
+		this.imageFaceCarte = ressources.redimImage(imageFaceCarte, hauteur, largeur);
+		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), hauteur, largeur);
 		if (!this.hidden) {
 			for (int i = 0; i < this.puissanceActions.length; i++) {
 				for (int j = 0; j < this.puissanceActions[i].length; j++) {
 					JLabel force = new JLabel(String.valueOf(this.puissanceActions[i][j]));
 					// force.setPreferredSize(new Dimension(5,5));
 					force.setForeground(Color.PINK);
-					this.ajoutPanneau(force, (5 * l * 10 / 107) + i * (l * 10 / 82),
-							(4 * h * 10 / 67) + j * (h * 100 / 860));
+					this.ajoutPanneau(force, (5 * largeur * 10 / 107) + i * (largeur * 10 / 82),
+							(4 * hauteur * 10 / 67) + j * (hauteur * 100 / 860));
 				}
 			}
 		}

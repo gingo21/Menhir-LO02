@@ -19,14 +19,14 @@ public class VueCarteChamp extends VueCarte {
 	 * Crée représentation graphique d'une carte champ
 	 * @param carte la carte champ
 	 * @param ressources les ressources images
-	 * @param h hauteur de la carte
-	 * @param l largeur de la carte
+	 * @param hauteur hauteur de la carte
+	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  
 	 */
-	public VueCarteChamp(Carte carte, Ressources ressources, int h, int l, boolean IA) {
-		super(carte, ressources, h, l, IA);
-		this.imageFaceCarte = ressources.redimImage(ressources.getImageCarteChamp(), h, l);
-		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), h, l);
+	public VueCarteChamp(Carte carte, Ressources ressources, int hauteur, int largeur, boolean IA) {
+		super(carte, ressources, hauteur, largeur, IA);
+		this.imageFaceCarte = ressources.redimImage(ressources.getImageCarteChamp(), hauteur, largeur);
+		this.imageDos = ressources.redimImage(ressources.getImageDosGeant(), hauteur, largeur);
 		this.hidden = false;
 	}
 	

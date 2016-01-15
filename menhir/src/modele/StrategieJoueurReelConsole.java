@@ -22,7 +22,7 @@ public class StrategieJoueurReelConsole extends Strategie {
 		String reponse = null;
 
 		this.setChanged();
-		this.notifyObservers("Voici l'état actuel des joueurs :");
+		this.notifyObservers("Voici largeur'état actuel des joueurs :");
 		this.setChanged();
 		this.notifyObservers(parametresDePartie.getListeJoueurs().toString() + "\n");
 

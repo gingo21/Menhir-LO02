@@ -24,7 +24,7 @@ public abstract class CarteAlliee extends Carte {
 	private int puissanceActions[] = new int[4];
 
 	/**
-	 * Il s'agit du constructeur de la classe où l'on spécifie, en plus du nom,
+	 * Il s'agit du constructeur de la classe où largeur'on spécifie, en plus du nom,
 	 * les valeurs de puissance.
 	 * 
 	 * @param nom
@@ -39,7 +39,7 @@ public abstract class CarteAlliee extends Carte {
 	}
 
 	/**
-	 * Il s'agit d'une surcharge du constructeur de la classe où l'on spécifie
+	 * Il s'agit d'une surcharge du constructeur de la classe où largeur'on spécifie
 	 * juste le nom. Les valeurs de puissance sont choisies aléatoirement.
 	 * 
 	 * @param nom

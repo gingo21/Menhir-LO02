@@ -11,14 +11,26 @@ import modele.CarteComptageDePoints;
 import modele.PaquetDeRessourcesDeJoueur;
 import ressources.Ressources;
 
+/**
+ *Classe représentant les ressources graphiques d'une IA, hérite de VuePaquetDeRessourcesDeJoueur
+ *Cette classe observe le paquet de Ressource de cette IA
+ */
 public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 	
 	/**
 	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
 	 */
 	private static final long serialVersionUID = -925037886527494363L;
+	
+	/**
+	 *Constante pour la taille des cartes des Ias
+	 */
 	public static int TAILLE_CARTE = 80;
 
+	/**
+	 *Constructeur de la vue graphique des ressources des IAs.
+	 *Seront affiché ses cartes(mais cachées) et ses graines
+	 */
 	public VuePaquetDeRessourcesIA(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
@@ -56,7 +68,6 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 					}
 				}
 
-				// carte champ
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty()) {
 					if (tempVueCartes2.isEmpty()) {
 						tempVueCartes2.add(new VueCarteChamp(
@@ -74,7 +85,6 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 						VuePaquetDeRessourcesIA.this.remove(tempVueCartes2.get(0));
 
 					}
-					// Affichage graines menhirs
 					if (((CarteChamp) referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs")
 							.get(0)).getMenhirAdultes() != 0) {
 
@@ -89,7 +99,6 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 					}
 					VuePaquetDeRessourcesIA.this.ajoutPanneau(tempVueCartes2.get(0), 2 * TAILLE_CARTE, 20);
 				}
-				// Partie Avancee
 				if (VuePaquetDeRessourcesIA.this.referenceAvancee) {
 					if (!tempVueCartes4.isEmpty()) {
 						VuePaquetDeRessourcesIA.this.remove(tempVueCartes4.get(0));
@@ -120,7 +129,6 @@ public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 							VuePaquetDeRessourcesIA.this.remove(tempVueCartes3.get(0));
 
 						}
-						//Affichage graines menhirs
 						if (((CarteComptageDePoints)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0)).getMenhirAdultes()!=0) {
 							for (int i = 0; i < ((CarteComptageDePoints)referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0)).getMenhirAdultes(); i++) {
 								VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 12, 5);

@@ -27,9 +27,9 @@ public class CarteChiensDeGarde extends CarteAlliee {
 	/**
 	 * La méthode utiliser de cette carte est appelée lorsque le paquet de
 	 * ressources de joueur qui lui est associé est attaqué par une carte
-	 * ingrédient avec l'action farfadet et que le joueur décide de se défendre.
+	 * ingrédient avec largeur'action farfadet et que le joueur décide de se défendre.
 	 * Elle va permettre en fonction de la saisonActuelle (avec la puissance de
-	 * la carte)et de la puissance de l'attaque de diminuer ou complément
+	 * la carte)et de la puissance de largeur'attaque de diminuer ou complément
 	 * contrer la tentative de vol en cours sur la carte champ du paquet de
 	 * ressources du joueur possédant cette carte.
 	 * 
@@ -38,8 +38,8 @@ public class CarteChiensDeGarde extends CarteAlliee {
 	 * @param saisonActuelle
 	 *            récupère la saison actuelle de la partie en cours.
 	 * @param puissanceAttaqueFarfadet
-	 *            récupère la puissance de l'attaque effectuée par l'attaquant.
-	 * @return la puissance finale qu'aura l'attaque.
+	 *            récupère la puissance de largeur'attaque effectuée par largeur'attaquant.
+	 * @return la puissance finale qu'aura largeur'attaque.
 	 */
 	public int utiliser(Joueur destinataire, Saison saisonActuelle, int puissanceAttaqueFarfadet) {
 		int tempValeur = 0;

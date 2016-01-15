@@ -50,7 +50,7 @@ public abstract class Joueur implements Serializable {
 	public static int numeroDuDernierID = 0;
 
 	/**
-	 * Il s'agit du constructeur de la classe où l'on récupère toutes les
+	 * Il s'agit du constructeur de la classe où largeur'on récupère toutes les
 	 * informations nécessaires aux attributs.
 	 * 
 	 * @param nom
@@ -90,7 +90,7 @@ public abstract class Joueur implements Serializable {
 	}
 
 	/**
-	 * @return l'identité unique du joueur.
+	 * @return largeur'identité unique du joueur.
 	 */
 	public int getId() {
 		return id;

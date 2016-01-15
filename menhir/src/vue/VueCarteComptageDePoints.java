@@ -19,15 +19,15 @@ public class VueCarteComptageDePoints extends VueCarte {
 	/**
 	 * Créer la vue graphique d'une carte Comptage de Points
 	 * @param carte la carte associé
-	 * @param ressources l'ensemble des ressources images
-	 * @param h hauteur de la carte
-	 * @param l largeur de la carte
+	 * @param ressources largeur'ensemble des ressources images
+	 * @param hauteur hauteur de la carte
+	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  
 	 */
-	public VueCarteComptageDePoints(Carte carte, Ressources ressources, int h, int l, boolean IA) {
-		super(carte, ressources, h, l, IA);
-		this.imageFaceCarte = ressources.redimImage(ressources.getImageComptageDePoints(), h, l);
-		this.imageDos = ressources.redimImage(ressources.getImageDosLutin(), h, l);
+	public VueCarteComptageDePoints(Carte carte, Ressources ressources, int hauteur, int largeur, boolean IA) {
+		super(carte, ressources, hauteur, largeur, IA);
+		this.imageFaceCarte = ressources.redimImage(ressources.getImageComptageDePoints(), hauteur, largeur);
+		this.imageDos = ressources.redimImage(ressources.getImageDosLutin(), hauteur, largeur);
 		this.hidden = false;
 	}
 

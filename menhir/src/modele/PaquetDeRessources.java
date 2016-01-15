@@ -60,7 +60,7 @@ public abstract class PaquetDeRessources extends Observable implements Serializa
 
 	/**
 	 * C'est une méthode abstraite qui impose aux classes non abstraites
-	 * héritant de celle-ci d'avoir un paquet de cartes où l'on peut y ajouter
+	 * héritant de celle-ci d'avoir un paquet de cartes où largeur'on peut y ajouter
 	 * une carte.
 	 * 
 	 * @param carte
@@ -70,7 +70,7 @@ public abstract class PaquetDeRessources extends Observable implements Serializa
 
 	/**
 	 * C'est une méthode abstraite qui impose aux classes non abstraites
-	 * héritant de celle-ci d'avoir un paquet de cartes que l'on peut afficher.
+	 * héritant de celle-ci d'avoir un paquet de cartes que largeur'on peut afficher.
 	 */
 	public abstract void afficherCartes();
 

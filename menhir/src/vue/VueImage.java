@@ -20,15 +20,15 @@ public class VueImage extends Panneau {
 	private Image image;
 
 	/**
-	 * Crée la vue de l'image
+	 * Crée la vue de largeur'image
 	 * @param image image 
-	 * @param l largeur souhaité
-	 * @param h hauteur souhaité
+	 * @param largeur largeur souhaité
+	 * @param hauteur hauteur souhaité
 	 */
-	public VueImage(Image image, int l, int h) {
+	public VueImage(Image image, int largeur, int hauteur) {
 		this.image = image;
-		this.setPreferredSize(new Dimension(l, h));
-		this.image = redimImage(image, h, l);
+		this.setPreferredSize(new Dimension(largeur, hauteur));
+		this.image = redimImage(image, hauteur, largeur);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -38,17 +38,17 @@ public class VueImage extends Panneau {
 	
 	/**
 	 * Redimensionner une Image
-	 * @param image l'image de départ
-	 * @param h sa hauteur souhaité
+	 * @param image largeur'image de départ
+	 * @param hauteur sa hauteur souhaité
 	 * @param w sa largeur souhaité
 	 * 
-	 * @return l'image redimmensionné
+	 * @return largeur'image redimmensionné
 	 */
-	public Image redimImage(Image image, int h, int w) {
-		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+	public Image redimImage(Image image, int hauteur, int w) {
+		BufferedImage img = new BufferedImage(w, hauteur, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = (Graphics2D) img.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g.drawImage(image, 0, 0, w, h, null);
+		g.drawImage(image, 0, 0, w, hauteur, null);
 		g.dispose();
 		return img;
 	}

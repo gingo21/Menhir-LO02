@@ -23,7 +23,7 @@ public class CarteIngredient extends Carte {
 	private int puissanceActions[][];
 
 	/**
-	 * Il s'agit du constructeur de la classe où l'on spécifie, en plus du nom,
+	 * Il s'agit du constructeur de la classe où largeur'on spécifie, en plus du nom,
 	 * les valeurs de puissance.
 	 * 
 	 * @param nom
@@ -42,7 +42,7 @@ public class CarteIngredient extends Carte {
 	}
 
 	/**
-	 * Il s'agit d'une surcharge du constructeur de la classe où l'on spécifie
+	 * Il s'agit d'une surcharge du constructeur de la classe où largeur'on spécifie
 	 * juste le nom. Les valeurs de puissance sont choisies aléatoirement.
 	 * 
 	 * @param nom
@@ -70,7 +70,7 @@ public class CarteIngredient extends Carte {
 	 *            récupère la saison actuelle de la partie en cours.
 	 * @param typeAction
 	 *            récupère le type d'action (géant, engrais, farfadet).
-	 * @return la puissance correspondant à la saison actuelle et à l'action
+	 * @return la puissance correspondant à la saison actuelle et à largeur'action
 	 *         demandée.
 	 */
 	public int getPuissanceActions(Saison saisonActuelle, TypeAction typeAction) {
@@ -112,16 +112,16 @@ public class CarteIngredient extends Carte {
 	 * action : engrais pour faire pousser les graines du paquet de ressources
 	 * du joueur ayant la carte, farfadet pour voler des graines à un paquet de
 	 * ressources ennemi (de joueur) et géant pour avoir de nouvelles graines.
-	 * En fonction de l'action, de la saison actuelle, l'action va avoir une
+	 * En fonction de largeur'action, de la saison actuelle, largeur'action va avoir une
 	 * puissance différente qui dépendra des valeurs de puissance.
 	 * 
 	 * @param typeaction
 	 *            récupère le type d'action.
 	 * @param destinataire
 	 *            récupère le destinataire (pouvant être le joueur jouant la
-	 *            carte) de l'action.
+	 *            carte) de largeur'action.
 	 * @param acteur
-	 *            récupère l'acteur (joueur jouant la carte).
+	 *            récupère largeur'acteur (joueur jouant la carte).
 	 * @param saisonActuelle
 	 *            récupère la saison actuelle de la partie en cours.
 	 * @param parametresDePartie

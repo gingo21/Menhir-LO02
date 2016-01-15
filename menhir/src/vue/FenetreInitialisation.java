@@ -61,7 +61,7 @@ public class FenetreInitialisation extends JDialog {
 		jouer.setSize(50, 10);
 		parametrer = new JButton("Paramètres");
 		quitter = new JButton("Quitter");
-		this.vueParametres = new VueParametres(null, "conf", true, parametresDePartie);
+		this.vueParametres = new VueParametres(parametresDePartie);
 		this.vueParametres.setVisible(false);
 		
 		Container contener = this.getContentPane();

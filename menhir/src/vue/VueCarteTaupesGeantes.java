@@ -17,14 +17,14 @@ public class VueCarteTaupesGeantes extends VueCarteAliee {
 	/**
 	 * Créer la vue graphique d'une carte taupe géante
 	 * @param carte la carte associé
-	 * @param ressources l'ensemble des ressources images
-	 * @param h hauteur de la carte
-	 * @param l largeur de la carte
+	 * @param ressources largeur'ensemble des ressources images
+	 * @param hauteur hauteur de la carte
+	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  
 	 */
-	public VueCarteTaupesGeantes(Carte carte, Ressources ressources, int h, int l, boolean IA) {
-		super(carte, ressources, h, l, IA);
-		this.imageFaceCarte = ressources.redimImage(ressources.getImageTaupesGeantes(), h, l);
+	public VueCarteTaupesGeantes(Carte carte, Ressources ressources, int hauteur, int largeur, boolean IA) {
+		super(carte, ressources, hauteur, largeur, IA);
+		this.imageFaceCarte = ressources.redimImage(ressources.getImageTaupesGeantes(), hauteur, largeur);
 	}
 
 }

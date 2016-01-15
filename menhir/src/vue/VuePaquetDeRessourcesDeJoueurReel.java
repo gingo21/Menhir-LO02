@@ -11,15 +11,28 @@ import modele.CarteComptageDePoints;
 import modele.PaquetDeRessourcesDeJoueur;
 import ressources.Ressources;
 
+/**
+ *Classe représentant les ressources graphiques du joueur réel
+ *C'est un panneau(Jlabel)
+ *Cette classe observe le paquet de Ressource du joueur réel
+ *Elle hérite de la classe abstraite VuePaquetDeRessourcesDeJoueur
+ */
 public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJoueur {
-	
+
 	/**
 	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
 	 */
 	private static final long serialVersionUID = -5883957509956446697L;
 
+	/**
+	 *Constante pour la taille des cartes du joueur réel
+	 */
 	public static int TAILLE_CARTE = 150;
 
+	/**
+	 *Constructeur de la vue graphique des ressources de notre joueur réel.
+	 *Seront affiché ses cartes et graines
+	 */
 	public VuePaquetDeRessourcesDeJoueurReel(PaquetDeRessourcesDeJoueur paquetDeRessourcesDeJoueur, Ressources r,
 			boolean avancee) {
 		super(paquetDeRessourcesDeJoueur, r, avancee);
@@ -33,7 +46,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 	public void update(Observable arg0, Object arg1) {
 		Runnable myRunnable = new Runnable() {
 			public void run() {
-				// VuePaquetDeRessourcesDeJoueurReel.this.removeAll();
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Ingredients").isEmpty()) {
 					if (!tempVueCartes1.isEmpty()) {
 						for (Iterator<VueCarte> it = tempVueCartes1.iterator(); it.hasNext();) {
@@ -60,12 +72,9 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 				}
 				if (!referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").isEmpty()) {
 					if (tempVueCartes2.isEmpty()) {
-
 						tempVueCartes2.add(new VueCarteChamp(
 								referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs").get(0),
 								referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
-						// VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0),
-						// 0, 0);
 					}
 					if (!grainesMenhirChamp.isEmpty()) {
 
@@ -78,7 +87,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes2.get(0));
 
 					}
-					// Affichage graines menhirs
 					if (((CarteChamp) referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes().get("Cartes Champs")
 							.get(0)).getMenhirAdultes() != 0) {
 						for (int i = 0; i < ((CarteChamp) referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
@@ -92,7 +100,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					}
 					VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes2.get(0), 0, 0);
 				}
-				// Partie Avancee
 				if (VuePaquetDeRessourcesDeJoueurReel.this.referenceAvancee) {
 					if (!tempVueCartes4.isEmpty()) {
 						VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes4.get(0));
@@ -107,7 +114,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 						if (tempVueCartes3.isEmpty()) {
 							tempVueCartes3.add(new VueCarteComptageDePoints(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
-											.get("Cartes Comptage De Points").get(0),
+									.get("Cartes Comptage De Points").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
 							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes3.get(0), 0, TAILLE_CARTE);
 						}
@@ -121,12 +128,11 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 							VuePaquetDeRessourcesDeJoueurReel.this.remove(tempVueCartes3.get(0));
 
 						}
-						// Affichage graines menhirs
 						if (((CarteComptageDePoints) referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
 								.get("Cartes Comptage De Points").get(0)).getMenhirAdultes() != 0) {
 							for (int i = 0; i < ((CarteComptageDePoints) referencePaquetDeRessourcesDeJoueur
 									.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0))
-											.getMenhirAdultes(); i++) {
+									.getMenhirAdultes(); i++) {
 								VueImage tempVueImage = new VueImage(referenceRessources.getImageGraine(), 24, 10);
 								grainesMenhir.add(tempVueImage);
 								(tempVueCartes3.get(0)).ajoutPanneau(tempVueImage,
@@ -143,7 +149,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 								.get(0).isEstUtilise()) {
 							tempVueCartes4.add(new VueCarteChiensDeGarde(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
-											.get("Cartes Chiens De Garde").get(0),
+									.get("Cartes Chiens De Garde").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
 							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes4.get(0), TAILLE_CARTE * 2,
 									0);
@@ -157,7 +163,7 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 								.get(0).isEstUtilise()) {
 							tempVueCartes5.add(new VueCarteTaupesGeantes(
 									referencePaquetDeRessourcesDeJoueur.getPaquetsDeCartes()
-											.get("Cartes Taupes Geantes").get(0),
+									.get("Cartes Taupes Geantes").get(0),
 									referenceRessources, TAILLE_CARTE, TAILLE_CARTE, false));
 							VuePaquetDeRessourcesDeJoueurReel.this.ajoutPanneau(tempVueCartes5.get(0), TAILLE_CARTE * 2,
 									0);
@@ -166,8 +172,6 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 					}
 
 				}
-
-				// // Graines
 				VuePaquetDeRessourcesDeJoueurReel.this.remove(nombreDeGraines);
 				tempTexte1 = "";
 				tempTexte1 += referencePaquetDeRessourcesDeJoueur.getGrainesDeMenhir();

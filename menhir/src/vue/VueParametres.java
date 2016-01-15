@@ -22,44 +22,95 @@ import modele.PaquetDeRessourcesDePartie;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
 
+/**
+ * Cette classe permet de définir la fenêtre où le joueur va choisir
+ * les paramètres du jeu.
+ */
 public class VueParametres extends JDialog {
 	
 	/**
 	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
 	 */
 	private static final long serialVersionUID = -4191871631149820610L;
+	
+	/**
+	 * Label texte nombre de joueurs
+	 */
 	private JLabel labelNombreDeJoueur = new JLabel("Nombre de Joueurs");
+	
+	/**
+	 * JComboBox qui permet au joueur réel de spécifier le nombre
+	 * de joueur total pour la partie
+	 */
 	private JComboBox<String> choixNombreDeJoueurs;
+	
+	/**
+	 * Label texte 
+	 */
 	private JLabel labelTypePartie = new JLabel("Type de partie");
+	
+	/**
+	 * JComboBox qui permet au joueur réel de choisir le type de partie
+	 */
 	private JComboBox<String> typePartie;
+	
+	/**
+	 * Label texte 
+	 */
 	private JLabel labelNomDuJoueurReel = new JLabel("Votre Nom ?");
+	
+	/**
+	 * Champ de texte ou le joueur réel peut écrire son nome
+	 */
 	private JTextArea choixNomDuJoueurReel;
+	
+	/**
+	 * Liste de Label texte des difficultés des IAs
+	 */
 	private ArrayList<JLabel> labelsDifficultesIAs;
+	
+	/**
+	 * JComboBox qui permet au joueur réel de choisir la difficultée des IAs
+	 */
 	private ArrayList<JComboBox<String>> choixDifficultesIAs;
+	
+	/**
+	 * Boutton appliquer
+	 */
 	private JButton boutonAppliquer = new JButton("Appliquer");
+	
+	/**
+	 * Boutton quitter
+	 */
 	private JButton boutonQuitter = new JButton("Quitter");
+	
+	/**
+	 * Panneau associé à la fenêtre des paramètres
+	 */
 	private JPanel fenetre;
 
+	/**
+	 * Référence sur les paramètres de la partie
+	 */
 	private ParametresDePartie referenceParametresDePartie;
 
-	public VueParametres(JFrame owner, String title, boolean modal, ParametresDePartie parametresDePartie) {
-		super(owner, title, modal);
-		this.setLocationRelativeTo(null); // null-> centre ecran
+	/**
+	 * Constructeur de la fenêtre des paramètres
+	 * @param paramètres de la partie
+	 */
+	public VueParametres(ParametresDePartie parametresDePartie) {
+		this.setTitle("Paramètres");
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.referenceParametresDePartie = parametresDePartie;
 		this.fenetre = new JPanel();
 		this.fenetre.setLayout(new GridLayout(0, 2, 10, 10));
-
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(300, 400));
-
-		// Nombre de Joueur
 		String[] chiffres = { "2", "3", "4", "5", "6" };
 		this.choixNombreDeJoueurs = new JComboBox<String>(chiffres);
 		this.choixNombreDeJoueurs.setSelectedIndex(parametresDePartie.getNombreDeJoueurs() - 2);
 		this.choixNombreDeJoueurs.setPreferredSize(new Dimension(50, 20));
-
-		// partie rapide ou avancee
 		String[] type = { "Rapide", "Avancée" };
 		this.typePartie = new JComboBox<String>(type);
 		if (parametresDePartie.getTypePartie() == StatutPartie.avancee) {
@@ -68,14 +119,10 @@ public class VueParametres extends JDialog {
 			this.typePartie.setSelectedIndex(0);
 		}
 		this.typePartie.setPreferredSize(new Dimension(100, 20));
-
-		// Nom
 		this.choixNomDuJoueurReel = new JTextArea();
 		this.choixNomDuJoueurReel.setEditable(true);
 		this.choixNomDuJoueurReel.setPreferredSize(new Dimension(100, 20));
 		this.choixNomDuJoueurReel.setText(parametresDePartie.getListeJoueurs().get(0).getNom());
-
-		// Joueurs virtuels
 		this.labelsDifficultesIAs = new ArrayList<JLabel>();
 		this.choixDifficultesIAs = new ArrayList<JComboBox<String>>();
 		for (Iterator<Joueur> it = parametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
@@ -165,7 +212,10 @@ public class VueParametres extends JDialog {
 			VueParametres.this.setVisible(false);
 		}
 	}
-
+	
+	/**
+	 * Méthode qui permet largeur'enregistrement des paramètres
+	 */
 	public synchronized void enregistrerParametres() {
 
 		try {

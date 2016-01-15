@@ -19,6 +19,9 @@ import modele.StatutPartie;
 import modele.StrategieJoueurReelGraphique;
 import ressources.Ressources;
 
+/**
+ *Fenêtre de notre jeu
+ */
 public class VueJeu extends FenetrePrincipal implements Observer {
 	
 	/**
@@ -26,17 +29,53 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 	 */
 	private static final long serialVersionUID = -4536081134157026230L;
 	
+	/**
+	 * Attribut référence à la Vue de notre PaquetDeRessourcesDePartie
+	 */
 	private VuePaquetDeRessourcesDePartie vuePaquetDeRessourcesDePartie;
+	
+	/**
+	 * Attribut référence à la Vue du Paquet de Ressources du joueur réel
+	 */
 	private VuePaquetDeRessourcesDeJoueurReel vuePaquetDeRessourcesDeJoueurReel;
+	
+	/**
+	 * Attribut référence à la Vue de la Stratégie du joueur réel
+	 */
 	private VueStrategieJoueurReelGraphique vueStrategieJoueurReelGraphique;
+	
+	/**
+	 * Attribut qui référence la liste des Vues des paquets de ressources 
+	 * des IAs
+	 */
 	private ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA;
+	
+	/**
+	 * Tableau qui contient largeur'emplacement des IAs dans notre fenêtre de jeu
+	 */
 	private Dimension[] positionsDesIA;
+	
+	/**
+	 * Panneau associé à la fenêtre jeu
+	 */
 	private Panneau panneau;
 	
+	/**
+	 * Attribut référence des paramètres de la partie
+	 */
 	private ParametresDePartie referenceParametres;
 
+	/**
+	 * Couleur du fond de notre fenêtre de jeu
+	 */
 	public final static Color COULEUR_DE_FOND = new Color(80, 190, 80);
 
+	/**
+	 *Constructeur de notre vueJeu, fenêtre de notre jeu
+	 *@param parametres Paramètres de la partie
+	 *@param partie Partie du jeu
+	 *@param ressources Toutes les images déjà chargé
+	 */
 	public VueJeu(ParametresDePartie parametres, Partie partie, Ressources ressources) {
 		super();
 		partie.addObserver(this);
@@ -114,7 +153,10 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 		}
 		parametres.getPaquetDePartie().addObserver(this.vueStrategieJoueurReelGraphique);
 	}
-
+	
+	/**
+	 * Rafraichissement 
+	 */
 	public void update(Observable o, Object arg) {
 		if(arg != null) {
 			if(arg.toString().contains("Changement de manche : ")) {

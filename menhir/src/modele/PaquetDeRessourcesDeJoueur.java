@@ -128,7 +128,7 @@ public class PaquetDeRessourcesDeJoueur extends PaquetDeRessources {
 	}
 
 	/**
-	 * Il s'agit de l'implémentation d'une méthode de PaquetDeRessources pour
+	 * Il s'agit de largeur'implémentation d'une méthode de PaquetDeRessources pour
 	 * ajouter une carte dans la map des listes de cartes.
 	 */
 	public void ajouterUneCarte(Carte carte) {

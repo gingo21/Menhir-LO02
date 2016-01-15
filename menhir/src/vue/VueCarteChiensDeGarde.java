@@ -16,13 +16,13 @@ public class VueCarteChiensDeGarde extends VueCarteAliee {
 	/**
 	 * Crée Vue Graphique d'une carte Chiens de Garde
 	 * @param carte la carte associé
-	 * @param r l'ensemble des ressources images
-	 * @param h hauteur de la carte
-	 * @param l largeur de la carte
+	 * @param r largeur'ensemble des ressources images
+	 * @param hauteur hauteur de la carte
+	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  
 	 */
-	public VueCarteChiensDeGarde(Carte carte, Ressources r, int h, int l, boolean IA) {
-		super(carte, r, h, l, IA);
-		imageFaceCarte = r.redimImage(r.getImageChienDeGarde(), h, l);
+	public VueCarteChiensDeGarde(Carte carte, Ressources r, int hauteur, int largeur, boolean IA) {
+		super(carte, r, hauteur, largeur, IA);
+		imageFaceCarte = r.redimImage(r.getImageChienDeGarde(), hauteur, largeur);
 	}
 }

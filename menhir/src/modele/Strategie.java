@@ -105,8 +105,8 @@ public abstract class Strategie extends Observable implements Serializable {
 	 * @param saisonActuelle
 	 *            récupère la saison actuelle de la partie en cours.
 	 * @param puissance
-	 *            récupère la puissance de l'attaque subie.
-	 * @return la puissance modifiée par le défense de l'attaque.
+	 *            récupère la puissance de largeur'attaque subie.
+	 * @return la puissance modifiée par le défense de largeur'attaque.
 	 */
 	public abstract int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle, int puissance);
@@ -144,7 +144,7 @@ public abstract class Strategie extends Observable implements Serializable {
 	 * stratégie.
 	 * 
 	 * @param observer
-	 *            récupère l'instance de la Console.
+	 *            récupère largeur'instance de la Console.
 	 * 
 	 * @see Console
 	 */

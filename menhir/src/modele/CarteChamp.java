@@ -2,7 +2,7 @@ package modele;
 
 /**
  * La classe CarteChamp va étendre la classe Carte pour réprésenter la carte où
- * l'on fait pousser les menhirs.
+ * largeur'on fait pousser les menhirs.
  * 
  * @see Carte
  */

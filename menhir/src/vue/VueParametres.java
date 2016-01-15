@@ -10,7 +10,6 @@ import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -23,13 +22,14 @@ import modele.ParametresDePartie;
 import modele.StatutPartie;
 
 /**
- * Cette classe permet de définir la fenêtre où le joueur va choisir
- * les paramètres du jeu
+ * Cette classe permet de définir la fenêtre où le joueur va choisir les
+ * paramètres du jeu
  */
 public class VueParametres extends JDialog {
 
 	/**
-	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 * Il s'agit d'un attribut pour la gestion de version des classes
+	 * implémentant Serializable.
 	 */
 	private static final long serialVersionUID = -4191871631149820610L;
 
@@ -39,13 +39,13 @@ public class VueParametres extends JDialog {
 	private JLabel labelNombreDeJoueur = new JLabel("Nombre de Joueurs");
 
 	/**
-	 * JComboBox qui permet au joueur réel de spécifier le nombre
-	 * de joueur total pour la partie
+	 * JComboBox qui permet au joueur réel de spécifier le nombre de joueur
+	 * total pour la partie
 	 */
 	private JComboBox<String> choixNombreDeJoueurs;
 
 	/**
-	 * Label texte 
+	 * Label texte
 	 */
 	private JLabel labelTypePartie = new JLabel("Type de partie");
 
@@ -55,7 +55,7 @@ public class VueParametres extends JDialog {
 	private JComboBox<String> typePartie;
 
 	/**
-	 * Label texte 
+	 * Label texte
 	 */
 	private JLabel labelNomDuJoueurReel = new JLabel("Votre Nom ?");
 
@@ -96,7 +96,9 @@ public class VueParametres extends JDialog {
 
 	/**
 	 * Constructeur de la fenêtre des paramètres
-	 * @param parametresDePartie paramètres de la partie
+	 * 
+	 * @param parametresDePartie
+	 *            paramètres de la partie
 	 */
 	public VueParametres(ParametresDePartie parametresDePartie) {
 		this.setTitle("Paramètres");
@@ -226,11 +228,11 @@ public class VueParametres extends JDialog {
 			} else {
 				this.referenceParametresDePartie.setTypePartie(StatutPartie.avancee);
 				this.referenceParametresDePartie
-				.setNombreDeManches(this.referenceParametresDePartie.getNombreDeJoueurs());
+						.setNombreDeManches(this.referenceParametresDePartie.getNombreDeJoueurs());
 			}
 			this.referenceParametresDePartie
-			.setPaquetDePartie(new PaquetDeRessourcesDePartie(this.referenceParametresDePartie.getTypePartie(),
-					this.referenceParametresDePartie.getNombreDeJoueurs()));
+					.setPaquetDePartie(new PaquetDeRessourcesDePartie(this.referenceParametresDePartie.getTypePartie(),
+							this.referenceParametresDePartie.getNombreDeJoueurs()));
 			this.referenceParametresDePartie.miseAJourListeJoueurs(this.choixNomDuJoueurReel.getText());
 			for (Iterator<Joueur> it = this.referenceParametresDePartie.getListeJoueurs().iterator(); it.hasNext();) {
 				Joueur tempJoueur = it.next();

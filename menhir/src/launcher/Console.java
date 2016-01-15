@@ -18,8 +18,8 @@ import modele.StatutPartie;
 
 /**
  * La classe Console permet de lancer le jeu du menhir en mode textuel avec la
- * console native de Java. Elle se lance d'un Thread et observe les classes du
- * modèle pour afficher du texte de jeu dans la console
+ * console native de Java. Elle se lance avec un Thread et observe les classes du
+ * modèle pour afficher du texte de jeu dans la console.
  * 
  * @see Jeu
  */
@@ -36,7 +36,7 @@ public class Console implements Runnable, Observer {
 	 * textuel, on veut qu'il n'y en ai qu'un d'où la spéciafication en
 	 * publique, constante et statique. Cet attribut sera ensuité récupéré
 	 * localement et par la classe StrategieJoueurReelConsole pour gérer les
-	 * entrées.
+	 * entrées de texte.
 	 * 
 	 * @see modele.StrategieJoueurReelConsole
 	 */
@@ -57,8 +57,8 @@ public class Console implements Runnable, Observer {
 	 * Il s'agit de la méthode permettant de lancer le jeu du menhir en mode
 	 * textuel
 	 * 
-	 * Il peut y avoir des exceptions d'interruption lié au Thread. Il peut y
-	 * avoir des exceptions d'entrées/sorties lié au scanner.
+	 * Cela récupère des exceptions d'interruptions liées au Thread et des
+	 * exceptions d'entrées/sorties liées au scanner.
 	 *
 	 */
 	public void run() {
@@ -86,15 +86,30 @@ public class Console implements Runnable, Observer {
 	public ParametresDePartie getParametresDePartie() {
 		return this.parametresDePartie;
 	}
-	
+
 	/**
+	 * Cette méthode permet une mise à jour de la référence sur les paramétres de partie.
 	 * 
 	 * @param parametresDePartie
+	 *            récupère une référence sur les paramétres de partie.
 	 */
 	public void setParametresDePartie(ParametresDePartie parametresDePartie) {
 		this.parametresDePartie = parametresDePartie;
 	}
 
+	/**
+	 * Cette méthode permet de demander en console au joueur le paramétrage de
+	 * la partie de manière simplifiée
+	 * 
+	 * @param parametresDePartie
+	 *            récupère une référence sur les paramétres de partie.
+	 * @throws IOException
+	 *             lance potentiellement une exception d'entrées/sorties liée au
+	 *             SCANNER_PUBLIC.
+	 * @throws InterruptedException
+	 *             lance potentiellement une exception d'interruption liée au
+	 *             Thread de la classe.
+	 */
 	public synchronized void askParametres(ParametresDePartie parametresDePartie)
 			throws IOException, InterruptedException {
 		Scanner sc = Console.SCANNER_PUBLIC;
@@ -133,6 +148,12 @@ public class Console implements Runnable, Observer {
 		}
 	}
 
+	/**
+	 * Cette méthode permet d'afficher les textes du modèle envoyé par les
+	 * classes observables du package modele à travers des notifications avec un
+	 * texte. On évite des textes qui ne sont pas destinés à être affichés en
+	 * utilisant des mots clés.
+	 */
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 != null) {
 			if (!(arg1.toString().contains("utiliser") || arg1.toString().contains("don")

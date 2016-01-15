@@ -96,7 +96,7 @@ public class VueParametres extends JDialog {
 
 	/**
 	 * Constructeur de la fenêtre des paramètres
-	 * @param paramètres de la partie
+	 * @param parametresDePartie paramètres de la partie
 	 */
 	public VueParametres(ParametresDePartie parametresDePartie) {
 		this.setTitle("Paramètres");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * La classe StratégueFacile étend la classe Strategie pour définir une
+ * La classe StratégieFacile étend la classe Strategie pour définir une
  * stratégie facile pour les joueurs virtuels. Cette stratégie se traduit par un
  * comportement aléatoire au niveau des actions entreprises par les joueurs
  * virtuels.

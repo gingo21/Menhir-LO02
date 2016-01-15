@@ -3,6 +3,10 @@ package modele;
 import java.util.Iterator;
 import java.util.Observable;
 
+/**
+ * La classe Partie est la classe centrale du modèle. En effet, c'est elle qui va
+ * réunir toutes les fonctionnalités des classes du modèle pour pouvoir ...
+ */
 public class Partie extends Observable implements Runnable {
 
 	private Saison saisonActuelle;

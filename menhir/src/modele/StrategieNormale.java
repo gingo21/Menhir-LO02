@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * La classe StratégueNormale étend la classe Strategie pour définir une
+ * La classe StratégieNormale étend la classe Strategie pour définir une
  * stratégie normale pour les joueurs virtuels. Cette stratégie se traduit par
  * un comportement intelligent au niveau des actions entreprises par les joueurs
  * virtuels.
@@ -229,6 +229,8 @@ public class StrategieNormale extends Strategie {
 	 * 
 	 * @param saisonActuelle
 	 *            récupère la saison actuelle de la partie en cours.
+	 * @param typeAction
+	 *            récupère l'action sélectionnée précedemment.
 	 * @return la carte finalement choisie.
 	 */
 	public CarteIngredient choixCarteIngredient(Saison saisonActuelle, TypeAction typeAction) {

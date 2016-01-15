@@ -5,17 +5,38 @@ import java.util.Scanner;
 
 import launcher.Console;
 
+/**
+ * La classe StratégieJoueurReelGraphique étend la classe Strategie pour définir
+ * la stratégie utilisable par le joueur réel en mode textuel. Cette stratégie
+ * se traduit par une demande au joueur de l'action qu'il veut faire qui se suit
+ * d'une attente que le SCANNER_PUBLIC de la console reçoit la réponse écrite du
+ * joueur.
+ * 
+ * @see Strategie
+ * @see Console
+ */
 public class StrategieJoueurReelConsole extends Strategie {
-	
+
 	/**
-	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 * Il s'agit d'un attribut pour la gestion de version des classes
+	 * implémentant Serializable.
 	 */
 	private static final long serialVersionUID = 4427005288814710556L;
 
+	/**
+	 * Il s'agit du constructeur de la classe.
+	 * 
+	 * @param referenceJoueur
+	 *            récupère le joueur associé à la stratégie.
+	 */
 	public StrategieJoueurReelConsole(Joueur referenceJoueur) {
 		super(referenceJoueur);
 	}
 
+	/**
+	 * Implémentation de la façon dont va jouer un tour un joueur réel pour le
+	 * choix d'une carte ingrédient et d'une action
+	 */
 	public void jouerSonTour(Saison saisonActuelle, ParametresDePartie parametresDePartie) {
 		Scanner sc = Console.SCANNER_PUBLIC;
 
@@ -71,8 +92,6 @@ public class StrategieJoueurReelConsole extends Strategie {
 			if (reponse.contentEquals("farfadet")) {
 				this.setChanged();
 				this.notifyObservers("A quel joueur voulez-vous voler des graines ? Entrer id");
-				// afficher tous les joueurs(IAS) et leurs ressources (graines +
-				// menhirs)
 				for (int i = 1; i < parametresDePartie.getNombreDeJoueurs(); i++) {
 					Joueur tempIA = parametresDePartie.getListeJoueurs().get(i);
 					this.setChanged();
@@ -122,6 +141,10 @@ public class StrategieJoueurReelConsole extends Strategie {
 		}
 	}
 
+	/**
+	 * Implémentation de la façon dont va se défendre un joueur réel s'il
+	 * possède une carte de chiens de gardes
+	 */
 	public int seDefendre(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle, int puissance) {
 		Scanner sc = Console.SCANNER_PUBLIC;
@@ -146,6 +169,10 @@ public class StrategieJoueurReelConsole extends Strategie {
 		return puissanceModifie;
 	}
 
+	/**
+	 * Implémentation de la façon dont va attaquer un joueur réel s'il possède
+	 * une carte de taupes géantes
+	 */
 	public void attaquer(ParametresDePartie parametresDePartie, Joueur destinataire, Joueur acteur,
 			Saison saisonActuelle) {
 		Scanner sc = Console.SCANNER_PUBLIC;
@@ -168,6 +195,10 @@ public class StrategieJoueurReelConsole extends Strategie {
 
 	}
 
+	/**
+	 * Implémentation de la façon dont un joueur réel va choisir si oui ou non
+	 * il veut une carte alliée en partie avancée
+	 */
 	public void choixDeManche(ParametresDePartie parametresDePartie) {
 		Scanner sc = Console.SCANNER_PUBLIC;
 		this.setChanged();

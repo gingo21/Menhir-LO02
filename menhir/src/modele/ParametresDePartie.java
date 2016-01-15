@@ -164,8 +164,6 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Cette méthode appelle la méthode rafraichirLesObservers pour chaque
 	 * joueur de la partie
-	 * 
-	 * @see PaquetDeRessourcesDeJoueur.java.rafraichirLesObservers()
 	 */
 	public void rafraichirObserversDePaquet() {
 		for (Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
@@ -182,7 +180,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 
 	/**
 	 * Mise à jour du nombre de manches de notre partie
-	 * @param nombreDeManches
+	 * @param nombreDeManches le nombre de manches
 	 */
 	public void setNombreDeManches(int nombreDeManches) {
 		this.nombreDeManches = nombreDeManches;
@@ -198,7 +196,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Mise à jour du nombre de joueurs
 	 * 
-	 * @param nombreDeJoueurs
+	 * @param nombreDeJoueurs le nombre de joueurs
 	 */
 	public void setNombreDeJoueurs(int nombreDeJoueurs) {
 		this.nombreDeJoueurs = nombreDeJoueurs;
@@ -214,7 +212,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Mise à jour de l'ordre des joueurs
 	 * 
-	 * @param ordreDesJoueurs
+	 * @param ordreDesJoueurs l'ordre des joueurs
 	 */
 	public void setOrdreDesJoueurs(ArrayList<Integer> ordreDesJoueurs) {
 		this.ordreDesJoueurs = ordreDesJoueurs;
@@ -230,7 +228,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Mise à jour du type de la partie
 	 * 
-	 * @param typePartie
+	 * @param typePartie le type de Partie
 	 */
 	public void setTypePartie(StatutPartie typePartie) {
 		this.typePartie = typePartie;
@@ -246,16 +244,14 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Mise à jour de la liste des joueurs
 	 * 
-	 * @param listeJoueurs
+	 * @param listeJoueurs la liste des joueurs
 	 */
 	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
 	}
 
 	/**
-	 * Mise à jour du paquet de partie
-	 * 
-	 * @param paquetDePartie
+	 * return paquetDePartie
 	 */
 	public PaquetDeRessourcesDePartie getPaquetDePartie() {
 		return paquetDePartie;
@@ -264,7 +260,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Mise à jour du paquet de partie
 	 * 
-	 * @param paquetDePartie
+	 * @param paquetDePartie le paquet de Partie
 	 */
 	public void setPaquetDePartie(PaquetDeRessourcesDePartie paquetDePartie) {
 		this.paquetDePartie = paquetDePartie;

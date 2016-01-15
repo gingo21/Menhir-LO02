@@ -38,8 +38,9 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Constructeur de la classe
 	 * 
-	 * @param parametresDePartie
-	 * @param modeConsole
+	 * @param parametresDePartie les paramètres de la partie
+	 * @param modeConsole 
+	 * 						modeConsole ou graphique
 	 */
 	public Partie(ParametresDePartie parametresDePartie, boolean modeConsole) {
 		super();
@@ -106,6 +107,7 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Méthode de changement de tour On incrémente le numéro de tour, et on
 	 * vérifie s'il y a changement de saison
+	 * @param parametresDePartie les paramètres de la partie
 	 */
 	public void changerDeTour(ParametresDePartie parametresDePartie) {
 		this.numeroDeTourActuel++;
@@ -146,6 +148,7 @@ public class Partie extends Observable implements Runnable {
 
 	/**
 	 * Méthode de fin du jeu On regarde qui a gagné la partie
+	 * @param parametresDePartie les paramètres de la partie
 	 */
 	public void finDeJeu(ParametresDePartie parametresDePartie) {
 		Joueur JoueurGagnant = null;
@@ -172,7 +175,7 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Méthode qui permet d'attendre le temps donné en paramètre
 	 * 
-	 * @param millis
+	 * @param millis le temps
 	 */
 	public void wait(int millis) {
 		double tempTemp = System.currentTimeMillis() + millis;
@@ -190,8 +193,8 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Mise à jour du numéro de manche
 	 * 
-	 * @param numeroDeManche
-	 */
+	 * @param numeroDeManche le numéro de manche
+	 */ 
 	public void setNumeroDeManche(int numeroDeManche) {
 		this.numeroDeManche = numeroDeManche;
 	}
@@ -206,7 +209,7 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Mise à jour du numéro de tour actuel
 	 * 
-	 * @param numeroDeTourActuel
+	 * @param numeroDeTourActuel le numéro de tour actuel
 	 */
 	public void setNumeroDeTourActuel(int numeroDeTourActuel) {
 		this.numeroDeTourActuel = numeroDeTourActuel;
@@ -222,7 +225,7 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Mise à jour de la saison actuelle
 	 * 
-	 * @param saisonActuelle
+	 * @param saisonActuelle la saison actuelle
 	 */
 	public void setSaisonActuelle(Saison saisonActuelle) {
 		this.saisonActuelle = saisonActuelle;
@@ -238,7 +241,7 @@ public class Partie extends Observable implements Runnable {
 	/**
 	 * Mise à jour des paramètres de la partie
 	 * 
-	 * @param parametresDePartie
+	 * @param parametresDePartie les paramètres de partie
 	 */
 	public void setParametresDePartie(ParametresDePartie parametresDePartie) {
 		this.parametresDePartie = parametresDePartie;

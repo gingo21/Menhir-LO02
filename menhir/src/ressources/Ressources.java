@@ -4,18 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import launcher.Console;
-import launcher.GraphicLauncher;
-import vue.VueImage;
 
 /**
  * La classe Ressources permet de charger une seule fois l'ensemble 
  * des images que nous utilisons pour notre interface graphique
+ * Getters et Setters de cette classe ne sont pas écrits car explicites
  */
 public class Ressources {
 	
@@ -64,18 +59,44 @@ public class Ressources {
 	 */
 	private Image imageGeant;
 	
-	private VueImage[] vuesGraines;
-	private VueImage vueGeant;
-	private VueImage vueDosNorm;
-	private VueImage VueDosAvancee;
-	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image fontaineDEauPure;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image chantDeSirene;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image espritDeDolmen;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image larmesDeDryade;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image poudreDOr;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image racinesDArcEnCiel;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image rayonDeLune;
+	
+	/**
+	 * Un type d'image ingredient
+	 */
 	private Image riresDeFees;
 	
 	/**
@@ -167,17 +188,5 @@ public class Ressources {
 	}
 	public Image getImageGeant() {
 		return imageGeant;
-	}
-	public VueImage[] getVuesGraines() {
-		return vuesGraines;
-	}
-	public VueImage getVueGeant() {
-		return vueGeant;
-	}
-	public VueImage getVueDosNorm() {
-		return vueDosNorm;
-	}
-	public VueImage getVueDosAvancee() {
-		return VueDosAvancee;
 	}
 }

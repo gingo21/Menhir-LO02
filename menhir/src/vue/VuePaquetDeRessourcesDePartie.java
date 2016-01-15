@@ -122,11 +122,17 @@ public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 		}
 
 	}
-
+	
+	/**
+	 * @return nombreDeGraines
+	 */
 	public JLabel getNombreDeGraines() {
 		return nombreDeGraines;
 	}
 
+	/**
+	 *Rafraichissement graphique selon le modèle Observer/Observable
+	 */
 	public void update(Observable o, Object arg) {
 		Runnable myRunnable = new Runnable() {
 			public void run() {

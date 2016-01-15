@@ -122,18 +122,34 @@ public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements O
 
 	}
 
+	/**
+	 * @return tempVueCartes1
+	 */
 	public ArrayList<VueCarte> getTempVueCartes1() {
 		return tempVueCartes1;
 	}
-
+	
+	/**
+	 * Mise à jour de tempVueCartes1
+	 * 
+	 * @param tempVueCartes1
+	 */
 	public void setTempVueCartes1(ArrayList<VueCarte> tempVueCartes1) {
 		this.tempVueCartes1 = tempVueCartes1;
 	}
 
+	/**
+	 * @return referencePaquetDeRessourcesDeJoueur
+	 */
 	public PaquetDeRessourcesDeJoueur getReferencePaquetDeRessourcesDeJoueur() {
 		return referencePaquetDeRessourcesDeJoueur;
 	}
 
+	/**
+	 * Mise à jour de referencePaquetDeRessourcesDeJoueur
+	 * 
+	 * @param referencePaquetDeRessourcesDeJoueur
+	 */
 	public void setReferencePaquetDeRessourcesDeJoueur(PaquetDeRessourcesDeJoueur referencePaquetDeRessourcesDeJoueur) {
 		this.referencePaquetDeRessourcesDeJoueur = referencePaquetDeRessourcesDeJoueur;
 	}

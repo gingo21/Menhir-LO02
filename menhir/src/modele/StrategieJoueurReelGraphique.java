@@ -9,7 +9,6 @@ package modele;
  * modele en utilisant des contrôleurs (avec des boutons).
  * 
  * @see Strategie
- * @see VueStrategieJoueurReelGraphique
  */
 public class StrategieJoueurReelGraphique extends Strategie {
 
@@ -256,7 +255,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 	/**
 	 * Mise à jour de la volonté d'attaquer
 	 * 
-	 * @param seDefendre
+	 * @param attaquer
 	 *            récupère la nouvelle volonté d'attaquer.
 	 */
 	public void setAttaquer(boolean attaquer) {

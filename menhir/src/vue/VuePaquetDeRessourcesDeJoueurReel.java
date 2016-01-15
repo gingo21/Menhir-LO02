@@ -43,6 +43,9 @@ public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJo
 
 	}
 
+	/**
+	 *Rafraichissement graphique selon le modèle Observer/Observable
+	 */
 	public void update(Observable arg0, Object arg1) {
 		Runnable myRunnable = new Runnable() {
 			public void run() {

@@ -131,6 +131,7 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 	 * Constructeur de la Vue Stratégie du joueur réel
 	 * @param strategie stratégie du joueur
 	 * @param ressources ensemble des images déjà chargées
+	 * @param vuePaquetDeRessourcesDeJoueur
 	 */
 	public VueStrategieJoueurReelGraphique(final StrategieJoueurReelGraphique strategie, Ressources ressources,
 			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur,

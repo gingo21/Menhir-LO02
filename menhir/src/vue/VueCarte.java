@@ -72,11 +72,18 @@ public abstract class VueCarte extends Panneau{
 		this.hidden = IA;
 	} 
 
-
+	/**
+	 * @return carte
+	 */
 	public Carte getCarte() {
 		return carte;
 	}
-
+	
+	/**
+	 * Mise à jour de la carte
+	 * 
+	 * @param carte
+	 */
 	public void setCarte(Carte carte) {
 		this.carte = carte;
 	}

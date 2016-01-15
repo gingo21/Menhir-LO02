@@ -138,6 +138,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 	/**
 	 * Cette méthode lit les paramètres sauvegardé préalablement dans le fichier
 	 * parametres.conf
+	 * @throws ClassNotFoundException
 	 */
 	public void readParametres() throws ClassNotFoundException {
 
@@ -181,6 +182,7 @@ public class ParametresDePartie extends Observable implements Serializable {
 
 	/**
 	 * Mise à jour du nombre de manches de notre partie
+	 * @param nombreDeManches
 	 */
 	public void setNombreDeManches(int nombreDeManches) {
 		this.nombreDeManches = nombreDeManches;

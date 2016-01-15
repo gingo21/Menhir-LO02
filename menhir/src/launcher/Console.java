@@ -33,10 +33,9 @@ public class Console implements Runnable, Observer {
 	private ParametresDePartie parametresDePartie;
 	/**
 	 * La classe scanner a été choisie pour gérer les entrées du jeu en mode
-	 * textuel, on veut qu'il n'y en ai qu'un d'où la spécification en
-	 * publique, constante et statique. Cet attribut sera ensuite récupéré
-	 * localement et par la classe StrategieJoueurReelConsole pour gérer les
-	 * entrées de texte.
+	 * textuel, on veut qu'il n'y en ai qu'un d'où la spécification en publique,
+	 * constante et statique. Cet attribut sera ensuite récupéré localement et
+	 * par la classe StrategieJoueurReelConsole pour gérer les entrées de texte.
 	 * 
 	 * @see modele.StrategieJoueurReelConsole
 	 */

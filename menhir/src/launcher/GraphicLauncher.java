@@ -4,9 +4,9 @@ import modele.ParametresDePartie;
 import vue.FenetreInitialisation;
 
 /**
- * La classe GraphicLauncher permet de lancer le jeu du menhir en mode graphique avec la
- * librairie Swing. Elle se lance avec un Thread et ne fait que créer la partie et la fenêtre
- * d'initialisation.
+ * La classe GraphicLauncher permet de lancer le jeu du menhir en mode graphique
+ * avec la librairie Swing. Elle se lance avec un Thread et ne fait que créer la
+ * partie et la fenêtre d'initialisation.
  * 
  * @see Jeu
  */
@@ -18,7 +18,7 @@ public class GraphicLauncher implements Runnable {
 	 * @see modele.ParametresDePartie
 	 */
 	private ParametresDePartie parametresDePartie;
-	
+
 	/**
 	 * Il s'agit du constructeur de la classe.
 	 * 
@@ -29,16 +29,15 @@ public class GraphicLauncher implements Runnable {
 		super();
 		this.parametresDePartie = parametresDePartie;
 	}
-	
+
 	/**
 	 * Il s'agit de la méthode permettant de lancer le jeu du menhir en mode
-	 * graphique, elle ne fait que lancer la fenêtre d'initialisation. 
+	 * graphique, elle ne fait que lancer la fenêtre d'initialisation.
 	 * 
 	 * @see vue.FenetreInitialisation
 	 */
 	public void run() {
-		FenetreInitialisation fenetreInitialisation = new FenetreInitialisation(
-				this.parametresDePartie);
+		FenetreInitialisation fenetreInitialisation = new FenetreInitialisation(this.parametresDePartie);
 		fenetreInitialisation.setVisible(true);
 	}
 
@@ -50,7 +49,8 @@ public class GraphicLauncher implements Runnable {
 	}
 
 	/**
-	 * Cette méthode permet une mise à jour de la référence sur les paramétres de partie.
+	 * Cette méthode permet une mise à jour de la référence sur les paramétres
+	 * de partie.
 	 * 
 	 * @param parametresDePartie
 	 *            récupère une référence sur les paramétres de partie.

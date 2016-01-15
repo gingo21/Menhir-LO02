@@ -150,7 +150,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 				CarteComptageDePoints tempCarteComptage = (CarteComptageDePoints) tempJoueur.getPaquet()
 						.getPaquetsDeCartes().get("Cartes Comptage De Points").get(0);
 
-				tempCarteComptage.rajouterGraines(tempCarteChamp.getMenhirAdultes());
+				tempCarteComptage.rajouterMenhirs(tempCarteChamp.getMenhirAdultes());
 				tempCarteChamp.setMenhirAdultes(0);
 			}
 

@@ -1,24 +1,53 @@
 package modele;
 
+/**
+ * La classe CarteIngrédient va étendre la classe Carte pour ajouter toutes les
+ * fonctionnalités des cartes ingrédients avec leur valeurs de puissance et leur
+ * utilisation.
+ * 
+ * @see Carte
+ */
 public class CarteIngredient extends Carte {
-	
+
 	/**
-	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
+	 * Il s'agit d'un attribut pour la gestion de version des classes
+	 * implémentant Serializable.
 	 */
 	private static final long serialVersionUID = -7789616796913158493L;
 
+	/**
+	 * Ce tableau à deux dimensions (4*3) indique la puissance de la carte en
+	 * fonction d'un numéro qui correspond sa place sur la carte réel et aussi
+	 * au numéro de saison et du type d'action.
+	 */
 	private int puissanceActions[][];
 
-	public CarteIngredient(String nom, int puissance[][]) {
+	/**
+	 * Il s'agit du constructeur de la classe où l'on spécifie, en plus du nom,
+	 * les valeurs de puissance.
+	 * 
+	 * @param nom
+	 *            récupère le nom de la carte.
+	 * @param puissances
+	 *            récupère la tableau des valeurs de puissance.
+	 */
+	public CarteIngredient(String nom, int puissances[][]) {
 		super(nom);
 		this.puissanceActions = new int[4][3];
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 3; j++) {
-				this.puissanceActions[i][j] = puissance[i][j];
+				this.puissanceActions[i][j] = puissances[i][j];
 			}
 		}
 	}
 
+	/**
+	 * Il s'agit d'une surcharge du constructeur de la classe où l'on spécifie
+	 * juste le nom. Les valeurs de puissance sont choisies aléatoirement.
+	 * 
+	 * @param nom
+	 *            récupère le nom de la carte.
+	 */
 	public CarteIngredient(String nom) {
 		super(nom);
 		this.puissanceActions = new int[4][3];
@@ -29,10 +58,21 @@ public class CarteIngredient extends Carte {
 		}
 	}
 
+	/**
+	 * @return les valeurs de puissance.
+	 */
 	public int[][] getPuissanceActions() {
 		return this.puissanceActions;
 	}
 
+	/**
+	 * @param saisonActuelle
+	 *            récupère la saison actuelle de la partie en cours.
+	 * @param typeAction
+	 *            récupère le type d'action (géant, engrais, farfadet).
+	 * @return la puissance correspondant à la saison actuelle et à l'action
+	 *         demandée.
+	 */
 	public int getPuissanceActions(Saison saisonActuelle, TypeAction typeAction) {
 		int tempValeur1 = 2;
 		if (saisonActuelle == Saison.automne) {
@@ -56,10 +96,37 @@ public class CarteIngredient extends Carte {
 		return puissanceActions[tempValeur1][tempValeur2];
 	}
 
+	/**
+	 * Mise à jour des valeurs de puissance.
+	 * 
+	 * @param puissanceActions
+	 *            récupère les valeurs de puissance.
+	 */
 	public void setPuissanceActions(int[][] puissanceActions) {
 		this.puissanceActions = puissanceActions;
 	}
 
+	/**
+	 * La méthode utiliser va permettre d'ajouter la fonctionnalité
+	 * d'utilisation de type ingrédient à la carte. Elle permet d'utiliser trois
+	 * action : engrais pour faire pousser les graines du paquet de ressources
+	 * du joueur ayant la carte, farfadet pour voler des graines à un paquet de
+	 * ressources ennemi (de joueur) et géant pour avoir de nouvelles graines.
+	 * En fonction de l'action, de la saison actuelle, l'action va avoir une
+	 * puissance différente qui dépendra des valeurs de puissance.
+	 * 
+	 * @param typeaction
+	 *            récupère le type d'action.
+	 * @param destinataire
+	 *            récupère le destinataire (pouvant être le joueur jouant la
+	 *            carte) de l'action.
+	 * @param acteur
+	 *            récupère l'acteur (joueur jouant la carte).
+	 * @param saisonActuelle
+	 *            récupère la saison actuelle de la partie en cours.
+	 * @param parametresDePartie
+	 *            récupère les paramétres de la partie.
+	 */
 	public void utiliser(TypeAction typeaction, Joueur destinataire, Joueur acteur, Saison saisonActuelle,
 			ParametresDePartie parametresDePartie) {
 		int tempValeur = 0;
@@ -135,6 +202,10 @@ public class CarteIngredient extends Carte {
 		this.setEstUtilise(true);
 	}
 
+	/**
+	 * Cette méthode permet d'afficher en chaine de caractères et de manière
+	 * simple une carte ingrédient. Elle redéfinit celle de la classe étendue.
+	 */
 	public String toString() {
 		String result = "";
 		result += "Carte Ingrédient [nom=" + this.getNom() + ", id=" + this.getId() + ", estUtilise="

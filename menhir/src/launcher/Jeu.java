@@ -22,7 +22,8 @@ public class Jeu {
 
 	/**
 	 * Il s'agit de la méthode principale où démarre le programme, elle
-	 * instancie deux threads pour le jeu et en lance un en fonction de MODE_GRAPHIQUE.
+	 * instancie deux threads pour le jeu et en lance un en fonction de
+	 * MODE_GRAPHIQUE.
 	 * 
 	 * @param args
 	 *            récupère les arguments d'entrée du programme (par exemple la

@@ -1,13 +1,15 @@
 package modele;
 
+/**
+ * Enumération permettant de représenter les différentes saisons du jeu du Menhir
+ * utilisées dans la classe Partie.
+ * 
+ * @see Partie
+ */
 public enum Saison {
-	printemps,ete,automne,hiver;
-	
+	printemps, ete, automne, hiver;
+
 	public Saison next() {
-        // No bounds checking required here, because the last instance overrides
-        return values()[ordinal() + 1];
-    }
+		return values()[ordinal() + 1];
+	}
 }
-
-
-

@@ -9,18 +9,61 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import launcher.Console;
+import launcher.GraphicLauncher;
 import vue.VueImage;
 
+/**
+ * La classe Ressources permet de charger une seule fois l'ensemble 
+ * des images que nous utilisons pour notre interface graphique
+ */
 public class Ressources {
+	
+	/**
+	 * Image du dos des cartes normales
+	 */
 	private Image imageDosGeant;
+	
+	/**
+	 * Image du dos des cartes spéciales
+	 */
 	private Image imageDosLutin;
+	
+	/**
+	 * Image de la carte comptage de points
+	 */
 	private Image imageComptageDePoints;
+	
+	/**
+	 * Tableau des images des cartes ingrédients
+	 */
 	private Image[] imagesIngredient;
+	
+	/**
+	 * Image de la carte champ
+	 */
 	private Image imageCarteChamp;
+	
+	/**
+	 * Image du chien de garde
+	 */
 	private Image imageChienDeGarde;
+	
+	/**
+	 * Image de la carte taupes géantes
+	 */
 	private Image imageTaupesGeantes;
+	
+	/**
+	 * Image d'une graine
+	 */
 	private Image imageGraine;
+	
+	/**
+	 * Image du géant
+	 */
 	private Image imageGeant;
+	
 	private VueImage[] vuesGraines;
 	private VueImage vueGeant;
 	private VueImage vueDosNorm;
@@ -34,25 +77,29 @@ public class Ressources {
 	private Image racinesDArcEnCiel;
 	private Image rayonDeLune;
 	private Image riresDeFees;
+	
+	/**
+	 * Constructeur de la classe
+	 */
 	public Ressources(){
 		this.imagesIngredient = new Image[8];
 		try {
-			imageDosGeant = ImageIO.read( new File("src/Ressources/DosCarteNormale.png"));
-			imageDosLutin = ImageIO.read( new File("src/Ressources/DosCarteAvancee.png"));
-			imageComptageDePoints = ImageIO.read( new File("src/Ressources/CarteComptageDePoints.png"));
-			fontaineDEauPure = ImageIO.read(new File("src/Ressources/CarteIngredientFontaineDEauPure.png"));
-			chantDeSirene = ImageIO.read(new File("src/Ressources/CarteIngredientChantDeSirene.png"));
-			espritDeDolmen = ImageIO.read(new File("src/Ressources/CarteIngredientEspritDeDolmen.png"));
-			larmesDeDryade = ImageIO.read(new File("src/Ressources/CarteIngredientLarmesDeDryade.png"));
-			poudreDOr = ImageIO.read(new File("src/Ressources/CarteIngredientPoudreDOr.png"));
-			racinesDArcEnCiel = ImageIO.read(new File("src/Ressources/CarteIngredientRacinesDArcEnCiel.png"));
-			rayonDeLune = ImageIO.read(new File("src/Ressources/CarteIngredientRayonDeLune.png"));
-			riresDeFees = ImageIO.read(new File("src/Ressources/CarteIngredientRiresDeFees.png"));
-			imageCarteChamp = ImageIO.read( new File("src/Ressources/CarteChamp.png"));
-			imageChienDeGarde = ImageIO.read( new File("src/Ressources/CarteChienDeGarde.png"));
-			imageTaupesGeantes = ImageIO.read( new File("src/Ressources/CarteTaupeGeante.png"));
-			imageGraine = ImageIO.read( new File("src/Ressources/graine.png"));
-			imageGeant = ImageIO.read( new File("src/Ressources/geant.png"));
+			imageDosGeant = ImageIO.read( getClass().getResource("DosCarteNormale.png"));
+			imageDosLutin = ImageIO.read( getClass().getResource("DosCarteAvancee.png"));
+			imageComptageDePoints = ImageIO.read(getClass().getResource("CarteComptageDePoints.png"));
+			fontaineDEauPure = ImageIO.read(getClass().getResource("CarteIngredientFontaineDEauPure.png"));
+			chantDeSirene = ImageIO.read(getClass().getResource("CarteIngredientChantDeSirene.png"));
+			espritDeDolmen = ImageIO.read(getClass().getResource("CarteIngredientEspritDeDolmen.png"));
+			larmesDeDryade = ImageIO.read(getClass().getResource("CarteIngredientLarmesDeDryade.png"));
+			poudreDOr = ImageIO.read(getClass().getResource("CarteIngredientPoudreDOr.png"));
+			racinesDArcEnCiel = ImageIO.read(getClass().getResource("CarteIngredientRacinesDArcEnCiel.png"));
+			rayonDeLune = ImageIO.read(getClass().getResource("CarteIngredientRayonDeLune.png"));
+			riresDeFees = ImageIO.read(getClass().getResource("CarteIngredientRiresDeFees.png"));
+			imageCarteChamp = ImageIO.read( getClass().getResource("CarteChamp.png"));
+			imageChienDeGarde = ImageIO.read(getClass().getResource("CarteChienDeGarde.png"));
+			imageTaupesGeantes = ImageIO.read(getClass().getResource("CarteTaupeGeante.png"));
+			imageGraine = ImageIO.read( getClass().getResource("graine.png"));
+			imageGeant = ImageIO.read( getClass().getResource("geant.png"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -82,6 +129,10 @@ public class Ressources {
 	public Image getRiresDeFees() {
 		return riresDeFees;
 	}
+	
+	/**
+	 * Méthode qui permet le redimensionnement d'une image
+	 */
 	public Image redimImage(Image image, int height, int width){
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = (Graphics2D) img.getGraphics();

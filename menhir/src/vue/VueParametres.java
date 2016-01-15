@@ -24,7 +24,7 @@ import modele.StatutPartie;
 
 /**
  * Cette classe permet de définir la fenêtre où le joueur va choisir
- * les paramètres du jeu.
+ * les paramètres du jeu
  */
 public class VueParametres extends JDialog {
 	

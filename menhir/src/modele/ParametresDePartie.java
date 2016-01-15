@@ -13,6 +13,11 @@ import java.util.Observable;
 
 import launcher.Jeu;
 
+/**
+ * La classe ParamètresDePartie réunit tous les attributs nécessaire au démarrage d'une partie.
+ * Elle hérite d'Observable car elle va notifier son utilisation à
+ * ses observateurs (instances de Observer).
+ */
 public class ParametresDePartie extends Observable implements Serializable {
 	
 	/**
@@ -20,13 +25,39 @@ public class ParametresDePartie extends Observable implements Serializable {
 	 */
 	private static final long serialVersionUID = -3939993060888077130L;
 
+	/**
+	 * Nombre de manches de notre partie
+	 */
 	private int nombreDeManches;
+	
+	/**
+	 * Nombre de joueurs de notre partie
+	 */
 	private int nombreDeJoueurs;
+	
+	/**
+	 * Type de la partie
+	 */
 	private StatutPartie typePartie;
+	
+	/**
+	 * Liste de l'ordre des joueurs
+	 */
 	private ArrayList<Integer> ordreDesJoueurs;
+	
+	/**
+	 * Liste des joueurs
+	 */
 	private ArrayList<Joueur> listeJoueurs;
+	
+	/**
+	 * Paquet de Ressources de la partie
+	 */
 	private PaquetDeRessourcesDePartie paquetDePartie;
 
+	/**
+	 * Constructeur de la classe
+	 */
 	public ParametresDePartie() {
 		try {
 			this.readParametres();
@@ -41,54 +72,99 @@ public class ParametresDePartie extends Observable implements Serializable {
 		}
 	}
 
+	/**
+	 * @return le nombre de manches
+	 */
 	public int getNombreDeManches() {
 		return nombreDeManches;
 	}
 
+	/**
+	 * Mise à jour du nombre de manches de notre partie
+	 */
 	public void setNombreDeManches(int nombreDeManches) {
 		this.nombreDeManches = nombreDeManches;
 	}
 
+	/**
+	 * @return nombre de joueurs 
+	 */
 	public int getNombreDeJoueurs() {
 		return nombreDeJoueurs;
 	}
 
+	/**
+	 * Mise à jour du nombre de joueurs
+	 * @param nombreDeJoueurs
+	 */
 	public void setNombreDeJoueurs(int nombreDeJoueurs) {
 		this.nombreDeJoueurs = nombreDeJoueurs;
 	}
 
+	/**
+	 * @return l'ordre des joueurs
+	 */
 	public ArrayList<Integer> getOrdreDesJoueurs() {
 		return ordreDesJoueurs;
 	}
 
+	/**
+	 * Mise à jour de l'ordre des joueurs
+	 * @param ordreDesJoueurs
+	 */
 	public void setOrdreDesJoueurs(ArrayList<Integer> ordreDesJoueurs) {
 		this.ordreDesJoueurs = ordreDesJoueurs;
 	}
 
+	/**
+	 * @return le  de la Partie
+	 */
 	public StatutPartie getTypePartie() {
 		return typePartie;
 	}
-
+	
+	/**
+	 * Mise à jour du type de la partie
+	 * @param typePartie
+	 */
 	public void setTypePartie(StatutPartie typePartie) {
 		this.typePartie = typePartie;
 	}
 
+	/**
+	 * @return la liste des joueurs
+	 */
 	public ArrayList<Joueur> getListeJoueurs() {
 		return listeJoueurs;
 	}
 
+	/**
+	 * Mise à jour de la liste des joueurs
+	 * @param listeJoueurs
+	 */
 	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
 	}
 
+	/**
+	 * Mise à jour du paquet de partie
+	 * @param paquetDePartie
+	 */
 	public PaquetDeRessourcesDePartie getPaquetDePartie() {
 		return paquetDePartie;
 	}
 
+	/**
+	 * Mise à jour du paquet de partie
+	 * @param paquetDePartie
+	 */
 	public void setPaquetDePartie(PaquetDeRessourcesDePartie paquetDePartie) {
 		this.paquetDePartie = paquetDePartie;
 	}
 
+	/**
+	 * @return le joueur réel
+	 */
 	public JoueurReel getJoueurReel() {
 		JoueurReel tempJoueurReel = null;
 		for (Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
@@ -99,7 +175,11 @@ public class ParametresDePartie extends Observable implements Serializable {
 		}
 		return tempJoueurReel;
 	}
-
+	
+	/**
+	 * Mise à jour de la liste de joueurs
+	 * @param nomDuJoueur
+	 */
 	public void miseAJourListeJoueurs(String nomDuJoueur) {
 		for (int i = this.listeJoueurs.size() - 1; i >= 0; i--) {
 			this.listeJoueurs.remove(i);
@@ -116,7 +196,10 @@ public class ParametresDePartie extends Observable implements Serializable {
 			this.listeJoueurs.add(tempJoueurVirtuel);
 		}
 	}
-
+	
+	/**
+	 * Cette méthode établie les paramètres par défaut
+	 */
 	public void parametresParDefaut() {
 		this.nombreDeJoueurs = 2;
 		this.typePartie = StatutPartie.rapide;
@@ -134,7 +217,10 @@ public class ParametresDePartie extends Observable implements Serializable {
 			this.listeJoueurs.add(tempJoueurVirtuel);
 		}
 	}
-
+	
+	/**
+	 * Cette méthode sauvegarde les paramètres dans un fichier parametres.conf
+	 */
 	public void saveParametres() {
 
 		try {
@@ -151,6 +237,10 @@ public class ParametresDePartie extends Observable implements Serializable {
 		}
 	}
 
+	/**
+	 * Cette méthode lit les paramètres sauvegardé préalablement dans le
+	 * fichier parametres.conf
+	 */
 	public void readParametres() throws ClassNotFoundException {
 
 		try {
@@ -172,12 +262,19 @@ public class ParametresDePartie extends Observable implements Serializable {
 		}
 	}
 
+	/**
+	 * Cette méthode appelle la méthode rafraichirLesObservers pour chaque joueur de la partie
+	 * @see PaquetDeRessourcesDeJoueur.java.rafraichirLesObservers()
+	 */
 	public void rafraichirObserversDePaquet() {
 		for (Iterator<Joueur> it = this.listeJoueurs.iterator(); it.hasNext();) {
 			it.next().getPaquet().rafraichirLesObservers();
 		}
 	}
 
+	/**
+	 * Méthode d'affichage 
+	 */
 	public String toString() {
 		return "ParametresDePartie [nombreDeManches=" + nombreDeManches + ", nombreDeJoueurs=" + nombreDeJoueurs
 				+ ", typePartie=" + typePartie + ", ordreDesJoueurs=" + ordreDesJoueurs + ", listeJoueurs="

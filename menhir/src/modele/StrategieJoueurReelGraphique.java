@@ -147,11 +147,9 @@ public class StrategieJoueurReelGraphique extends Strategie {
 			this.setChanged();
 			this.notifyObservers("Quelle carte ingrédient jouez-vous ? (Cliquez dessus) ");
 			this.wait();
-			// On reçoit la carte
 			this.setChanged();
 			this.notifyObservers("Quelle action ?");
 			this.wait();
-			// On reçoit l'action
 			if (this.actionAJouer == TypeAction.engrais) {
 				((CarteIngredient) this.carteAJouer).utiliser(TypeAction.engrais, this.getReferenceJoueur(),
 						this.getReferenceJoueur(), saisonActuelle, parametresDePartie);
@@ -166,11 +164,8 @@ public class StrategieJoueurReelGraphique extends Strategie {
 				this.setChanged();
 				this.notifyObservers("A quel joueur voulez-vous voler des graines ? (Cliquez lui-dessus)");
 				this.wait();
-				// On reçoit le destinataire
-
 				((CarteIngredient) this.carteAJouer).utiliser(TypeAction.farfadet, this.destinataireAAttaquer,
 						this.getReferenceJoueur(), saisonActuelle, parametresDePartie);
-
 				this.destinataireAAttaquer.score(parametresDePartie.getTypePartie());
 				this.getReferenceJoueur().score(parametresDePartie.getTypePartie());
 
@@ -240,7 +235,6 @@ public class StrategieJoueurReelGraphique extends Strategie {
 					this.notifyObservers(
 							"Voulez-vous attaquer " + destinataire.getNom() + " avec votre Carte Taupes Géantes ?");
 					this.wait();
-					// On reçoit la reponse
 					if (this.attaquer) {
 						this.setChanged();
 						this.notifyObservers(this.getReferenceJoueur().getNom() + " attaque " + destinataire.getNom()
@@ -267,7 +261,6 @@ public class StrategieJoueurReelGraphique extends Strategie {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		// On reçoit la reponse
 	}
 
 }

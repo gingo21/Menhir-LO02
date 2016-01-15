@@ -1,7 +1,7 @@
 package vue;
 
-import Ressources.Ressources;
 import modele.Carte;
+import ressources.Ressources;
 
 /**
  * Représentation Graphique d'une Carte Taupes Géantes

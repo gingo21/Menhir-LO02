@@ -9,9 +9,9 @@ import java.util.Observer;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import Ressources.Ressources;
 import modele.ParametresDePartie;
 import modele.StatutPartie;
+import ressources.Ressources;
 
 public class VuePaquetDeRessourcesDePartie extends Panneau implements Observer {
 

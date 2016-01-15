@@ -6,9 +6,9 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteAlliee;
+import ressources.Ressources;
 
 /**
  * Représentation graphique d'une carte alliée 

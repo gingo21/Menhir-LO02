@@ -6,10 +6,10 @@ import java.util.Observable;
 
 import javax.swing.SwingUtilities;
 
-import Ressources.Ressources;
 import modele.CarteChamp;
 import modele.CarteComptageDePoints;
 import modele.PaquetDeRessourcesDeJoueur;
+import ressources.Ressources;
 
 public class VuePaquetDeRessourcesDeJoueurReel extends VuePaquetDeRessourcesDeJoueur {
 

@@ -8,8 +8,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-import Ressources.Ressources;
 import modele.Carte;
+import ressources.Ressources;
 
 /**
  * Représentation graphique d'une carte

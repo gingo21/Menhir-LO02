@@ -10,7 +10,6 @@ import java.util.Observer;
 
 import javax.swing.BorderFactory;
 
-import Ressources.Ressources;
 import modele.Carte;
 import modele.Joueur;
 import modele.JoueurVirtuel;
@@ -18,6 +17,7 @@ import modele.ParametresDePartie;
 import modele.Partie;
 import modele.StatutPartie;
 import modele.StrategieJoueurReelGraphique;
+import ressources.Ressources;
 
 public class VueJeu extends FenetrePrincipal implements Observer {
 

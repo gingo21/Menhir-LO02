@@ -11,9 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import Ressources.Ressources;
 import modele.ParametresDePartie;
 import modele.Partie;
+import ressources.Ressources;
 
 /**
  * Fenêtre de démarage du jeu

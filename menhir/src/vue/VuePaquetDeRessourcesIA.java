@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 import modele.CarteChamp;
 import modele.CarteComptageDePoints;
 import modele.PaquetDeRessourcesDeJoueur;
-import Ressources.Ressources;
+import ressources.Ressources;
 
 public class VuePaquetDeRessourcesIA extends VuePaquetDeRessourcesDeJoueur {
 

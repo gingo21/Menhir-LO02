@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteChiensDeGarde;
 import modele.CarteIngredient;
@@ -22,6 +21,7 @@ import modele.CarteTaupesGeantes;
 import modele.PaquetDeRessourcesDePartie;
 import modele.StrategieJoueurReelGraphique;
 import modele.TypeAction;
+import ressources.Ressources;
 
 public class VueStrategieJoueurReelGraphique extends Panneau implements Observer {
 

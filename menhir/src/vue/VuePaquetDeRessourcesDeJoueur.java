@@ -6,8 +6,8 @@ import java.util.Observer;
 
 import javax.swing.JLabel;
 
-import Ressources.Ressources;
 import modele.PaquetDeRessourcesDeJoueur;
+import ressources.Ressources;
 
 public abstract class VuePaquetDeRessourcesDeJoueur extends Panneau implements Observer {
 

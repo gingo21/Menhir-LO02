@@ -2,8 +2,8 @@ package vue;
 
 import java.awt.Graphics;
 
-import Ressources.Ressources;
 import modele.Carte;
+import ressources.Ressources;
 
 /**
  * Représentation graphique d'une carte comptage de points

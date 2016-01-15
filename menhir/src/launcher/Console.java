@@ -16,8 +16,17 @@ import modele.ParametresDePartie;
 import modele.Partie;
 import modele.StatutPartie;
 
+/**
+ * La classe Console permet de lancer le jeu en mode textuel avec la console
+ * native de Java
+ * 
+ * @see Jeu.java
+ */
 public class Console implements Runnable, Observer {
-
+	
+	/**
+	 * 
+	 */
 	private ParametresDePartie parametresDePartie;
 	public final static Scanner SCANNER_PUBLIC = new Scanner(System.in);
 

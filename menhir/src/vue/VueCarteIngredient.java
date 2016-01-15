@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JLabel;
 
-import Ressources.Ressources;
 import modele.Carte;
 import modele.CarteIngredient;
+import ressources.Ressources;
 
 /**
  * Représentation Graphique d'une Carte Ingrédient

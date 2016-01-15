@@ -5,7 +5,7 @@ import vue.FenetreInitialisation;
 
 /**
  * La classe GraphicLauncher permet de lancer le jeu du menhir en mode graphique avec la
- * librairie Swing. Elle se lance avec un Thread et ne fait que créé la partie et le fenêtre
+ * librairie Swing. Elle se lance avec un Thread et ne fait que créer la partie et la fenêtre
  * d'initialisation.
  * 
  * @see Jeu
@@ -20,7 +20,7 @@ public class GraphicLauncher implements Runnable {
 	private ParametresDePartie parametresDePartie;
 	
 	/**
-	 * Il s'agit du onstructeur de la classe.
+	 * Il s'agit du constructeur de la classe.
 	 * 
 	 * @param parametresDePartie
 	 *            récupère une référence sur les paramétres de partie.
@@ -43,7 +43,7 @@ public class GraphicLauncher implements Runnable {
 	}
 
 	/**
-	 * @return la référence aux paramétres de partie
+	 * @return la référence aux paramétres de partie.
 	 */
 	public ParametresDePartie getParametresDePartie() {
 		return this.parametresDePartie;

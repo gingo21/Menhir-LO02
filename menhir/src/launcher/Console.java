@@ -18,8 +18,8 @@ import modele.StatutPartie;
 
 /**
  * La classe Console permet de lancer le jeu du menhir en mode textuel avec la
- * console native de Java. Elle se lance avec un Thread et observe les classes du
- * modèle pour afficher du texte de jeu dans la console.
+ * console native de Java. Elle se lance avec un Thread et observe les classes
+ * du modèle pour afficher du texte de jeu dans la console.
  * 
  * @see Jeu
  */
@@ -33,8 +33,8 @@ public class Console implements Runnable, Observer {
 	private ParametresDePartie parametresDePartie;
 	/**
 	 * La classe scanner a été choisie pour gérer les entrées du jeu en mode
-	 * textuel, on veut qu'il n'y en ai qu'un d'où la spéciafication en
-	 * publique, constante et statique. Cet attribut sera ensuité récupéré
+	 * textuel, on veut qu'il n'y en ai qu'un d'où la spécification en
+	 * publique, constante et statique. Cet attribut sera ensuite récupéré
 	 * localement et par la classe StrategieJoueurReelConsole pour gérer les
 	 * entrées de texte.
 	 * 
@@ -43,7 +43,7 @@ public class Console implements Runnable, Observer {
 	public final static Scanner SCANNER_PUBLIC = new Scanner(System.in);
 
 	/**
-	 * Il s'agit du onstructeur de la classe.
+	 * Il s'agit du constructeur de la classe.
 	 * 
 	 * @param parametresDePartie
 	 *            récupère une référence sur les paramétres de partie.
@@ -55,11 +55,10 @@ public class Console implements Runnable, Observer {
 
 	/**
 	 * Il s'agit de la méthode permettant de lancer le jeu du menhir en mode
-	 * textuel
+	 * textuel.
 	 * 
 	 * Cela récupère des exceptions d'interruptions liées au Thread et des
 	 * exceptions d'entrées/sorties liées au scanner.
-	 *
 	 */
 	public void run() {
 		try {
@@ -81,14 +80,15 @@ public class Console implements Runnable, Observer {
 	}
 
 	/**
-	 * @return la référence aux paramétres de partie
+	 * @return la référence aux paramétres de partie.
 	 */
 	public ParametresDePartie getParametresDePartie() {
 		return this.parametresDePartie;
 	}
 
 	/**
-	 * Cette méthode permet une mise à jour de la référence sur les paramétres de partie.
+	 * Cette méthode permet une mise à jour de la référence sur les paramétres
+	 * de partie.
 	 * 
 	 * @param parametresDePartie
 	 *            récupère une référence sur les paramétres de partie.
@@ -99,7 +99,7 @@ public class Console implements Runnable, Observer {
 
 	/**
 	 * Cette méthode permet de demander en console au joueur le paramétrage de
-	 * la partie de manière simplifiée
+	 * la partie de manière simplifiée.
 	 * 
 	 * @param parametresDePartie
 	 *            récupère une référence sur les paramétres de partie.
@@ -109,6 +109,8 @@ public class Console implements Runnable, Observer {
 	 * @throws InterruptedException
 	 *             lance potentiellement une exception d'interruption liée au
 	 *             Thread de la classe.
+	 * 
+	 * @see modele.ParametresDePartie
 	 */
 	public synchronized void askParametres(ParametresDePartie parametresDePartie)
 			throws IOException, InterruptedException {

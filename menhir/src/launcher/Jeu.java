@@ -3,8 +3,8 @@ package launcher;
 import modele.ParametresDePartie;
 
 /**
- * La classe Jeu permet juste de d'avoir une méthode main simple qui va choisir
- * entre le mode graphique et textuel à partie de la constante MODE_GRAPHIQUE.
+ * La classe Jeu permet juste d'avoir une méthode main simple qui va choisir
+ * entre le mode graphique et textuel à partir de la constante MODE_GRAPHIQUE.
  * 
  * @see Console
  * @see GraphicLauncher
@@ -25,7 +25,7 @@ public class Jeu {
 	 * instancie deux threads pour le jeu et en lance un en fonction de MODE_GRAPHIQUE.
 	 * 
 	 * @param args
-	 *            récupère les argument d'entrée du programme (par exemple la
+	 *            récupère les arguments d'entrée du programme (par exemple la
 	 *            localisation de l'exécutable)
 	 */
 	public synchronized static void main(String[] args) {

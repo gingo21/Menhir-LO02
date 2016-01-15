@@ -20,7 +20,7 @@ public class VueImage extends Panneau {
 	private Image image;
 
 	/**
-	 * Crée la vue de largeur'image
+	 * Crée la vue de l'image
 	 * @param image image 
 	 * @param largeur largeur souhaité
 	 * @param hauteur hauteur souhaité
@@ -38,11 +38,11 @@ public class VueImage extends Panneau {
 	
 	/**
 	 * Redimensionner une Image
-	 * @param image largeur'image de départ
+	 * @param image l'image de départ
 	 * @param hauteur sa hauteur souhaité
 	 * @param w sa largeur souhaité
 	 * 
-	 * @return largeur'image redimmensionné
+	 * @return l'image redimmensionné
 	 */
 	public Image redimImage(Image image, int hauteur, int w) {
 		BufferedImage img = new BufferedImage(w, hauteur, BufferedImage.TYPE_INT_ARGB);

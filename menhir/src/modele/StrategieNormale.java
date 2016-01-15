@@ -162,7 +162,7 @@ public class StrategieNormale extends Strategie {
 	 * 
 	 * @param parametresDePartie
 	 *            récupère les paramétres de la partie.
-	 * @return largeur'action finalement choisie.
+	 * @return l'action finalement choisie.
 	 */
 	public TypeAction choixActionIngredient(ParametresDePartie parametresDePartie) {
 		double forceAleaEngrais = 0;
@@ -223,7 +223,7 @@ public class StrategieNormale extends Strategie {
 
 	/**
 	 * Cette méthode permet au joueur virtuel de choisir intelligemment une
-	 * carte ingrédient lors de son tour en fonction de largeur'action qu'il aura
+	 * carte ingrédient lors de son tour en fonction de l'action qu'il aura
 	 * choisie tout simplement en regardant quelle est la carte avec la
 	 * meilleure puissance.
 	 * 

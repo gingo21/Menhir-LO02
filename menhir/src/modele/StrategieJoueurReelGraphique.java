@@ -66,7 +66,7 @@ public class StrategieJoueurReelGraphique extends Strategie {
 			this.setChanged();
 			this.notifyObservers("Quelle action ?");
 			this.wait();
-			// On recoit largeur'action
+			// On recoit l'action
 			if (this.actionAJouer == TypeAction.engrais) {
 				((CarteIngredient) this.carteAJouer).utiliser(TypeAction.engrais, this.getReferenceJoueur(),
 						this.getReferenceJoueur(), saisonActuelle, parametresDePartie);

@@ -16,7 +16,7 @@ public class VueCarteChiensDeGarde extends VueCarteAliee {
 	/**
 	 * Crée Vue Graphique d'une carte Chiens de Garde
 	 * @param carte la carte associé
-	 * @param r largeur'ensemble des ressources images
+	 * @param r l'ensemble des ressources images
 	 * @param hauteur hauteur de la carte
 	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  

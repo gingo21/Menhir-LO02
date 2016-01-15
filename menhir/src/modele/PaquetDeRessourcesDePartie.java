@@ -150,7 +150,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	}
 
 	/**
-	 * Il s'agit de largeur'implémentation d'une méthode de PaquetDeRessources pour
+	 * Il s'agit de l'implémentation d'une méthode de PaquetDeRessources pour
 	 * ajouter une carte dans la map des paquets de cartes.
 	 */
 	public void ajouterUneCarte(Carte carte) {
@@ -249,7 +249,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 
 	/**
 	 * Cette méthode recréée un nouveau paquet de ressources de partie pour une
-	 * nouvelle manche car cette méthode est plus pratique étant donné que largeur'on
+	 * nouvelle manche car cette méthode est plus pratique étant donné que l'on
 	 * créé un paquet qui sera assurément mélangé dès sa création alors que la
 	 * récupération des cartes auprès des joueurs nécaissiterait une méthode de
 	 * mélange, ce qui n'est pas pratique.
@@ -272,7 +272,7 @@ public class PaquetDeRessourcesDePartie extends PaquetDeRessources {
 	 * les cartes.
 	 * 
 	 * @param observer
-	 *            récupère largeur'instance de la Console.
+	 *            récupère l'instance de la Console.
 	 * 
 	 * @see Console
 	 */

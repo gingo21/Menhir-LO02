@@ -32,7 +32,7 @@ public class VueCarteIngredient extends VueCarte {
 	/**
 	 * Créer la vue graphique d'une carte Ingredient
 	 * @param carte la carte associé
-	 * @param ressources largeur'ensemble des ressources images
+	 * @param ressources l'ensemble des ressources images
 	 * @param hauteur hauteur de la carte
 	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  

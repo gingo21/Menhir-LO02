@@ -15,7 +15,7 @@ public class Jeu {
 	 * Il s'agit de la constante qui permet de choisir entre le mode graphique
 	 * et textuel. Elle n'est modifiable que par le programmeur car le mode
 	 * graphique est la version normale du jeu et qu'il est plus simple de ne
-	 * pas avoir à faire la transition entre les deux modes à largeur'exécution, cela
+	 * pas avoir à faire la transition entre les deux modes à l'exécution, cela
 	 * entraine certaines incompatibilités.
 	 */
 	public static final boolean MODE_GRAPHIQUE = true;
@@ -27,7 +27,7 @@ public class Jeu {
 	 * 
 	 * @param args
 	 *            récupère les arguments d'entrée du programme (par exemple la
-	 *            localisation de largeur'exécutable)
+	 *            localisation de l'exécutable)
 	 */
 	public synchronized static void main(String[] args) {
 		ParametresDePartie parametresDePartie = new ParametresDePartie();

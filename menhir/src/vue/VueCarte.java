@@ -61,7 +61,7 @@ public abstract class VueCarte extends Panneau{
 	/**
 	 * Créer la vue graphique d'une carte
 	 * @param carte la carte associé
-	 * @param r largeur'ensemble des ressources images
+	 * @param r l'ensemble des ressources images
 	 * @param hauteur hauteur de la carte
 	 * @param largeur largeur de la carte
 	 * @param IA carte appartenant ou non à IA  

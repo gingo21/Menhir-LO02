@@ -63,7 +63,7 @@ public abstract class Carte extends Observable implements Serializable {
 	}
 
 	/**
-	 * Permet de réinitialiser largeur'utilisation et la détention de la carte.
+	 * Permet de réinitialiser l'utilisation et la détention de la carte.
 	 */
 	public void retourAuPaquet() {
 		this.estDetenuParUnJoueur = false;
@@ -95,7 +95,7 @@ public abstract class Carte extends Observable implements Serializable {
 	}
 
 	/**
-	 * @return largeur'attribut qui indique si la carte est détenue par un joueur.
+	 * @return l'attribut qui indique si la carte est détenue par un joueur.
 	 */
 	public boolean isEstDetenuParUnJoueur() {
 		return estDetenuParUnJoueur;
@@ -112,14 +112,14 @@ public abstract class Carte extends Observable implements Serializable {
 	}
 
 	/**
-	 * @return largeur'attribut qui indique si la carte a déjà été utilisée.
+	 * @return l'attribut qui indique si la carte a déjà été utilisée.
 	 */
 	public boolean isEstUtilise() {
 		return estUtilise;
 	}
 
 	/**
-	 * Mise à jour de largeur'utilisation ou non de la carte.
+	 * Mise à jour de l'utilisation ou non de la carte.
 	 * 
 	 * @param estUtilise
 	 *            récupère si oui ou non la carte a déjà été utilisée.

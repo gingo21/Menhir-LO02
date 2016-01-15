@@ -23,35 +23,115 @@ import modele.StrategieJoueurReelGraphique;
 import modele.TypeAction;
 import ressources.Ressources;
 
+/**
+ * Classe qui décrit la zone graphique où le joueur réel choisit
+ * ses actions et où est affiché la carte en jeu
+ */
 public class VueStrategieJoueurReelGraphique extends Panneau implements Observer {
 	
 	/**
 	 * Il s'agit d'un attribut pour la gestion de version des classes implémentant Serializable.
 	 */
 	private static final long serialVersionUID = 7126927330980873763L;
+	
+	/**
+	 * Boutton oui pour attaquer
+	 */
 	private JButton boutonAttaqueOui = new JButton("oui");
+	
+	/**
+	 * Boutton non pour attaquer
+	 */
 	private JButton boutonAttaqueNon = new JButton("non");
+	
+	/**
+	 * Boutton oui pour se défendre
+	 */
 	private JButton boutonDefenseOui = new JButton("oui");
+	
+	/**
+	 * Boutton non pour se défendre
+	 */
 	private JButton boutonDefenseNon = new JButton("non");
+	
+	/**
+	 * Boutton oui pour le choix de la manche
+	 */
 	private JButton boutonChoixMancheOui = new JButton("oui");
+	
+	/**
+	 * Boutton non pour le choix de la manche
+	 */
 	private JButton boutonChoixMancheNon = new JButton("non");
+	
+	/**
+	 * Boutton engrais
+	 */
 	private JButton boutonEngrais = new JButton("engrais");
+	
+	/**
+	 * Boutton géant
+	 */
 	private JButton boutonGeant = new JButton("géant");
+	
+	/**
+	 * Boutton farfadet
+	 */
 	private JButton boutonFarfadet = new JButton("farfadet");
+	
+	/**
+	 * Afficheur des informations sur le déroulement du jeu
+	 */
 	private JLabel afficheurTexte = new JLabel();
+	
+	/**
+	 * Afficheur des informations sur la saison
+	 */
 	private JLabel afficheurSaison = new JLabel("Saison : printemps");
+	
+	/**
+	 * Label texte 
+	 */
 	private JLabel labelCarteEnJeu = new JLabel("Carte en Jeu");
+	
+	/**
+	 * Vue graphique de la carte en jeu 
+	 */
 	private VueCarte carteEnJeu;
 
 	boolean attenteChoixCarte = false;
 	boolean attenteChoixDestinataire = false;
 
+	/**
+	 * Temps laissé au joueur pour choisir son action
+	 */
 	public static int TEMPS_DE_REFLEXION = 1000;
+	
+	/**
+	 * Référence des ressources images 
+	 */
 	private Ressources referenceRessources;
+	
+	/**
+	 * Référence de la stratégie du joueur réel
+	 */
 	private StrategieJoueurReelGraphique referenceStrategie;
+	
+	/**
+	 * Référence de la stratégie du joueur réel
+	 */
 	private VuePaquetDeRessourcesDeJoueur referenceVuePaquetDeRessourcesDeJoueur;
+	
+	/**
+	 * Référence du panneau des ressources graphiques de l'IA
+	 */
 	private ArrayList<VuePaquetDeRessourcesIA> referenceVuesPaquetDeRessourcesIA;
-
+	
+	/**
+	 * Constructeur de la Vue Stratégie du joueur réel
+	 * @param strategie stratégie du joueur
+	 * @param ressources ensemble des images déjà chargées
+	 */
 	public VueStrategieJoueurReelGraphique(final StrategieJoueurReelGraphique strategie, Ressources ressources,
 			VuePaquetDeRessourcesDeJoueur vuePaquetDeRessourcesDeJoueur,
 			ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA) {
@@ -175,7 +255,9 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 
 		this.setVisible(true);
 	}
-
+	/**
+	 * Méthode qui efface les boutons
+	 */
 	public void effacerBoutons() {
 		this.boutonAttaqueOui.setVisible(false);
 		this.boutonAttaqueNon.setVisible(false);
@@ -306,7 +388,11 @@ public class VueStrategieJoueurReelGraphique extends Panneau implements Observer
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 *  Méthode apellée quand il y a un changement de paquet, et donc
+	 *  notre vue graphique doit observer ce nouveau paquet
+	 */
 	public void changementDePaquet(PaquetDeRessourcesDePartie paquet) {
 		paquet.addObserver(this);
 	}

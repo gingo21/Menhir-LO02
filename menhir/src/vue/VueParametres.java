@@ -214,7 +214,7 @@ public class VueParametres extends JDialog {
 	}
 	
 	/**
-	 * Méthode qui permet largeur'enregistrement des paramètres
+	 * Méthode qui permet l'enregistrement des paramètres
 	 */
 	public synchronized void enregistrerParametres() {
 

@@ -26,14 +26,14 @@ public class CarteTaupesGeantes extends CarteAlliee {
 
 	/**
 	 * La méthode utiliser permet au joueur ayant cette d'attaquer les menhirs
-	 * se situant sur une carte champ ennemie. La puissance de largeur'action dépendra
+	 * se situant sur une carte champ ennemie. La puissance de l'action dépendra
 	 * de la saison actuelle.
 	 * 
 	 * @param destinataire
-	 *            récupère le destinataire de largeur'attaque.
+	 *            récupère le destinataire de l'attaque.
 	 * @param saisonActuelle
 	 *            récupère la saison actuelle de la partie en cours.
-	 * @return la valeur de la puissance de largeur'attaque (le nombre de menhirs à
+	 * @return la valeur de la puissance de l'attaque (le nombre de menhirs à
 	 *         détruire).
 	 */
 	public int utiliser(Joueur destinataire, Saison saisonActuelle) {

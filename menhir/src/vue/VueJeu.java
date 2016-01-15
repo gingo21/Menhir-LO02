@@ -51,7 +51,7 @@ public class VueJeu extends FenetrePrincipal implements Observer {
 	private ArrayList<VuePaquetDeRessourcesIA> vuesPaquetDeRessourcesIA;
 	
 	/**
-	 * Tableau qui contient largeur'emplacement des IAs dans notre fenêtre de jeu
+	 * Tableau qui contient l'emplacement des IAs dans notre fenêtre de jeu
 	 */
 	private Dimension[] positionsDesIA;
 	
